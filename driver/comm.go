@@ -7,7 +7,7 @@ import (
 	"mudscript/object"
 )
 
-// ProcessAnsi 將自定義的 {r} 標籤轉換為 ANSI 色碼 (用於終端機)
+// ProcessAnsi 將自定義的 {r} 與 $TAG$ 標籤轉換為 ANSI 色碼 (用於終端機)
 func (d *Driver) ProcessAnsi(text string) string {
 	colorMap := map[string]string{
 		"r":  "\x1b[31m",
@@ -25,6 +25,33 @@ func (d *Driver) ProcessAnsi(text string) string {
 	for tag, code := range colorMap {
 		res = strings.ReplaceAll(res, "{"+tag+"}", code)
 	}
+
+	// 支援 MUDLib 標準定義的 $TAG$ 顏色代碼
+	mudColorMap := map[string]string{
+		"$NOR$": "\x1b[0m",
+		"$BLK$": "\x1b[30m",
+		"$RED$": "\x1b[31m",
+		"$GRN$": "\x1b[32m",
+		"$YEL$": "\x1b[33m",
+		"$BLU$": "\x1b[34m",
+		"$MAG$": "\x1b[35m",
+		"$CYN$": "\x1b[36m",
+		"$WHT$": "\x1b[37m",
+		"$GRA$": "\x1b[90m",
+		
+		"$HIK$": "\x1b[1;30m",
+		"$HIR$": "\x1b[1;31m",
+		"$HIG$": "\x1b[1;32m",
+		"$HIY$": "\x1b[1;33m",
+		"$HIB$": "\x1b[1;34m",
+		"$HIM$": "\x1b[1;35m",
+		"$HIC$": "\x1b[1;36m",
+		"$HIW$": "\x1b[1;37m",
+	}
+	for tag, code := range mudColorMap {
+		res = strings.ReplaceAll(res, tag, code)
+	}
+
 	return res
 }
 
