@@ -1,0 +1,7 @@
+../
+data/
+doc/
+*o
+log/
+tmp/
+binaries/
