@@ -32,7 +32,7 @@
   "exp": 150,
   "exp_to_next": 1000,
   "explored_rooms": {
-    "/std/room.c#23": 1
+    "/std/room.c#31": 1
   },
   "followers": [],
   "footprints": [],

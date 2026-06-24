@@ -9,41 +9,21 @@ mapping guilds;
 
 void create() {
     ::create();
-    guilds = ([
-        "adventurer": ([
-            "name": ([ "en": "Adventurers Guild", "zh-TW": "冒險者公會", "zh-CN": "冒险者公会" ]),
-            "desc": ([ "en": "Welcome all adventurers, this is your first home.", "zh-TW": "歡迎所有志在四方的冒險者，這裡是你的第一個家。", "zh-CN": "欢迎所有志在四方的冒险者，这里是你的第一个家。" ]),
-            "ranks": ({ 
-                ([ "en": "Novice Adventurer", "zh-TW": "新手冒險者", "zh-CN": "新手冒险者" ]),
-                ([ "en": "Official Adventurer", "zh-TW": "正式冒險者", "zh-CN": "正式冒险者" ]),
-                ([ "en": "Senior Adventurer", "zh-TW": "資深冒險者", "zh-CN": "资深冒险者" ]),
-                ([ "en": "Legendary Adventurer", "zh-TW": "傳奇冒險者", "zh-CN": "传奇冒险者" ])
-            }),
-            "req": ([ "level": 1, "int": 10, "str": 10 ])
-        ]),
-        "mage": ([
-            "name": ([ "en": "Mages Circle", "zh-TW": "魔法師集會", "zh-CN": "魔法师集会" ]),
-            "desc": ([ "en": "The hall for pursuing truth and arcane power.", "zh-TW": "追求真理與奧法力量的殿堂。", "zh-CN": "追求真理与奥法力量的殿堂。" ]),
-            "ranks": ({ 
-                ([ "en": "Apprentice", "zh-TW": "魔法學徒", "zh-CN": "魔法学徒" ]),
-                ([ "en": "Junior Mage", "zh-TW": "初級法師", "zh-CN": "初级法师" ]),
-                ([ "en": "Archmage", "zh-TW": "大法師", "zh-CN": "大法师" ]),
-                ([ "en": "Sage", "zh-TW": "賢者", "zh-CN": "贤者" ])
-            }),
-            "req": ([ "level": 5, "int": 20 ])
-        ]),
-        "fighter": ([
-            "name": ([ "en": "Warriors Covenant", "zh-TW": "戰士盟約", "zh-CN": "战士盟约" ]),
-            "desc": ([ "en": "The home of strength and glory, hone your iron will.", "zh-TW": "力量與榮耀的歸宿，磨練鋼鐵般的意志。", "zh-CN": "力量与荣耀的归宿，磨练钢铁般的意志。" ]),
-            "ranks": ({ 
-                ([ "en": "Trainee Fighter", "zh-TW": "見習鬥士", "zh-CN": "见习斗士" ]),
-                ([ "en": "Brave Warrior", "zh-TW": "勇猛戰士", "zh-CN": "勇猛战士" ]),
-                ([ "en": "Battle Commander", "zh-TW": "戰場統帥", "zh-CN": "战场统帅" ]),
-                ([ "en": "War God", "zh-TW": "戰神", "zh-CN": "战神" ])
-            }),
-            "req": ([ "level": 5, "str": 20 ])
-        ])
-    ]);
+    guilds = ([]);
+
+    mixed *files = get_dir("/world/guilds/*.yaml");
+    if (sizeof(files) > 0) {
+        foreach (string file in files) {
+            string path = "/world/guilds/" + file;
+            string content = read_file(path);
+            if (content) {
+                mapping data = yaml_decode(content);
+                if (data && data["id"]) {
+                    guilds[data["id"]] = data;
+                }
+            }
+        }
+    }
 }
 
 mapping query_guild_info(string gid) { return guilds[gid]; }
@@ -53,7 +33,7 @@ int join_guild(object me, string gid) {
     if (!info) return 0;
 
     if (me->query_guild()) {
-        if (me->query_guild() == gid) return 1; // 🚀 靜默處理：如果已經在該公會，直接回傳成功
+        if (me->query_guild() == gid) return 1; // 靜默處理：如果已經在該公會，直接回傳成功
         write(_t("guild_already_joined") + "\n");
         return 0;
     }

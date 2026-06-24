@@ -6,28 +6,42 @@
 
 inherit "/std/object";
 
+private nosave mapping map_data;
+
 void create() {
     ::create();
+    map_data = ([]);
+    string content = read_file("/world/map.yaml");
+    if (content) {
+        map_data = yaml_decode(content);
+    }
 }
 
 // 根據坐標取得房間路徑
 string get_room_file(int x, int y, int z) {
-    // 地面區域
-    if (z == 0) {
-        if (x >= 0 && x <= 7 && y >= 0 && y <= 7)
-            return sprintf("/area/newbie/room_%d_%d.c", x, y);
-        if (x == 10 && y == 0)
-            return "/area/water/lake_0_0_0.c";
+    if (!map_data) return 0;
+
+    // 1. 檢查固定坐標對應 (fixed_rooms)
+    mapping fixed = map_data["fixed_rooms"];
+    if (fixed) {
+        string coord_key = sprintf("%d,%d,%d", x, y, z);
+        if (fixed[coord_key]) {
+            return fixed[coord_key];
+        }
     }
-    // 地下區域 (z = -1)
-    if (z == -1) {
-        if (x == 0 && y == 0) return "/area/cave/cave_0_0_minus1.c";
-        if (x == 0 && y == 1) return "/area/cave/cave_0_1_minus1.c";
+
+    // 2. 檢查動態範圍對應 (range_rooms)
+    mixed ranges = map_data["range_rooms"];
+    if (ranges && arrayp(ranges)) {
+        foreach (mapping rule in ranges) {
+            if (rule["z"] == z &&
+                x >= rule["x_min"] && x <= rule["x_max"] &&
+                y >= rule["y_min"] && y <= rule["y_max"]) {
+                return sprintf(rule["pattern"], x, y);
+            }
+        }
     }
-    // 高塔區域 (z > 0)
-    if (z == 0 && x == 0 && y == 5) return "/area/tower/tower_1f.c";
-    if (z == 1 && x == 0 && y == 5) return "/area/tower/tower_2f.c";
-    
+
     return 0;
 }
 

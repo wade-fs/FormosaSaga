@@ -9,59 +9,21 @@ mapping quest_list;
 
 void create() {
     ::create();
-    quest_list = ([
-        "newbie_badge": ([
-            "name": ([ "en": "Newbie Proof", "zh-TW": "新手證明", "zh-CN": "新手证明" ]),
-            "desc": ([ "en": "Prove your courage to the Guild Master.", "zh-TW": "向公會會長證明你的勇氣。", "zh-CN": "向公会会长证明你的勇气。" ]),
-            "level": 1,
-            "reward": ([
-                "exp": 100,
-                "gold": 50,
-                "badge": "/item/badge_newbie.c"
-            ])
-        ]),
-        "wolf_hunter": ([
-            "name": ([ "en": "Wolf Hunting", "zh-TW": "獵狼行動", "zh-CN": "猎狼行动" ]),
-            "desc": ([ "en": "Eliminate 3 hungry wolves.", "zh-TW": "消滅 3 隻飢餓的野狼。", "zh-CN": "消灭 3 只饥饿的野狼。" ]),
-            "level": 3,
-            "goal": ([ "type": "kill", "target": "wolf", "count": 3 ]),
-            "reward": ([
-                "exp": 500,
-                "gold": 200
-            ])
-        ]),
-        "collect_fur": ([
-            "name": ([ "en": "Fur Collection", "zh-TW": "毛皮需求", "zh-CN": "毛皮需求" ]),
-            "desc": ([ "en": "Collect 3 wolf furs and give them to the armourer.", "zh-TW": "收集 3 張狼皮交給防具店老闆。", "zh-CN": "收集 3 张狼皮交给防具店老板。" ]),
-            "level": 3,
-            "goal": ([ "type": "item", "target": "狼皮", "count": 3 ]),
-            "reward": ([
-                "exp": 300,
-                "gold": 150,
-                "item": "/item/armour/leather_belt.c"
-            ])
-        ]),
-        "slime_medicine": ([
-            "name": ([ "en": "Medicine Ingredients", "zh-TW": "藥劑材料", "zh-CN": "药剂材料" ]),
-            "desc": ([ "en": "Collect 5 globs of slime jelly and give them to the herbalist.", "zh-TW": "收集 5 團史萊姆黏液交給藥劑師。", "zh-CN": "收集 5 团史莱姆黏液交给药剂师。" ]),
-            "level": 1,
-            "goal": ([ "type": "item", "target": "史萊姆黏液", "count": 5 ]),
-            "reward": ([
-                "exp": 200,
-                "gold": 80
-            ])
-        ]),
-        "crab_armour": ([
-            "name": ([ "en": "Crab Armour", "zh-TW": "加固甲殼", "zh-CN": "加固甲壳" ]),
-            "desc": ([ "en": "Collect 2 crab shells and give them to the blacksmith.", "zh-TW": "收集 2 塊螃蟹殼交給鐵匠。", "zh-CN": "收集 2 块螃蟹壳交给铁匠。" ]),
-            "level": 2,
-            "goal": ([ "type": "item", "target": "螃蟹殼", "count": 2 ]),
-            "reward": ([
-                "exp": 250,
-                "gold": 100
-            ])
-        ])
-    ]);
+    quest_list = ([]);
+    
+    mixed *files = get_dir("/world/quests/*.yaml");
+    if (sizeof(files) > 0) {
+        foreach (string file in files) {
+            string path = "/world/quests/" + file;
+            string content = read_file(path);
+            if (content) {
+                mapping data = yaml_decode(content);
+                if (data && data["id"]) {
+                    quest_list[data["id"]] = data;
+                }
+            }
+        }
+    }
 }
 
 mapping query_quest_info(string qid) {
@@ -106,7 +68,7 @@ int complete_quest(object me, string qid) {
 
     mapping info = query_quest_info(qid);
     
-    // 🚀 如果是蒐集任務，檢查並扣除物品
+    // 如果是蒐集任務，檢查並扣除物品
     if (info["goal"] && info["goal"]["type"] == "item") {
         string target_name = info["goal"]["target"];
         int req_count = info["goal"]["count"];
@@ -141,7 +103,7 @@ int complete_quest(object me, string qid) {
     if (reward["exp"]) me->gain_exp(reward["exp"]);
     if (reward["gold"]) me->gain_gold(reward["gold"]);
     
-    // 🚀 新增：公會貢獻獎勵
+    // 新增：公會貢獻獎勵
     if (me->query_guild()) {
         int gexp = reward["exp"] / 5; // 預設貢獻度為經驗值的 20%
         if (gexp < 1) gexp = 1;
@@ -182,7 +144,7 @@ int complete_quest(object me, string qid) {
     return 1;
 }
 
-// 🚀 新增：檢查殺怪進度
+// 新增：檢查殺怪進度
 void check_kill_progress(object me, string monster_file) {
     mapping quests = me->query_quests();
     if (!quests) return;
@@ -193,7 +155,7 @@ void check_kill_progress(object me, string monster_file) {
         if (qdata["status"] != "active") continue;
 
         mapping info = quest_list[qid];
-        if (!info["goal"] || info["goal"]["type"] != "kill") continue;
+        if (!info || !info["goal"] || info["goal"]["type"] != "kill") continue;
 
         // 檢查是否為目標怪物 (支援 partial path 匹配)
         if (strsrch(monster_file, info["goal"]["target"]) != -1) {

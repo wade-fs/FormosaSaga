@@ -10,34 +10,21 @@ inherit "/std/object";
 
 void create() {
     ::create();
-    recipes = ([
-        // ── 製藥 (Alchemy) ──
-        "health_potion": ([
-            "type": "alchemy",
-            "name": "初級恢復藥水",
-            "materials": ([ "/item/material/slime_jelly.c": 2, "/item/material/wood.c": 1 ]),
-            "result": "/item/consumable/health_potion.c",
-            "msg": "你將黏液與草藥混合攪拌，瓶中泛起了紅色的微光。"
-        ]),
+    recipes = ([]);
 
-        // ── 鍛造 (Forging) ──
-        "crab_shield": ([
-            "type": "forge",
-            "name": "加固木盾",
-            "materials": ([ "/item/material/crab_shell.c": 2, "/item/material/wood.c": 1 ]),
-            "result": "/item/armour/reinforced_shield.c",
-            "msg": "你利用堅硬的螃蟹殼加固了護盾，防禦力大幅提升。"
-        ]),
-
-        // ── 鑲嵌 (Socketing) ──
-        "socket_fire": ([
-            "type": "socket",
-            "name": "火焰鑲嵌",
-            "materials": ([ "/item/gem/fire_shard.c": 1 ]),
-            "msg": "裝備散發出熾熱的紅光！",
-            "apply_func": "apply_socket_fire"
-        ])
-    ]);
+    mixed *files = get_dir("/world/recipes/*.yaml");
+    if (sizeof(files) > 0) {
+        foreach (string file in files) {
+            string path = "/world/recipes/" + file;
+            string content = read_file(path);
+            if (content) {
+                mapping data = yaml_decode(content);
+                if (data && data["id"]) {
+                    recipes[data["id"]] = data;
+                }
+            }
+        }
+    }
 }
 
 // 鑲嵌邏輯實作
