@@ -26,6 +26,8 @@ mapping muted_channels; // 🚀 新願：屏蔽的頻道
 mapping explored_rooms; // 🚀 新增：已探索房間 ([ "room_file": 1 ])
 string *saved_inventory = ({ });
 string last_location;
+string *footprints; // 🚀 新增：踏印紀錄
+
 
 // ── 查詢 ──────────────────────────────────────────────────
 
@@ -59,6 +61,7 @@ void create() {
     if (!quests) quests = ([]);
     if (!muted_channels) muted_channels = ([]);
     if (!explored_rooms) explored_rooms = ([]);
+    if (!footprints) footprints = ({});
     init_aliases();
     
     write_paths = ({ }); 
@@ -77,6 +80,30 @@ string query_cwd() {
     return cwd; 
 }
 void set_cwd(string path) { cwd = path; }
+
+string *query_footprints() {
+    if (!footprints) footprints = ({});
+    return footprints;
+}
+
+void add_footprint_record(string fid) {
+    if (!footprints) footprints = ({});
+    if (member_array(fid, footprints) == -1) {
+        footprints += ({ fid });
+        save();
+    }
+}
+
+int has_footprint_record(string fid) {
+    if (!footprints) return 0;
+    return member_array(fid, footprints) != -1;
+}
+
+void clear_footprints() {
+    footprints = ({});
+    save();
+}
+
 
 // 🚀 新增：清理編輯鎖定
 void cleanup_editor() {

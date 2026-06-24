@@ -58,9 +58,9 @@ test-driver: fsmud
 test: test-driver
 
 # 正常執行伺服器
-run-fsmud: fsmud
+run run-fsmud: fsmud
 	@echo "🚀 Starting MudScript Server (Connecting to Global Hub)..."
-	@ ./bin/fsmud -mudlib fsmud -master master.c 2>&1 | tee run-fsmud.txt
+	@ ./bin/fsmud -mudlib mudlib -master master.c 2>&1 | tee run-fsmud.txt
 
 # 執行 FSMUD 自動化一鍵整合測試
 test-fsmud: fsmud

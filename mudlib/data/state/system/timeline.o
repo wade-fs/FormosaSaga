@@ -1,8 +1,6 @@
 {
-  "current_weather": "clear",
-  "game_time": 1,
+  "current_era_id": "v0.1_wild_era",
   "id_list": [],
-  "last_update": 1782325121,
   "long_name": "這是一個沒有描述的東西。",
   "money_value": 0,
   "name": "某個東西",
@@ -11,11 +9,5 @@
   "responses": 0,
   "short_name": "某個東西",
   "temp_vars": 0,
-  "weather_types": [
-    "clear",
-    "cloudy",
-    "rainy",
-    "foggy",
-    "snowy"
-  ]
+  "world_progress": 5
 }

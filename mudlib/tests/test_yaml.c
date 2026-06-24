@@ -40,5 +40,40 @@ void run_tests(object me) {
     assert_equal(2, sizeof(decoded["features"]), "再次解碼的 features 長度");
     assert_equal("古蹟", decoded["features"][0], "再次解碼的 features 元素 0");
 
+    // 3. 測試領域事件與聚落探索聯動 (M1 核心循環)
+    start_test("M1 核心循環 (事件與聚落聯動)");
+    
+    object set_d = load_object("/daemon/settlement_d.c");
+    object fp_d = load_object("/daemon/footprint_d.c");
+    object tl_d = load_object("/daemon/timeline_d.c");
+    object ev_d = load_object("/secure/event_d.c");
+
+    // 重置民雄的狀態
+    set_d->add_memory("minxiong", -set_d->query_memory("minxiong") + 35);
+    set_d->add_culture("minxiong", -set_d->query_culture("minxiong") + 42);
+    set_d->add_population("minxiong", -set_d->query_population("minxiong") + 1200);
+    
+    // 重置時間軸進度
+    tl_d->add_world_progress(-tl_d->query_world_progress());
+
+    // 模擬玩家獲得踏印 (清空原記錄以確保能觸發)
+    me->clear_footprints(); 
+    fp_d->add_footprint(me, "sugar_railway_minxiong");
+
+    // 手動觸發事件分發以同步化非同步佇列
+    ev_d->dispatch_loop(); 
+
+    // 斷言驗證：
+    // 3.1. 玩家成功獲得踏印
+    assert_equal(1, me->has_footprint_record("sugar_railway_minxiong"), "玩家應持有踏印記錄");
+    
+    // 3.2. 聚落數值更新 (35 + 5 = 40; 42 + 3 = 45; 1200 + 20 = 1220)
+    assert_equal(40, set_d->query_memory("minxiong"), "民雄記憶值應累加至 40");
+    assert_equal(45, set_d->query_culture("minxiong"), "民雄文化值應累加至 45");
+    assert_equal(1220, set_d->query_population("minxiong"), "民雄人口值應累加至 1220");
+
+    // 3.3. 時代進度累加 (0 + 5 = 5)
+    assert_equal(5, tl_d->query_world_progress(), "時代進度應累加至 5");
+
     report_results();
 }

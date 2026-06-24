@@ -11,6 +11,10 @@ void create() {
     write("===================================\n");
 
     // 啟動全域守護進程
+    load_object("/secure/event_d.c");
+    load_object("/daemon/timeline_d.c");
+    load_object("/daemon/settlement_d.c");
+    load_object("/daemon/footprint_d.c");
     load_object("/daemon/nature_d.c");
     load_object("/daemon/quest_d.c");
     load_object("/daemon/guild_d.c");
