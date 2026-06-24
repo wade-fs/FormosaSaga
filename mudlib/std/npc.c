@@ -713,3 +713,40 @@ int clean_up(int inherited_count) {
 
     return 1;
 }
+
+// 複寫 YAML 載入，額外解析 NPC 與怪物屬性
+int init_from_yaml(string path) {
+    if (!::init_from_yaml(path)) return 0;
+
+    string content = read_file(path);
+    mapping data = yaml_decode(content);
+
+    if (data["level"] != undefined) level = data["level"];
+    if (data["stat_str"] != undefined) stat_str = data["stat_str"];
+    if (data["stat_dex"] != undefined) stat_dex = data["stat_dex"];
+    if (data["stat_con"] != undefined) stat_con = data["stat_con"];
+    if (data["exp_reward"] != undefined) exp_reward = data["exp_reward"];
+    if (data["gold_reward"] != undefined) gold_reward = data["gold_reward"];
+    if (data["drop_list"]) drop_list = data["drop_list"];
+    if (data["harvest_data"]) harvest_data = data["harvest_data"];
+    if (data["skills_to_teach"]) skills_to_teach = data["skills_to_teach"];
+    if (data["respawn_time"] != undefined) respawn_time = data["respawn_time"];
+    if (data["aggro_msg"]) aggro_msg = data["aggro_msg"];
+    if (data["habitat"]) habitat = data["habitat"];
+    if (data["behaviour"] != undefined) behaviour = data["behaviour"];
+    if (data["aggro_range"] != undefined) aggro_range = data["aggro_range"];
+    if (data["flee_hp_pct"] != undefined) flee_hp_pct = data["flee_hp_pct"];
+    if (data["flee_chance"] != undefined) flee_chance = data["flee_chance"];
+    if (data["patrol_rooms"]) patrol_rooms = data["patrol_rooms"];
+    if (data["special_atk"]) special_atk = data["special_atk"];
+    if (data["special_atk_chance"] != undefined) special_atk_chance = data["special_atk_chance"];
+    if (data["move_range"] != undefined) move_range = data["move_range"];
+    if (data["wander_chance"] != undefined) wander_chance = data["wander_chance"];
+    if (data["aggressive"] != undefined) aggressive = data["aggressive"];
+
+    recalc_stats();
+    hp = max_hp;
+    mp = max_mp;
+
+    return 1;
+}

@@ -82,3 +82,22 @@ int clean_up(int inherited_count) {
 
     return 1;
 }
+
+// 複寫 YAML 載入，額外解析物品屬性
+int init_from_yaml(string path) {
+    if (!::init_from_yaml(path)) return 0;
+
+    string content = read_file(path);
+    mapping data = yaml_decode(content);
+
+    if (data["item_type"]) set_item_type(data["item_type"]);
+    if (data["weight"] != undefined) set_weight(data["weight"]);
+    if (data["value"] != undefined) set_value(data["value"]);
+    if (data["durability"] != undefined) set_durability(data["durability"]);
+    if (data["max_durability"] != undefined) set_max_durability(data["max_durability"]);
+    if (data["level_req"] != undefined) set_level_req(data["level_req"]);
+    if (data["identified"] != undefined) set_identified(data["identified"]);
+    if (data["indestructible"] != undefined) set_indestructible(data["indestructible"]);
+
+    return 1;
+}

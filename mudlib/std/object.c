@@ -170,3 +170,22 @@ int clean_up(int inherited_count) {
 
     return 1;
 }
+
+// 動態從 YAML 初始化基本屬性
+int init_from_yaml(string path) {
+    if (file_size(path) <= 0) return 0;
+    string content = read_file(path);
+    if (!content) return 0;
+    mapping data = yaml_decode(content);
+    if (!data) return 0;
+
+    if (data["name"]) set_name(data["name"]);
+    if (data["short_name"]) set_short(data["short_name"]);
+    if (data["long_name"]) set_long(data["long_name"]);
+    if (data["id_list"]) set_id(data["id_list"]);
+    if (data["no_get"] != undefined) set_no_get(data["no_get"]);
+    if (data["no_drop"] != undefined) set_no_drop(data["no_drop"]);
+    if (data["money_value"] != undefined) set_money_value(data["money_value"]);
+
+    return 1;
+}
