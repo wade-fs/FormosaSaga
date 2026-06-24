@@ -1,0 +1,53 @@
+func (p *Parser) parseStatement(topLevel bool) ast.Statement {
+	isVarargs := false
+	for p.curTokenIs(token.PRIVATE) || p.curTokenIs(token.STATIC) ||
+		p.curTokenIs(token.PROTECTED) || p.curTokenIs(token.VARARGS) ||
+		p.curTokenIs(token.NOSAVE) || p.curTokenIs(token.NOMASK) {
+		if p.curTokenIs(token.VARARGS) {
+			isVarargs = true
+		}
+		p.nextToken()
+	}
+
+	if p.isTypeToken(p.curToken.TokenType) {
+		return p.parseTypedDeclarationStatement(isVarargs)
+	}
+
+	// 🚀 [關鍵修正] 支援省略回傳型別的函式定義 (預設為 mixed)
+	// 語法: [modifiers] name(args) { ... }
+	// 注意：這只應該發生在 top-level
+	if topLevel && p.curTokenIs(token.IDENT) && p.peekTokenIs(token.LPAREN) {
+		typeToken := token.Token{TokenType: token.MIXED_TYPE, Literal: "mixed", Line: p.curToken.Line}
+		name := &ast.Ident{Token: p.curToken, Value: p.curToken.Literal}
+		return p.parseFunctionDefinition(typeToken, false, name, isVarargs)
+	}
+
+	switch p.curToken.TokenType {
+	case token.RETURN:
+		return p.parseReturnStatement()
+	case token.INHERIT:
+		return p.parseInheritStatement()
+	case token.WHILE:
+		return p.parseWhileStatement()
+	case token.DO:
+		return p.parseDoWhileStatement()
+	case token.SWITCH:
+		return p.parseSwitchStatement()
+	case token.BREAK:
+		return p.parseBreakStatement()
+	case token.CONTINUE:
+		return p.parseContinueStatement()
+	case token.FOR:
+		return p.parseForStatement()
+	case token.FOREACH:
+		return p.parseForEachStatement()
+	case token.LBRACE:
+		return p.parseBlockStatement()
+	case token.SEMICOLON:
+		// 🚀 關鍵修正：支援空陳述句 (例如多餘的分號 ;)
+		p.nextToken()
+		return &ast.ExpressionStatement{Token: p.curToken, Expression: nil}
+	default:
+		return p.parseExpressionStatement()
+	}
+}
