@@ -6,7 +6,7 @@ inherit "/std/object";
 #include "/include/ansi.h"
 
 int main(object me, string verb, string arg) {
-    object bank_d = load_object("/secure/bank_d.c");
+    object bank_d = load_object("/daemon/bank_d.c");
     
     if (!arg || arg == "") {
         bank_d->update_interest(me);

@@ -40,14 +40,14 @@ void create() {
                 return "上次那些狼皮幫了大忙，現在我的存貨很充足。";
             }
         }
-        load_object("/secure/quest_d.c")->accept_quest(tp, "collect_fur");
+        load_object("/daemon/quest_d.c")->accept_quest(tp, "collect_fur");
         return "我想做一件暖和的斗篷，你能幫我找 3 張『狼皮』來嗎？我會給你一條不錯的腰帶作為報酬。";
     :));
 
     add_response(({ "report", "回報" }), (:
         object tp = this_player();
         if (tp->query_quest("collect_fur") && tp->query_quest("collect_fur")["status"] == "active") {
-            if (load_object("/secure/quest_d.c")->complete_quest(tp, "collect_fur")) {
+            if (load_object("/daemon/quest_d.c")->complete_quest(tp, "collect_fur")) {
                 return "喔！好漂亮的毛皮。這是答應給你的腰帶。";
             }
         }

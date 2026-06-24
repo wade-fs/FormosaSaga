@@ -66,7 +66,7 @@ void do_combat_round() {
         say(query_name() + " 擊敗了 " + target->query_name() + "！\n");
         
         // 🚀 PK 判定
-        load_object("/secure/pk_d.c")->check_kill_penalty(this_object(), target);
+        load_object("/daemon/pk_d.c")->check_kill_penalty(this_object(), target);
 
         stop_combat();
         target->die();

@@ -12,7 +12,7 @@ int main(object me, string verb, string arg) {
     }
 
     string sid = trim(arg);
-    object skill_d = load_object("/secure/skill_d.c");
+    object skill_d = load_object("/daemon/skill_d.c");
 
     if (!skill_d->query_all_skills()[sid]) {
         write(select_lang(([ "en": "No such skill.\n", "zh-TW": "沒有這種技能。\n", "zh-CN": "没有这种技能。\n" ])));

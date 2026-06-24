@@ -47,14 +47,14 @@ void create() {
                 return "感謝你的幫助，那些黏液幫了大忙。";
             }
         }
-        load_object("/secure/quest_d.c")->accept_quest(tp, "slime_medicine");
+        load_object("/daemon/quest_d.c")->accept_quest(tp, "slime_medicine");
         return "冒險者，你能幫我收集 5 團『史萊姆黏液』嗎？這對製作恢復藥水很重要。";
     :));
 
     add_response(({ "report", "回報" }), (:
         object tp = this_player();
         if (tp->query_quest("slime_medicine") && tp->query_quest("slime_medicine")["status"] == "active") {
-            if (load_object("/secure/quest_d.c")->complete_quest(tp, "slime_medicine")) {
+            if (load_object("/daemon/quest_d.c")->complete_quest(tp, "slime_medicine")) {
                 return "非常感謝！這些黏液看起來品質很不錯。";
             }
         }

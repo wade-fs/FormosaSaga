@@ -11,10 +11,10 @@ void create() {
     write("===================================\n");
 
     // 啟動全域守護進程
-    load_object("/secure/nature_d.c");
-    load_object("/secure/quest_d.c");
-    load_object("/secure/guild_d.c");
-    load_object("/secure/channel_d.c");
+    load_object("/daemon/nature_d.c");
+    load_object("/daemon/quest_d.c");
+    load_object("/daemon/guild_d.c");
+    load_object("/daemon/channel_d.c");
 
     if (getenv("MUD_TEST_MODE")) {
         call_out("run_test_mode", 1);

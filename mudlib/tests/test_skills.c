@@ -10,7 +10,7 @@ void run_tests(object me) {
     me->set_stat("int", 20); // 聰明的學員
     me->gain_potential(100);
     
-    object skill_d = load_object("/secure/skill_d.c");
+    object skill_d = load_object("/daemon/skill_d.c");
 
     // 1. 測試學習技能
     int res = skill_d->learn_skill(me, "sword", 50);

@@ -17,13 +17,13 @@ void run_tests(object me) {
     enemy->set_id("enemy");
 
     // 1. 建立團隊
-    object party_d = load_object("/secure/party_d.c");
+    object party_d = load_object("/daemon/party_d.c");
     leader->set_leader(leader);
     leader->add_follower(member);
     member->set_leader(leader);
 
     // 2. 測試 PK 判定：敵人攻擊隊員，隊長反擊應為合法
-    object pk_d = load_object("/secure/pk_d.c");
+    object pk_d = load_object("/daemon/pk_d.c");
     
     // 模擬敵人鎖定隊員作為目標 (真正的攻擊開始)
     enemy->attacked_by(member); // 讓 enemy 把 member 當目標 (這裡雖然是反過來調用，但能設定 target)

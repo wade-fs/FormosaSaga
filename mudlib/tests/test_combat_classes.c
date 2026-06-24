@@ -19,7 +19,7 @@ void run_tests(object me) {
     move_object(me, room);
     move_object(target, room);
 
-    object combat_d = load_object("/secure/combat_d.c");
+    object combat_d = load_object("/daemon/combat_d.c");
 
     // 1. 測試職業招式施展 (Bash)
     int res = combat_d->do_perform(me, "bash", target->query_key_id());

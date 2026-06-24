@@ -7,7 +7,7 @@ inherit "/std/object";
 
 int main(object me, string verb, string arg) {
     mapping skills = me->query_skills();
-    object skill_d = load_object("/secure/skill_d.c");
+    object skill_d = load_object("/daemon/skill_d.c");
 
     write("$HIW$" + select_lang(([ "en": "\n=== Skills Status (Potential: ", "zh-TW": "\n=== 技能狀態 (潛能: ", "zh-CN": "\n=== 技能状态 (潜能: " ])) + me->query_potential() + select_lang(([ "en": ") ===\n", "zh-TW": ") ===\n", "zh-CN": ") ===\n" ])) + "$NOR$");
 

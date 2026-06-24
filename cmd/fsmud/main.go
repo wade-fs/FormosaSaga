@@ -20,7 +20,7 @@ import (
 func main() {
 	hubURL := flag.String("hub", "wss://wade-fs-fsmud-hub.hf.space/ws", "Signaling hub URL (set to 'none' to run in isolation)")
 	port := flag.String("port", "8080", "HTTP server port")
-	mudlib := flag.String("mudlib", "fsmud", "mudlib directory")
+	mudlib := flag.String("mudlib", "mudlib", "mudlib directory")
 	master := flag.String("master", "master.c", "Master of world in mudlib directory")
 	simul := flag.String("simul", "", "SimulEfun file path (optional, master's get_simul_efun takes precedence)")
 	gInclude := flag.String("ginclude", "", "Global include file (e.g. globals.h)")

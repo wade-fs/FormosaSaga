@@ -21,7 +21,7 @@ int main(object me, string verb, string arg) {
         target = substr(arg, sp + 1, strlen(arg) - sp - 1);
     }
 
-    return load_object("/secure/combat_d.c")->do_perform(me, sid, target);
+    return load_object("/daemon/combat_d.c")->do_perform(me, sid, target);
 }
 
 string help() {

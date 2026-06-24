@@ -587,7 +587,7 @@ void improve_skill(string s, int v) {
     skills[s] = ([ "level": old_level, "exp": old_exp + v ]);
 
     // 呼叫 Skill Daemon 判斷是否升級
-    load_object("/secure/skill_d.c")->check_upgrade(this_object(), s);
+    load_object("/daemon/skill_d.c")->check_upgrade(this_object(), s);
 }
 mapping query_skills() { return skills; }
 

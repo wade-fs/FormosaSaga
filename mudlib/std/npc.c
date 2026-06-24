@@ -370,7 +370,7 @@ void do_wander() {
         }
     }
 
-    object lang_d = load_object("/secure/language_d.c");
+    object lang_d = load_object("/daemon/language_d.c");
     
     // 廣播離開訊息
     lang_d->broadcast_event(env, "say_leave", ([ "$name": this_object(), "$dir": dir ]));
@@ -670,7 +670,7 @@ void on_death() {
 
         // 🚀 任務進度通知
         if (userp(killer)) {
-            load_object("/secure/quest_d.c")->check_kill_progress(killer, base_name(this_object()));
+            load_object("/daemon/quest_d.c")->check_kill_progress(killer, base_name(this_object()));
         }
     }
 

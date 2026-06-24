@@ -135,7 +135,7 @@ mixed valid_write(string path, object user, string func)
     }
 
     // 允許 system_d 儲存系統設定
-    if (caller_file == "/secure/system_d" || caller_file == "/std/login") {
+    if (caller_file == "/daemon/system_d" || caller_file == "/std/login") {
         if (path == "/data/system.o") return 1;
     }
     

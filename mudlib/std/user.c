@@ -80,7 +80,7 @@ void set_cwd(string path) { cwd = path; }
 
 // 🚀 新增：清理編輯鎖定
 void cleanup_editor() {
-    object ide_d = find_object("/secure/ide_d.c");
+    object ide_d = find_object("/daemon/ide_d.c");
     if (ide_d) {
         ide_d->release_all_locks(this_object());
     }
@@ -239,9 +239,9 @@ void setup() {
 
     // 🚀 新增：發送 UI 初始化資訊給前端
     string l = query_lang();
-    object lang_d = load_object("/secure/language_d.c");
+    object lang_d = load_object("/daemon/language_d.c");
 
-    mapping socials = load_object("/secure/social_d.c")->get_ui_list();
+    mapping socials = load_object("/daemon/social_d.c")->get_ui_list();
     write(sprintf("{\"ui\": \"socials\", \"title\": \"%s\", \"data\": %s}", 
         lang_d->translate("label_actions", l), json_encode(socials)));
 
@@ -277,7 +277,7 @@ int process_input(string input) {
             input = substr(input, 1, strlen(input) - 1);
             write("$CYN$【本機指令】$NOR$" + input + "\n");
         } else {
-            object ssh_d = find_object("/secure/ssh_d.c");
+            object ssh_d = find_object("/daemon/ssh_d.c");
             if (ssh_d) {
                 ssh_d->client_send_input(this_object(), input);
                 return 1;

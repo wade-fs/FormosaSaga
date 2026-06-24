@@ -111,16 +111,16 @@ void create() {
                 return ([ "en": "You are already performing the 'Newbie Badge' quest, go prove your courage!", "zh-TW": "你已經在進行『新手證明』任務了，快去證明你的勇氣吧！", "zh-CN": "你已经也在进行『新手证明』任务了，快去证明你的勇气吧！" ]);
             return ([ "en": "You have already gained recognition as an adventurer. Now you can go to [Kyle|go west] and see if there are any newbie missions.", "zh-TW": "你已經獲得了冒險者的認可。現在可以去[教官|go west]那裡看看有沒有什麼新兵任務。", "zh-CN": "你已经获得了冒险者的认可。现在可以去[教官|go west]那里看看有没有什么新兵任务。" ]);
         }
-        load_object("/secure/quest_d.c")->accept_quest(this_player(), "newbie_badge");
+        load_object("/daemon/quest_d.c")->accept_quest(this_player(), "newbie_badge");
         return ([ "en": "Great! As long as you shout 'I have courage', I will give you this badge.", "zh-TW": "很好，有志氣！只要你大聲喊出『我有勇氣』，我就把這枚徽章送給你。", "zh-CN": "很好，有志气！只要你大声喊出『我有勇气』，我就把這枚徽章送給你。" ]);
     :));
 
     add_response(({ "report", "回報" }), (:
         mapping qwolf = this_player()->query_quest("wolf_hunter");
         if (qwolf && qwolf["status"] == "active") {
-            mapping info = load_object("/secure/quest_d.c")->query_quest_info("wolf_hunter");
+            mapping info = load_object("/daemon/quest_d.c")->query_quest_info("wolf_hunter");
             if (qwolf["progress"]["count"] >= info["goal"]["count"]) {
-                load_object("/secure/quest_d.c")->complete_quest(this_player(), "wolf_hunter");
+                load_object("/daemon/quest_d.c")->complete_quest(this_player(), "wolf_hunter");
                 return ([ "en": "Well done! Those annoying wolves are finally subdued. Here is your reward.", "zh-TW": "做得好！那些討厭的野狼終於被制伏了。這是你的獎勵。", "zh-CN": "做得好！那些讨厌的野狼终于被制伏了。这是你的奖励。" ]);
             }
             return ([ "en": "Wolves are still out there, go complete the quest!", "zh-TW": "野狼還在草原上出沒呢，快去完成任務吧！", "zh-CN": "野狼还在草原上出没呢，快去完成任务吧！" ]);
@@ -130,18 +130,18 @@ void create() {
 
     add_response(({ "hunt", "打獵", "獵狼" }), (:
         if (this_player()->query_quest("wolf_hunter")) return ([ "en": "You have already taken the wolf hunting quest.", "zh-TW": "你已經領過獵狼任務了。", "zh-CN": "你已经领过猎狼任务了。" ]);
-        load_object("/secure/quest_d.c")->accept_quest(this_player(), "wolf_hunter");
+        load_object("/daemon/quest_d.c")->accept_quest(this_player(), "wolf_hunter");
         return ([ "en": "Great, go eliminate 3 hungry wolves and come back to 'report' to me.", "zh-TW": "很好，去消滅 3 隻飢餓的野狼，回來向我『回報』。", "zh-CN": "很好，去消灭 3 只饥饿的野狼，回来向我『回报』。" ]);
     :));
 
     add_response(({ "join", "加入" }), (:
         string g = this_player()->query_guild();
         if (g) {
-            mixed ginfo = load_object("/secure/guild_d.c")->query_guild_info(g);
+            mixed ginfo = load_object("/daemon/guild_d.c")->query_guild_info(g);
             string gname = to_string(select_lang(ginfo["name"]));
             return ([ "en": "You are already a member of " + gname + ".", "zh-TW": "你已經是 " + gname + " 的成員了。", "zh-CN": "你已经是 " + gname + " 的成员了。" ]);
         }
-        load_object("/secure/guild_d.c")->join_guild(this_player(), "adventurer");
+        load_object("/daemon/guild_d.c")->join_guild(this_player(), "adventurer");
         return ([ "en": "Excellent! From today on, you are a member of our Adventurers Guild.", "zh-TW": "很好！從今天起，你就是我們冒險者公會的一員了。", "zh-CN": "很好！从今天起，你就是我们冒险者公会的一员了。" ]);
     :));
 
@@ -158,7 +158,7 @@ void catch_tell(string msg) {
     if (strsrch(msg, "我有勇氣") != -1) {
         mapping qdata = tp->query_quest("newbie_badge");
         if (qdata && qdata["status"] == "active") {
-            load_object("/secure/quest_d.c")->complete_quest(tp, "newbie_badge");
+            load_object("/daemon/quest_d.c")->complete_quest(tp, "newbie_badge");
             say(query_name() + " 欣慰地點點頭，將一枚徽章遞給了 " + tp->query_name() + "。\n");
         }
     }

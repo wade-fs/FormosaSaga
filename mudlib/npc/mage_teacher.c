@@ -29,7 +29,7 @@ void create() {
 
     add_response(({ "join", "加入" }), (:
         object tp = this_player();
-        if (load_object("/secure/guild_d.c")->join_guild(tp, "mage")) {
+        if (load_object("/daemon/guild_d.c")->join_guild(tp, "mage")) {
             return "明智的選擇。魔法的奧秘正等待著你去發掘。";
         }
         return "如果你還沒準備好，就別來浪費我的時間。";

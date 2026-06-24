@@ -12,7 +12,7 @@ void run_tests(object me) {
     tester->set_stat("str", 25);
     tester->set_stat("int", 25);
     
-    object guild_d = load_object("/secure/guild_d.c");
+    object guild_d = load_object("/daemon/guild_d.c");
 
     // 1. 測試加入公會
     int res = guild_d->join_guild(tester, "fighter");

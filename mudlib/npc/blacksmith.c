@@ -48,14 +48,14 @@ void create() {
                 return "多虧了你帶回來的螃蟹殼，最近的防具品質提升了不少。";
             }
         }
-        load_object("/secure/quest_d.c")->accept_quest(tp, "crab_armour");
+        load_object("/daemon/quest_d.c")->accept_quest(tp, "crab_armour");
         return "如果你想幫忙，去水邊打些泥螃蟹，帶 2 塊『螃蟹殼』回來給我。";
     :));
 
     add_response(({ "report", "回報" }), (:
         object tp = this_player();
         if (tp->query_quest("crab_armour") && tp->query_quest("crab_armour")["status"] == "active") {
-            if (load_object("/secure/quest_d.c")->complete_quest(tp, "crab_armour")) {
+            if (load_object("/daemon/quest_d.c")->complete_quest(tp, "crab_armour")) {
                 return "太好了，這正是我需要的材料！這是給你的報酬。";
             }
         }

@@ -37,7 +37,7 @@ void create() {
     // 🚀 新增：加入公會
     add_response(({ "join", "加入" }), (:
         object tp = this_player();
-        if (load_object("/secure/guild_d.c")->join_guild(tp, "fighter")) {
+        if (load_object("/daemon/guild_d.c")->join_guild(tp, "fighter")) {
             return "很好！戰士的道路沒有捷徑，只有不斷的磨練。";
         }
         return "如果你連拿起重劍的力量都沒有，就別想加入我們。";

@@ -7,7 +7,7 @@ inherit "/std/object";
 
 int main(object me, string verb, string arg) {
     string gid = me->query_guild();
-    object guild_d = load_object("/secure/guild_d.c");
+    object guild_d = load_object("/daemon/guild_d.c");
 
     if (!gid) {
         write(select_lang(([ "en": "You haven't joined any guild or organization yet.\n", "zh-TW": "你目前尚未加入任何公會或組織。\n", "zh-CN": "你目前尚未加入任何公会或组织。\n" ])));

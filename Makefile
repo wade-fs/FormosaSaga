@@ -45,10 +45,15 @@ fsmud.exe: $(OUT)
 	@go mod tidy && $(ENVW) $(GO_EXE) build $(GO_FLAGS) -tags fsmud -o $(OUT)/$@ ./cmd/fsmud
 	@ls -l $(OUT)/$@
 
+mudscript: $(OUT)
+	@echo "🔨 Building $@ (Linux Pure)..."
+	@go mod tidy && $(COMMON_ENV) $(GO_EXE) build $(GO_FLAGS) -o $(OUT)/$@ ./cmd/fsmud
+	@ls -l $(OUT)/$@
+
 # 執行測試
-test-driver: mudscript
+test-driver: fsmud
 	@echo "🧪 Running MudScript Core Tests on driver in isolation..."
-	@MUD_TEST_MODE=1 $(OUT)/mudscript -mudlib testlib -master master.c --hub none 2>&1 | tee test-driver.txt
+	@MUD_TEST_MODE=1 $(OUT)/fsmud -mudlib testlib -master master.c --hub none 2>&1 | tee test-driver.txt
 
 test: test-driver
 
