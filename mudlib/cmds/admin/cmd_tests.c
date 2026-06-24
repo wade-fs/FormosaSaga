@@ -50,7 +50,8 @@ int main(object me, string verb, string arg) {
         "/tests/p4_test.c",
         "/tests/test_file_mgmt.c",
         "/tests/test_var_decl.c",
-        "/tests/test_yaml.c"
+        "/tests/test_yaml.c",
+        "/tests/test_canon_world.c"
     });
 
     int total = 0;

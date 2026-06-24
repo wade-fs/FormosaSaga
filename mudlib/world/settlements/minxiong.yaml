@@ -1,0 +1,11 @@
+id: "minxiong"
+name: "民雄"
+level: "village"
+population: 1200
+industry:
+  - "鳳梨"
+  - "糖業"
+memory: 35
+culture: 42
+trade: 18
+cohesion: 50

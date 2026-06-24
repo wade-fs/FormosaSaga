@@ -50,7 +50,7 @@ func toAnsi(text string) string {
 func main() {
 	// 1. 啟動 bin/fsmud 伺服器
 	log.Println("🚀 正在啟動 fsmud 伺服器進行整合測試...")
-	cmd := exec.Command("./bin/fsmud", "-mudlib", "fsmud", "-master", "master.c")
+	cmd := exec.Command("./bin/fsmud", "-mudlib", "mudlib", "-master", "master.c")
 
 	// 捕獲輸出以追蹤任何運行期錯誤
 	stdout, _ := cmd.StdoutPipe()

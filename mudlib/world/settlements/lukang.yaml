@@ -1,0 +1,11 @@
+id: "lukang"
+name: "鹿港"
+level: "town"
+population: 15000
+industry:
+  - "木雕"
+  - "香業"
+memory: 60
+culture: 75
+trade: 68
+cohesion: 80

@@ -19,6 +19,8 @@ void create() {
     load_object("/daemon/quest_d.c");
     load_object("/daemon/guild_d.c");
     load_object("/daemon/channel_d.c");
+    load_object("/daemon/faction_d.c");
+    load_object("/daemon/historical_event_d.c");
 
     if (getenv("MUD_TEST_MODE")) {
         call_out("run_test_mode", 1);

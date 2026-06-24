@@ -20,7 +20,7 @@ mapping load_settlement(string id) {
         return active_settlements[id];
     }
 
-    string yaml_path = sprintf("/data/yaml/settlements/%s.yaml", id);
+    string yaml_path = sprintf("/world/settlements/%s.yaml", id);
     string save_path = sprintf("/data/state/settlements/%s", id); // 不加 .o
 
     // 1. 載入靜態設定

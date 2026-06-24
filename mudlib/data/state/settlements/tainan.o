@@ -1,0 +1,46 @@
+{
+  "active_settlements": {
+    "lukang": {
+      "cohesion": 80,
+      "culture": 75,
+      "id": "lukang",
+      "industry": [
+        "木雕",
+        "香業"
+      ],
+      "level": "town",
+      "memory": 60,
+      "name": "鹿港",
+      "population": 15000,
+      "trade": 68
+    },
+    "minxiong": {
+      "cohesion": 0,
+      "culture": 45,
+      "id": "minxiong",
+      "industry": [
+        "鳳梨",
+        "糖業"
+      ],
+      "level": "village",
+      "memory": 40,
+      "name": "民雄",
+      "population": 1220,
+      "trade": 0
+    }
+  },
+  "cohesion": 85,
+  "culture": 95,
+  "id_list": [],
+  "long_name": "這是一個沒有描述的東西。",
+  "memory": 90,
+  "money_value": 0,
+  "name": "某個東西",
+  "no_drop": 0,
+  "no_get": 0,
+  "population": 85000,
+  "responses": 0,
+  "short_name": "某個東西",
+  "temp_vars": 0,
+  "trade": 80
+}
