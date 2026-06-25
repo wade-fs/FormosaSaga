@@ -272,9 +272,14 @@ void setup() {
 
     // 處理進入世界的位置
     if (last_location && last_location != "" && last_location != "/") {
-        // 🚀 核心修正：如果上次地點在創界 (Genesis World) 或遠端緩存，自動導向起始點
-        // 確保玩家不會卡在創界或緩存目錄中登入
-        if (strsrch(last_location, "/area/lm/") == 0 || strsrch(last_location, FS_CACHE_DIR) == 0) {
+        // 🚀 核心修正：如果上次地點在創界、遠端緩存、舊區域或檔案已不存在，自動導向起始點
+        if (strsrch(last_location, "/area/lm/") == 0 || 
+            strsrch(last_location, FS_CACHE_DIR) == 0 ||
+            strsrch(last_location, "/area/newbie/") == 0 ||
+            strsrch(last_location, "/area/cave/") == 0 ||
+            strsrch(last_location, "/area/tower/") == 0 ||
+            strsrch(last_location, "/area/water/") == 0 ||
+            file_size(last_location) <= 0) {
             last_location = query_start_room();
         }
 

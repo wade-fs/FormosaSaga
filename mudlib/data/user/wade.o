@@ -43,7 +43,7 @@
   "guild": 0,
   "guild_exp": 0,
   "guild_rank": 0,
-  "heart_beat_count": 2,
+  "heart_beat_count": 4,
   "hp": 100,
   "id": "wade",
   "id_list": [
@@ -56,7 +56,7 @@
   "is_riding": 0,
   "lang": "zh-TW",
   "last_bank_time": 1782325585,
-  "last_location": "/area/newbie/room_4_4.c",
+  "last_location": "/area/settlements/minxiong.c",
   "leader": 0,
   "level": 1,
   "long_name": "這是一個沒有描述的東西。",
@@ -90,6 +90,12 @@
   "stat_str": 10,
   "stat_wis": 10,
   "temp_vars": {
+    "history_entries": [
+      {
+        "era": "v0.1",
+        "label": "洪雅族時代的打貓社"
+      }
+    ],
     "last_location": "/area/newbie/room_4_4.c"
   },
   "write_paths": []
