@@ -4,8 +4,8 @@
 # Canon 參照：docs/locations/minxiong.md
 
 id: "minxiong"
-name: "民雄鄉"
-tier: 4              # TIER_VILLAGE
+canonical_name: "民雄"
+tier: "village"
 admin_level: "鄉"
 county: "chiayi_county"
 
@@ -22,13 +22,20 @@ specters_active: []
 
 # 歷史脈絡（供 look 以外的查詢使用，不直接顯示）
 eras_present:
-  - "v0.1"    # 洪雅族打貓社
-  - "v1.0"    # 清領移民
-  - "v1.2"    # 民變波及
-  - "v2.0"    # 日治糖業
-  - "v2.1"    # 西來庵事件輻射圈
-  - "v3.0"    # 戰後農村
+  - "indigenous"
+  - "qing"
+  - "japanese"
   - "modern"
+
+names:
+  - era: indigenous
+    name: "打貓社"
+  - era: qing
+    name: "打貓"
+  - era: japanese
+    name: "民雄庄"
+  - era: modern
+    name: "民雄鄉"
 
 # 地方產業
 industries:

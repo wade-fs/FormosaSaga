@@ -16,6 +16,9 @@
 #define MEMORY_D      load_object("/daemon/memory_d.c")
 #define TIMELINE_D    load_object("/daemon/timeline_d.c")
 #define NPC_D         load_object("/daemon/npc_d.c")
+#define ERA_D         load_object("/daemon/era_d.c")
+#define SITE_D        load_object("/daemon/site_d.c")
+#define ROUTE_D       load_object("/daemon/route_d.c")
 
 // ── 踏印類型 ───────────────────────────────────────────
 #define FP_GEO        "geo"         // 地理踏印

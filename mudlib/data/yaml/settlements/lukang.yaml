@@ -4,8 +4,8 @@
 # Canon 參照：docs/locations/lukang.md
 
 id: "lukang"
-name: "鹿港鎮"
-tier: 6              # TIER_TOWN
+canonical_name: "鹿港"
+tier: "town"
 admin_level: "鎮"
 county: "changhua_county"
 
@@ -22,11 +22,17 @@ specters_active: []
 
 # 歷史脈絡
 eras_present:
-  - "v1.0"    # 清領移民與貿易港
-  - "v1.1"    # 鹿港文風鼎盛期
-  - "v2.0"    # 日治與港口沒落
-  - "v3.0"    # 戰後觀光轉型
+  - "qing"
+  - "japanese"
   - "modern"
+
+names:
+  - era: qing
+    name: "鹿港"
+  - era: japanese
+    name: "鹿港街"
+  - era: modern
+    name: "鹿港鎮"
 
 # 地方產業
 industries:

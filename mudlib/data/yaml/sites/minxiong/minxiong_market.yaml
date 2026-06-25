@@ -1,6 +1,17 @@
 id: minxiong_market
+settlement: minxiong
+canonical_name: 民雄公有市場
+is_heritage: false
+
+names:
+  - era: qing
+    name: 打貓街市
+  - era: japanese
+    name: 民雄市場
+  - era: modern
+    name: 民雄公有市場
 
 connections:
   - minxiong_old_station
-  - minxiong_ghost_house
+  - ghost_house
   - dashiye_temple

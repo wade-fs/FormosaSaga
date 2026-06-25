@@ -17,6 +17,9 @@ void create() {
     load_object("/daemon/footprint_d.c");
     load_object("/daemon/faction_d.c");
     load_object("/daemon/historical_event_d.c");
+    load_object("/daemon/era_d.c");
+    load_object("/daemon/site_d.c");
+    load_object("/daemon/route_d.c");
 
     if (getenv("MUD_TEST_MODE")) {
         call_out("run_test_mode", 1);

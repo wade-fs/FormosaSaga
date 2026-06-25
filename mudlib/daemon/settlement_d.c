@@ -29,12 +29,17 @@ private nosave mapping active_settlements;
 // ([ site_id: site_object ])
 private nosave mapping active_sites;
 
+// 歷史名稱快取
+// ([ settlement_id: ([ era_id: name ]) ])
+private nosave mapping names_cache;
+
 void create() {
     entity::create();
     set_entity_id("daemon:settlement");
     set_entity_type("daemon");
     active_settlements = ([]);
     active_sites       = ([]);
+    names_cache        = ([]);
 
     // 訂閱踏印事件，更新聚落記憶值
     catch(EVENT_D->subscribe("FootprintGained",    "on_footprint_gained"));
@@ -56,6 +61,17 @@ mapping load_settlement(string id) {
 
     mapping static_data = yaml_decode(read_file(yaml_path));
     if (!static_data) return 0;
+
+    // 快取名稱對照
+    mapping n_map = ([]);
+    if (pointerp(static_data["names"])) {
+        foreach (mapping name_entry in static_data["names"]) {
+            if (name_entry["era"] && name_entry["name"]) {
+                n_map[name_entry["era"]] = name_entry["name"];
+            }
+        }
+    }
+    names_cache[id] = n_map;
 
     mapping runtime = copy(static_data);
 
@@ -85,6 +101,28 @@ mapping load_settlement(string id) {
 
     active_settlements[id] = runtime;
     return runtime;
+}
+
+mapping query_names_mapping(string id) {
+    if (!names_cache) names_cache = ([]);
+    if (!names_cache[id]) {
+        load_settlement(id);
+    }
+    return names_cache[id] || ([]);
+}
+
+string query_name_in_era(string id, string era_id) {
+    mapping names = query_names_mapping(id);
+    if (names && names[era_id]) return names[era_id];
+    mapping s = load_settlement(id);
+    if (s) return s["canonical_name"] || s["name"] || id;
+    return id;
+}
+
+string *load_sites_for_settlement(string id) {
+    mapping s = load_settlement(id);
+    if (!s) return ({});
+    return s["sites"] || ({});
 }
 
 // ── 六維 API ─────────────────────────────────────────

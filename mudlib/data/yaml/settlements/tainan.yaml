@@ -4,8 +4,8 @@
 # Canon 參照：docs/locations/tainan.md
 
 id: "tainan"
-name: "台南市"
-tier: 9              # TIER_CITY（最高級城市）
+canonical_name: "台南"
+tier: "city1"
 admin_level: "市"
 county: "tainan_city"
 
@@ -22,14 +22,23 @@ specters_active: []
 
 # 歷史脈絡
 eras_present:
-  - "v0.2"    # 西拉雅族大目降社
-  - "v1.0"    # 荷蘭東印度公司時期
-  - "v1.1"    # 明鄭時期（府城奠基）
-  - "v1.2"    # 清領府城時期
-  - "v2.0"    # 日治台南州廳
-  - "v2.1"    # 西來庵事件輻射圈
-  - "v3.0"    # 戰後古都
+  - "indigenous"
+  - "qing_early"
+  - "qing_late"
+  - "japanese"
   - "modern"
+
+names:
+  - era: indigenous
+    name: "赤崁社"
+  - era: qing_early
+    name: "台灣府城"
+  - era: qing_late
+    name: "台南府"
+  - era: japanese
+    name: "台南市"
+  - era: modern
+    name: "台南市"
 
 # 地方產業
 industries:

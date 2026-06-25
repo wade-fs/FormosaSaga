@@ -1,4 +1,13 @@
 id: minxiong_old_station
+settlement: minxiong
+canonical_name: 民雄車站
+is_heritage: false
+
+names:
+  - era: japanese
+    name: 民雄驛
+  - era: modern
+    name: 民雄火車站
 
 connections:
   - minxiong_market
