@@ -26,7 +26,22 @@ void create() {
 
 // ── 身份 API ──────────────────────────────────────────
 void     set_entity_id(string id)     { entity_id = id; }
-string   query_entity_id()            { return entity_id; }
+string   query_entity_id()            { 
+    if (entity_id && entity_id != "") return entity_id;
+    // 容錯補回：如果沒有設定 entity_id，從檔名自動提取
+    string name = object_name(this_object());
+    int pos = strsrch(name, "#");
+    if (pos != -1) name = substr(name, 0, pos);
+    string *parts = explode(name, "/");
+    if (sizeof(parts) > 0) {
+        string f_base = parts[sizeof(parts)-1];
+        if (strlen(f_base) > 2 && substr(f_base, strlen(f_base)-2, 2) == ".c") {
+            f_base = substr(f_base, 0, strlen(f_base)-2);
+        }
+        entity_id = (entity_type || "site") + ":" + f_base;
+    }
+    return entity_id;
+}
 
 void     set_entity_type(string t)    { entity_type = t; }
 string   query_entity_type()          { return entity_type; }
