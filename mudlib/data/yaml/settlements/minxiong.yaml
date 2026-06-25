@@ -46,10 +46,18 @@ temples:
 
 # 地標（Site id 列表）
 sites:
-  - "minxiong_old_station"
-  - "minxiong_ghost_house"
-  - "minxiong_sugarcane_field"
-  - "minxiong_lantan"
+  - minxiong_old_station
+  - minxiong_market
+  - dashiye_temple
+  - ghost_house
+  - sugar_factory_ruins
+  - sugarcane_field
+  - rural_village
+  - fengli_field
+  - school
+  - old_street
+  - waterway
+  - outskirts
 
 # 記憶子項目完成度（初始值）
 memory_breakdown:
@@ -57,3 +65,79 @@ memory_breakdown:
   oral_tradition: 0.25   # 口述傳統
   named_persons:  0.10   # 人物記憶
   sites:          0.08   # 地景記憶
+
+# 拓樸
+map_art: |
+                             ghost_house
+                              /      \
+                             /        \
+                      old_street ---- outskirts
+                        /   |            |
+                       /    |            |
+           station -- market |        sugar_factory
+               \       |     |            |
+                \      |     |            |
+                 \     |   school         |
+                  \    |     |            |
+                   \   |     |            |
+                    temple   village ----- sugarcane
+                       \      |  \
+                        \     |   \
+                         \    |    \
+                        waterway   fengli
+
+map_data:
+  ghost_house:
+    connections:
+      - old_street
+      - outskirts
+  old_street:
+    connections:
+      - ghost_house
+      - outskirts
+      - market
+      - school
+  outskirts:
+    connections:
+      - ghost_house
+      - old_street
+      - sugar_factory
+  station:
+    connections:
+      - market
+      - temple
+  market:
+    connections:
+      - station
+      - old_street
+      - temple
+  sugar_factory:
+    connections:
+      - outskirts
+      - sugarcane
+  school:
+    connections:
+      - old_street
+      - village
+  temple:
+    connections:
+      - station
+      - market
+      - waterway
+  village:
+    connections:
+      - school
+      - waterway
+      - fengli
+      - sugarcane
+  sugarcane:
+    connections:
+      - sugar_factory
+      - village
+  waterway:
+    connections:
+      - temple
+      - village
+  fengli:
+    connections:
+      - village

@@ -1,0 +1,6 @@
+id: minxiong_market
+
+connections:
+  - minxiong_old_station
+  - minxiong_ghost_house
+  - dashiye_temple
