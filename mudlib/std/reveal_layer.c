@@ -101,7 +101,7 @@ private int check_single(object player, mapping chk) {
         return TIMELINE_D->era_completed(chk["era"]);
 
     if (type == RC_MEMORY_DONE)
-        return MEMORY_D->memory_completed(chk["memory_id"]);
+        return MEMORY_D->memory_completed(player, chk["memory_id"]);
 
     if (type == RC_CAREER_RANK)
         return player->query_career_rank(chk["track"]) >= chk["min_rank"];

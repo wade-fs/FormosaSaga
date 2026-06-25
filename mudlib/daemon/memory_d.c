@@ -1,40 +1,145 @@
 // /daemon/memory_d.c
 // 
-// 記憶守護進程，與 historical_event_d 配合，管理玩家對歷史記憶與事件的掌握狀態。
+// 記憶守護進程。
+//
+// 職責：
+//   - 載入並索引所有 data/yaml/memories/ 下的記憶片段設定
+//   - 判定玩家是否滿足記憶解鎖條件
+//   - 提供記憶解鎖與完成度查詢，並與玩家存檔和聚落記憶整合。
 
 #include "/include/formosa.h"
 
 inherit "/std/entity.c";
 
-private nosave mapping player_memories; // ([ player_id: ({ memory_ids }) ])
+// 記憶體快取：所有載入的記憶設定
+// ([ memory_id: memory_mapping ])
+private nosave mapping memories_cache;
+
+void rehash() {
+    memories_cache = ([]);
+    string dir = YAML_MEMORIES;
+    if (file_size(dir) != -2) return; // 必須是目錄
+
+    string *files = get_dir(dir);
+    if (!files) return;
+
+    foreach (string file in files) {
+        if (strlen(file) < 5 || substr(file, strlen(file)-5, 5) != ".yaml") continue;
+        string path = dir + file;
+        string content = read_file(path);
+        if (!content) continue;
+        mapping data = yaml_decode(content);
+        if (!data || !data["id"]) continue;
+
+        string id = data["id"];
+        memories_cache[id] = data;
+    }
+}
 
 void create() {
-    entity::create();
+    ::create();
     set_entity_id("daemon:memory");
     set_entity_type("daemon");
-    player_memories = ([]);
+    rehash();
 }
 
-int memory_completed(string memory_id) {
-    // 預設將 v2.1 以後的歷史記憶完成條件做回傳判定，或提供對應 API。
-    // 在此我們先回傳 1 以便測試，未來可接軌玩家存檔的記憶解鎖紀錄。
-    return 1;
+mapping load_memory(string id) {
+    if (!memories_cache) rehash();
+    return memories_cache[id];
 }
 
+// 判定特定記憶是否已完成（為 reveal 條件提供）
+int memory_completed(object player, string memory_id) {
+    if (!player || !memory_id) return 0;
+    string *unlocked = player->query_unlocked_memories();
+    return member_array(memory_id, unlocked) != -1;
+}
+
+// 供 reveal_layer 相容舊版介面使用
+int is_memory_completed(string memory_id) {
+    // 供全伺服器狀態判斷（如果是全域型記憶），此處預設回傳 0
+    return 0;
+}
+
+// ── 檢查條件 ──────────────────────────────────────────
+private int check_condition(object player, mapping cond) {
+    string type = cond["type"];
+    if (type == "has_footprint") {
+        return FOOTPRINT_D->has_footprint(player, cond["id"]);
+    }
+    if (type == "era_completed") {
+        return TIMELINE_D->era_completed(cond["era"]);
+    }
+    return 0;
+}
+
+// ── 觸發記憶檢索（Site 進入時呼叫） ───────────────────────
+void check_trigger_memory(object player, object site) {
+    if (!player || !site) return;
+    if (!memories_cache) rehash();
+
+    string site_id = site->query_entity_id();
+    // 移除 type 前綴 "site:" 取得乾淨 id
+    int colon_idx = strsrch(site_id, ":");
+    if (colon_idx != -1) {
+        site_id = substr(site_id, colon_idx + 1, strlen(site_id) - colon_idx - 1);
+    }
+
+    foreach (string mid, mapping mem in memories_cache) {
+        // 1. 檢查觸發點是否相符
+        if (mem["trigger_site"] != site_id) continue;
+
+        // 2. 檢查是否已經解鎖過，防重複
+        if (memory_completed(player, mid)) continue;
+
+        // 3. 檢查前置條件
+        mixed conds = mem["conditions"];
+        int met = 1;
+        if (pointerp(conds)) {
+            foreach (mapping cond in conds) {
+                if (!check_condition(player, cond)) {
+                    met = 0;
+                    break;
+                }
+            }
+        }
+
+        // 4. 條件全部滿足，啟動記憶解鎖
+        if (met) {
+            player->unlock_memory(mid);
+            
+            tell_object(player, "\n" + C_GOOD + "【記憶共鳴】" + NOR + "你接觸到了歷史記憶片段：\n");
+            tell_object(player, C_TITLE + "「" + mem["title"] + "」" + NOR + "\n");
+            tell_object(player, mem["description"] + "\n\n");
+
+            // 發送事件，通知 settlement_d 與 timeline_d
+            emit("MemoryCompleted", ([
+                "player_id":     player->query_entity_id(),
+                "memory_id":     mid,
+                "settlement_id": mem["settlement"] || site->query_settlement_id(),
+                "timestamp":     time()
+            ]));
+        }
+    }
+}
+
+// 支援 reveal_layer 相容舊版
 void on_fragment_accessible(object player, string mid) {
     if (!player || !mid) return;
-    
-    string pid = player->query_entity_id();
-    if (!player_memories[pid]) player_memories[pid] = ({});
-    
-    if (member_array(mid, player_memories[pid]) == -1) {
-        player_memories[pid] += ({ mid });
-        tell_object(player, HIY "【記憶共鳴】你接觸到了歷史記憶片段：" HIG + mid + NOR "\n");
-        
+    if (memory_completed(player, mid)) return;
+
+    mapping mem = load_memory(mid);
+    if (mem) {
+        player->unlock_memory(mid);
+        tell_object(player, "\n" + C_GOOD + "【記憶共鳴】" + NOR + "你接觸到了歷史記憶片段：\n");
+        tell_object(player, C_TITLE + "「" + mem["title"] + "」" + NOR + "\n");
+        tell_object(player, mem["description"] + "\n\n");
+
         emit("MemoryCompleted", ([
-            "player_id": pid,
-            "memory_id": mid,
-            "settlement_id": "minxiong" // 預設給予 minxiong 做關聯
+            "player_id":     player->query_entity_id(),
+            "memory_id":     mid,
+            "settlement_id": mem["settlement"] || "minxiong",
+            "timestamp":     time()
         ]));
     }
 }

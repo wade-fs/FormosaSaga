@@ -129,6 +129,9 @@ void player_enter(object player) {
         catch(FOOTPRINT_D->add_footprint(player, fp_grant));
     }
 
+    // 🚀 核心修改：進入 Site 時，自動檢查解鎖該地點的歷史記憶碎片 (Memory Fragment)
+    catch(MEMORY_D->check_trigger_memory(player, this_object()));
+
     // 通知其他在場者
     _tell_others(player,
         player->query_display_name() + " 來到了這裡。\n");
