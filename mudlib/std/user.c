@@ -104,6 +104,33 @@ void clear_footprints() {
     save();
 }
 
+// 支援 footprint_d.c 及 reveal_layer.c 依賴的 API
+private mapping footprint_atlas = ([]);
+
+mapping query_footprint_atlas() {
+    if (!footprint_atlas) footprint_atlas = ([]);
+    return footprint_atlas;
+}
+
+void set_footprint_atlas(mapping atlas) {
+    footprint_atlas = atlas;
+}
+
+void save_me() {
+    save();
+}
+
+int has_talent(string talent_id) {
+    // 預設給予島嶼記憶天賦以利測試，或者可擴展成設定檔
+    if (talent_id == "island_memory") return 1;
+    return 0;
+}
+
+int query_career_rank(string track) {
+    // 預設回傳 2 (記憶守護者等級) 用於展示/測試 reveal 層
+    return 2;
+}
+
 
 // 🚀 新增：清理編輯鎖定
 void cleanup_editor() {

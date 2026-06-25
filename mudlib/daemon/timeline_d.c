@@ -44,6 +44,24 @@ int query_world_progress() {
     return world_progress;
 }
 
+// 判斷某個時代是否已完成/過關
+int era_completed(string era) {
+    if (!era) return 0;
+    
+    // 時代編號對照轉換：v0_1, v0_2, v1_0
+    // 例如：如果目前是 v0_2，則 v0_1 算完成
+    string clean_era = replace_string(era, ".", "_");
+    
+    if (current_era_id == "v1_0") {
+        return 1; // 所有先前時代皆完成
+    }
+    if (current_era_id == "v0_2") {
+        if (clean_era == "v0_1") return 1;
+    }
+    
+    return current_era_id == clean_era;
+}
+
 // 取得當前時代的詳細資料 (從 YAML 讀取)
 mapping query_current_era_data() {
     string yaml_path = sprintf("/world/eras/%s.yaml", current_era_id);

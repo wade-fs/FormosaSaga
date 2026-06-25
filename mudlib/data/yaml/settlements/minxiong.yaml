@@ -1,11 +1,59 @@
+# /data/yaml/settlements/minxiong.yaml
+#
+# 民雄鄉 靜態設定
+# Canon 參照：docs/locations/minxiong.md
+
 id: "minxiong"
-name: "民雄"
-level: "village"
-population: 1200
-industry:
+name: "民雄鄉"
+tier: 4              # TIER_VILLAGE
+admin_level: "鄉"
+county: "chiayi_county"
+
+# 六維初始值
+population: 40
+industry:   35
+culture:    48
+memory:     61
+trade:      38
+cohesion:   52
+
+# 失源者（初始無）
+specters_active: []
+
+# 歷史脈絡（供 look 以外的查詢使用，不直接顯示）
+eras_present:
+  - "v0.1"    # 洪雅族打貓社
+  - "v1.0"    # 清領移民
+  - "v1.2"    # 民變波及
+  - "v2.0"    # 日治糖業
+  - "v2.1"    # 西來庵事件輻射圈
+  - "v3.0"    # 戰後農村
+  - "modern"
+
+# 地方產業
+industries:
+  - "糖業（歷史）"
+  - "蔬菜"
   - "鳳梨"
-  - "糖業"
-memory: 35
-culture: 42
-trade: 18
-cohesion: 50
+  - "花卉"
+
+# 信仰
+temples:
+  - name: "民雄大士爺廟"
+    deity: "大士爺"
+  - name: "民雄天后宮"
+    deity: "媽祖"
+
+# 地標（Site id 列表）
+sites:
+  - "minxiong_old_station"
+  - "minxiong_ghost_house"
+  - "minxiong_sugarcane_field"
+  - "minxiong_lantan"
+
+# 記憶子項目完成度（初始值）
+memory_breakdown:
+  history_events: 0.18   # 歷史事件記錄
+  oral_tradition: 0.25   # 口述傳統
+  named_persons:  0.10   # 人物記憶
+  sites:          0.08   # 地景記憶

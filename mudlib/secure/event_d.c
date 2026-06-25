@@ -1,118 +1,118 @@
-// /secure/event_d.c
-#include "/include/ansi.h"
+// /daemon/event_d.c
+//
+// 非同步事件總線。
+//
+// 所有跨 Aggregate 的通知均透過此 Daemon。
+// 任何模組不得直接呼叫其他模組，一律透過 publish()。
+//
+// Canon 參照：docs/mudlib/04_event_system.md
 
-inherit "/std/object";
+#include "/include/formosa.h"
 
-// 訂閱表結構：([ "event_type": ({ ([ "ob_path": "/daemon/...", "func": "callback" ]) }) ])
+inherit "/std/entity.c";
+
+// 訂閱表：([ "event_type": ({ ([ "ob_path":, "func": ]) }) ])
 private nosave mapping subscriptions;
 
-// 非同步事件佇列
-private nosave mixed *event_queue;
-private nosave int is_dispatching;
+// 非同步佇列
+private nosave mixed  *event_queue;
+private nosave int     is_dispatching;
 
 void create() {
-    ::create();
-    subscriptions = ([]);
-    event_queue = ({});
-    is_dispatching = 0;
+    entity::create();
+    set_entity_id("daemon:event");
+    set_entity_type("daemon");
+    subscriptions   = ([]);
+    event_queue     = ({});
+    is_dispatching  = 0;
 }
 
-// 註冊訂閱
+// ── 訂閱 ──────────────────────────────────────────────
 void subscribe(string event_type, string callback_func) {
     object ob = previous_object();
     if (!ob) return;
-    
+
     string ob_path = base_name(ob);
-    
-    if (!subscriptions[event_type]) {
+    if (!subscriptions[event_type])
         subscriptions[event_type] = ({});
-    }
 
-    // 避免重複訂閱
-    foreach (mapping sub in subscriptions[event_type]) {
-        if (sub["ob_path"] == ob_path && sub["func"] == callback_func) {
-            return; 
-        }
-    }
+    foreach (mapping sub in subscriptions[event_type])
+        if (sub["ob_path"] == ob_path && sub["func"] == callback_func)
+            return;
 
-    subscriptions[event_type] += ({ ([
-        "ob_path" : ob_path,
-        "func"    : callback_func
-    ]) });
+    subscriptions[event_type] += ({
+        ([ "ob_path": ob_path, "func": callback_func ])
+    });
 }
 
-// 取消訂閱
 void unsubscribe(string event_type) {
     object ob = previous_object();
     if (!ob || !subscriptions[event_type]) return;
 
     string ob_path = base_name(ob);
     mapping *new_subs = ({});
-
-    foreach (mapping sub in subscriptions[event_type]) {
-        if (sub["ob_path"] != ob_path) {
+    foreach (mapping sub in subscriptions[event_type])
+        if (sub["ob_path"] != ob_path)
             new_subs += ({ sub });
-        }
-    }
+
     subscriptions[event_type] = new_subs;
 }
 
-// 事件分發循環
-void dispatch_loop() {
-    if (sizeof(event_queue) == 0) {
-        is_dispatching = 0;
-        return;
-    }
-
-    // 取出佇列頭部事件
-    mapping event = event_queue[0];
-    event_queue = event_queue[1..];
-
-    string event_type = event["event_type"];
-    mapping *subs = subscriptions[event_type];
-
-    if (subs && sizeof(subs) > 0) {
-        foreach (mapping sub in subs) {
-            // 動態載入/尋找訂閱物件
-            object target = find_object(sub["ob_path"]);
-            if (!target) {
-                catch(target = load_object(sub["ob_path"]));
-            }
-
-            if (target) {
-                // 沙盒隔離，防止單一訂閱者錯誤中斷分發
-                mixed err = catch(call_other(target, sub["func"], event));
-                if (err) {
-                    log_file("event_errors.log", sprintf(
-                        "[%s] Event Type: %s Target: %s Error: %s\n",
-                        ctime(time()), event_type, sub["ob_path"], to_string(err)
-                    ));
-                }
-            }
-        }
-    }
-
-    // 繼續分發下一個事件
-    if (sizeof(event_queue) > 0) {
-        call_out("dispatch_loop", 0);
-    } else {
-        is_dispatching = 0;
-    }
-}
-
-// 發布事件
+// ── 發布（非同步）────────────────────────────────────
 void publish(string event_type, mapping data) {
     mapping event = ([
-        "event_id"   : sprintf("%d_%d", time(), random(100000)),
-        "event_type" : event_type,
-        "timestamp"  : time(),
-        "data"       : data
+        "event_id":   sprintf("%d_%d", time(), random(100000)),
+        "event_type": event_type,
+        "timestamp":  time(),
+        "data":       data,
     ]);
 
     event_queue += ({ event });
 
     if (!is_dispatching) {
         is_dispatching = 1;
-        call_out("dispatch_loop", 0);
+        call_out("_dispatch_loop", 0);
     }
 }
+
+// ── 分發（沙盒隔離）──────────────────────────────────
+private void _dispatch_loop() {
+    if (!sizeof(event_queue)) {
+        is_dispatching = 0;
+        return;
+    }
+
+    mapping event      = event_queue[0];
+    event_queue        = event_queue[1..];
+    string event_type  = event["event_type"];
+    mixed *subs        = subscriptions[event_type];
+
+    if (subs && sizeof(subs)) {
+        foreach (mapping sub in subs) {
+            object target = find_object(sub["ob_path"]);
+            if (!target)
+                catch(target = load_object(sub["ob_path"]));
+
+            if (target) {
+                mixed err = catch(call_other(target, sub["func"], event));
+                if (err) {
+                    log_file("event_errors.log", sprintf(
+                        "[%s] %s → %s::%s ERR: %s\n",
+                        ctime(time()), event_type,
+                        sub["ob_path"], sub["func"],
+                        to_string(err)
+                    ));
+                }
+            }
+        }
+    }
+
+    if (sizeof(event_queue))
+        call_out("_dispatch_loop", 0);
+    else
+        is_dispatching = 0;
+}
+
+// 查詢（除錯用）
+mapping query_subscriptions() { return copy(subscriptions); }
+int     query_queue_size()    { return sizeof(event_queue); }
