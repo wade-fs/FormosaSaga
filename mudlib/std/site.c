@@ -124,7 +124,7 @@ void do_look(object player) {
     string out = "";
 
     // ── 標題 ──
-    out += C_TITLE + "【" + query_display_name() + "】" + C_RESET + "\n";
+    out += C_TITLE + "【" + ERA_D->resolve_name(clean_id, query_entity_type(), player) + "】" + C_RESET + "\n";
 
     // ── 基礎描述 ──
     if (base_description && base_description != "")
@@ -195,12 +195,21 @@ void do_look(object player) {
     }
 
     // ── 可前往的鄰近地點 ──
-    if (sizeof(neighbors)) {
+    string clean_id = query_entity_id();
+    int colon_idx = strsrch(clean_id, ":");
+    if (colon_idx != -1) {
+        clean_id = substr(clean_id, colon_idx + 1, strlen(clean_id) - colon_idx - 1);
+    }
+
+    string *conns = ROUTE_D->query_connections(clean_id);
+    if (sizeof(conns)) {
         out += "\n" + C_DIM + "可前往：" + C_RESET;
-        mixed *dirs = ({});
-        foreach (string dir, string target in neighbors)
-            dirs += ({ dir });
-        out += implode(dirs, "、") + "\n";
+        string *conn_names = ({});
+        foreach (string target_id in conns) {
+            string resolved = ERA_D->resolve_name(target_id, "site", player);
+            conn_names += ({ resolved });
+        }
+        out += implode(conn_names, "、") + "\n";
         out += C_DIM + "輸入 travel <地名> 出發。" + C_RESET + "\n";
     }
 
@@ -219,11 +228,20 @@ void do_look(object player) {
 //
 int do_travel(object player, string destination) {
     string target_id = 0;
+    string clean_id = query_entity_id();
+    int colon_idx = strsrch(clean_id, ":");
+    if (colon_idx != -1) {
+        clean_id = substr(clean_id, colon_idx + 1, strlen(clean_id) - colon_idx - 1);
+    }
 
-    // 先查完整名稱
-    foreach (string dir, string tid in neighbors) {
-        if (lower_case(dir) == lower_case(destination) ||
-            strsrch(dir, destination) != -1) {
+    string *conns = ROUTE_D->query_connections(clean_id);
+
+    foreach (string tid in conns) {
+        string resolved = ERA_D->resolve_name(tid, "site", player);
+        if (lower_case(resolved) == lower_case(destination) ||
+            strsrch(resolved, destination) != -1 ||
+            lower_case(tid) == lower_case(destination) ||
+            strsrch(tid, destination) != -1) {
             target_id = tid;
             break;
         }
@@ -245,7 +263,7 @@ int do_travel(object player, string destination) {
 
     string travel_text = target_ob->query_prop("travel_arrive_text");
     if (!travel_text)
-        travel_text = "你前往了" + target_ob->query_display_name() + "。";
+        travel_text = "你前往了" + ERA_D->resolve_name(target_id, "site", player) + "。";
 
     tell_object(player, "\n" + travel_text + "\n");
 
