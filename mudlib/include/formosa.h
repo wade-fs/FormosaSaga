@@ -15,6 +15,8 @@
 #define FOOTPRINT_D   load_object("/daemon/footprint_d.c")
 #define MEMORY_D      load_object("/daemon/memory_d.c")
 #define TIMELINE_D    load_object("/daemon/timeline_d.c")
+#define CAREER_D      load_object("/daemon/career_d.c")
+#define FACTION_D     load_object("/daemon/faction_d.c")
 #define NPC_D         load_object("/daemon/npc_d.c")
 #define ERA_D         load_object("/daemon/era_d.c")
 #define SITE_D        load_object("/daemon/site_d.c")
@@ -96,6 +98,8 @@
 #define YAML_SITES        "/data/yaml/sites/"
 #define YAML_MEMORIES     "/data/yaml/memories/"
 #define YAML_ERAS         "/data/yaml/eras/"
+#define YAML_CAREERS      "/data/yaml/careers/"
+#define YAML_FACTIONS     "/data/yaml/factions/"
 #define STATE_SETTLEMENTS "/data/state/settlements/"
 #define STATE_SYSTEM      "/data/state/system/"
 

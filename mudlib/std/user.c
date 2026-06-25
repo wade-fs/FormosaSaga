@@ -28,6 +28,8 @@ string *saved_inventory = ({ });
 string last_location;
 string *footprints; // 🚀 新增：踏印紀錄
 string *unlocked_memories; // 🚀 新增：解鎖的歷史記憶 ID 陣列
+mapping career_points; // P4：職涯修練點 ([ career_id: points ])
+string faction;        // P4：所屬勢力 ID
 
 
 
@@ -64,6 +66,7 @@ void create() {
     if (!muted_channels) muted_channels = ([]);
     if (!explored_rooms) explored_rooms = ([]);
     if (!footprints) footprints = ({});
+    if (!career_points) career_points = ([]);
     footprint_atlas = ([]);
     init_aliases();
     
@@ -142,9 +145,34 @@ int has_talent(string talent_id) {
     return 0;
 }
 
-int query_career_rank(string track) {
-    // 預設回傳 2 (記憶守護者等級) 用於展示/測試 reveal 層
-    return 2;
+// ── 職涯修練點 API (P4) ─────────────────────────────────────
+mapping query_career_points_all() {
+    if (!career_points) career_points = ([]);
+    return career_points;
+}
+
+int query_career_points(string career_id) {
+    if (!career_points) career_points = ([]);
+    return career_points[career_id] || 0;
+}
+
+void add_career_points(string career_id, int val) {
+    if (!career_points) career_points = ([]);
+    career_points[career_id] = (career_points[career_id] || 0) + val;
+    save();
+}
+
+// ── 勢力 API (P4) ──────────────────────────────────────────
+string query_faction() { return faction; }
+void set_faction(string fid) { faction = fid; }
+
+// ── 職涯等級查詢（委派給 career_d）────────────────────────
+int query_career_rank(string career_id) {
+    // career_d 在 create 時可能尚未載入，安全呼叫
+    object cd = find_object("/daemon/career_d.c");
+    if (!cd) cd = load_object("/daemon/career_d.c");
+    if (cd) return cd->query_career_rank(this_object(), career_id);
+    return 1; // fallback
 }
 
 

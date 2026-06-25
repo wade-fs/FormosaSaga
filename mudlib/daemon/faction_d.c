@@ -1,40 +1,62 @@
 // /daemon/faction_d.c
-#include "/include/ansi.h"
+//
+// 勢力守護進程。
+//
+// 職責：
+//   - 載入並索引所有 /data/yaml/factions/ 下的勢力設定
+//   - 管理玩家與勢力的歸屬關係
+//   - 驗證玩家加入勢力的條件（需要 career_d 配合）
+//   - 提供勢力加成查詢（影響聚落記憶度恢復速率）
 
-inherit "/std/object";
+#include "/include/formosa.h"
 
-private nosave mapping loaded_factions;
+inherit "/std/entity.c";
+
+private nosave mapping factions_cache;
+
+// ──────────────────────────────────────────────────────
+// 初始化
+// ──────────────────────────────────────────────────────
+void rehash() {
+    factions_cache = ([]);
+    string dir = YAML_FACTIONS;
+    if (file_size(dir) != -2) return;
+
+    string *files = get_dir(dir);
+    if (!files) return;
+
+    foreach (string file in files) {
+        if (strlen(file) < 5 || substr(file, strlen(file)-5, 5) != ".yaml") continue;
+        string path = dir + file;
+        string content = read_file(path);
+        if (!content) continue;
+        mapping data = yaml_decode(content);
+        if (!data || !data["id"]) continue;
+        factions_cache[data["id"]] = data;
+    }
+}
 
 void create() {
     ::create();
-    loaded_factions = ([]);
+    set_entity_id("daemon:faction");
+    set_entity_type("daemon");
+    rehash();
 }
 
-// 載入勢力資料
+// ──────────────────────────────────────────────────────
+// 基本查詢
+// ──────────────────────────────────────────────────────
 mapping load_faction(string id) {
-    if (!id || id == "") return 0;
-    if (loaded_factions[id]) {
-        return loaded_factions[id];
-    }
-
-    string yaml_path = sprintf("/world/factions/%s.yaml", id);
-    if (file_size(yaml_path) <= 0) {
-        return 0;
-    }
-
-    string content = read_file(yaml_path);
-    if (!content) return 0;
-
-    mapping data = yaml_decode(content);
-    if (!data) return 0;
-
-    loaded_factions[id] = data;
-    return data;
+    if (!factions_cache) rehash();
+    return factions_cache[id];
 }
 
-int is_valid_faction(string id) {
-    return load_faction(id) != 0;
+string *query_all_faction_ids() {
+    if (!factions_cache) rehash();
+    return keys(factions_cache);
 }
+
+int is_valid_faction(string id) { return load_faction(id) != 0; }
 
 string query_faction_name(string id) {
     mapping f = load_faction(id);
@@ -46,22 +68,77 @@ string query_faction_type(string id) {
     return f ? f["type"] : 0;
 }
 
-string query_faction_base(string id) {
+string query_faction_settlement(string id) {
     mapping f = load_faction(id);
-    return f ? f["base_location"] : 0;
+    return f ? f["settlement"] : 0;
 }
 
-string *query_faction_abilities(string id) {
-    mapping f = load_faction(id);
-    return f ? f["abilities"] : ({});
+// ──────────────────────────────────────────────────────
+// 加入條件驗證
+// ──────────────────────────────────────────────────────
+int can_join(object player, string faction_id) {
+    if (!player) return 0;
+    mapping f = load_faction(faction_id);
+    if (!f) return 0;
+
+    mixed *conds = f["join_conditions"];
+    if (!conds || !sizeof(conds)) return 1; // 無條件限制
+
+    foreach (mapping cond in conds) {
+        if (!CAREER_D->check_join_condition(player, cond)) return 0;
+    }
+    return 1;
 }
 
-string *query_faction_skills(string id) {
-    mapping f = load_faction(id);
-    return f ? f["skills"] : ({});
+// ──────────────────────────────────────────────────────
+// 玩家加入勢力
+// ──────────────────────────────────────────────────────
+int join_faction(object player, string faction_id) {
+    if (!player) return 0;
+    if (!can_join(player, faction_id)) return 0;
+
+    string current = player->query_faction();
+    if (current == faction_id) return 0; // 已在此勢力
+
+    player->set_faction(faction_id);
+    player->save_me();
+
+    mapping f = load_faction(faction_id);
+    string name = f ? f["name"] : faction_id;
+
+    tell_object(player, "\n" + C_TITLE + "【勢力歸屬】" + NOR + "你已加入「" + name + "」。\n\n");
+
+    EVENT_D->publish("FactionJoined", ([
+        "player_id":  player->query_entity_id(),
+        "faction_id": faction_id,
+        "timestamp":  time()
+    ]));
+
+    return 1;
 }
 
-string *query_faction_quests(string id) {
-    mapping f = load_faction(id);
-    return f ? f["quests"] : ({});
+// ──────────────────────────────────────────────────────
+// 查詢聚落的所有可用勢力
+// ──────────────────────────────────────────────────────
+string *query_factions_in_settlement(string settlement_id) {
+    if (!factions_cache) rehash();
+    string *result = ({});
+    foreach (string fid, mapping f in factions_cache) {
+        if (f["settlement"] == settlement_id) result += ({ fid });
+    }
+    return result;
+}
+
+// 查詢勢力對聚落記憶度的加成
+int query_memory_bonus(object player, string settlement_id) {
+    if (!player) return 0;
+    string fid = player->query_faction();
+    if (!fid) return 0;
+
+    mapping f = load_faction(fid);
+    if (!f || !f["bonuses"] || !f["bonuses"]["memory_bonus"]) return 0;
+
+    mapping mb = f["bonuses"]["memory_bonus"];
+    if (mb["settlement_id"] != settlement_id) return 0;
+    return mb["type_bonus"] || 0;
 }

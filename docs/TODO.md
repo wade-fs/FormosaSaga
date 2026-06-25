@@ -8,7 +8,7 @@
 | **P1** | YAML 驅動動態地標 (Site Aggregate) | **✓ 已完成** | 普通 LPC 地標解放為 YAML，`settlement_d` 動態複製生成 12 個 Sites |
 | **P2** | 歷史記憶碎片系統 (Memory Fragment) | **✓ 已完成** | `memory_d` + `/data/yaml/memories/` YAML，玩家觸發共鳴並持久化存檔 |
 | **P3** | 時代推展機制 (Era Progression) | **✓ 已完成** | `MemoryCompleted` 事件驅動 `world_progress`，達門檻自動觸發 `next_era()` |
-| **P4** | 職涯與勢力系統 (Profession / Faction) | **待執行** | 規劃 `career_d` 與 `faction_d` |
+| **P4** | 職涯與勢力系統 (Profession / Faction) | **✓ 已完成** | `career_d` + YAML 四職涯（農商匠文），`faction_d` + 三勢力（劉家/糖業/廟委），事件驅動自動累積修練點 |
 | **P5** | 失源者、危機與共鳴 (Specter / Oblivion / Resonance) | **待執行** | `oblivion_d`, `resonance_d` 設計 |
 
 ---
