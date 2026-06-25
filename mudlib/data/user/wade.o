@@ -37,12 +37,13 @@
     "/area/newbie/room_4_4.c": 1
   },
   "followers": [],
+  "footprint_atlas": {},
   "footprints": [],
   "full_id": 0,
   "guild": 0,
   "guild_exp": 0,
   "guild_rank": 0,
-  "heart_beat_count": 3,
+  "heart_beat_count": 0,
   "hp": 100,
   "id": "wade",
   "id_list": [

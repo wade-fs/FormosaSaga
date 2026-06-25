@@ -1,0 +1,62 @@
+# /data/yaml/settlements/tainan.yaml
+#
+# 台南市 靜態設定
+# Canon 參照：docs/locations/tainan.md
+
+id: "tainan"
+name: "台南市"
+tier: 9              # TIER_CITY（最高級城市）
+admin_level: "市"
+county: "tainan_city"
+
+# 六維初始值
+population: 80
+industry:   68
+culture:    90
+memory:     82
+trade:      78
+cohesion:   75
+
+# 失源者（初始無）
+specters_active: []
+
+# 歷史脈絡
+eras_present:
+  - "v0.2"    # 西拉雅族大目降社
+  - "v1.0"    # 荷蘭東印度公司時期
+  - "v1.1"    # 明鄭時期（府城奠基）
+  - "v1.2"    # 清領府城時期
+  - "v2.0"    # 日治台南州廳
+  - "v2.1"    # 西來庵事件輻射圈
+  - "v3.0"    # 戰後古都
+  - "modern"
+
+# 地方產業
+industries:
+  - "文化觀光"
+  - "貿易（歷史）"
+  - "農業（嘉南平原）"
+  - "小吃飲食文化"
+
+# 信仰
+temples:
+  - name: "台南大天后宮"
+    deity: "媽祖"
+  - name: "祀典武廟"
+    deity: "關聖帝君"
+  - name: "台灣首廟天壇"
+    deity: "玉皇上帝"
+
+# 地標（Site id 列表）
+sites:
+  - "tainan_chihkan_tower"
+  - "tainan_anping_fort"
+  - "tainan_confucian_temple"
+  - "tainan_silian_yan"
+
+# 記憶子項目完成度（初始值）
+memory_breakdown:
+  history_events: 0.45   # 歷史事件記錄
+  oral_tradition: 0.40   # 口述傳統
+  named_persons:  0.35   # 人物記憶
+  sites:          0.38   # 地景記憶
