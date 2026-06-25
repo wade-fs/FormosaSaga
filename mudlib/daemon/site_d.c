@@ -62,12 +62,27 @@ void create() {
 
 mapping load_site(string site_id) {
     if (!site_cache) rehash();
-    return site_cache[site_id];
+    if (site_cache[site_id]) return site_cache[site_id];
+
+    // 查缺補漏/容錯：如果沒有靜態 YAML，嘗試載入 LPC 實體動態補完 mapping
+    object ob = SETTLEMENT_D->get_site_object(site_id);
+    if (ob) {
+        mapping data = ([
+            "id":             site_id,
+            "settlement":     ob->query_settlement_id(),
+            "canonical_name": ob->query_display_name(),
+            "is_heritage":    ob->query_is_heritage(),
+            "connections":    keys(ob->query_neighbors() || ([])),
+        ]);
+        site_cache[site_id] = data;
+        return data;
+    }
+    return 0;
 }
 
 mapping query_names_mapping(string site_id) {
     if (!names_cache) rehash();
-    return names_cache[site_id];
+    return names_cache[site_id] || ([]);
 }
 
 string *get_connections(string site_id) {
@@ -83,3 +98,4 @@ string query_name_in_era(string site_id, string era_id) {
     if (site) return site["canonical_name"] || site_id;
     return site_id;
 }
+

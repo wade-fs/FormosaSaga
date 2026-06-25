@@ -92,6 +92,8 @@ string query_travel_time(string from, string to, string transport_type) {
 string *query_connections(string site_id) {
     if (!route_cache) rehash();
     string *conn = ({});
+
+    // 1. 聯外/全域交通路線
     foreach (string id, mapping r in route_cache) {
         mixed nodes = r["nodes"];
         if (pointerp(nodes) && member_array(site_id, nodes) != -1) {
@@ -102,5 +104,71 @@ string *query_connections(string site_id) {
             }
         }
     }
+
+    // 2. 判斷是否直接傳入聚落 ID (例如 "minxiong")。若是，自動連通其旗下的所有子 site
+    mapping sett = SETTLEMENT_D->load_settlement(site_id);
+    if (sett) {
+        mixed sites = sett["sites"];
+        if (pointerp(sites)) {
+            foreach (string s in sites) {
+                if (member_array(s, conn) == -1) conn += ({ s });
+            }
+        }
+        return conn;
+    }
+
+    // 3. 聚落內部地景拓樸 (從 site_d 查詢地標所屬聚落，再從 settlement_d 取得 map_data)
+    mapping s_data = SITE_D->load_site(site_id);
+    if (s_data && s_data["settlement"]) {
+        string s_id = s_data["settlement"];
+        mapping sett_info = SETTLEMENT_D->load_settlement(s_id);
+        if (sett_info) {
+            // 自動加回與聚落主節點的雙向連通
+            if (member_array(s_id, conn) == -1) {
+                conn += ({ s_id });
+            }
+
+            // 處理 map_data 內部的短 ID (如 "station", "market") 或 完整 ID 的匹配
+            mapping map_data = sett_info["map_data"];
+            if (map_data) {
+                string lookup_key = site_id;
+                // 如果 map_data 裡用的是短 ID，進行短 ID 轉換
+                if (!map_data[lookup_key]) {
+                    if (strsrch(lookup_key, s_id + "_") == 0) {
+                        string short_id = substr(lookup_key, strlen(s_id) + 1, strlen(lookup_key) - strlen(s_id) - 1);
+                        if (map_data[short_id]) {
+                            lookup_key = short_id;
+                        }
+                    }
+                }
+
+                if (map_data[lookup_key]) {
+                    mixed internal_conns = map_data[lookup_key]["connections"];
+                    if (pointerp(internal_conns)) {
+                        foreach (string iconn in internal_conns) {
+                            string resolved_conn = iconn;
+                            // 如果拓樸寫的是短 ID (如 "market")，自動補上聚落字首變成 "minxiong_market"
+                            if (file_size(YAML_SITES + s_id + "/" + iconn + ".yaml") <= 0) {
+                                // 嘗試加上 settlement 字首補全
+                                string prefix_conn = s_id + "_" + iconn;
+                                if (file_size(YAML_SITES + s_id + "/" + prefix_conn + ".yaml") > 0 || SITE_D->load_site(prefix_conn)) {
+                                    resolved_conn = prefix_conn;
+                                } else if (iconn == "station" && SITE_D->load_site(s_id + "_old_station")) {
+                                    // 特殊容錯：station -> minxiong_old_station
+                                    resolved_conn = s_id + "_old_station";
+                                }
+                            }
+
+                            if (member_array(resolved_conn, conn) == -1) {
+                                conn += ({ resolved_conn });
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     return conn;
 }
+
