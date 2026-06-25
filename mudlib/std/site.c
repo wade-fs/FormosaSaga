@@ -242,6 +242,7 @@ int do_travel(object player, string destination) {
     string *conns = ROUTE_D->query_connections(clean_id);
 
     foreach (string tid in conns) {
+        // 1. 全語系/全時代與歷史解析名稱比對
         string resolved = ERA_D->resolve_name(tid, "site", player);
         if (lower_case(resolved) == lower_case(destination) ||
             strsrch(resolved, destination) != -1 ||
@@ -249,6 +250,31 @@ int do_travel(object player, string destination) {
             strsrch(tid, destination) != -1) {
             target_id = tid;
             break;
+        }
+
+        // 2. 查缺補漏：從 SITE_D 取得該地標的靜態設定，直接比對它的 canonical_name 或是它的所有別名(names)
+        mapping s_meta = SITE_D->load_site(tid);
+        if (s_meta) {
+            string c_name = s_meta["canonical_name"];
+            if (c_name && (lower_case(c_name) == lower_case(destination) || strsrch(c_name, destination) != -1)) {
+                target_id = tid;
+                break;
+            }
+            if (pointerp(s_meta["names"])) {
+                int matched = 0;
+                foreach (mapping n_entry in s_meta["names"]) {
+                    string n_val = n_entry["name"];
+                    if (n_val && (lower_case(n_val) == lower_case(destination) || strsrch(n_val, destination) != -1)) {
+                        target_id = tid;
+                        matched = 1;
+                        break;
+                    }
+                }
+                if (matched) {
+                    target_id = tid;
+                    break;
+                }
+            }
         }
     }
 
