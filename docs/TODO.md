@@ -4,29 +4,49 @@
 
 | 里程碑階段 | 功能目標 | 狀態 | 備註 |
 |:---|:---|:---:|:---|
-| **P0** | 民雄垂直切片 (Minxiong Vertical Slice) | **✓ 已完成** | 成功實現踏印獲得、記憶度增長、地標探索 look 關聯 |
-| **P1** | 地景與地標整合 (Site Aggregate) | **✓ 已完成** | 解放普通 LPC 實體，改由 YAML 驅動動態生成 12 個 Sites |
-| **P2** | 歷史記憶碎片 (Memory Fragment) | **✓ 已完成** | 實作 `/data/yaml/memories/` YAML 載入，玩家抵達 Site 觸發共鳴並持久化存檔 |
-| **P3** | 時代推展與主線機制 (Era Progression) | **進行中** | 設計 `timeline_d` 與全島記憶度 / 共鳴值的解鎖驅動 |
+| **P0** | 民雄垂直切片 (Minxiong Vertical Slice) | **✓ 已完成** | 踏印獲得、記憶度增長、地標探索 look 關聯 |
+| **P1** | YAML 驅動動態地標 (Site Aggregate) | **✓ 已完成** | 普通 LPC 地標解放為 YAML，`settlement_d` 動態複製生成 12 個 Sites |
+| **P2** | 歷史記憶碎片系統 (Memory Fragment) | **✓ 已完成** | `memory_d` + `/data/yaml/memories/` YAML，玩家觸發共鳴並持久化存檔 |
+| **P3** | 時代推展機制 (Era Progression) | **✓ 已完成** | `MemoryCompleted` 事件驅動 `world_progress`，達門檻自動觸發 `next_era()` |
 | **P4** | 職涯與勢力系統 (Profession / Faction) | **待執行** | 規劃 `career_d` 與 `faction_d` |
 | **P5** | 失源者、危機與共鳴 (Specter / Oblivion / Resonance) | **待執行** | `oblivion_d`, `resonance_d` 設計 |
 
 ---
 
-## 🛠️ 近期具體完成事項 (Milestone 1-3)
-1. **動態 YAML 地標 (Site) 生成**：
-   - 移除 redundant 的普通地標 LPC 檔案，全部轉移至 `/data/yaml/sites/minxiong/`。
-   - 修改 site.c 與 settlement_d.c，當實體 `.c` 不存在時，動態複製通用地標並載入 YAML 內的 descriptions 與 reveal_layers。
-2. **記憶碎片 (Memory Fragment) 機制實作**：
-   - 建立 `/data/yaml/memories/`，放置歷史事件片段定義（如 `minxiong_station_001.yaml`）。
-   - 在 user.c 新增 `unlocked_memories` 屬性與儲存機制，確保解鎖的記憶碎片持久化。
-   - 擴充 memory_d.c，在玩家走入地標時自動判斷前置條件（例如：擁有某特定地理踏印），觸發記憶解鎖並發送 `MemoryCompleted` 事件，增加聚落的記憶值。
-3. **VM 執行崩潰修復**：
-   - 初始化 `footprint_atlas` 映射，完美解決了 Go MUD 伺服器啟動時的 SIGSEGV 指針崩潰。
+## 🛠️ 已完成事項摘要
+
+### P0 — 民雄垂直切片
+- 實作踏印 (`footprint_d`) 與踏印圖譜 (`footprint_atlas`) 持久化。
+- 修復啟動時 `footprint_atlas` nil 指針崩潰 (SIGSEGV)。
+
+### P1 — YAML 驅動地標
+- 移除所有普通 LPC 地標檔案，改由 `/data/yaml/sites/minxiong/` 驅動（12 個 YAML 地標）。
+- `settlement_d.c:get_site_object` 作工廠：優先找 `.c` 實體，其次動態 `clone_object("/std/site.c")` + `setup_from_yaml()`。
+
+### P2 — 歷史記憶碎片
+- 建立 `/data/yaml/memories/`，放置記憶片段定義（含觸發地標、前置條件、進度權重）。
+- `user.c` 新增 `unlocked_memories` 屬性，確保跨登入持久化。
+- `memory_d.c` 在玩家進入地標時自動比對 `trigger_site`、前置條件並觸發解鎖。
+
+### P3 — 時代推展
+- **事件鏈完整打通**：
+  - `memory_d.c` 解鎖後呼叫 `EVENT_D->publish("MemoryCompleted", {..., "progress": N})`。
+  - `timeline_d.c` 訂閱 `MemoryCompleted`，在 `on_memory_completed()` 裡累加 `world_progress`。
+  - 達到 YAML `min_progress` 門檻後自動呼叫 `next_era()`，廣播並發送 `EraShifted` 事件。
+- **資料驅動門檻**：`min_progress` 由各時代 YAML 設定，非硬編碼。
+- **民雄記憶地圖**：新增 6 則記憶片段覆蓋 `ghost_house`、`sugar_factory_ruins`、`dashiye_temple`，構成完整解鎖路徑。
+- **`memory` 玩家指令**：新增 `cmd_memory.c`，可列出記憶清單、查看時代進度、閱讀片段全文。
 
 ---
 
-## 📋 下一步規劃 (Milestone 4 - P3)
-- **實作 Era 推進驅動**：
-  - 完善 timeline_d.c 中的文明度計算與 Era 自動晉級。
-  - 當玩家解鎖特定數量的記憶碎片或聚落平均記憶度達到一定百分比時，觸發時代跳轉（例如：解鎖民雄大正時期歷史層）。
+## 📋 下一步規劃
+
+### P4 — 職涯與勢力系統
+- 規劃 `career_d`（農、商、匠、武）與 `faction_d`（家族、聚落、幫派）。
+- 職涯影響記憶解鎖條件（例如：「匠」職能解鎖更深層的工藝記憶）。
+- 勢力關係影響聚落的記憶復原速度與遺忘危機速率。
+
+### P5 — 失源者、危機與共鳴
+- `oblivion_d`：當聚落記憶度低於 `OBLIVION_SPECTER` 閾值時，生成失源者 (Specter)。
+- `resonance_d`：玩家之間可互相傳遞記憶，觸發共鳴加速效果。
+- 危機事件系統：設計週期性觸發的全島遺忘危機，需玩家協力解除。

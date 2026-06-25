@@ -113,10 +113,11 @@ void check_trigger_memory(object player, object site) {
             tell_object(player, mem["description"] + "\n\n");
 
             // 發送事件，通知 settlement_d 與 timeline_d
-            emit("MemoryCompleted", ([
+            EVENT_D->publish("MemoryCompleted", ([
                 "player_id":     player->query_entity_id(),
                 "memory_id":     mid,
                 "settlement_id": mem["settlement"] || site->query_settlement_id(),
+                "progress":      mem["progress"] || 10,
                 "timestamp":     time()
             ]));
         }
@@ -135,10 +136,11 @@ void on_fragment_accessible(object player, string mid) {
         tell_object(player, C_TITLE + "「" + mem["title"] + "」" + NOR + "\n");
         tell_object(player, mem["description"] + "\n\n");
 
-        emit("MemoryCompleted", ([
+        EVENT_D->publish("MemoryCompleted", ([
             "player_id":     player->query_entity_id(),
             "memory_id":     mid,
             "settlement_id": mem["settlement"] || "minxiong",
+            "progress":      mem["progress"] || 10,
             "timestamp":     time()
         ]));
     }

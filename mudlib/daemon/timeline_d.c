@@ -1,5 +1,6 @@
 // /daemon/timeline_d.c
 #include "/include/ansi.h"
+#include "/include/formosa.h"
 
 inherit "/std/object";
 
@@ -34,6 +35,13 @@ void restore_state() {
 void create() {
     ::create();
     restore_state();
+
+    // 訂閱記憶完成事件，驅動時代進度
+    call_out("subscribe_events", 1);
+}
+
+void subscribe_events() {
+    EVENT_D->subscribe("MemoryCompleted", "on_memory_completed");
 }
 
 string query_current_era() {
@@ -64,7 +72,7 @@ int era_completed(string era) {
 
 // 取得當前時代的詳細資料 (從 YAML 讀取)
 mapping query_current_era_data() {
-    string yaml_path = sprintf("/world/eras/%s.yaml", current_era_id);
+    string yaml_path = sprintf(YAML_ERAS "%s.yaml", current_era_id);
     if (file_size(yaml_path) <= 0) return 0;
     string content = read_file(yaml_path);
     if (!content) return 0;
@@ -83,7 +91,7 @@ int validate_next_era_transition() {
     }
 
     // 檢查目標時代的 YAML 設定檔是否存在且格式正確
-    string yaml_path = sprintf("/world/eras/%s.yaml", next_era_id);
+    string yaml_path = sprintf(YAML_ERAS "%s.yaml", next_era_id);
     if (file_size(yaml_path) <= 0) {
         log_file("validation_errors.log", sprintf("時代推展失敗: 找不到目標時代的設定檔 '%s'\n", yaml_path));
         return 0;
@@ -143,8 +151,33 @@ void add_world_progress(int val) {
     world_progress += val;
     save_state();
 
-    // 如果進度達標 (例如 100)，自動推展時代
-    if (world_progress >= 100) {
+    // 讀取當前時代的最小門櫛值，預設為 100
+    int threshold = 100;
+    mapping era_data = query_current_era_data();
+    if (era_data && intp(era_data["min_progress"]))
+        threshold = era_data["min_progress"];
+
+    if (world_progress >= threshold) {
         next_era();
     }
+}
+
+// 記憶完成事件處理函式
+void on_memory_completed(mapping event) {
+    mapping data = event["data"];
+    if (!data) return;
+
+    int progress_val = data["progress"];
+    if (!progress_val) progress_val = 10; // 預設每片記憶 +10 進度
+
+    add_world_progress(progress_val);
+
+    log_file("timeline.log", sprintf(
+        "[%s] MemoryCompleted: %s 由 %s 觸發，+%d 進度（目前 %d）\n",
+        ctime(time()),
+        data["memory_id"] || "unknown",
+        data["player_id"] || "unknown",
+        progress_val,
+        world_progress
+    ));
 }
