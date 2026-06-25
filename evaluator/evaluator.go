@@ -1456,6 +1456,18 @@ func assignValueToLeft(left ast.Expression, operator string, val object.Object, 
 
 // 輔助函式：執行對底層資料結構的修改
 func assignToIndex(left, index, val object.Object) object.Object {
+	if left == nil || index == nil || val == nil {
+		leftType := "nil"
+		if left != nil { leftType = string(left.TokenType()) }
+		indexType := "nil"
+		if index != nil { indexType = string(index.TokenType()) }
+		valType := "nil"
+		if val != nil { valType = string(val.TokenType()) }
+		return newError("assignToIndex received nil object (left=%s, index=%s, val=%s)", leftType, indexType, valType)
+	}
+	if left.TokenType() == object.NilType || index.TokenType() == object.NilType {
+		return newError("assignToIndex received NilType (left=%s, index=%s, val=%s)", left.TokenType(), index.TokenType(), val.TokenType())
+	}
 	switch leftObj := left.(type) {
 	
 	// 處理陣列的修改

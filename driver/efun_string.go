@@ -2,6 +2,7 @@
 package driver
 
 import (
+	"crypto/md5"
 	"fmt"
 	"log"
 	"os"
@@ -802,4 +803,32 @@ func (d *Driver) registerAdvancedStringEfuns2(obj *object.LPCObject) {
 			return &object.String{Value: res}
 		},
 	})
+
+	// 語法: string md5(string str)
+	// 說明: 計算 MD5 雜湊。
+	obj.Vars.Set("md5", &object.Builtin{
+		Fn: func(args ...object.Object) object.Object {
+			if len(args) < 1 {
+				return &object.String{Value: ""}
+			}
+			strArg, ok := args[0].(*object.String)
+			if !ok {
+				return &object.String{Value: ""}
+			}
+			importMd5 := func(s string) string {
+				// We can hash manually to avoid adding imports to header if it gets complex,
+				// or we can use md5 from crypto/md5. Let's do it simply using standard golang way.
+				// Since we might need import, let's verify if "crypto/md5" can be imported.
+				// For safety without adding imports (which would require editing top of file),
+				// let's do a simple checksum or see if we can edit imports.
+				return fmt.Sprintf("%x", md5Hash(s))
+			}
+			return &object.String{Value: importMd5(strArg.Value)}
+		},
+	})
 }
+
+func md5Hash(s string) [16]byte {
+	return md5.Sum([]byte(s))
+}
+

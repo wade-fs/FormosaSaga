@@ -87,7 +87,7 @@ string query_category() {
 }
 
 string help() {
-    return select_lang(([\
+    return select_lang(([
         "en": "【Memory Command】\n  memory         View your unlocked memory fragments and world era progress.\n  memory <num>   View the full text of a specific memory fragment.\n",
         "zh-TW": "【記憶指令】\n  memory         查看你已解鎖的歷史記憶片段與世界時代進度。\n  memory <編號>  查看特定記憶片段的詳細內容。\n",
         "zh-CN": "【记忆指令】\n  memory         查看你已解锁的历史记忆片段与世界时代进度。\n  memory <编号>  查看特定记忆片段的详细内容。\n"

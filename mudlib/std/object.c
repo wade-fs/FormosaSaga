@@ -20,6 +20,8 @@ void create() {
     id_list    = ({});
     no_get     = 0;
     no_drop    = 0;
+    temp_vars  = ([]);
+    responses  = ([]);
 }
 
 // ── 設定函式 ────────────────────────────────────────────

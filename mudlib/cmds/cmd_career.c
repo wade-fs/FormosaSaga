@@ -89,7 +89,7 @@ int do_career(object me, string arg) {
     // 顯示所有職涯概覽
     write("\n" + C_TITLE + "【職涯修練】" + NOR + "\n\n");
     write(sprintf("  %-8s  %-10s  %-6s  %s\n", "職涯", "稱謂", "等級", "修練點"));
-    write("  " + repeat_string("─", 40) + "\n");
+    write("  " + "────────────────────────────────────────" + "\n");
     foreach (string cid in cids) {
         mapping career = CAREER_D->load_career(cid);
         if (!career) continue;
@@ -154,7 +154,7 @@ int do_faction(object me, string arg) {
     }
 
     write(sprintf("  %-20s  %-8s  %-12s  %s\n", "勢力名稱", "類型", "所在聚落", "可加入"));
-    write("  " + repeat_string("─", 55) + "\n");
+    write("  " + "───────────────────────────────────────────────────────" + "\n");
 
     foreach (string fid in all_fids) {
         mapping f = FACTION_D->load_faction(fid);
@@ -194,7 +194,7 @@ string query_category() {
 }
 
 string help() {
-    return select_lang(([\
+    return select_lang(([
         "en": "【Career & Faction Commands】\n  career             View all career training progress.\n  career <id>        View details of a specific career (e.g. career farmer).\n  faction            View available factions and your current affiliation.\n  faction join <id>  Join a faction if you meet the conditions.\n",
         "zh-TW": "【職涯與勢力指令】\n  career             查看所有職涯修練進度。\n  career <職涯>      查看特定職涯詳情（如：career farmer）。\n  faction            查看可加入的勢力清單與當前歸屬。\n  faction join <id>  加入指定勢力（如：faction join liu_clan）。\n",
         "zh-CN": "【职涯与势力指令】\n  career             查看所有职涯修练进度。\n  career <职涯>      查看特定职涯详情。\n  faction            查看可加入的势力清单与当前归属。\n  faction join <id>  加入指定势力。\n"

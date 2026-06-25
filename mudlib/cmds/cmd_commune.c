@@ -33,7 +33,7 @@ int do_commune(object me, string arg) {
 
         write(sprintf("  %-12s  %-10s  %-8s  %s\n",
             "聚落", "記憶值", "失源者", "狀態"));
-        write("  " + repeat_string("─", 50) + "\n");
+        write("  " + "──────────────────────────────────────────────────" + "\n");
 
         int any_crisis = 0;
         foreach (string sid in all_settlements) {
@@ -83,9 +83,7 @@ int do_commune(object me, string arg) {
     }
 
     write(C_REVEAL + "你閉上眼睛，試著感受這片土地的歷史呼吸...\n" + NOR);
-    call_out(lambda(({ }), ({
-        #'call_other, RESONANCE_D, "initiate_commune", me
-    })), 1);
+    RESONANCE_D->initiate_commune(me);
     return 1;
 }
 
@@ -155,7 +153,7 @@ string query_category() {
 }
 
 string help() {
-    return select_lang(([\
+    return select_lang(([
         "en": "【Commune & Resolve Commands】\n  commune          Initiate a resonance ritual at your current historical site.\n  commune status   View the memory crisis status of all settlements.\n  resolve          Resolve a specter (lost soul) at your current location.\n",
         "zh-TW": "【共鳴與解除指令】\n  commune          在當前歷史地標發起共鳴儀式（需文士等級 2 或農藝師等級 3）。\n  commune status   查看全島各聚落的記憶危機狀態。\n  resolve          解除當前地標的失源者（需滿足對應條件）。\n",
         "zh-CN": "【共鸣与解除指令】\n  commune          在当前历史地标发起共鸣仪式。\n  commune status   查看全岛各聚落的记忆危机状态。\n  resolve          解除当前地标的失源者。\n"

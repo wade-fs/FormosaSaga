@@ -67,7 +67,8 @@ void create() {
     if (!explored_rooms) explored_rooms = ([]);
     if (!footprints) footprints = ({});
     if (!career_points) career_points = ([]);
-    footprint_atlas = ([]);
+    if (!footprint_atlas) footprint_atlas = ([]);
+    if (!aliases) aliases = ([]);
     init_aliases();
     
     write_paths = ({ }); 
@@ -279,6 +280,10 @@ void setup() {
     if (!quests) quests = ([]);
     if (!muted_channels) muted_channels = ([]);
     if (!explored_rooms) explored_rooms = ([]);
+    if (!career_points) career_points = ([]);
+    if (!footprint_atlas) footprint_atlas = ([]);
+    if (!unlocked_memories) unlocked_memories = ({});
+    if (!aliases) aliases = ([]);
     if (!last_bank_time) last_bank_time = time();
     init_aliases();
     set_heart_beat(1);
