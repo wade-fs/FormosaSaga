@@ -140,8 +140,9 @@ void player_enter(object player) {
     call_out("do_look", 0, player);
 
     // 發送事件
-    emit("PlayerEnteredSite", ([
+    EVENT_D->publish("PlayerEnteredSite", ([
         "player_id":   pid,
+        "player":      player,
         "site_id":     query_entity_id(),
         "era_id":      era_id,
     ]));
@@ -155,8 +156,9 @@ void player_leave(object player) {
     _tell_others(player,
         player->query_display_name() + " 離開了。\n");
 
-    emit("PlayerLeftSite", ([
+    EVENT_D->publish("PlayerLeftSite", ([
         "player_id": pid,
+        "player":    player,
         "site_id":   query_entity_id(),
     ]));
 }

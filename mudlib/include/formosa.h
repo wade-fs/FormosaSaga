@@ -17,6 +17,8 @@
 #define TIMELINE_D    load_object("/daemon/timeline_d.c")
 #define CAREER_D      load_object("/daemon/career_d.c")
 #define FACTION_D     load_object("/daemon/faction_d.c")
+#define OBLIVION_D    load_object("/daemon/oblivion_d.c")
+#define RESONANCE_D   load_object("/daemon/resonance_d.c")
 #define NPC_D         load_object("/daemon/npc_d.c")
 #define ERA_D         load_object("/daemon/era_d.c")
 #define SITE_D        load_object("/daemon/site_d.c")

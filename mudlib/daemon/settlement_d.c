@@ -159,7 +159,7 @@ int add_dim(string settlement_id, string dim, int delta) {
     s[dim] = new_val;
     _save_settlement(settlement_id, s);
 
-    emit("SettlementChanged", ([
+    EVENT_D->publish("SettlementChanged", ([
         "settlement_id": settlement_id,
         "dim":           dim,
         "old_value":     old_val,
@@ -195,11 +195,16 @@ mixed *query_active_specters(string settlement_id) {
 
 private void _check_oblivion(string settlement_id, int memory_val) {
     if (memory_val < OBLIVION_SPECTER) {
-        // 判斷失源者型態（依記憶子項目最低者）
-        // 簡化版：直接生成失史者，完整版應檢查子項目
-        _spawn_specter(settlement_id, SP_LOST_HISTORY);
+        // 依記憶值深度決定失源者型態
+        string sp_type;
+        if (memory_val < OBLIVION_CRISIS) {
+            sp_type = SP_LOST_HISTORY; // 最嚴重：失史者
+        } else {
+            sp_type = SP_LOST_NAME;    // 初級：失名者
+        }
+        _spawn_specter(settlement_id, sp_type);
     } else if (memory_val < OBLIVION_WARN) {
-        emit("OblivionRising", ([
+        EVENT_D->publish("OblivionRising", ([
             "settlement_id": settlement_id,
             "memory_val":    memory_val,
         ]));
@@ -228,7 +233,22 @@ private void _spawn_specter(string settlement_id, string specter_type) {
     s["specters_active"] = existing + ({ specter });
     _save_settlement(settlement_id, s);
 
-    emit("SpecterSpawned", ([
+    // 🚀 實體化：clone 失源者物件並放入聚落的某個地標
+    string *sites = load_sites_for_settlement(settlement_id);
+    if (sites && sizeof(sites)) {
+        // 挑記憶相關的地標（或第一個地標）
+        string target_site = sites[0];
+        object site_ob = get_site_object(target_site);
+        if (site_ob) {
+            object sp_ob = clone_object("/std/specter.c");
+            if (sp_ob) {
+                sp_ob->setup(settlement_id, specter_id, specter_type);
+                move_object(sp_ob, site_ob);
+            }
+        }
+    }
+
+    EVENT_D->publish("SpecterSpawned", ([
         "settlement_id": settlement_id,
         "specter_id":    specter_id,
         "specter_type":  specter_type,
@@ -247,7 +267,7 @@ void resolve_specter(string settlement_id, string specter_id, object player) {
     s["specters_active"] = remaining;
     _save_settlement(settlement_id, s);
 
-    emit("SpecterResolved", ([
+    EVENT_D->publish("SpecterResolved", ([
         "settlement_id": settlement_id,
         "specter_id":    specter_id,
         "resolver":      player ? player->query_entity_id() : "system",
@@ -269,7 +289,7 @@ private void _check_upgrade(string settlement_id) {
 
         s["tier"] = TIER_CITY3;
         _save_settlement(settlement_id, s);
-        emit("SettlementUpgraded", ([
+        EVENT_D->publish("SettlementUpgraded", ([
             "settlement_id": settlement_id,
             "from_tier": TIER_VILLAGE,
             "to_tier":   TIER_CITY3,
@@ -344,8 +364,21 @@ void on_memory_completed(mapping event) {
     mapping data = event["data"];
     string s_id  = data["settlement_id"];
     if (!s_id) return;
-    // 記憶完成 → 記憶 +8
-    add_dim(s_id, DIM_MEMORY, 8);
+
+    // 基礎記憶加成 +8
+    int bonus = 8;
+
+    // 若解鎖記憶的玩家在此聚落有勢力加成，額外提升
+    string player_id = data["player_id"];
+    if (player_id) {
+        object player = find_player(player_id) || find_object(player_id);
+        if (player) {
+            int faction_bonus = FACTION_D->query_memory_bonus(player, s_id);
+            bonus += faction_bonus;
+        }
+    }
+
+    add_dim(s_id, DIM_MEMORY, bonus);
 }
 
 void on_specter_resolved(mapping event) {
