@@ -310,3 +310,11 @@ private void _tell_others(object except_ob, string msg) {
 // 供外部查詢
 int    query_is_site()  { return 1; }
 string query_short()    { return query_display_name(); }
+
+void look_room(object player) {
+    do_look(player);
+}
+
+mixed query_exits() { return 0; }
+string look_at_item(string id) { return ""; }
+

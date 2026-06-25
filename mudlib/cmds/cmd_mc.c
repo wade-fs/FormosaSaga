@@ -66,7 +66,7 @@ int main(object me, string verb, string arg) {
         
         // 備援：若無紀錄則回到預設新手村
         if (!dest) {
-            dest = load_object("/area/newbie/room_0_0.c");
+            dest = load_object(START_ROOM);
         }
 
         if (dest) {
