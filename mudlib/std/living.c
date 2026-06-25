@@ -199,10 +199,20 @@ int move(mixed dest, string dir) {
     object me = this_object();
     object old_env = environment(me);
     
+    // 如果原先在 site，呼叫離開回呼
+    if (old_env && old_env->query_is_site()) {
+        catch(old_env->player_leave(me));
+    }
+    
     move_object(dest);
     
     object new_env = environment(me);
     if (new_env == old_env) return 0; // 移動失敗
+
+    // 如果新環境是 site，呼叫進入回呼
+    if (new_env && new_env->query_is_site()) {
+        catch(new_env->player_enter(me));
+    }
 
     // 🚀 處理寵物同步移動
     if (active_pet && environment(active_pet) == old_env) {

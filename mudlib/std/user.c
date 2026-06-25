@@ -286,7 +286,9 @@ void setup() {
         object loc = load_object(last_location);
         if (loc) {
             move_object(loc);
-            loc->look_room(this_object());
+            if (loc->query_is_site()) {
+                catch(loc->player_enter(this_object()));
+            }
         } else {
             move_to_start();
         }
@@ -368,7 +370,9 @@ void move_to_start() {
     object start = load_object(start_path);
     if (start) {
         move_object(start);
-        start->look_room(this_object());
+        if (start->query_is_site()) {
+            catch(start->player_enter(this_object()));
+        }
     } else {
         write("致命錯誤：找不到起始點 " + start_path + "\n");
     }
