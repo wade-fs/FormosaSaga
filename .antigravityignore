@@ -5,3 +5,17 @@ doc/
 log/
 tmp/
 binaries/
+bin/
+*.txt
+testlib/
+token/
+preprocessor/
+repl/
+parser/
+object/
+lexer/
+internal/
+evaluator/
+chapter/
+ast/
+
