@@ -64,6 +64,49 @@ void add_neighbor(string direction_label, string target_id) {
 }
 mapping query_neighbors() { return copy(neighbors); }
 
+// 從 YAML 資料動態初始化 Site
+void setup_from_yaml(mapping data) {
+    if (!data) return;
+    if (data["id"]) {
+        set_entity_id("site:" + data["id"]);
+    }
+    if (data["canonical_name"]) {
+        set_display_name(data["canonical_name"]);
+    }
+    if (data["settlement"]) {
+        set_settlement_id(data["settlement"]);
+    }
+    if (data["is_heritage"]) {
+        set_heritage(data["is_heritage"]);
+    }
+    if (data["base_description"]) {
+        set_base_description(data["base_description"]);
+    } else {
+        // 如果 YAML 裡沒寫，給一個優美的預設描述
+        set_base_description("這是一個平靜的地方，周遭帶著淡雅的土地芬芳。");
+    }
+    if (data["travel_arrive_text"]) {
+        set_prop("travel_arrive_text", data["travel_arrive_text"]);
+    }
+    if (data["footprint"]) {
+        set_prop("footprint_to_grant", data["footprint"]);
+    }
+    
+    // 初始化鄰居連通性
+    if (pointerp(data["connections"])) {
+        foreach (string conn in data["connections"]) {
+            add_neighbor(conn, conn);
+        }
+    }
+
+    // 🚀 核心修改：動態載入 reveal_layers
+    if (pointerp(data["reveal_layers"])) {
+        foreach (mapping layer in data["reveal_layers"]) {
+            add_reveal_layer(layer);
+        }
+    }
+}
+
 // ── 玩家進出 ──────────────────────────────────────────
 void player_enter(object player) {
     if (!player || !userp(player)) return;
@@ -79,6 +122,12 @@ void player_enter(object player) {
 
     // 授予地理踏印（委託給 FOOTPRINT_D）
     catch(FOOTPRINT_D->on_player_enter_site(player, this_object()));
+
+    // 🚀 如果有設定 YAML 動態踏印，在此處發放
+    string fp_grant = query_prop("footprint_to_grant");
+    if (fp_grant && fp_grant != "") {
+        catch(FOOTPRINT_D->add_footprint(player, fp_grant));
+    }
 
     // 通知其他在場者
     _tell_others(player,

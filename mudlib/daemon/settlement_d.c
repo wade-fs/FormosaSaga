@@ -283,15 +283,30 @@ object get_site_object(string site_id) {
         return active_sites[site_id];
 
     // 嘗試載入對應的 LPC 物件
-    // 慣例：site_id "minxiong" → /area/settlements/minxiong.c
     string path = "/area/settlements/" + site_id + ".c";
     if (file_size(path) <= 0)
         path = "/area/sites/" + site_id + ".c";
-    if (file_size(path) <= 0) return 0;
 
-    object ob = catch(load_object(path));
-    if (ob) active_sites[site_id] = ob;
-    return ob;
+    if (file_size(path) > 0) {
+        object ob = catch(load_object(path));
+        if (ob) {
+            active_sites[site_id] = ob;
+            return ob;
+        }
+    }
+
+    // 🚀 核心修改：如果 LPC 檔案不存在，嘗試從 SITE_D 載入 YAML 設定並動態 Clone
+    mapping yaml_data = SITE_D->load_site(site_id);
+    if (yaml_data) {
+        object ob = clone_object("/std/site.c");
+        if (ob) {
+            ob->setup_from_yaml(yaml_data);
+            active_sites[site_id] = ob;
+            return ob;
+        }
+    }
+
+    return 0;
 }
 
 // ── 事件回呼 ──────────────────────────────────────────

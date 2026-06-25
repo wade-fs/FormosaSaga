@@ -64,18 +64,24 @@ mapping load_site(string site_id) {
     if (!site_cache) rehash();
     if (site_cache[site_id]) return site_cache[site_id];
 
-    // 查缺補漏/容錯：如果沒有靜態 YAML，嘗試載入 LPC 實體動態補完 mapping
-    object ob = SETTLEMENT_D->get_site_object(site_id);
-    if (ob) {
-        mapping data = ([
-            "id":             site_id,
-            "settlement":     ob->query_settlement_id(),
-            "canonical_name": ob->query_display_name(),
-            "is_heritage":    ob->query_is_heritage(),
-            "connections":    keys(ob->query_neighbors() || ([])),
-        ]);
-        site_cache[site_id] = data;
-        return data;
+    // 查缺補漏/容錯：如果沒有靜態 YAML，且 LPC 實體檔確切存在於磁碟上，才嘗試載入 LPC 實體動態補完 mapping
+    string path = "/area/settlements/" + site_id + ".c";
+    if (file_size(path) <= 0)
+        path = "/area/sites/" + site_id + ".c";
+
+    if (file_size(path) > 0) {
+        object ob = SETTLEMENT_D->get_site_object(site_id);
+        if (ob) {
+            mapping data = ([
+                "id":             site_id,
+                "settlement":     ob->query_settlement_id(),
+                "canonical_name": ob->query_display_name(),
+                "is_heritage":    ob->query_is_heritage(),
+                "connections":    keys(ob->query_neighbors() || ([])),
+            ]);
+            site_cache[site_id] = data;
+            return data;
+        }
     }
     return 0;
 }
