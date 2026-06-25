@@ -1,0 +1,17 @@
+id: dashiye_temple
+settlement: minxiong
+canonical_name: 大士爺廟
+is_heritage: false
+
+names:
+  - era: qing
+    name: 打貓大士爺廟
+  - era: japanese
+    name: 大士爺廟
+  - era: modern
+    name: 大士爺廟
+
+connections:
+  - minxiong_old_station
+  - minxiong_market
+  - waterway

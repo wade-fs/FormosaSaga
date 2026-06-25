@@ -62,6 +62,7 @@ void create() {
     if (!muted_channels) muted_channels = ([]);
     if (!explored_rooms) explored_rooms = ([]);
     if (!footprints) footprints = ({});
+    footprint_atlas = ([]);
     init_aliases();
     
     write_paths = ({ }); 

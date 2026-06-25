@@ -1,0 +1,12 @@
+id: waterway
+settlement: minxiong
+canonical_name: 灌溉水圳
+is_heritage: false
+
+names:
+  - era: modern
+    name: 灌溉水圳
+
+connections:
+  - dashiye_temple
+  - rural_village

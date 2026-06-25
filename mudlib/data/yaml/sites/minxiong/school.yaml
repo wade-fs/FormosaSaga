@@ -1,0 +1,14 @@
+id: school
+settlement: minxiong
+canonical_name: 民雄國小
+is_heritage: false
+
+names:
+  - era: japanese
+    name: 打貓公學校
+  - era: modern
+    name: 民雄國小
+
+connections:
+  - old_street
+  - rural_village

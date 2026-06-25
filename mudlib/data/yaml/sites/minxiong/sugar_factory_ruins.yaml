@@ -1,0 +1,14 @@
+id: sugar_factory_ruins
+settlement: minxiong
+canonical_name: 民雄糖廠遺址
+is_heritage: false
+
+names:
+  - era: japanese
+    name: 打貓製糖所
+  - era: modern
+    name: 民雄糖廠遺址
+
+connections:
+  - outskirts
+  - sugarcane_field

@@ -1,0 +1,11 @@
+id: fengli_field
+settlement: minxiong
+canonical_name: 鳳梨田
+is_heritage: false
+
+names:
+  - era: modern
+    name: 鳳梨田
+
+connections:
+  - rural_village

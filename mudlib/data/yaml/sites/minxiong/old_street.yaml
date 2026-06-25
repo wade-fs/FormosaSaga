@@ -1,0 +1,18 @@
+id: old_street
+settlement: minxiong
+canonical_name: 民雄老街
+is_heritage: false
+
+names:
+  - era: qing
+    name: 打貓街
+  - era: japanese
+    name: 民雄庄老街
+  - era: modern
+    name: 民雄老街
+
+connections:
+  - ghost_house
+  - outskirts
+  - minxiong_market
+  - school

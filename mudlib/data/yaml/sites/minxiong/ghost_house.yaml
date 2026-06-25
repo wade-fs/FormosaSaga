@@ -1,0 +1,14 @@
+id: ghost_house
+settlement: minxiong
+canonical_name: 民雄鬼屋
+is_heritage: false
+
+names:
+  - era: japanese
+    name: 劉家古樓
+  - era: modern
+    name: 民雄鬼屋
+
+connections:
+  - old_street
+  - outskirts

@@ -1,0 +1,12 @@
+id: sugarcane_field
+settlement: minxiong
+canonical_name: 甘蔗田
+is_heritage: false
+
+names:
+  - era: modern
+    name: 甘蔗田
+
+connections:
+  - sugar_factory_ruins
+  - rural_village
