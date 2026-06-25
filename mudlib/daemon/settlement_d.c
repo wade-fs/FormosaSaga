@@ -13,6 +13,43 @@ int culture;
 int trade;
 int cohesion;
 
+// 驗證聚落資料結構
+int validate_settlement(mapping data) {
+    if (!data || !mapp(data)) return 0;
+    
+    // 檢查必要字串欄位
+    if (!stringp(data["id"]) || !stringp(data["name"]) || !stringp(data["level"])) {
+        log_file("validation_errors.log", sprintf("聚落驗證失敗: id, name, 或 level 缺失或非字串\n"));
+        return 0;
+    }
+    
+    // 檢查數值欄位是否合理
+    if (data["population"] < 0) {
+        log_file("validation_errors.log", sprintf("聚落 %s (%s) 驗證失敗: 人口數 population 為負值 (%d)\n", data["name"], data["id"], data["population"]));
+        return 0;
+    }
+    if (data["memory"] < 0 || data["culture"] < 0 || data["trade"] < 0 || data["cohesion"] < 0) {
+        log_file("validation_errors.log", sprintf("聚落 %s (%s) 驗證失敗: 記憶/文化/貿易/凝聚力值不能為負數\n", data["name"], data["id"]));
+        return 0;
+    }
+
+    // 檢查產業 (必須是字串陣列)
+    if (data["industry"]) {
+        if (!pointerp(data["industry"])) {
+            log_file("validation_errors.log", sprintf("聚落 %s (%s) 驗證失敗: industry 欄位必須是陣列\n", data["name"], data["id"]));
+            return 0;
+        }
+        foreach (mixed ind in data["industry"]) {
+            if (!stringp(ind)) {
+                log_file("validation_errors.log", sprintf("聚落 %s (%s) 驗證失敗: 產業名稱包含非字串元素\n", data["name"], data["id"]));
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
+
 // 取得或加載聚落實體 (Entity Hydration Pattern)
 mapping load_settlement(string id) {
     if (!id || id == "") return 0;
@@ -33,6 +70,12 @@ mapping load_settlement(string id) {
     mapping static_data = yaml_decode(yaml_content);
     if (!static_data) {
         log_file("storage_errors.log", "YAML 解析失敗: " + yaml_path + "\n");
+        return 0;
+    }
+
+    // 進行聚落資料結構驗證
+    if (!validate_settlement(static_data)) {
+        log_file("storage_errors.log", "聚落靜態 YAML 驗證失敗: " + yaml_path + "\n");
         return 0;
     }
 

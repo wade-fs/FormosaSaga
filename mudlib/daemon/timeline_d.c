@@ -53,8 +53,46 @@ mapping query_current_era_data() {
     return yaml_decode(content);
 }
 
+// 驗證是否滿足推展至下一時代的條件
+int validate_next_era_transition() {
+    string next_era_id;
+    if (current_era_id == "v0_1") {
+        next_era_id = "v0_2";
+    } else if (current_era_id == "v0_2") {
+        next_era_id = "v1_0";
+    } else {
+        return 0; // 已是最高時代
+    }
+
+    // 檢查目標時代的 YAML 設定檔是否存在且格式正確
+    string yaml_path = sprintf("/world/eras/%s.yaml", next_era_id);
+    if (file_size(yaml_path) <= 0) {
+        log_file("validation_errors.log", sprintf("時代推展失敗: 找不到目標時代的設定檔 '%s'\n", yaml_path));
+        return 0;
+    }
+
+    string content = read_file(yaml_path);
+    mapping era_data = yaml_decode(content);
+    if (!era_data || !mapp(era_data)) {
+        log_file("validation_errors.log", sprintf("時代推展失敗: 無法解析時代設定檔 '%s'\n", yaml_path));
+        return 0;
+    }
+
+    if (!stringp(era_data["id"]) || !stringp(era_data["name"])) {
+        log_file("validation_errors.log", sprintf("時代推展失敗: 設定檔 '%s' 缺少 id 或 name\n", yaml_path));
+        return 0;
+    }
+
+    return 1;
+}
+
 // 時代推進
 void next_era() {
+    if (!validate_next_era_transition()) {
+        write("【系統提示】目前世界不符合進入下一時代的驗證條件，取消時代推展。\n");
+        return;
+    }
+
     string old_era = current_era_id;
     if (current_era_id == "v0_1") {
         current_era_id = "v0_2";
