@@ -18,6 +18,7 @@
   "attack": 30,
   "bank_balance": 0,
   "can_open": 0,
+  "career_points": {},
   "combat_target": 0,
   "current_mudlib": "",
   "cwd": "/",
@@ -36,8 +37,17 @@
     "/area/newbie/room_0_0.c": 1,
     "/area/newbie/room_4_4.c": 1
   },
+  "faction": 0,
   "followers": [],
-  "footprint_atlas": {},
+  "footprint_atlas": {
+    "geo:minxiong": {
+      "category": "geo",
+      "id": "geo:minxiong",
+      "obtained_at": 1782401292,
+      "quality": 1,
+      "settlement_id": "minxiong"
+    }
+  },
   "footprints": [],
   "full_id": 0,
   "guild": 0,
@@ -90,6 +100,8 @@
   "stat_str": 10,
   "stat_wis": 10,
   "temp_vars": {
+    "current_site_id": "settlement:minxiong",
+    "fp_checked_geo:minxiong": 1,
     "history_entries": [
       {
         "era": "v0.1",
@@ -98,5 +110,6 @@
     ],
     "last_location": "/area/newbie/room_4_4.c"
   },
+  "unlocked_memories": [],
   "write_paths": []
 }

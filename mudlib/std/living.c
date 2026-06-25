@@ -604,3 +604,12 @@ mapping query_skills() { return skills; }
 // catch_tell：活物收到訊息，預設不做任何事（子類別可覆寫）
 void catch_tell(string msg) {
 }
+
+string query_entity_id() {
+    string id = query("id");
+    if (!id) id = name;
+    if (is_interactive()) {
+        return "player:" + id;
+    }
+    return "npc:" + id;
+}
