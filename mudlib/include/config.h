@@ -79,7 +79,7 @@
 #define BASE_EXP_PER_LV 1000
 
 // ── 路徑常數 ────────────────────────────────────────────
-#define START_ROOM      "/area/lm/center_world.c"
+#define START_ROOM      "/area/settlements/minxiong.c"
 #define MASTER_FILE     "/master.c"
 #define ISSUE_FILE      "/etc/issue"
 

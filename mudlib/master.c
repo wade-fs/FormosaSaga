@@ -15,10 +15,6 @@ void create() {
     load_object("/daemon/timeline_d.c");
     load_object("/daemon/settlement_d.c");
     load_object("/daemon/footprint_d.c");
-    load_object("/daemon/nature_d.c");
-    load_object("/daemon/quest_d.c");
-    load_object("/daemon/guild_d.c");
-    load_object("/daemon/channel_d.c");
     load_object("/daemon/faction_d.c");
     load_object("/daemon/historical_event_d.c");
 

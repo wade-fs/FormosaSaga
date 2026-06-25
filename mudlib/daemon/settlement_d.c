@@ -94,6 +94,20 @@ int query_dim(string settlement_id, string dim) {
     return s[dim] || 0;
 }
 
+int query_memory(string id) { return query_dim(id, DIM_MEMORY); }
+int query_culture(string id) { return query_dim(id, DIM_CULTURE); }
+int query_population(string id) { return query_dim(id, DIM_POPULATION); }
+int query_industry(string id) { return query_dim(id, DIM_INDUSTRY); }
+int query_trade(string id) { return query_dim(id, DIM_TRADE); }
+int query_cohesion(string id) { return query_dim(id, DIM_COHESION); }
+
+int add_memory(string id, int delta) { return add_dim(id, DIM_MEMORY, delta); }
+int add_culture(string id, int delta) { return add_dim(id, DIM_CULTURE, delta); }
+int add_population(string id, int delta) { return add_dim(id, DIM_POPULATION, delta); }
+int add_industry(string id, int delta) { return add_dim(id, DIM_INDUSTRY, delta); }
+int add_trade(string id, int delta) { return add_dim(id, DIM_TRADE, delta); }
+int add_cohesion(string id, int delta) { return add_dim(id, DIM_COHESION, delta); }
+
 // delta 可正可負
 int add_dim(string settlement_id, string dim, int delta) {
     mapping s = load_settlement(settlement_id);

@@ -31,14 +31,18 @@
   "equip_weapon": 0,
   "exp": 0,
   "exp_to_next": 1000,
-  "explored_rooms": {
-    "/area/cave/cave_0_0_minus1.c": 1,
-    "/area/newbie/room_0_0.c": 1
-  },
+  "explored_rooms": {},
   "followers": [],
-  "footprints": [
-    "sugar_railway_minxiong"
-  ],
+  "footprint_atlas": {
+    "geo:chiayi_city": {
+      "category": "geo",
+      "id": "geo:chiayi_city",
+      "obtained_at": 1782389913,
+      "quality": 1,
+      "settlement_id": "chiayi_city"
+    }
+  },
+  "footprints": [],
   "full_id": 0,
   "guild": 0,
   "guild_exp": 0,
@@ -54,9 +58,9 @@
   "is_closed": 0,
   "is_dead": 0,
   "is_riding": 0,
-  "lang": "zh-TW",
+  "lang": 0,
   "last_bank_time": 0,
-  "last_location": "/area/cave/cave_0_0_minus1.c",
+  "last_location": 0,
   "leader": 0,
   "level": 1,
   "long_name": "這是一個沒有描述的東西。",
@@ -68,7 +72,7 @@
   "money_value": 0,
   "mp": 0,
   "muted_channels": {},
-  "name": "無名氏",
+  "name": "測試者",
   "nature": 0,
   "no_drop": 0,
   "no_get": 0,
@@ -79,7 +83,7 @@
   "quests": {},
   "race": 0,
   "responses": 0,
-  "role": "god",
+  "role": 0,
   "saved_inventory": [],
   "short_name": "某個東西",
   "skills": {},

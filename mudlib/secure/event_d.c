@@ -71,12 +71,12 @@ void publish(string event_type, mapping data) {
 
     if (!is_dispatching) {
         is_dispatching = 1;
-        call_out("_dispatch_loop", 0);
+        call_out("dispatch_loop", 0);
     }
 }
 
 // ── 分發（沙盒隔離）──────────────────────────────────
-private void _dispatch_loop() {
+void dispatch_loop() {
     if (!sizeof(event_queue)) {
         is_dispatching = 0;
         return;
@@ -108,7 +108,7 @@ private void _dispatch_loop() {
     }
 
     if (sizeof(event_queue))
-        call_out("_dispatch_loop", 0);
+        call_out("dispatch_loop", 0);
     else
         is_dispatching = 0;
 }

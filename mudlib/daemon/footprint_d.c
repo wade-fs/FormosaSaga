@@ -40,6 +40,18 @@ void on_player_enter_site(object player, object site) {
     }
 }
 
+void add_footprint(object player, string fp_id) {
+    if (!player || !fp_id) return;
+    // 解析聚落 (例如 "sugar_railway_minxiong" -> "minxiong")
+    string s_id = 0;
+    string category = FP_SETTLEMENT;
+    if (strsrch(fp_id, "_minxiong") != -1) {
+        s_id = "minxiong";
+        category = FP_SETTLEMENT;
+    }
+    grant_footprint(player, fp_id, category, s_id, FQ_GLIMPSE);
+}
+
 // ── 授予踏印（主 API）────────────────────────────────
 //
 // 回傳：
