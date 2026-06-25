@@ -27,6 +27,8 @@ mapping explored_rooms; // 🚀 新增：已探索房間 ([ "room_file": 1 ])
 string *saved_inventory = ({ });
 string last_location;
 string *footprints; // 🚀 新增：踏印紀錄
+string *unlocked_memories; // 🚀 新增：解鎖的歷史記憶 ID 陣列
+
 
 
 // ── 查詢 ──────────────────────────────────────────────────
@@ -106,7 +108,7 @@ void clear_footprints() {
 }
 
 // 支援 footprint_d.c 及 reveal_layer.c 依賴的 API
-private mapping footprint_atlas = ([]);
+mapping footprint_atlas;
 
 mapping query_footprint_atlas() {
     if (!footprint_atlas) footprint_atlas = ([]);
@@ -119,6 +121,19 @@ void set_footprint_atlas(mapping atlas) {
 
 void save_me() {
     save();
+}
+
+string *query_unlocked_memories() {
+    if (!unlocked_memories) unlocked_memories = ({});
+    return unlocked_memories;
+}
+
+void unlock_memory(string mid) {
+    if (!unlocked_memories) unlocked_memories = ({});
+    if (member_array(mid, unlocked_memories) == -1) {
+        unlocked_memories += ({ mid });
+        save();
+    }
 }
 
 int has_talent(string talent_id) {

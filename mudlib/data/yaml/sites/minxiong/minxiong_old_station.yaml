@@ -2,6 +2,11 @@ id: minxiong_old_station
 settlement: minxiong
 canonical_name: 民雄車站
 is_heritage: false
+base_description: |
+  木造的車站月台在熱氣中散發出乾木頭的氣味。
+  鐵軌向南北兩端無限延伸，沒入遠處的熱浪與農田之中。
+travel_arrive_text: "你走進了民雄車站，迎面而來的是月台的微風與甘蔗車的鳴笛聲。"
+footprint: sugar_railway_minxiong
 
 names:
   - era: japanese
@@ -11,3 +16,24 @@ names:
 
 connections:
   - minxiong_market
+
+reveal_layers:
+  # 條件 1：當玩家走訪了民雄鬼屋（獲得鬼屋踏印）後，在車站看見老站長出現
+  - condition: "all"
+    checks:
+      - type: "has_footprint"
+        id: "ghost_house_minxiong"
+    text: "一位身穿深藍色制服的老站長坐在月台長椅上，若有所思地抽著菸。"
+    npc: "old_station_master"
+
+  # 條件 2：當玩家擁有主角唯一的 "island_memory" 天賦且世界處於 "v0_1" 時代時，浮現歷史層入口（可進入日本時代）
+  - condition: "all"
+    checks:
+      - type: "has_talent"
+        talent: "island_memory"
+      - type: "era_completed"
+        era: "v0_1"
+    text: "月台一角的空氣隱約扭曲著，彷彿能嗅到一絲日治時期燃煤火車的黑煙氣息。"
+    entry:
+      era: "japanese"
+      label: "進入大正時期的民雄驛"
