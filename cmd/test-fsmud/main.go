@@ -133,10 +133,8 @@ func main() {
 		"ls",
 		"pwd",
 		"look",
-		"out",
-		"lm",
+		"travel 民雄車站",
 		"look",
-		"mc leave", // 💡 測試完畢，離開創界世界，回到預設的新手村 (room_0_0)
 		"shutdown",  // 💡 執行系統關閉指令，使伺服器存檔並安全退場
 	}
 

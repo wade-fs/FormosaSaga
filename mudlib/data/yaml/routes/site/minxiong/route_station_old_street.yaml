@@ -1,7 +1,7 @@
 id: route_station_old_street
 
 nodes:
-  - minxiong_station
+  - minxiong_old_station
   - old_street
 
 bidirectional: true

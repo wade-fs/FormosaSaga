@@ -122,6 +122,11 @@ void do_look(object player) {
     if (!player || !userp(player)) return;
 
     string out = "";
+    string clean_id = query_entity_id();
+    int colon_idx = strsrch(clean_id, ":");
+    if (colon_idx != -1) {
+        clean_id = substr(clean_id, colon_idx + 1, strlen(clean_id) - colon_idx - 1);
+    }
 
     // ── 標題 ──
     out += C_TITLE + "【" + ERA_D->resolve_name(clean_id, query_entity_type(), player) + "】" + C_RESET + "\n";
