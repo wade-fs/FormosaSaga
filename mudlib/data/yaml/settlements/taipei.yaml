@@ -1,0 +1,54 @@
+# /data/yaml/settlements/taipei.yaml
+#
+# 台北市 靜態設定
+
+id: "taipei"
+name: "台北市"
+tier: 1              # TIER_CITY1
+admin_level: "市"
+county: "taipei_city"
+
+# 六維初始值
+population: 90
+industry:   85
+culture:    80
+memory:     75
+trade:      88
+cohesion:   70
+
+# 失源者
+specters_active: []
+
+# 歷史脈絡
+eras_present:
+  - "v1.2"
+  - "v1.9"
+  - "v2.0"
+  - "v3.0"
+  - "modern"
+
+# 地方產業
+industries:
+  - "商業"
+  - "金融業"
+  - "文化創意"
+
+# 信仰
+temples:
+  - name: "艋舺龍山寺"
+    deity: "觀世音菩薩"
+  - name: "大稻埕霞海城隍廟"
+    deity: "城隍"
+
+# 地標
+sites:
+  - "taipei_city_gate"
+  - "taipei_dadaocheng"
+  - "taipei_monga"
+
+# 記憶子項目完成度
+memory_breakdown:
+  history_events: 0.35
+  oral_tradition: 0.30
+  named_persons:  0.28
+  sites:          0.32
