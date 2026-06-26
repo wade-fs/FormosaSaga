@@ -1,1 +1,1 @@
-/home/wade/src/github/FormosaSaga/mudlib/tests/test_oblivion_resonance.c
+../../mudlib/tests/test_oblivion_resonance.c

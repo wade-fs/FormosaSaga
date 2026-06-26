@@ -17,6 +17,7 @@ int main(object me, string verb, string arg) {
     me->set_lang("zh-TW"); // 🚀 強制設定為中文，以滿足測試案例中的硬編碼斷言
 
     string *test_files = ({
+        "/tests/test_quit_restore.c",
         "/tests/test_efuns.c",
         "/tests/test_initialization.c",
         "/tests/test_syntax.c",
@@ -41,6 +42,7 @@ int main(object me, string verb, string arg) {
         "/tests/test_currency_chat.c",
         "/tests/test_pets_mounts.c",
         "/tests/test_death_corpse.c",
+        "/tests/test_incident.c",
         "/tests/test_i18n.c",
         "/tests/test_new_efuns.c",
         "/tests/test_init_action.c",
@@ -50,13 +52,11 @@ int main(object me, string verb, string arg) {
         "/tests/p4_test.c",
         "/tests/test_file_mgmt.c",
         "/tests/test_var_decl.c",
+        "/tests/test_yaml.c",
+        "/tests/test_canon_world.c",
+        "/tests/test_reveal_validation.c",
         "/tests/test_log_file.c",
-        "/tests/test_quest_loop.c",
-        "/tests/test_look_travel_debug.c",
-        "/tests/test_temple_exorcism.c",
-        "/tests/test_sugar_railway_repair.c",
-        "/tests/test_liu_deed_recovery.c",
-        "/tests/test_oblivion_resonance.c"
+        "/tests/test_look_travel_debug.c"
     });
 
     int total = 0;

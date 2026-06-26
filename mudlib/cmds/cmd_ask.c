@@ -46,6 +46,11 @@ int main(object me, string verb, string arg) {
     // 呼叫 NPC 的 do_chat，傳入詢問者 me 方便 NPC 直接 tell_object
     if (!target->do_chat(me, topic)) {
         tell_object(me, target_name + select_lang(([ "en": " just looks at you and says nothing.\n", "zh-TW": " 只是看了看你，什麼也沒說。\n", "zh-CN": " 只是看了看你，什么也没说。\n" ])));
+    } else {
+        // NPC 有回應，觸發事件調查線索 (若有設定 npc_ask)
+        // 注意：這裡假設 target 有 query_entity_id() 或是用 query("id") 取得唯一識別碼
+        string eid = target->query_entity_id() || "npc:" + target->query("id");
+        catch(INCIDENT_D->check_trigger(me, "npc_ask", eid, topic));
     }
 
     return 1;

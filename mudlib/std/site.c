@@ -307,6 +307,9 @@ void do_look(object player) {
         foreach (string mid in revealed["memories"])
             catch(MEMORY_D->on_fragment_accessible(player, mid));
     }
+    
+    // 觸發事件調查線索 (若有設定 site_look)
+    catch(INCIDENT_D->check_trigger(player, "site_look", query_entity_id(), nil));
 }
 
 // ── TRAVEL 指令處理 ───────────────────────────────────

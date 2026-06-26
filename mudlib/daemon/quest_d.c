@@ -179,6 +179,9 @@ int complete_quest(object me, string qid) {
     write("$HIY$" + complete_msg + "$NOR$" + "\n");
     
     me->save();
+    
+    EVENT_D->publish("QuestCompleted", (["player": me, "quest_id": qid]));
+    
     return 1;
 }
 

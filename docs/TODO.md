@@ -101,8 +101,8 @@
 
 ### 📜 第二階段：歷史事件重現 (Historical Incident)
 *   **P12 — 歷史事件聚合器 (Incident System)**
-    *   [ ] 設計 `incident` 概念層，作為 Site、NPC、Quest、Memory 的聚合器（如「民雄糖業事件」）。
-    *   [ ] 玩家不再只是單純解任務，而是圍繞一個核心 Incident 進行多線調查。
+    *   [x] 設計 `incident` 概念層，作為 Site、NPC、Quest、Memory 的聚合器（如「民雄糖業事件」）。
+    *   [x] 玩家不再只是單純解任務，而是圍繞一個核心 Incident 進行多線調查。
 
 ### 🏡 第三階段：經典村落 100% 密度 (Minxiong Complete)
 *   **P13 — 經典民雄極致深化**
