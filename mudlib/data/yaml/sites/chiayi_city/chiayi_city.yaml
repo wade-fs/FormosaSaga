@@ -1,0 +1,22 @@
+id: chiayi_city
+settlement: chiayi_city
+canonical_name: 嘉義市
+is_heritage: false
+base_description: |
+  這是一座歷史悠久的古城，昔日被稱為「諸羅山」。
+  街道兩旁林立著木造建築，散發出檜木與歲月的芬芳。
+  空氣中飄散著熱鬧街市的喧囂，展現出平原樞紐的繁榮景象。
+travel_arrive_text: "你跨越了平原，來到了素有木材之都之稱的「嘉義市」。"
+footprint: geo:chiayi_city
+
+names:
+  - era: modern
+    name: 嘉義市
+  - era: japanese
+    name: 嘉義街
+  - era: qing
+    name: 諸羅縣城
+
+connections:
+  - chiayi_city_temple
+  - chiayi_train_station

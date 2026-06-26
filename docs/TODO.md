@@ -10,6 +10,7 @@
 | **P3** | 時代推展機制 (Era Progression) | **✓ 已完成** | `MemoryCompleted` 事件驅動 `world_progress`，達門檻自動觸發 `next_era()` |
 | **P4** | 職涯與勢力系統 (Profession / Faction) | **✓ 已完成** | `career_d` + YAML 四職涯（農商匠文），`faction_d` + 三勢力（劉家/糖業/廟委），事件驅動自動累積修練點 |
 | **P5** | 失源者、危機與共鳴 (Specter / Oblivion / Resonance) | **✓ 已完成** | `oblivion_d`（週期衰減+危機廣播）、`resonance_d`（多人共鳴）、`/std/specter.c`（可互動物件）、`cmd_commune` |
+| **P6** | 跨區域地圖與地理網絡擴展 (Geographical Expansion) | **✓ 已完成** | 實作鄰近聚落（嘉義市、新港鄉）與其附屬 Sites，打通跨區域 travel 移動與踏印網絡 |
 
 ---
 
@@ -32,21 +33,26 @@
 - **事件鏈完整打通**：
   - `memory_d.c` 解鎖後呼叫 `EVENT_D->publish("MemoryCompleted", {..., "progress": N})`。
   - `timeline_d.c` 訂閱 `MemoryCompleted`，在 `on_memory_completed()` 裡累加 `world_progress`。
-  - 達到 YAML `min_progress` 門檻後自動呼叫 `next_era()`，廣播並發送 `EraShifted` 事件。
+  - 達到 YAML `min_progress` 門檻後自動呼交 `next_era()`，廣播並發送 `EraShifted` 事件。
 - **資料驅動門檻**：`min_progress` 由各時代 YAML 設定，非硬編碼。
 - **民雄記憶地圖**：新增 6 則記憶片段覆蓋 `ghost_house`、`sugar_factory_ruins`、`dashiye_temple`，構成完整解鎖路徑。
 - **`memory` 玩家指令**：新增 `cmd_memory.c`，可列出記憶清單、查看時代進度、閱讀片段全文。
+
+### P6 — 跨區域地圖與地理網絡擴展
+- 修正 `route_minxiong_chiayi.yaml` 中屬性名稱 `notes` 改為 `nodes` 錯誤。
+- 實作嘉義市主聚落地標 (`chiayi_city.yaml`) 與附屬 Sites（`chiayi_city_temple.yaml`、`chiayi_train_station.yaml`），補全與美化設定與描述。
+- 實作新港鄉主聚落地標 (`singang.yaml`) 與其附屬 Site `singang_market.yaml`（替代舊 `singang_site.yaml`），修正新港聚落 `singang.yaml` 的 sites 清單。
+- 完善 `std/site.c` 處理無 `entity_id` 玩家造成的 nil map indexing 執行期異常。
+- 調整 `testlib` 測試環境，補全必要的 `std` 繼承檔案與 `daemon/yaml` 軟連結，確保核心測試（276/276）在 MudScript 模式下完全通過。
 
 ---
 
 ## 📋 下一步規劃
 
-### P4 — 職涯與勢力系統
-- 規劃 `career_d`（農、商、匠、武）與 `faction_d`（家族、聚落、幫派）。
-- 職涯影響記憶解鎖條件（例如：「匠」職能解鎖更深層的工藝記憶）。
-- 勢力關係影響聚落的記憶復原速度與遺忘危機速率。
+### P7 — 新手任務與引導流程
+- 以民雄的「老站長」為核心，實作引導任務，帶領玩家體驗「探索地標 -> 獲得踏印 -> 喚醒記憶 -> 影響時代」的核心循環。
 
-### P5 — 失源者、危機與共鳴
-- `oblivion_d`：當聚落記憶度低於 `OBLIVION_SPECTER` 閾值時，生成失源者 (Specter)。
-- `resonance_d`：玩家之間可互相傳遞記憶，觸發共鳴加速效果。
-- 危機事件系統：設計週期性觸發的全島遺忘危機，需玩家協力解除。
+### P8 — 職涯動作與勢力事件玩法深化
+- 實作不同職涯（農商匠文）的專屬動作或命令（例如：修復、記錄、耕作等）。
+- 設計各大勢力（劉家、糖業、廟委）的聲望影響與任務。
+- 設計週期性的「遺忘浪潮」危機事件與失源者（Specter）互動/共鳴儀式。

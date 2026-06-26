@@ -1,4 +1,18 @@
 id: chiayi_city_temple
+settlement: chiayi_city
+canonical_name: 嘉義城隍廟
+is_heritage: true
+base_description: |
+  這是一座香火鼎盛的古老廟宇。殿宇巍峨，石雕與木刻工藝精湛。
+  裊裊香煙中，城隍爺威嚴的神像默默俯瞰著眾生，案前燭火搖曳，給人一種心靈的平靜。
+travel_arrive_text: "你走進了嘉義城隍廟，耳邊傳來信眾的祈禱聲與清脆的筊杯聲。"
+footprint: temple_chiayi_city
+
+names:
+  - era: modern
+    name: 嘉義城隍廟
+  - era: japanese
+    name: 城隍廟
 
 connections:
   - chiayi_train_station

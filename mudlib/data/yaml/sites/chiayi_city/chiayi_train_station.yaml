@@ -1,4 +1,18 @@
 id: chiayi_train_station
+settlement: chiayi_city
+canonical_name: 嘉義火車站
+is_heritage: false
+base_description: |
+  這是一座宏偉的折衷主義風格火車站，融合了古典與現代的線條。
+  月台上人來人往，蒸汽與鐵軌的氣味交織在一起，見證了阿里山林業鐵路與縱貫線的交會。
+travel_arrive_text: "你來到了嘉義火車站，看著鐵軌向遠方延伸，隱約能聽到阿里山小火車的汽笛聲。"
+footprint: station_chiayi_city
+
+names:
+  - era: modern
+    name: 嘉義火車站
+  - era: japanese
+    name: 嘉義驛
 
 connections:
   - chiayi_city_temple

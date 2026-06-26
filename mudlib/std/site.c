@@ -112,6 +112,12 @@ void player_enter(object player) {
     if (!player || !userp(player)) return;
 
     string pid = player->query_entity_id();
+    if (!pid || pid == "") {
+        pid = player->query_id();
+    }
+    if (!pid || pid == "") {
+        pid = sprintf("%O", player);
+    }
     occupants[pid] = player;
 
     // 記錄回程（供 travel 返回使用）
@@ -151,6 +157,12 @@ void player_enter(object player) {
 void player_leave(object player) {
     if (!player) return;
     string pid = player->query_entity_id();
+    if (!pid || pid == "") {
+        pid = player->query_id();
+    }
+    if (!pid || pid == "") {
+        pid = sprintf("%O", player);
+    }
     m_delete(occupants, pid);
 
     _tell_others(player,

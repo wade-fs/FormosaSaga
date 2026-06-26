@@ -35,6 +35,7 @@ temples:
 
 # 地標（Site id 列表）
 sites:
+  - "chiayi_city"
   - "chiayi_city_temple"
   - "chiayi_train_station"
 
