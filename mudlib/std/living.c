@@ -606,7 +606,7 @@ void catch_tell(string msg) {
 }
 
 string query_entity_id() {
-    string id = query("id");
+    string id = query_key_id();
     if (!id) id = name;
     if (is_interactive()) {
         return "player:" + id;

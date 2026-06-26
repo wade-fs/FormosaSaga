@@ -113,7 +113,12 @@ void player_enter(object player) {
 
     string pid = player->query_entity_id();
     if (!pid || pid == "") {
-        pid = player->query_id();
+        mixed id_val = player->query_id();
+        if (arrayp(id_val) && sizeof(id_val) > 0) {
+            pid = id_val[0];
+        } else if (stringp(id_val)) {
+            pid = id_val;
+        }
     }
     if (!pid || pid == "") {
         pid = sprintf("%O", player);
@@ -158,7 +163,12 @@ void player_leave(object player) {
     if (!player) return;
     string pid = player->query_entity_id();
     if (!pid || pid == "") {
-        pid = player->query_id();
+        mixed id_val = player->query_id();
+        if (arrayp(id_val) && sizeof(id_val) > 0) {
+            pid = id_val[0];
+        } else if (stringp(id_val)) {
+            pid = id_val;
+        }
     }
     if (!pid || pid == "") {
         pid = sprintf("%O", player);
@@ -469,4 +479,12 @@ void look_room(object player) {
 
 mixed query_exits() { return 0; }
 string look_at_item(string id) { return ""; }
+
+int npc_visible_to_player(object player, string npc_id) {
+    mapping revealed = resolve_reveals(player);
+    if (revealed && pointerp(revealed["npcs"])) {
+        return member_array(npc_id, revealed["npcs"]) != -1;
+    }
+    return 0;
+}
 

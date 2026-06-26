@@ -97,6 +97,17 @@ int complete_quest(object me, string qid) {
         give_msg = replace_string(give_msg, "$item", to_string(target_name));
         write(give_msg + "\n");
     }
+    if (info["goal"] && info["goal"]["type"] == "footprint") {
+        string fp_id = info["goal"]["target"];
+        if (!FOOTPRINT_D->has_footprint(me, fp_id)) {
+            string err = select_lang(([
+                "zh-TW": "你還沒有獲得「" + fp_id + "」踏印！\n",
+                "en": "You haven't obtained the '" + fp_id + "' footprint yet!\n"
+            ]));
+            write(err);
+            return 0;
+        }
+    }
 
     // 給予獎勵
     mapping reward = info["reward"];

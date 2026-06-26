@@ -2,6 +2,7 @@
 // 任務守護進程 (Quest Daemon)
 
 #include "/include/ansi.h"
+#include "/include/formosa.h"
 
 inherit "/std/object";
 
@@ -59,6 +60,17 @@ void create() {
             "reward": ([
                 "exp": 250,
                 "gold": 100
+            ])
+        ]),
+        "old_station_master_wish": ([
+            "name": ([ "en": "Old Station Master's Wish", "zh-TW": "老站長的心願", "zh-CN": "老站长的心愿" ]),
+            "desc": ([ "en": "Find the trace of the sugar railway in Minxiong Old Street to get the footprint and report back.", "zh-TW": "在民雄老街尋找糖鐵遺址，獲得「糖鐵踏印」，然後向他報告。", "zh-CN": "在民雄老街寻找糖铁遗址，获得「糖铁踏印」，然后向他报告。" ]),
+            "level": 1,
+            "goal": ([ "type": "footprint", "target": "sugar_railway_minxiong", "count": 1 ]),
+            "reward": ([
+                "exp": 150,
+                "gold": 80,
+                "item": "/item/old_station_ticket.c"
             ])
         ])
     ]);
@@ -134,6 +146,17 @@ int complete_quest(object me, string qid) {
         give_msg = replace_string(give_msg, "$count", sprintf("%d", req_count));
         give_msg = replace_string(give_msg, "$item", to_string(target_name));
         write(give_msg + "\n");
+    }
+    if (info["goal"] && info["goal"]["type"] == "footprint") {
+        string fp_id = info["goal"]["target"];
+        if (!FOOTPRINT_D->has_footprint(me, fp_id)) {
+            string err = select_lang(([
+                "zh-TW": "你還沒有獲得「" + fp_id + "」踏印！\n",
+                "en": "You haven't obtained the '" + fp_id + "' footprint yet!\n"
+            ]));
+            write(err);
+            return 0;
+        }
     }
 
     // 給予獎勵

@@ -96,6 +96,30 @@ void init() {
     }
 }
 
+int id(string str) {
+    object env = environment(this_object());
+    if (env && env->query_is_site()) {
+        object tp = this_player();
+        if (tp && userp(tp)) {
+            if (tp->query_role() == "god" || wizardp(tp)) {
+                return ::id(str);
+            }
+            string full_id = query_entity_id();
+            string short_id = full_id;
+            if (full_id) {
+                int colon_idx = strsrch(full_id, ":");
+                if (colon_idx != -1) {
+                    short_id = substr(full_id, colon_idx + 1, strlen(full_id) - colon_idx - 1);
+                }
+            }
+            if (!env->npc_visible_to_player(tp, short_id)) {
+                return 0;
+            }
+        }
+    }
+    return ::id(str);
+}
+
 // ── 設定 / 查詢 ──────────────────────────────────────────────────
 void set_exp_reward(int v)         { exp_reward        = v; }
 void set_gold_reward(int v)        { gold_reward       = v; }

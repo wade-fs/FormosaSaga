@@ -63,6 +63,21 @@ void add_reveal_layer(mapping layer) {
     if (!layer["condition"]) layer["condition"] = RC_ALL;
     if (!layer["checks"])    layer["checks"]    = ({});
     reveal_layers += ({ layer });
+
+    if (layer["npc"]) {
+        call_out("spawn_reveal_npc", 0, layer["npc"]);
+    }
+}
+
+void spawn_reveal_npc(string npc_id) {
+    if (present(npc_id, this_object())) {
+        return;
+    }
+    object npc_ob;
+    catch(npc_ob = NPC_D->create_npc(npc_id));
+    if (npc_ob) {
+        catch(npc_ob->move(this_object()));
+    }
 }
 
 // 快捷：單一踏印條件

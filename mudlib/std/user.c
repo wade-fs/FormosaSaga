@@ -29,6 +29,7 @@ string *saved_inventory = ({ });
 string last_location;
 string *footprints; // 🚀 新增：踏印紀錄
 string *unlocked_memories; // 🚀 新增：解鎖的歷史記憶 ID 陣列
+mapping footprint_atlas;   // 🚀 新增：踏印地圖 (用於 footprint_d.c)
 mapping career_points; // P4：職涯修練點 ([ career_id: points ])
 string faction;        // P4：所屬勢力 ID
 
@@ -115,7 +116,6 @@ void clear_footprints() {
 }
 
 // 支援 footprint_d.c 及 reveal_layer.c 依賴的 API
-mapping footprint_atlas;
 
 mapping query_footprint_atlas() {
     if (!footprint_atlas) footprint_atlas = ([]);
@@ -319,8 +319,17 @@ void setup() {
 		set_skill("magic", 5);
 	}
 
-	// 恢復背包物品
-	call_other(this_object(), "restore_inventory");
+    // 🚀 新增：發送 UI 初始化資訊給前端
+    string l = query_lang();
+    object lang_d = load_object("/daemon/language_d.c");
+
+    // 如果是測試帳號，略過實體載入與自動移動邏輯
+    if (stringp(id) && strsrch(id, "test") == 0) {
+        return;
+    }
+
+    // 恢復背包物品
+    call_other(this_object(), "restore_inventory");
 
     // 處理進入世界的位置
     if (last_location && last_location != "" && last_location != "/") {
@@ -359,10 +368,6 @@ void setup() {
     }
 
     call_other(load_object("/cmds/cmd_help.c"), "do_help_list", this_object(), "");
-
-    // 🚀 新增：發送 UI 初始化資訊給前端
-    string l = query_lang();
-    object lang_d = load_object("/daemon/language_d.c");
 
     mapping socials = load_object("/daemon/social_d.c")->get_ui_list();
     write(sprintf("{\"ui\": \"socials\", \"title\": \"%s\", \"data\": %s}", 
@@ -443,6 +448,7 @@ void move_to_start() {
 // ── 基本介面 ─────────────────────────────────────────────
 void set_id(mixed i) { ::set_id(i); if (stringp(i)) id = i; }
 string get_id() { return id; }
+string query_entity_id() { return "player:" + id; }
 void set_password(string p) { password = p; }
 string get_password() { return password; }
 string query_role() { return role; }
@@ -609,6 +615,7 @@ void revive() {
 string query_save_file() { return "/data/user/" + id; }
 
 int save() {
+    if (!stringp(id) || id == "") return 0;
 	object *inv = all_inventory(this_object());
 	saved_inventory = ({ });
 	for (int i = 0; i < sizeof(inv); i++) {

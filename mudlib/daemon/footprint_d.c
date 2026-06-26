@@ -81,7 +81,10 @@ int grant_footprint(object player, string fp_id, string category,
             "obtained_at":   time(),
         ]);
         player->set_footprint_atlas(atlas);
-        player->save_me();
+        player->add_footprint_record(fp_id);
+        if (stringp(player->get_id()) && strsrch(player->get_id(), "test") != 0) {
+            player->save_me();
+        }
 
         _notify_player_new(player, fp_id, category, quality);
 
@@ -93,7 +96,9 @@ int grant_footprint(object player, string fp_id, string category,
         int old_q = atlas[fp_id]["quality"];
         atlas[fp_id]["quality"] = quality;
         player->set_footprint_atlas(atlas);
-        player->save_me();
+        if (stringp(player->get_id()) && strsrch(player->get_id(), "test") != 0) {
+            player->save_me();
+        }
 
         _notify_player_upgrade(player, fp_id, old_q, quality);
 
