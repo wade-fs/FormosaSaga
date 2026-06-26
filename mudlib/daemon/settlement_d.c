@@ -195,13 +195,35 @@ mixed *query_active_specters(string settlement_id) {
 
 private void _check_oblivion(string settlement_id, int memory_val) {
     if (memory_val < OBLIVION_SPECTER) {
-        // 依記憶值深度決定失源者型態
-        string sp_type;
-        if (memory_val < OBLIVION_CRISIS) {
-            sp_type = SP_LOST_HISTORY; // 最嚴重：失史者
-        } else {
-            sp_type = SP_LOST_NAME;    // 初級：失名者
+        mapping s = load_settlement(settlement_id);
+        string sp_type = "";
+        
+        // 優先以記憶子項目最低者決定失源者型態
+        if (s && mapp(s["memory_breakdown"])) {
+            mapping mb = s["memory_breakdown"];
+            float min_val = 999.0;
+            string min_key = "";
+            foreach (string k, float v in mb) {
+                if (v < min_val) {
+                    min_val = v;
+                    min_key = k;
+                }
+            }
+            if (min_key == "named_persons")       sp_type = SP_LOST_NAME;
+            else if (min_key == "sites")          sp_type = SP_LOST_PLACE;
+            else if (min_key == "oral_tradition")  sp_type = SP_LOST_TONGUE;
+            else if (min_key == "history_events")  sp_type = SP_LOST_HISTORY;
         }
+        
+        // 備用方案：依記憶值深度決定失源者型態
+        if (sp_type == "") {
+            if (memory_val < OBLIVION_CRISIS) {
+                sp_type = SP_LOST_HISTORY;
+            } else {
+                sp_type = SP_LOST_NAME;
+            }
+        }
+        
         _spawn_specter(settlement_id, sp_type);
     } else if (memory_val < OBLIVION_WARN) {
         EVENT_D->publish("OblivionRising", ([
@@ -281,18 +303,55 @@ private void _check_upgrade(string settlement_id) {
 
     int tier = s["tier"] || TIER_VILLAGE;
 
-    // 村級 → 3級城
-    if (tier == TIER_VILLAGE &&
-        s[DIM_MEMORY]   >= 60 &&
-        s[DIM_CULTURE]  >= 50 &&
-        s[DIM_COHESION] >= 50) {
+    // 記憶不可缺失特判：記憶 < 30 禁止升級
+    if ((s[DIM_MEMORY] || 0) < 30) {
+        log_file("settlement_errors.log",
+            sprintf("[%s] 聚落 %s 記憶值低於 30%s，禁止升級。\n", ctime(time()), s["name"] || settlement_id, "%"));
+        return;
+    }
 
-        s["tier"] = TIER_CITY3;
+    int target_tier = 0;
+
+    if (tier == TIER_VILLAGE) {
+        // 村級 → 3級城 (4 -> 3)
+        if ((s[DIM_MEMORY] || 0)   >= 60 &&
+            (s[DIM_CULTURE] || 0)  >= 50 &&
+            (s[DIM_COHESION] || 0) >= 50 &&
+            (s[DIM_POPULATION] || 0) >= 45 &&
+            (s[DIM_INDUSTRY] || 0)  >= 40 &&
+            (s[DIM_TRADE] || 0)     >= 40) {
+            target_tier = TIER_CITY3;
+        }
+    } else if (tier == TIER_CITY3) {
+        // 3級城 → 2級城 (3 -> 2)
+        if ((s[DIM_MEMORY] || 0)   >= 70 &&
+            (s[DIM_CULTURE] || 0)  >= 60 &&
+            (s[DIM_COHESION] || 0) >= 60 &&
+            (s[DIM_POPULATION] || 0) >= 60 &&
+            (s[DIM_INDUSTRY] || 0)  >= 55 &&
+            (s[DIM_TRADE] || 0)     >= 55) {
+            target_tier = TIER_CITY2;
+        }
+    } else if (tier == TIER_CITY2) {
+        // 2級城 → 1級大城 (2 -> 1)
+        if ((s[DIM_MEMORY] || 0)   >= 80 &&
+            (s[DIM_CULTURE] || 0)  >= 70 &&
+            (s[DIM_COHESION] || 0) >= 70 &&
+            (s[DIM_POPULATION] || 0) >= 80 &&
+            (s[DIM_INDUSTRY] || 0)  >= 70 &&
+            (s[DIM_TRADE] || 0)     >= 70) {
+            target_tier = TIER_CITY1;
+        }
+    }
+
+    if (target_tier > 0) {
+        int old_tier = tier;
+        s["tier"] = target_tier;
         _save_settlement(settlement_id, s);
         EVENT_D->publish("SettlementUpgraded", ([
             "settlement_id": settlement_id,
-            "from_tier": TIER_VILLAGE,
-            "to_tier":   TIER_CITY3,
+            "from_tier": old_tier,
+            "to_tier":   target_tier,
         ]));
     }
 }

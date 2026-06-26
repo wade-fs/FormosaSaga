@@ -1,0 +1,4 @@
+id: chiayi_train_station
+
+connections:
+  - chiayi_city_temple

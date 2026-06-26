@@ -1,0 +1,5 @@
+id: tainan_confucian_temple
+
+connections:
+  - tainan_chihkan_tower
+  - tainan_silian_yan
