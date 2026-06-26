@@ -1,0 +1,87 @@
+name: MudScript Build
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  build:
+    name: Build MudScript
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.26.2'
+        cache: false
+
+    - name: Install Windows Cross-Compiler
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-mingw-w64
+
+    - name: Run MudScript Core Tests
+      run: |
+        go mod tidy
+        make test-driver
+
+    - name: Build All Targets
+      run: |
+        # 使用 Makefile 編譯 fsmud 與 fsmud.exe
+        make fsmud fsmud.exe
+
+    - name: Package Release Environment
+      run: |
+        # 取得 Tag 名稱
+        TAG_NAME=${GITHUB_REF#refs/tags/}
+        if [ "$TAG_NAME" = "$GITHUB_REF" ]; then TAG_NAME="latest"; fi
+        
+        # 建立打包臨時工作目錄，以保持結構完整
+        mkdir -p build_stage/bin
+        
+        # 複製要打包的核心檔案與工具
+        cp bin/fsmud build_stage/bin/
+        cp bin/fsmud.exe build_stage/bin/
+        cp bin/new-site build_stage/bin/
+        cp -r mudlib build_stage/
+        
+        # 打包 Linux 與執行環境 (.tar.gz)
+        # 包含 bin/fsmud, bin/new-site, mudlib
+        cd build_stage
+        tar -czf ../formosasaga-linux-${TAG_NAME}.tar.gz bin/fsmud bin/new-site mudlib
+        
+        # 打包 Windows 與執行環境 (.zip)
+        # 包含 bin/fsmud.exe, bin/new-site, mudlib
+        # 使用 zip -r 來封裝整個目錄結構
+        zip -r ../formosasaga-windows-${TAG_NAME}.zip bin/fsmud.exe bin/new-site mudlib
+        cd ..
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: formosasaga-release
+        path: |
+          formosasaga-linux-*.tar.gz
+          formosasaga-windows-*.zip
+
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/v')
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          formosasaga-linux-*.tar.gz
+          formosasaga-windows-*.zip
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

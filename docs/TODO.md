@@ -96,8 +96,8 @@
 
 ### 🛠️ 第一階段：內容自動化工作流 (Content Pipeline)
 *   **P11 — 內容脚手架生成工具 (Content Scaffolding Tools)** (優先)
-    *   [ ] 設計 `make new-site <site_id>` 工具腳本，一鍵自動生成對應的 YAML 模板（`sites/`、`memories/`、`npcs/` 等）。
-    *   [ ] 建立 `Content Checklist` 規範檔，定義 Site 的基本標配元素（Look, Travel, NPC, Rumor, Memory, Hidden Object 等）。
+    *   [x] 設計 `make new-site <site_id>` 工具腳本，一鍵自動生成對應的 YAML 模板（`sites/`、`memories/`、`npcs/` 等）。
+    *   [x] 建立 `Content Checklist` 規範檔，定義 Site 的基本標配元素（Look, Travel, NPC, Rumor, Memory, Hidden Object 等）。
 
 ### 📜 第二階段：歷史事件重現 (Historical Incident)
 *   **P12 — 歷史事件聚合器 (Incident System)**

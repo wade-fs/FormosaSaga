@@ -64,21 +64,39 @@ git clone https://github.com/YourUsername/FormosaSaga.git
 cd FormosaSaga
 ```
 
-啟動伺服器：
+#### 本地原生啟動：
 ```bash
 # 啟動 MUD 伺服器
 make run
 ```
 預設會監聽 `8080` 埠，本作純粹使用瀏覽器連線遊玩，請打開瀏覽器前往 `http://127.0.0.1:8080`，無須使用 telnet 或傳統 MUD 客戶端。
 
+#### 🐳 Docker 與 Docker Compose 啟動：
+我們提供了已設定完備的 [docker-compose.yml](file:///home/wade/src/github/FormosaSaga/docker-compose.yml) 與 [Dockerfile](file:///home/wade/src/github/FormosaSaga/Dockerfile)，支援快速容器化部署：
+```bash
+# 透過 Docker-Compose 編譯並啟動服務 (自動將本地 mudlib 掛載至容器內以支援熱載入)
+make docker-run
+```
+
 ### 3. 自動化測試
 我們極度重視程式碼品質與架構穩定性。專案內建完整的單元測試與整合測試框架：
+
+#### 本地原生測試：
 ```bash
 # 執行 LPC 核心驅動測試
 make test-driver
 
 # 執行自動化整合場景測試
 make test-fsmud
+```
+
+#### 🐳 Docker 容器內測試：
+```bash
+# 在 Docker 容器內執行 LPC 核心驅動測試
+make docker-test-driver
+
+# 在 Docker 容器內執行自動化整合測試
+make docker-test-fsmud
 ```
 
 ---

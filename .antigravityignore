@@ -19,3 +19,4 @@ evaluator/
 chapter/
 ast/
 
+__pycache__/

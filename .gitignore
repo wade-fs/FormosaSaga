@@ -4,3 +4,4 @@ go.sum
 .*swp
 *log
 *o
+__pycache__/
