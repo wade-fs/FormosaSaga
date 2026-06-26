@@ -321,18 +321,24 @@ void setup() {
 
     // 處理進入世界的位置
     if (last_location && last_location != "" && last_location != "/") {
-        // 🚀 核心修正：如果上次地點在創界、遠端緩存、舊區域或檔案已不存在，自動導向起始點
-        if (strsrch(last_location, "/area/lm/") == 0 || 
-            strsrch(last_location, FS_CACHE_DIR) == 0 ||
-            strsrch(last_location, "/area/newbie/") == 0 ||
-            strsrch(last_location, "/area/cave/") == 0 ||
-            strsrch(last_location, "/area/tower/") == 0 ||
-            strsrch(last_location, "/area/water/") == 0 ||
-            file_size(last_location) <= 0) {
-            last_location = query_start_room();
+        object loc;
+        if (strsrch(last_location, "site:") == 0) {
+            string site_id = substr(last_location, 5, strlen(last_location) - 5);
+            loc = SETTLEMENT_D->get_site_object(site_id);
+        } else {
+            // 🚀 核心修正：如果上次地點在創界、遠端緩存、舊區域或檔案已不存在，自動導向起始點
+            if (strsrch(last_location, "/area/lm/") == 0 || 
+                strsrch(last_location, FS_CACHE_DIR) == 0 ||
+                strsrch(last_location, "/area/newbie/") == 0 ||
+                strsrch(last_location, "/area/cave/") == 0 ||
+                strsrch(last_location, "/area/tower/") == 0 ||
+                strsrch(last_location, "/area/water/") == 0 ||
+                file_size(last_location) <= 0) {
+                last_location = query_start_room();
+            }
+            loc = load_object(last_location);
         }
 
-        object loc = load_object(last_location);
         if (loc) {
             move_object(loc);
             if (loc->query_is_site()) {
@@ -609,10 +615,15 @@ int save() {
 
     object env = environment(this_object());
     if (env) {
-        last_location = object_name(env);
-        int pos_env = strsrch(last_location, "#");
-        if (pos_env != -1) {
-            last_location = substr(last_location, 0, pos_env);
+        string oname = object_name(env);
+        if (strsrch(oname, "#") != -1 && env->query_is_site()) {
+            last_location = env->query_entity_id();
+        } else {
+            last_location = oname;
+            int pos_env = strsrch(last_location, "#");
+            if (pos_env != -1) {
+                last_location = substr(last_location, 0, pos_env);
+            }
         }
     }
 

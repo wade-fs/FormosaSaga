@@ -15,7 +15,7 @@
     "w": "go west",
     "west": "go west"
   },
-  "attack": 30,
+  "attack": 44,
   "bank_balance": 0,
   "can_open": 0,
   "career_points": {},
@@ -23,34 +23,30 @@
   "current_mudlib": "",
   "cwd": "/",
   "data_base_path": "/mudlib/data/",
-  "defence": 15,
+  "defence": 21,
   "equip_body": 0,
   "equip_feet": 0,
   "equip_hands": 0,
   "equip_head": 0,
   "equip_shield": 0,
   "equip_weapon": 0,
-  "exp": 100,
+  "exp": 0,
   "exp_to_next": 1000,
-  "explored_rooms": {
-    "/area/lm/center_world.c": 1,
-    "/area/newbie/room_0_0.c": 1,
-    "/area/newbie/room_4_4.c": 1
-  },
+  "explored_rooms": {},
   "faction": 0,
   "followers": [],
   "footprint_atlas": {
     "geo:minxiong": {
       "category": "geo",
       "id": "geo:minxiong",
-      "obtained_at": 1782401292,
+      "obtained_at": 1782448933,
       "quality": 1,
       "settlement_id": "minxiong"
     },
     "sugar_railway_minxiong": {
       "category": "settlement",
       "id": "sugar_railway_minxiong",
-      "obtained_at": 1782439158,
+      "obtained_at": 1782449050,
       "quality": 1,
       "settlement_id": "minxiong"
     }
@@ -60,8 +56,8 @@
   "guild": 0,
   "guild_exp": 0,
   "guild_rank": 0,
-  "heart_beat_count": 4,
-  "hp": 100,
+  "heart_beat_count": 0,
+  "hp": 165,
   "id": "wade",
   "id_list": [
     "wade"
@@ -72,55 +68,65 @@
   "is_dead": 0,
   "is_riding": 0,
   "lang": "zh-TW",
-  "last_bank_time": 1782325585,
-  "last_location": "/area/settlements/minxiong.c",
+  "last_bank_time": 1782448932,
+  "last_location": "site:dashiye_temple",
   "leader": 0,
   "level": 1,
   "long_name": "這是一個沒有描述的東西。",
-  "max_hp": 105,
+  "max_hp": 165,
   "max_items": 20,
-  "max_mp": 83,
+  "max_mp": 81,
   "max_weight": 10000,
   "money_balance": 0,
   "money_value": 0,
-  "mp": 80,
+  "mp": 81,
   "muted_channels": {},
-  "name": "wade",
-  "nature": 0,
+  "name": "jj",
+  "nature": "brave",
   "no_drop": 0,
   "no_get": 0,
-  "password": "$2a$10$Zl1qQ7I5vFjnpdVgpnYXeu27NDije/0gkuRuqJMRcgXA5Z4gJRvGu",
+  "password": "$2a$10$R69LgMZVuWW3rs0Fa6l00uGnSm2FLmnwIQwt03r.MAr.k5ZAkByXC",
   "pk_score": 0,
   "pk_timer": 0,
   "potential": 0,
   "quests": {},
-  "race": "human",
-  "responses": 0,
-  "role": "god",
+  "race": "dwarf",
+  "responses": {},
+  "role": "user",
   "saved_inventory": [],
-  "short_name": "wade",
-  "skills": {},
+  "short_name": "某個東西",
+  "skills": {
+    "forging": {
+      "exp": 0,
+      "level": 5
+    },
+    "power_strike": {
+      "exp": 0,
+      "level": 1
+    }
+  },
   "stat_cha": 10,
-  "stat_con": 10,
-  "stat_dex": 10,
-  "stat_int": 10,
-  "stat_str": 10,
-  "stat_wis": 10,
+  "stat_con": 16,
+  "stat_dex": 9,
+  "stat_int": 9,
+  "stat_str": 17,
+  "stat_wis": 11,
   "temp_vars": {
     "current_site_id": "site:dashiye_temple",
     "fp_checked_geo:minxiong": 1,
     "history_entries": [
       {
-        "era": "v0.1",
-        "label": "洪雅族時代的打貓社"
+        "era": "japanese",
+        "label": "進入大正時期的民雄驛"
       }
     ],
-    "last_location": "/area/newbie/room_4_4.c",
-    "previous_site_id": "settlement:minxiong"
+    "previous_site_id": "site:minxiong_market"
   },
   "unlocked_memories": [
     "minxiong_station_001",
     "minxiong_temple_001"
   ],
-  "write_paths": []
+  "write_paths": [
+    "/data/user/wade"
+  ]
 }

@@ -39,7 +39,7 @@
     "geo:minxiong": {
       "category": "geo",
       "id": "geo:minxiong",
-      "obtained_at": 1782448294,
+      "obtained_at": 1782449479,
       "quality": 1,
       "settlement_id": "minxiong"
     }
@@ -62,7 +62,7 @@
   "is_riding": 0,
   "lang": "zh-TW",
   "last_bank_time": 0,
-  "last_location": "/std/site.c",
+  "last_location": "site:dashiye_temple",
   "leader": 0,
   "level": 1,
   "long_name": "這是一個沒有描述的東西。",
