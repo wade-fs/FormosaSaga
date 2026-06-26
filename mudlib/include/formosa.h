@@ -19,12 +19,14 @@
 #define FACTION_D     load_object("/daemon/faction_d.c")
 #define OBLIVION_D    load_object("/daemon/oblivion_d.c")
 #define RESONANCE_D   load_object("/daemon/resonance_d.c")
+#define CHRONICLE_D   load_object("/daemon/chronicle_d.c")
+#define INCIDENT_D    load_object("/daemon/incident_d.c")
+#define SCHEDULE_D    load_object("/daemon/schedule_d.c")
 #define NPC_D         load_object("/daemon/npc_d.c")
 #define ERA_D         load_object("/daemon/era_d.c")
 #define SITE_D        load_object("/daemon/site_d.c")
 #define ROUTE_D       load_object("/daemon/route_d.c")
 #define EVENT_VIEWER_D load_object("/daemon/event_viewer_d.c")
-#define CHRONICLE_D   load_object("/daemon/chronicle_d.c")
 
 // ── 踏印類型 ───────────────────────────────────────────
 #define FP_GEO        "geo"         // 地理踏印

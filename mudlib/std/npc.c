@@ -35,6 +35,13 @@ int     wander_chance; // 每次心跳隨機移動的機率 (0~100)
 int     aggressive;    // 是否主動攻擊玩家
 object  last_attacker; // 記住最後一個戰鬥的玩家
 
+// 🚀 新增：P14 日程表屬性
+mixed   schedule_default_site;
+mixed   schedule_routines;
+mixed   schedule_overrides;
+string  current_action_msg;
+string  current_schedule_site;
+
 void create() {
     ::create();
     enable_commands();
@@ -78,8 +85,14 @@ void create() {
 
     aggressive       = 0;
     last_attacker    = 0;
+    
+    current_action_msg = "";
+    current_schedule_site = "";
 
     set_heart_beat(1);
+    
+    // 訂閱虛擬時間更新事件 (P14)
+    EVENT_D->subscribe("GameTimeTick", "on_time_tick", this_object());
 }
 
 // init() 在玩家進入 NPC 所在房間時由 driver 呼叫
@@ -144,6 +157,12 @@ void set_home_room(string r)       { home_room         = r; }
 void set_move_range(int v)         { move_range        = v; }
 void set_wander_chance(int v)      { wander_chance     = v; }
 void set_aggressive(int v)         { aggressive        = v; }
+void set_schedule(mixed def_site, mixed routines, mixed overrides) {
+    schedule_default_site = def_site;
+    schedule_routines = routines;
+    schedule_overrides = overrides;
+}
+string query_action_msg()          { return current_action_msg; }
 
 string  query_habitat()       { return habitat; }
 int     query_behaviour()     { return behaviour; }
@@ -152,6 +171,70 @@ int     query_aggro_range()   { return aggro_range; }
 string  query_home_room()     { return home_room; }
 int     query_move_range()    { return move_range; }
 int     query_tamable()       { return is_tamable; }
+int     is_npc()              { return 1; }  // P14: 用於 site.c 辨識 NPC
+
+// ── P14: 日程表執行邏輯 ──────────────────────────────
+void execute_routine(mapping routine) {
+    if (!routine) return;
+    
+    string loc = routine["location"];
+    string msg = routine["action_msg"];
+    
+    if (msg && msg != "") current_action_msg = select_lang(msg);
+    
+    if (loc && loc != "" && loc != current_schedule_site) {
+        current_schedule_site = loc;
+        // 如果目前不在那個地方，就移動過去
+        object env = environment(this_object());
+        if (env && env->query_entity_id() != "site:" + loc) {
+            // 嘗試透過 SETTLEMENT_D 找到目標 Site
+            object dest = load_object("/daemon/settlement_d.c")->get_site_object(loc);
+            if (dest && dest != env) {
+                say(query_name() + " 看了看時間，動身前往其他地方了。\n");
+                move_object(this_object(), dest);
+                say(query_name() + " 走了過來。\n");
+            }
+        }
+    }
+}
+
+void on_time_tick(mapping data) {
+    if (!schedule_routines) return;
+    if (is_dead || in_combat) return;
+    
+    int mins = data["minutes"];
+    
+    // 1. 檢查 overrides
+    if (arrayp(schedule_overrides)) {
+        foreach (mapping ov in schedule_overrides) {
+            mapping cond = ov["condition"];
+            if (cond) {
+                if (cond["type"] == "era_active" && !ERA_D->is_era_active(cond["era"])) continue;
+                if (cond["type"] == "global_event" && !TIMELINE_D->global_event_triggered(cond["event"])) continue;
+            }
+            // 條件符合
+            mixed r_list = ov["routines"];
+            if (arrayp(r_list)) {
+                foreach (mapping r in r_list) {
+                    if (SCHEDULE_D->is_time_in_range(mins, r["time"])) {
+                        execute_routine(r);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    
+    // 2. 檢查 routines
+    if (arrayp(schedule_routines)) {
+        foreach (mapping r in schedule_routines) {
+            if (SCHEDULE_D->is_time_in_range(mins, r["time"])) {
+                execute_routine(r);
+                return;
+            }
+        }
+    }
+}
 
 // ── 輔助：計算兩個房間之間的距離 ─────────────────────
 int calculate_distance(object room1, object room2) {

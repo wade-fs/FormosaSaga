@@ -7,7 +7,7 @@ mapping clue_to_incident = ([]); // clue_id -> incident_id
 
 void load_incidents() {
     string dir = "/data/yaml/incidents/";
-    string[] files = get_dir(dir + "*.yaml");
+    mixed files = get_dir(dir + "*.yaml");
     
     incidents = ([]);
     clue_to_incident = ([]);

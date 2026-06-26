@@ -275,6 +275,25 @@ void do_look(object player) {
         player->set_temp("history_entries", revealed["entries"]);
     }
 
+    // ── 場景內的動態物件 (Players, NPCs, Items) ──
+    object *inv = all_inventory(this_object());
+    string inv_str = "";
+    foreach (object ob in inv) {
+        if (ob == player) continue;
+        if (!ob->query_short() || ob->query_short() == "") continue;
+        
+        // P14: 若為 NPC 且有正在進行的動作，附加該動作
+        string action = "";
+        if (ob->is_npc() && ob->query_action_msg() != "") {
+            action = " " + ob->query_action_msg();
+        }
+        
+        inv_str += "  " + ob->query_short() + action + "\n";
+    }
+    if (inv_str != "") {
+        out += "\n這裡有：\n" + inv_str;
+    }
+
     // ── 可前往的鄰近地點 ──
     string clean_id_for_conns = query_entity_id();
     int colon_idx_for_conns = strsrch(clean_id_for_conns, ":");

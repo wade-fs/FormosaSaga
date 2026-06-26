@@ -17,13 +17,9 @@ connections:
   - minxiong_market
 
 reveal_layers:
-  # 條件 1：當玩家走訪了民雄鬼屋（獲得鬼屋踏印）後，在車站看見老站長出現
+  # 條件 1：老站長常駐於車站（他的日程表會讓他自動在適當時間離開/回來）
   - condition: "all"
-    checks:
-      - type: "has_footprint"
-        id: "ghost_house_minxiong"
-    text: "一位身穿深藍色制服的老站長坐在月台長椅上，若有所思地抽著菸。"
-    npc: "old_station_master"
+    npc: "NPC_old_stationmaster_minxiong"
 
   # 條件 2：當玩家擁有主角唯一的 "island_memory" 天賦且世界處於 "v0_1" 時代時，浮現歷史層入口（可進入日本時代）
   - condition: "all"

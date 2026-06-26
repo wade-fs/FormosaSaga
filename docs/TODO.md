@@ -111,8 +111,15 @@
 
 ### 🚶 第四階段：活生生的日常模擬 (NPC Daily Life)
 *   **P14 — NPC 日常生活軌跡模擬**
-    *   [ ] 實作 NPC 的每日日程表（Schedule）與移動軌跡（例如工人早上在宿舍，中午去市場，晚上去酒館）。
-    *   [ ] 動態載入 NPC 關係網與傳言系統。
+    *   [x] 實作 `schedule_d.c` 虛擬時間 daemon（15秒=15遊戲分鐘，廣播 `GameTimeTick` 事件）。
+    *   [x] 在 `npc.c` 新增日程表屬性（`schedule_routines`, `schedule_overrides`）與 `on_time_tick()` 自動移動邏輯。
+    *   [x] `npc_d.c` 解析 YAML `schedule` 區塊並套用至 NPC 物件。
+    *   [x] 新增 `is_npc()` 與 `query_action_msg()`，讓 `site.c` look 時能顯示「NPC 正在做什麼」。
+    *   [x] 支援 era_active / global_event 兩種條件的 override 日程（跨時代 NPC 軌跡）。
+    *   [x] 實作 `cmd/player/time.c` 讓玩家查詢遊戲時間與場景 NPC 動態。
+    *   [x] 新增 3 個有日程的民雄示範 NPC：老站長（市場→車站）、市場阿嬤、行腳商人（跨聚落：民雄→嘉義→新港）。
+    *   [x] 新增 `NPC_sugar_inspector`（糖業總辦），日治時代在糖廠/酒館，清領時代 override 消失。
+    *   [x] 修正 `incident_d.c` `string[]` 語法問題。
 
 ### 🌪️ 第五階段：動態世界事件 (Dynamic World Event)
 *   **P15 — 動態環境與突發事件**

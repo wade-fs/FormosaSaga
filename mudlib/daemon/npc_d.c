@@ -116,5 +116,11 @@ object create_npc(string npc_id) {
     // 額外設定
     if (config["level"]) ob->set_level(config["level"]);
     
+    // P14: 設定日程表
+    mapping sched = config["schedule"];
+    if (mapp(sched)) {
+        ob->set_schedule(sched["default_site"], sched["routines"], sched["overrides"]);
+    }
+    
     return ob;
 }

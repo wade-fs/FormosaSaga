@@ -20,3 +20,9 @@ connections:
   - minxiong_old_station
   - ghost_house
   - dashiye_temple
+
+reveal_layers:
+  - condition: "all"
+    npc: "NPC_market_vendor_minxiong"
+  - condition: "all"
+    npc: "NPC_traveling_merchant"
