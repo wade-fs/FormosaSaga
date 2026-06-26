@@ -3,6 +3,7 @@
 #include "/include/config.h"
 #include "/include/ansi.h"
 #include "/include/race.h"
+#include "/include/formosa.h"
 
 inherit "/std/living.c";
 inherit "/std/combat.c";
@@ -87,6 +88,8 @@ string query_cwd() {
     return cwd; 
 }
 void set_cwd(string path) { cwd = path; }
+
+string query_last_location() { return last_location; }
 
 string *query_footprints() {
     if (!footprints) footprints = ({});

@@ -17,6 +17,7 @@ int main(object me, string verb, string arg) {
     me->set_lang("zh-TW"); // 🚀 強制設定為中文，以滿足測試案例中的硬編碼斷言
 
     string *test_files = ({
+        "/tests/test_quit_restore.c",
         "/tests/test_efuns.c",
         "/tests/test_initialization.c",
         "/tests/test_syntax.c",
