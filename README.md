@@ -33,6 +33,7 @@
 - **老站長的心願（新手引導）**：帶領玩家探索民雄老街，獲得糖鐵遺址踏印並向老站長回報完成任務，藉此熟悉探索與時代推進的基本循環。詳見 [tutorial_quest.md](docs/quests/tutorial_quest.md)。
 - **廟委鎮煞委託（勢力任務模板）**：要求等級 5 且完成前置引導任務。需與同伴組隊才能在大士爺廟察覺地下陣法線索，進入秘境收集「鎮符石」，回報完成後可獲得大士爺護符與廟委聲望。詳見 [temple_exorcism.md](docs/quests/temple_exorcism.md)。
 - **糖鐵搶修委託（已完成）**：要求等級 6 且完成前置任務。玩家需與同伴在甘蔗林尋找脫軌的五分車火車頭並收集零件完成搶修，完成後可獲得紀念徽章與糖業組合聲望。詳見 [sugar_railway_repair.md](docs/quests/sugar_railway_repair.md)。
+- **劉家地契委託（已完成）**：要求等級 7 且完成前置任務。玩家需與同伴前往民雄鬼屋尋找隱藏的隔間，收集劉家遺失的地契，完成後可獲得劉家家徽戒指與劉家聲望。詳見 [liu_deed_recovery.md](docs/quests/liu_deed_recovery.md)。
 
 ---
 

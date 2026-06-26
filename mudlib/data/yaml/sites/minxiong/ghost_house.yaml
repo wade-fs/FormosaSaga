@@ -18,3 +18,12 @@ names:
 connections:
   - old_street
   - outskirts
+
+reveal_layers:
+  - condition: all
+    checks:
+      - type: has_quest
+        quest_id: liu_deed_recovery
+        status: active
+      - type: in_party
+    text: "$HIY$【線索顯現】你們在倒塌的書架後方摸索，發現了一個隱密的地磚夾層，裡面似乎藏有一些泛黃的文書契約。$NOR$"
