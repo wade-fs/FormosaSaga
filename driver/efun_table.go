@@ -160,7 +160,12 @@ func (d *Driver) registerDataStructures(obj *object.LPCObject) {
 			var raw interface{}
 			err := yaml.Unmarshal([]byte(yamlStr.Value), &raw)
 			if err != nil {
-				fmt.Printf("⚠️ yaml_decode error: %v\n", err)
+				// 顯示前部內容預覽以利 debug
+				preview := yamlStr.Value
+				if len(preview) > 200 {
+					preview = preview[:200] + "..."
+				}
+				fmt.Printf("⚠️ yaml_decode error: %v\n--- YAML Content Preview ---\n%s\n---------------------------\n", err, preview)
 				return &object.Nil{}
 			}
 

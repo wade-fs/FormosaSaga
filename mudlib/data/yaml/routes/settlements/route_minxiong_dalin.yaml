@@ -2,7 +2,7 @@ id: route_minxiong_dalin
 
 nodes:
   - minxiong
-  = dalin
+  - dalin
 
 type: road
 

@@ -11,16 +11,19 @@
 
 #include "/include/formosa.h"
 
+inherit "/std/object.c";
+
 // ── 身份 ──────────────────────────────────────────────
 private string entity_id;        // 全域唯一 ID，格式：type:name，如 "settlement:minxiong"
 private string entity_type;      // "settlement" / "site" / "player" / "npc" / "memory"
 private string display_name;     // 顯示名稱（中文）
 
 // ── 屬性存取（通用 KV，避免硬編碼欄位）─────────────────
-private mapping props;           // 動態屬性
+mapping props;           // 動態屬性
 
 // ── 生命週期 ──────────────────────────────────────────
 void create() {
+    ::create();
     props = ([]);
 }
 

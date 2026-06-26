@@ -160,7 +160,7 @@ func Eval(node ast.Node, env object.Environment) object.Object {
 			}
 		}
 
-		if function == nil {
+		if function == nil || function.TokenType() == object.NilType {
 			if ident, ok := node.Function.(*ast.Ident); ok {
 				return newError("not a function: %s", ident.Value)
 			}

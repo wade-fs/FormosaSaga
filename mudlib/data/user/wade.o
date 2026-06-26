@@ -46,6 +46,13 @@
       "obtained_at": 1782401292,
       "quality": 1,
       "settlement_id": "minxiong"
+    },
+    "sugar_railway_minxiong": {
+      "category": "settlement",
+      "id": "sugar_railway_minxiong",
+      "obtained_at": 1782439158,
+      "quality": 1,
+      "settlement_id": "minxiong"
     }
   },
   "footprints": [],
@@ -53,7 +60,7 @@
   "guild": 0,
   "guild_exp": 0,
   "guild_rank": 0,
-  "heart_beat_count": 2,
+  "heart_beat_count": 4,
   "hp": 100,
   "id": "wade",
   "id_list": [
@@ -100,7 +107,7 @@
   "stat_str": 10,
   "stat_wis": 10,
   "temp_vars": {
-    "current_site_id": "settlement:minxiong",
+    "current_site_id": "site:dashiye_temple",
     "fp_checked_geo:minxiong": 1,
     "history_entries": [
       {
@@ -108,8 +115,12 @@
         "label": "洪雅族時代的打貓社"
       }
     ],
-    "last_location": "/area/newbie/room_4_4.c"
+    "last_location": "/area/newbie/room_4_4.c",
+    "previous_site_id": "settlement:minxiong"
   },
-  "unlocked_memories": [],
+  "unlocked_memories": [
+    "minxiong_station_001",
+    "minxiong_temple_001"
+  ],
   "write_paths": []
 }

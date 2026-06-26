@@ -56,10 +56,10 @@
         .history-item:hover { background: #333; }
         .history-header { background: #333; color: #888; padding: 5px 15px; font-size: 11px; display: flex; justify-content: space-between; }
 
-        #mc-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: none; flex-direction: column; z-index: 200; }
-        #mc-canvas { flex: 1; cursor: crosshair; image-rendering: pixelated; }
-        #mc-ui { height: 45px; background: #222; display: flex; align-items: center; padding: 0 15px; gap: 15px; border-bottom: 1px solid #444; }
-        .mc-btn { background: #333; border: 1px solid #555; color: #fff; padding: 4px 12px; cursor: pointer; font-size: 13px; border-radius: 4px; }
+        #mc-container { position: fixed; top: 20px; right: 20px; width: 350px; height: 350px; background: rgba(20, 20, 20, 0.95); border: 2px solid #4CAF50; border-radius: 8px; display: none; flex-direction: column; z-index: 200; box-shadow: 0 10px 30px rgba(0,0,0,0.8); overflow: hidden; }
+        #mc-canvas { flex: 1; cursor: crosshair; image-rendering: pixelated; width: 100%; height: 100%; }
+        #mc-ui { height: 36px; background: #222; display: flex; align-items: center; padding: 0 8px; gap: 6px; border-bottom: 1px solid #444; font-size: 11px; }
+        .mc-btn { background: #333; border: 1px solid #555; color: #fff; padding: 2px 6px; cursor: pointer; font-size: 11px; border-radius: 4px; }
         .mc-btn.active { background: #4CAF50; border-color: #fff; }
 
         #minimap-container { position: absolute; top: 20px; right: 20px; background: rgba(30, 30, 30, 0.9); border: 1px solid #4CAF50; border-radius: 8px; padding: 10px; display: grid; grid-template-columns: repeat(5, 32px); grid-template-rows: repeat(5, 32px); gap: 4px; z-index: 100; display: none; }
@@ -179,28 +179,29 @@
         </div>
     </div>
 
+    <div id="mc-container">
+        <div id="mc-ui">
+            <span style="color:#4CAF50; font-weight:bold;">MC Mode</span>
+            <button class="mc-btn active" onclick="setMCAction('dig', this)">Dig (Click)</button>
+            <button class="mc-btn" onclick="setMCAction('place', this)">Place (Click)</button>
+            <select id="mc-block-type" style="background:#333; color:#fff; border:1px solid #666; padding:3px; border-radius:4px;">
+                <option value="grass">🟩 Grass</option>
+                <option value="dirt">🟫 Dirt</option>
+                <option value="stone">⬜ Stone</option>
+                <option value="log">🪵 Log</option>
+                <option value="planks">🟨 Planks</option>
+                <option value="leaves">🌿 Leaves</option>
+                <option value="sand">🏜️ Sand</option>
+                <option value="brick">🧱 Brick</option>
+            </select>
+            <button class="mc-btn" onclick="promptImportMap()" style="background:#1976D2; border-color:#2196F3;">📥 Import Map</button>
+            <button class="mc-btn" onclick="sendCmd('mc back')" style="margin-left:auto; background:#833; border-color:#a55;">Exit World</button>
+        </div>
+        <canvas id="mc-canvas"></canvas>
+    </div>
+
     <div id="look-area">
         <div id="minimap-container"></div>
-        <div id="mc-container">
-            <div id="mc-ui">
-                <span style="color:#4CAF50; font-weight:bold;">MC Mode</span>
-                <button class="mc-btn active" onclick="setMCAction('dig', this)">Dig (Click)</button>
-                <button class="mc-btn" onclick="setMCAction('place', this)">Place (Click)</button>
-                <select id="mc-block-type" style="background:#333; color:#fff; border:1px solid #666; padding:3px; border-radius:4px;">
-                    <option value="grass">🟩 Grass</option>
-                    <option value="dirt">🟫 Dirt</option>
-                    <option value="stone">⬜ Stone</option>
-                    <option value="log">🪵 Log</option>
-                    <option value="planks">🟨 Planks</option>
-                    <option value="leaves">🌿 Leaves</option>
-                    <option value="sand">🏜️ Sand</option>
-                    <option value="brick">🧱 Brick</option>
-                </select>
-                <button class="mc-btn" onclick="promptImportMap()" style="background:#1976D2; border-color:#2196F3;">📥 Import Map</button>
-                <button class="mc-btn" onclick="sendCmd('back')" style="margin-left:auto; background:#833; border-color:#a55;">Exit World</button>
-            </div>
-            <canvas id="mc-canvas"></canvas>
-        </div>
         <div id="look-content"></div>
     </div>
 
@@ -366,7 +367,7 @@
     function toggleMCMode(on) {
         mcMode = on;
         document.getElementById('mc-container').style.display = on ? 'flex' : 'none';
-        document.getElementById('look-content').style.display = on ? 'none' : 'block';
+        document.getElementById('look-content').style.display = 'block'; // Keep MUD descriptions visible concurrently!
         if (on) initMCCanvas();
     }
 

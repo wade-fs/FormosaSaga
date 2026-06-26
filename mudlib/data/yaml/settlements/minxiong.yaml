@@ -75,23 +75,23 @@ memory_breakdown:
 
 # 拓樸
 map_art: |
-                             ghost_house
-                              /      \
-                             /        \
-                      old_street ---- outskirts
-                        /   |            |
-                       /    |            |
-           station -- market |        sugar_factory
-               \       |     |            |
-                \      |     |            |
-                 \     |   school         |
-                  \    |     |            |
-                   \   |     |            |
-                    temple   village ----- sugarcane
-                       \      |  \
-                        \     |   \
-                         \    |    \
-                        waterway   fengli
+  Ghost House
+   /       \
+  /         \
+  Old Street ---- Outskirts
+   /    |           |
+  /     |           |
+  Station -- Market |       Sugar Factory
+    \       |     |           |
+     \      |     |           |
+      \     |   School        |
+       \    |     |           |
+        \   |     |           |
+        Temple   Village ---- Sugarcane
+           \      |  \
+            \     |   \
+             \    |    \
+            Waterway  Fengli
 
 map_data:
   ghost_house:
