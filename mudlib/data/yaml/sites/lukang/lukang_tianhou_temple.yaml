@@ -1,4 +1,15 @@
 id: lukang_tianhou_temple
+settlement: lukang
+canonical_name: 鹿港天后宮
+is_heritage: true
+base_description: |
+  香煙裊裊的天后宮，木雕的藻井與石雕的龍柱雕工極盡精細。
+  正殿中供奉著歷史悠久的黑面媽祖，信眾們虔誠地拈香拜禱，祈求平安。
+travel_arrive_text: "你來到了鹿港天后宮，悠久的歷史氣息與繚繞的香煙令人肅然起敬。"
+
+names:
+  - era: qing
+    name: 鹿港媽祖廟
 
 connections:
   - lukang_old_street

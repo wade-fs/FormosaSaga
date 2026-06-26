@@ -14,25 +14,35 @@ int main(object me, string verb, string arg) {
     object timeline = find_object("/daemon/timeline_d.c");
     string era = timeline ? timeline->query_current_era() : "v0_1";
 
+    object here = environment(me);
+    string settlement = here ? here->query_settlement_id() : "";
+
     string msg;
     int exp_gain = 12;
-    
-    switch (era) {
-        case "qing":
-            msg = "你熟練地處理著鹿皮與編織草席，並運用傳統榫卯工藝打造生活器具，重現了大航海與清領時期的出口盛況。";
-            break;
-        case "japanese":
-            msg = "受惠於阿里山林業開發與農業技轉，你專注於外銷茶葉的精製烘焙，或是運用珍貴木材進行細緻的雕刻工藝。";
-            exp_gain = 15;
-            break;
-        case "roc":
-            msg = "響應十大建設的工業化浪潮，你放下了傳統手藝，開始接觸金屬加工、塑膠射出與機械零件的鑄造。";
-            exp_gain = 18;
-            break;
-        default:
-            msg = "在傳統手作式微的現代，你試圖將茶葉與木雕記憶融入文創，以創新設計延續匠人精神。";
-            exp_gain = 10;
-            break;
+    int points_gain = 2;
+
+    if (settlement == "lukang") {
+        msg = "你在鹿港工坊中，屏氣凝神地運用傳統鑿刻工法雕鑿樟木，並在香灰裊裊中混合檀香、沉香調配傳統手工香。古樸的工藝靈感充盈著你的內心。";
+        exp_gain = 25;
+        points_gain = 5;
+    } else {
+        switch (era) {
+            case "qing":
+                msg = "你熟練地處理著鹿皮與編織草席，並運用傳統榫卯工藝打造生活器具，重現了大航海與清領時期的出口盛況。";
+                break;
+            case "japanese":
+                msg = "受惠於阿里山林業開發與農業技轉，你專注於外銷茶葉的精製烘焙，或是運用珍貴木材進行細緻的雕刻工藝。";
+                exp_gain = 15;
+                break;
+            case "roc":
+                msg = "響應十大建設的工業化浪潮，你放下了傳統手藝，開始接觸金屬加工、塑膠射出與機械零件的鑄造。";
+                exp_gain = 18;
+                break;
+            default:
+                msg = "在傳統手作式微的現代，你試圖將茶葉與木雕記憶融入文創，以創新設計延續匠人精神。";
+                exp_gain = 10;
+                break;
+        }
     }
 
     write("$HYEL$" + msg + "$NOR$\n");
@@ -43,7 +53,7 @@ int main(object me, string verb, string arg) {
 
     object career_d = find_object("/daemon/career_d.c");
     if (career_d) {
-        career_d->add_points(me, "artisan", 2);
+        career_d->add_points(me, "artisan", points_gain);
     }
 
     return 1;

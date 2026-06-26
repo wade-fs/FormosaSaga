@@ -1,0 +1,12 @@
+id: lukang_wood_001
+title: "泉州雕師的木槌"
+era: "qing"
+quality: 2
+progress: 15
+description: "清代中葉，大批泉州雕刻匠師隨商船抵達鹿港。老街的木雕坊中，師徒相傳著複雜的神龕藻井與廟宇神像鑿刻。木槌敲擊鑿刀的清脆聲中，樟木與檜木的幽香與虔誠的匠人精神一同被刻進了鹿港的歷史肌理。"
+settlement: "lukang"
+trigger_site: "lukang_old_street"
+conditions:
+  - type: "career_rank"
+    career: "artisan"
+    rank: 1

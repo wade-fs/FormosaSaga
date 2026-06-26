@@ -1,6 +1,39 @@
 id: lukang_old_street
+settlement: lukang
+canonical_name: 鹿港老街
+is_heritage: false
+base_description: |
+  紅磚鋪設的蜿蜒巷道兩旁，矗立著閩南式的古老街屋與木雕門楣。
+  空氣中瀰漫著百年香火的檀香味，以及剛出爐的綠豆糕甜香，夾雜著木槌雕鑿木頭的清脆聲響。
+travel_arrive_text: "你漫步走進了鹿港老街，斑駁的紅磚牆與木雕門楣訴說著「一府二鹿三艋舺」的風華歲月。"
+
+names:
+  - era: qing
+    name: 鹿港老街街肆
+  - era: japanese
+    name: 鹿港老街
 
 connections:
   - lukang_tianhou_temple
   - lukang_longshan_temple
   - lukang_mazu_folk_arts_museum
+
+reveal_layers:
+  # 條件 1：當玩家為匠人 (artisan) 時，在老街上會看到傳統工藝木雕工坊
+  - condition: "all"
+    checks:
+      - type: "career_rank"
+        career: "artisan"
+        rank: 1
+    text: "老街的一角，一位老工匠正在木雕工坊裡揮汗如雨地雕刻著精細的廟宇神像與花鳥屏風。"
+    npc: "lukang_master_woodcarver"
+
+  # 條件 2：當世界處於清領 (qing) 時代且擁有天賦時，展現清代出口盛況與商行背景
+  - condition: "all"
+    checks:
+      - type: "has_talent"
+        talent: "island_memory"
+    text: "老街的街景在虛實中交錯，隱約浮現出郊商行郊（如泉郊、廈郊）對外貿易的繁盛倒影。"
+    entry:
+      era: "qing"
+      label: "進入清領時期的郊商街肆"

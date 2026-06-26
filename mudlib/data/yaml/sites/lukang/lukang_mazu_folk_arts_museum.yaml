@@ -1,4 +1,17 @@
 id: lukang_mazu_folk_arts_museum
+settlement: lukang
+canonical_name: 鹿港民俗文物館
+is_heritage: false
+base_description: |
+  融合了巴洛克洋樓風格與閩南古厝的精美建築，是昔日鹿港顯赫家族的豪邸。
+  庭院中綠草如茵，展示著鹿港昔日的日常民俗文物與極具歷史價值的傳統器具。
+travel_arrive_text: "你來到了鹿港民俗文物館，華麗的洋樓結構與古樸的街屋交織出獨特的時代美感。"
+
+names:
+  - era: japanese
+    name: 顯榮邸
+  - era: modern
+    name: 鹿港民俗文物館
 
 connections:
   - lukang_old_street
