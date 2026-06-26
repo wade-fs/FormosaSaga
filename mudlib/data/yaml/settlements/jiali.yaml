@@ -1,0 +1,21 @@
+id: "jiali"
+name: "佳里區"
+tier: 4
+admin_level: "區"
+county: "tainan_city"
+population: 45
+industry:   35
+culture:    60
+memory:     55
+trade:      30
+cohesion:   62
+specters_active: []
+eras_present: ["v0.1", "v1.0", "modern"]
+industries: ["農業", "紡織"]
+temples: []
+sites: ["jiali_site"]
+memory_breakdown:
+  history_events: 0.22
+  oral_tradition: 0.30
+  named_persons:  0.20
+  sites:          0.24

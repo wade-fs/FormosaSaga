@@ -1,0 +1,21 @@
+id: "shanhua"
+name: "善化區"
+tier: 4
+admin_level: "區"
+county: "tainan_city"
+population: 48
+industry:   55
+culture:    58
+memory:     52
+trade:      45
+cohesion:   60
+specters_active: []
+eras_present: ["v0.1", "v1.0", "modern"]
+industries: ["農業", "科技產業"]
+temples: []
+sites: ["shanhua_site"]
+memory_breakdown:
+  history_events: 0.20
+  oral_tradition: 0.24
+  named_persons:  0.18
+  sites:          0.22

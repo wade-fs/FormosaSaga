@@ -1,0 +1,21 @@
+id: "meishan"
+name: "梅山鄉"
+tier: 4
+admin_level: "鄉"
+county: "chiayi_county"
+population: 28
+industry:   35
+culture:    50
+memory:     52
+trade:      22
+cohesion:   58
+specters_active: []
+eras_present: ["v1.0", "modern"]
+industries: ["茶葉", "農業"]
+temples: []
+sites: ["meishan_site"]
+memory_breakdown:
+  history_events: 0.18
+  oral_tradition: 0.22
+  named_persons:  0.15
+  sites:          0.18

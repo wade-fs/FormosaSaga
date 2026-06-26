@@ -1,0 +1,21 @@
+id: "dongshi"
+name: "東石鄉"
+tier: 4
+admin_level: "鄉"
+county: "chiayi_county"
+population: 26
+industry:   22
+culture:    55
+memory:     50
+trade:      35
+cohesion:   60
+specters_active: []
+eras_present: ["v1.0", "modern"]
+industries: ["養殖漁業", "觀光"]
+temples: []
+sites: ["dongshi_site"]
+memory_breakdown:
+  history_events: 0.20
+  oral_tradition: 0.25
+  named_persons:  0.18
+  sites:          0.22

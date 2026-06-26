@@ -1,0 +1,21 @@
+id: "xinshi"
+name: "新市區"
+tier: 4
+admin_level: "區"
+county: "tainan_city"
+population: 42
+industry:   62
+culture:    55
+memory:     50
+trade:      48
+cohesion:   58
+specters_active: []
+eras_present: ["v0.1", "v1.0", "modern"]
+industries: ["農業", "科技研發"]
+temples: []
+sites: ["xinshi_site"]
+memory_breakdown:
+  history_events: 0.18
+  oral_tradition: 0.28
+  named_persons:  0.16
+  sites:          0.20
