@@ -1,0 +1,83 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+#
+# /bin/new-site
+#
+# 地景與歷史記憶模板脚手架生成工具。
+# 用法：python3 bin/new-site <settlement_id> <site_name>
+
+import os
+import sys
+
+def main():
+    if len(sys.argv) < 3:
+        print("用法: python3 bin/new-site <settlement_id> <site_name>")
+        print("範例: python3 bin/new-site minxiong police_dormitory")
+        sys.exit(1)
+
+    settlement_id = sys.argv[1].lower().strip()
+    site_name = sys.argv[2].lower().strip()
+    site_id = f"{settlement_id}_{site_name}"
+
+    project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    
+    # ── 1. 產生 Site YAML 模版 ─────────────────────────────────────
+    site_dir = os.path.join(project_root, "mudlib", "data", "yaml", "sites", settlement_id)
+    os.makedirs(site_dir, exist_ok=True)
+    site_file = os.path.join(site_dir, f"{site_id}.yaml")
+    
+    site_template = f"""id: {site_id}
+settlement: {settlement_id}
+canonical_name: "{site_name.replace('_', ' ').title()}"
+is_heritage: false
+base_description: |
+  這裡是一處新開闢的歷史空間。
+  四周環繞著古樸的建築與斑駁的牆壁，微風中帶著淡淡的泥土芳香。
+travel_arrive_text: "你來到了{site_name.replace('_', ' ').title()}。"
+
+names:
+  - era: modern
+    name: "{site_name.replace('_', ' ').title()}"
+
+connections: []
+
+reveal_layers:
+  # 條件 1：玩家擁有島嶼記憶天賦時浮現環境感官描述
+  - condition: "all"
+    checks:
+      - type: "has_talent"
+        talent: "island_memory"
+    text: "四周的空氣中隱約浮現出舊時代的歷史餘音。"
+"""
+    with open(site_file, "w", encoding="utf-8") as f:
+        f.write(site_template)
+    print(f"✓ 建立地標設定檔: mudlib/data/yaml/sites/{settlement_id}/{site_id}.yaml")
+
+    # ── 2. 產生 Memory YAML 模版 ───────────────────────────────────
+    mem_dir = os.path.join(project_root, "mudlib", "data", "yaml", "memories")
+    os.makedirs(mem_dir, exist_ok=True)
+    mem_file = os.path.join(mem_dir, f"{site_id}_001.yaml")
+
+    mem_template = f"""id: {site_id}_001
+title: "{site_name.replace('_', ' ').title()}的往事"
+era: "modern"
+quality: 2
+progress: 10
+description: "這是一段刻在{site_name.replace('_', ' ').title()}磚瓦上的塵封歷史。昔日人們在此生活開拓的景象，在歲月的洗禮下只剩零星的殘片留存。"
+settlement: "{settlement_id}"
+trigger_site: "{site_id}"
+conditions: []
+"""
+    with open(mem_file, "w", encoding="utf-8") as f:
+        f.write(mem_template)
+    print(f"✓ 建立記憶碎片設定檔: mudlib/data/yaml/memories/{site_id}_001.yaml")
+
+    # ── 3. 提示將 Site 寫入 Settlement list ───────────────────────────
+    settlement_file = os.path.join(project_root, "mudlib", "data", "yaml", "settlements", f"{settlement_id}.yaml")
+    if os.path.exists(settlement_file):
+        print(f"💡 請記得手動將 '{site_id}' 加入到 {settlement_file} 的 sites 清單中。")
+    else:
+        print(f"⚠️ 找不到聚落檔案 {settlement_file}，請確認 settlement_id 是否正確。")
+
+if __name__ == "__main__":
+    main()
