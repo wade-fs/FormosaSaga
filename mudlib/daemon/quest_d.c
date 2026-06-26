@@ -44,6 +44,20 @@ int accept_quest(object me, string qid) {
         return 0;
     }
 
+    // 前置任務檢查
+    if (info["prereq_quests"]) {
+        foreach (string pre in info["prereq_quests"]) {
+            mapping pdata = me->query_quest(pre);
+            if (!pdata || pdata["status"] != "completed") {
+                write(select_lang(([
+                    "zh-TW": "你尚未完成前置任務，無法接受此委託。\n",
+                    "en": "You must complete the prerequisite quest first.\n"
+                ])));
+                return 0;
+            }
+        }
+    }
+
     me->set_quest(qid, ([
         "status": "active",
         "start_time": time(),
@@ -120,6 +134,19 @@ int complete_quest(object me, string qid) {
         if (gexp < 1) gexp = 1;
         me->add_guild_exp(gexp);
         tell_object(me, "$HIG$" + sprintf("%s%d\n", to_string(_t("guild_exp_gain")), gexp) + "$NOR$");
+    }
+
+    // 🚀 新增：勢力聲望獎勵
+    if (reward["faction"]) {
+        string fid = reward["faction"]["id"];
+        int rep = reward["faction"]["reputation"];
+        if (fid && rep) {
+            me->add_faction_reputation(fid, rep);
+            write("$HIC$" + select_lang(([
+                "zh-TW": "你與「" + fid + "」的聲望增加了 " + rep + " 點。\n",
+                "en": "Your reputation with '" + fid + "' increased by " + rep + ".\n"
+            ])) + "$NOR$");
+        }
     }
 
     if (reward["badge"]) {

@@ -52,7 +52,8 @@ int main(object me, string verb, string arg) {
         "/tests/test_var_decl.c",
         "/tests/test_log_file.c",
         "/tests/test_quest_loop.c",
-        "/tests/test_look_travel_debug.c"
+        "/tests/test_look_travel_debug.c",
+        "/tests/test_temple_exorcism.c"
     });
 
     int total = 0;
