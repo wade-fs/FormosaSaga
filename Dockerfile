@@ -28,10 +28,12 @@ RUN apk add --no-cache libc6-compat ca-certificates python3
 COPY --from=builder /app/bin/fsmud /app/bin/fsmud
 COPY --from=builder /app/bin/new-site /app/bin/new-site
 COPY --from=builder /app/mudlib /app/mudlib
-COPY --from=builder /app/master.c /app/master.c
+COPY --from=builder /app/testlib /app/testlib
+
 
 # 預設監聽 8080 連接埠
 EXPOSE 8080
 
 # 啟動指令：執行 MUD 伺服器
-CMD ["./bin/fsmud", "-mudlib", "mudlib", "-master", "master.c"]
+CMD ["./bin/fsmud", "-mudlib", "mudlib", "-master", "mudlib/master.c"]
+

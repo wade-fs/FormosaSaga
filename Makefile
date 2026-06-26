@@ -82,9 +82,11 @@ docker-test-driver:
 	@echo "🐳 Running MudScript Core Tests in Docker container..."
 	@docker run --rm -it -e MUD_TEST_MODE=1 formosasaga:latest ./bin/fsmud -mudlib testlib -master master.c --hub none
 
+
 docker-test-fsmud:
 	@echo "🐳 Running Integration Tests on FSMUD in Docker container..."
-	@docker run --rm -it formosasaga:latest go run ./cmd/test-fsmud/main.go || docker run --rm -it -v $(shell pwd):/app -w /app golang:1.26.2-alpine sh -c "apk add --no-cache make gcc musl-dev python3 && make test-fsmud"
+	@docker run --rm -it -v $(shell pwd):/app -w /app golang:1.26.2-alpine sh -c "apk add --no-cache make gcc musl-dev python3 && make test-fsmud"
+
 
 clean:
 	@rm -rf *.log *txt $(OUT)/*
