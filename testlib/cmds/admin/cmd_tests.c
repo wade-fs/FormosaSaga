@@ -55,7 +55,8 @@ int main(object me, string verb, string arg) {
         "/tests/test_look_travel_debug.c",
         "/tests/test_temple_exorcism.c",
         "/tests/test_sugar_railway_repair.c",
-        "/tests/test_liu_deed_recovery.c"
+        "/tests/test_liu_deed_recovery.c",
+        "/tests/test_oblivion_resonance.c"
     });
 
     int total = 0;

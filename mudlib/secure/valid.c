@@ -85,11 +85,9 @@ mixed valid_write(string path, object user, string func)
         return "拒絕：找不到使用者物件，無法驗證身分。";
     }
 
-    // 2. /secure/ 與 /daemon/ 守護進程白名單
-    //    這些物件在有玩家 context 下被呼叫時，caller_file 是 /secure/xxx 或 /daemon/xxx
-    if (strsrch(caller_file, "/secure/") == 0 || 
-        strsrch(caller_file, "/daemon/") == 0 ||
-        strsrch(caller_file, "/std/entity") == 0) {
+    // 2. /secure/ 守護進程（nature_d, quest_d, guild_d 等）白名單
+    //    這些物件在有玩家 context 下被呼叫時，caller_file 是 /secure/xxx
+    if (strsrch(caller_file, "/secure/") == 0) {
         if (strsrch(path, "/data/") == 0) return 1;
         if (path == "/log" || strsrch(path, "/log/") == 0) return 1;
     }
@@ -138,17 +136,20 @@ mixed valid_write(string path, object user, string func)
     }
 
     // 允許 system_d 儲存系統設定
-    if (caller_file == "/daemon/system_d" || caller_file == "/std/login") {
+    if (caller_file == "/secure/system_d" || caller_file == "/std/login") {
         if (path == "/data/system.o") return 1;
     }
     
     if (caller_file == "/secure/fs_d") {
         if (strsrch(path, FS_CACHE_DIR) == 0) return 1;
     }
-    // LM 世界存檔
+    // LM 世界存檔與聚落動態資料存檔
     if (strsrch(caller_file, "/area/lm/") == 0) {
         // 允許 /data/lm 目錄本身（mkdir 時 path 沒有結尾斜線）及其子路徑
         if (strsrch(path, "/data/lm") == 0) return 1;
+    }
+    if (strsrch(caller_file, "/daemon/") == 0 || strsrch(caller_file, "/std/") == 0) {
+        if (strsrch(path, "/data/state/") == 0) return 1;
     }
 
 

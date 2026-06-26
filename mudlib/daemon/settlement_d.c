@@ -290,15 +290,15 @@ private void _spawn_specter(string settlement_id, string specter_type) {
 void resolve_specter(string settlement_id, string specter_id, object player) {
     mapping s = load_settlement(settlement_id);
     if (!s) return;
-
+ 
     mixed *existing = s["specters_active"] || ({});
     mixed *remaining = ({});
     foreach (mapping sp in existing)
         if (sp["id"] != specter_id) remaining += ({ sp });
-
+ 
     s["specters_active"] = remaining;
     _save_settlement(settlement_id, s);
-
+ 
     EVENT_D->publish("SpecterResolved", ([
         "settlement_id": settlement_id,
         "specter_id":    specter_id,

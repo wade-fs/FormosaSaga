@@ -62,5 +62,5 @@
 - [x] 設計與實作「糖鐵搶修委託」任務與整合測試（已完成，詳見 [sugar_railway_repair.md](quests/sugar_railway_repair.md)）。
 - [x] 設計各大勢力（劉家、糖業、廟委）的聲望影響與專屬派系任務。（劉家地契委託、糖鐵搶修委託、廟委鎮煞委託均已實作並通過整合測試）
 - [x] 設計週期性的「遺忘浪潮」危機事件與失源者（Specter）互動/共鳴儀式（已完成設計規劃，詳見 [oblivion_and_resonance.md](quests/oblivion_and_resonance.md)）。
-- [ ] 依設計實作週期性的「遺忘浪潮」危機事件與失源者共鳴儀式整合測試與功能。
-
+- [x] 依設計實作週期性的「遺忘浪潮」危機事件與失源者共鳴儀式整合測試與功能（整合測試 [test_oblivion_resonance.c](mudlib/tests/test_oblivion_resonance.c) 已實作並通過）。
+- [ ] 規劃下一個任務：優化跨區域地理網絡與多重歷史時代切換機制。

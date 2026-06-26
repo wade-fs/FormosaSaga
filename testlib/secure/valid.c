@@ -143,10 +143,13 @@ mixed valid_write(string path, object user, string func)
     if (caller_file == "/secure/fs_d") {
         if (strsrch(path, FS_CACHE_DIR) == 0) return 1;
     }
-    // LM 世界存檔
+    // LM 世界存檔與聚落動態資料存檔
     if (strsrch(caller_file, "/area/lm/") == 0) {
         // 允許 /data/lm 目錄本身（mkdir 時 path 沒有結尾斜線）及其子路徑
         if (strsrch(path, "/data/lm") == 0) return 1;
+    }
+    if (strsrch(caller_file, "/daemon/") == 0 || strsrch(caller_file, "/std/") == 0) {
+        if (strsrch(path, "/data/state/") == 0) return 1;
     }
 
 

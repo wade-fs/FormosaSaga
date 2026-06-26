@@ -9,14 +9,14 @@
   "no_drop": 0,
   "no_get": 0,
   "props": {
-    "cohesion": 0,
-    "culture": 42,
-    "industry": 0,
-    "memory": 43,
-    "population": 100,
+    "cohesion": 52,
+    "culture": 48,
+    "industry": 35,
+    "memory": 61,
+    "population": 40,
     "specters_active": [],
     "tier": 4,
-    "trade": 0
+    "trade": 38
   },
   "responses": {},
   "short_name": "某個東西",

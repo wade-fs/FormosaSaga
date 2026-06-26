@@ -145,6 +145,13 @@ void unlock_memory(string mid) {
     }
 }
 
+void add_unlocked_memory(string mid) {
+    if (!unlocked_memories) unlocked_memories = ({});
+    if (member_array(mid, unlocked_memories) == -1) {
+        unlocked_memories += ({ mid });
+    }
+}
+
 int has_talent(string talent_id) {
     // 預設給予島嶼記憶天賦以利測試，或者可擴展成設定檔
     if (talent_id == "island_memory") return 1;
@@ -188,13 +195,34 @@ void add_faction_reputation(string fid, int val) {
     save();
 }
 
-// ── 職涯等級查詢（委派給 career_d）────────────────────────
+// ── 職涯等級查詢與設定 ────────────────────────
 int query_career_rank(string career_id) {
     // career_d 在 create 時可能尚未載入，安全呼叫
     object cd = find_object("/daemon/career_d.c");
     if (!cd) cd = load_object("/daemon/career_d.c");
     if (cd) return cd->query_career_rank(this_object(), career_id);
     return 1; // fallback
+}
+
+void set_career_rank(string career_id, int rank) {
+    if (!career_points) career_points = ([]);
+    object cd = find_object("/daemon/career_d.c");
+    if (!cd) cd = load_object("/daemon/career_d.c");
+    if (cd) {
+        mapping career = cd->load_career(career_id);
+        if (career && pointerp(career["ranks"])) {
+            foreach (mapping r in career["ranks"]) {
+                if (r["level"] == rank) {
+                    career_points[career_id] = r["min_points"];
+                    save();
+                    return;
+                }
+            }
+        }
+    }
+    // Fallback if career_d not loaded or rank not found
+    career_points[career_id] = (rank - 1) * 100;
+    save();
 }
 
 
