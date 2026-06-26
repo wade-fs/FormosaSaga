@@ -64,3 +64,12 @@
 - [x] 設計週期性的「遺忘浪潮」危機事件與失源者（Specter）互動/共鳴儀式（已完成設計規劃，詳見 [oblivion_and_resonance.md](quests/oblivion_and_resonance.md)）。
 - [x] 依設計實作週期性的「遺忘浪潮」危機事件與失源者共鳴儀式整合測試與功能（整合測試 [test_oblivion_resonance.c](mudlib/tests/test_oblivion_resonance.c) 已實作並通過）。
 - [ ] 規劃下一個任務：優化跨區域地理網絡與多重歷史時代切換機制。
+- [x] **P8.1 — 動態跨區域地理與時代切換路徑機制** (推薦)
+  - [x] 實作地理路線 YAML 支援時代過濾條件（如 `era_active` 欄位限制）。
+  - [x] 在 `route_d` 監聽 `EraShifted` 事件，動態重繪地理路徑並廣播變更。
+  - [x] 設計不同時代在同路線下的動態描述與 look/travel 差異。
+  - [x] 撰寫 `test_era_routes.c` 整合測試驗證。
+- [ ] **P8.2 — 歷史文獻記錄與傳言 (Rumor & Chronicles) 系統**
+  - 實作 `chronicle_d.c` 收集玩家大型事件與解除失源者的紀錄。
+  - 實作 `cmd_record.c` 供文人玩家編寫「地方誌」與文獻。
+  - 設計地方誌發佈與閱讀機制，閱讀他人地方誌可獲得記憶值與職涯修練點。

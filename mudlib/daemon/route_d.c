@@ -72,8 +72,17 @@ mapping query_names_mapping(string route_id) {
 
 string query_travel_time(string from, string to, string transport_type) {
     if (!route_cache) rehash();
+    string cur_era = TIMELINE_D->query_current_era();
+    string cur_era_dot = replace_string(cur_era, "_", ".");
     
     foreach (string id, mapping r in route_cache) {
+        // 時代過濾 (P8.1): 如果定義了 eras，必須包含當前時代
+        if (pointerp(r["eras"])) {
+            if (member_array(cur_era, r["eras"]) == -1 && member_array(cur_era_dot, r["eras"]) == -1) {
+                continue;
+            }
+        }
+
         mixed nodes = r["nodes"];
         if (pointerp(nodes) && member_array(from, nodes) != -1 && member_array(to, nodes) != -1) {
             mixed tt = r["travel_time"];
@@ -92,9 +101,18 @@ string query_travel_time(string from, string to, string transport_type) {
 string *query_connections(string site_id) {
     if (!route_cache) rehash();
     string *conn = ({});
+    string cur_era = TIMELINE_D->query_current_era();
+    string cur_era_dot = replace_string(cur_era, "_", ".");
 
     // 1. 聯外/全域交通路線
     foreach (string id, mapping r in route_cache) {
+        // 時代過濾 (P8.1): 如果定義了 eras，必須包含當前時代 (不論是 v1.0 還是 v1_0 格式)
+        if (pointerp(r["eras"])) {
+            if (member_array(cur_era, r["eras"]) == -1 && member_array(cur_era_dot, r["eras"]) == -1) {
+                continue;
+            }
+        }
+
         mixed nodes = r["nodes"];
         if (pointerp(nodes) && member_array(site_id, nodes) != -1) {
             foreach (string node in nodes) {
