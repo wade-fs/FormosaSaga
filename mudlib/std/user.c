@@ -25,6 +25,7 @@ mapping aliases;
 mapping quests; // 🚀 新增：任務紀錄
 mapping muted_channels; // 🚀 新願：屏蔽的頻道
 mapping explored_rooms; // 🚀 新增：已探索房間 ([ "room_file": 1 ])
+mapping faction_reputation; // 🚀 新增：陣營聲望 ([ faction_id: points ])
 string *saved_inventory = ({ });
 string last_location;
 string *footprints; // 🚀 新增：踏印紀錄
@@ -170,6 +171,22 @@ void add_career_points(string career_id, int val) {
 // ── 勢力 API (P4) ──────────────────────────────────────────
 string query_faction() { return faction; }
 void set_faction(string fid) { faction = fid; }
+
+mapping query_faction_reputation_all() {
+    if (!faction_reputation) faction_reputation = ([]);
+    return faction_reputation;
+}
+
+int query_faction_reputation(string fid) {
+    if (!faction_reputation) faction_reputation = ([]);
+    return faction_reputation[fid] || 0;
+}
+
+void add_faction_reputation(string fid, int val) {
+    if (!faction_reputation) faction_reputation = ([]);
+    faction_reputation[fid] = (faction_reputation[fid] || 0) + val;
+    save();
+}
 
 // ── 職涯等級查詢（委派給 career_d）────────────────────────
 int query_career_rank(string career_id) {

@@ -19,3 +19,12 @@ connections:
   - minxiong_old_station
   - minxiong_market
   - waterway
+
+reveal_layers:
+  - condition: all
+    checks:
+      - type: has_quest
+        quest_id: temple_exorcism
+        status: active
+      - type: in_party
+    text: "$HIY$【陣營秘境線索】你與隊友們互換了個眼神，發現供桌下方的石磚有些鬆動，隱約透出一股來自地底的陰冷氣息...\n這似乎就是廟委提到的「地下鎮煞陣法」入口。$NOR$"

@@ -80,6 +80,8 @@
 #define RC_SETTLEMENT_MEM "settlement_memory_gte"
 #define RC_TALENT         "has_talent"
 #define RC_GLOBAL_EVENT   "global_event_triggered"
+#define RC_HAS_QUEST      "has_quest"
+#define RC_IN_PARTY       "in_party"
 #define RC_ANY            "any"   // 任一條件成立即顯示
 #define RC_ALL            "all"   // 所有條件成立才顯示
 

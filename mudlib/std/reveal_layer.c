@@ -132,6 +132,20 @@ private int check_single(object player, mapping chk) {
     if (type == RC_GLOBAL_EVENT)
         return TIMELINE_D->global_event_triggered(chk["event"]);
 
+    if (type == RC_HAS_QUEST) {
+        mapping quests = player->query_quests();
+        if (!quests) return 0;
+        mapping q = quests[chk["quest_id"]];
+        if (!q) return 0;
+        if (chk["status"] && q["status"] != chk["status"]) return 0;
+        return 1;
+    }
+
+    if (type == RC_IN_PARTY) {
+        object leader = player->query_leader();
+        return leader ? 1 : 0;
+    }
+
     return 0;
 }
 
