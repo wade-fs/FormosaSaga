@@ -691,14 +691,15 @@
             e.stopPropagation();
             if (historyCmds.length > 0) showHistory();
         };
-
         window.addEventListener('keydown', (e) => {
+/*
             if (mcMode) {
                 if (document.activeElement === msgInput && msgInput.value !== "" && e.key !== "Enter") return;
                 const key = e.key.toLowerCase();
                 let dir = { w: 'n', s: 's', a: 'w', d: 'e', arrowup: 'n', arrowdown: 's', arrowleft: 'w', arrowright: 'e' }[key];
                 if (dir) { e.preventDefault(); sendCmd(`mc move ${dir}`); return; }
             }
+*/
 
             if (document.activeElement === msgInput) {
                 if (e.key === "ArrowUp") { e.preventDefault(); if (histIdx > 0) { histIdx--; msgInput.value = historyCmds[histIdx]; } }
