@@ -96,55 +96,55 @@ map_art: |
 map_data:
   ghost_house:
     connections:
-      - old_street
+      - minxiong_old_street
       - outskirts
-  old_street:
+  minxiong_old_street:
     connections:
       - ghost_house
       - outskirts
-      - market
+      - minxiong_market
       - school
   outskirts:
     connections:
       - ghost_house
-      - old_street
-      - sugar_factory
-  station:
+      - minxiong_old_street
+      - sugar_factory_ruins
+  minxiong_old_station:
     connections:
-      - market
-      - temple
-  market:
+      - minxiong_market
+      - dashiye_temple
+  minxiong_market:
     connections:
-      - station
-      - old_street
-      - temple
-  sugar_factory:
+      - minxiong_old_station
+      - minxiong_old_street
+      - dashiye_temple
+  sugar_factory_ruins:
     connections:
       - outskirts
-      - sugarcane
+      - sugarcane_field
   school:
     connections:
-      - old_street
-      - village
-  temple:
+      - minxiong_old_street
+      - rural_village
+  dashiye_temple:
     connections:
-      - station
-      - market
+      - minxiong_old_station
+      - minxiong_market
       - waterway
-  village:
+  rural_village:
     connections:
       - school
       - waterway
-      - fengli
-      - sugarcane
-  sugarcane:
+      - fengli_field
+      - sugarcane_field
+  sugarcane_field:
     connections:
-      - sugar_factory
-      - village
+      - sugar_factory_ruins
+      - rural_village
   waterway:
     connections:
-      - temple
-      - village
-  fengli:
+      - dashiye_temple
+      - rural_village
+  fengli_field:
     connections:
-      - village
+      - rural_village
