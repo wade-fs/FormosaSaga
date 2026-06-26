@@ -1,32 +1,24 @@
 {
-  "active_settlements": {
-    "minxiong": {
-      "cohesion": 0,
-      "culture": 45,
-      "id": "minxiong",
-      "industry": [
-        "鳳梨",
-        "糖業"
-      ],
-      "level": "village",
-      "memory": 40,
-      "name": "民雄",
-      "population": 1220,
-      "trade": 0
-    }
-  },
-  "cohesion": 0,
-  "culture": 45,
+  "display_name": 0,
+  "entity_id": 0,
+  "entity_type": 0,
   "id_list": [],
   "long_name": "這是一個沒有描述的東西。",
-  "memory": 40,
   "money_value": 0,
   "name": "某個東西",
   "no_drop": 0,
   "no_get": 0,
-  "population": 1220,
-  "responses": 0,
+  "props": {
+    "cohesion": 0,
+    "culture": 42,
+    "industry": 0,
+    "memory": 43,
+    "population": 100,
+    "specters_active": [],
+    "tier": 4,
+    "trade": 0
+  },
+  "responses": {},
   "short_name": "某個東西",
-  "temp_vars": 0,
-  "trade": 0
+  "temp_vars": {}
 }

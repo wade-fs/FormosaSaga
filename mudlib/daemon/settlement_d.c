@@ -377,7 +377,11 @@ object get_site_object(string site_id) {
         path = "/area/sites/" + site_id + ".c";
 
     if (file_size(path) > 0) {
-        object ob = catch(load_object(path));
+        object ob;
+        string err = catch(ob = load_object(path));
+        if (err) {
+            log_file("settlement_errors.log", "Error loading " + path + ": " + err + "\n");
+        }
         if (ob) {
             active_sites[site_id] = ob;
             return ob;

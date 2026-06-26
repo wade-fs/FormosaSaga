@@ -16,8 +16,15 @@ void run_tests(object me) {
 
     // 2. Load dashiye_temple
     write("DEBUG_TEST: file size of YAML: " + file_size("/data/yaml/sites/minxiong/temple.yaml") + "\n");
+    write("DEBUG_TEST: file size of minxiong.c: " + file_size("/area/settlements/minxiong.c") + "\n");
+    write("DEBUG_TEST: file size of minxiong.c relative: " + file_size("area/settlements/minxiong.c") + "\n");
     write("DEBUG_TEST: SITE_D load_site: " + sprintf("%O", SITE_D->load_site("dashiye_temple")) + "\n");
     object temple = SETTLEMENT_D->get_site_object("dashiye_temple");
+    write("DEBUG_TEST: get_site_object minxiong first: " + sprintf("%O", SETTLEMENT_D->get_site_object("minxiong")) + "\n");
+    write("DEBUG_TEST: loading minxiong directly:\n");
+    object minx = load_object("/area/settlements/minxiong.c");
+    write("DEBUG_TEST: loaded minxiong: " + sprintf("%O", minx) + "\n");
+    write("DEBUG_TEST: get_site_object minxiong second: " + sprintf("%O", SETTLEMENT_D->get_site_object("minxiong")) + "\n");
     write("DEBUG_TEST: get_site_object: " + sprintf("%O", temple) + "\n");
     assert_true(objectp(temple), "Should successfully load dashiye_temple site object");
 

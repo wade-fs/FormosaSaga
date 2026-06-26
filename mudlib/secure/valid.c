@@ -87,7 +87,9 @@ mixed valid_write(string path, object user, string func)
 
     // 2. /secure/ 與 /daemon/ 守護進程白名單
     //    這些物件在有玩家 context 下被呼叫時，caller_file 是 /secure/xxx 或 /daemon/xxx
-    if (strsrch(caller_file, "/secure/") == 0 || strsrch(caller_file, "/daemon/") == 0) {
+    if (strsrch(caller_file, "/secure/") == 0 || 
+        strsrch(caller_file, "/daemon/") == 0 ||
+        strsrch(caller_file, "/std/entity") == 0) {
         if (strsrch(path, "/data/") == 0) return 1;
         if (path == "/log" || strsrch(path, "/log/") == 0) return 1;
     }

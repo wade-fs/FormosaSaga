@@ -52,6 +52,13 @@ string resolve_name(string entity_id, string entity_type, object player) {
         names_cache = SETTLEMENT_D->query_names_mapping(entity_id);
     } else if (entity_type == "site") {
         names_cache = SITE_D->query_names_mapping(entity_id);
+        if (!names_cache || sizeof(names_cache) == 0) {
+            mapping sett_cache = SETTLEMENT_D->query_names_mapping(entity_id);
+            if (sett_cache && sizeof(sett_cache) > 0) {
+                names_cache = sett_cache;
+                entity_type = "settlement";
+            }
+        }
     } else if (entity_type == "route") {
         names_cache = ROUTE_D->query_names_mapping(entity_id);
     }
