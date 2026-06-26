@@ -64,7 +64,7 @@ mixed valid_write(string path, object user, string func)
                 string mid = substr(rel, 0, slash);
                 string my_sandbox = FS_CACHE_DIR + "/" + mid + "/";
                 // 只允許寫入自己的沙盒內部或日誌
-                if (strsrch(path, my_sandbox) == 0 || strsrch(path, "/log/") == 0) {
+                if (strsrch(path, my_sandbox) == 0 || path == "/log" || strsrch(path, "/log/") == 0) {
                     return 1;
                 }
                 return "遠端物件沙盒攔截：禁止跨目錄寫入。";
@@ -81,7 +81,7 @@ mixed valid_write(string path, object user, string func)
     // 1. 沒有使用者物件 → 系統守護進程背景呼叫
     if (!user || user == 0) {
         if (strsrch(path, "/data/") == 0) return 1;
-        if (strsrch(path, "/log/") == 0) return 1;
+        if (path == "/log" || strsrch(path, "/log/") == 0) return 1;
         return "拒絕：找不到使用者物件，無法驗證身分。";
     }
 
@@ -89,7 +89,7 @@ mixed valid_write(string path, object user, string func)
     //    這些物件在有玩家 context 下被呼叫時，caller_file 是 /secure/xxx 或 /daemon/xxx
     if (strsrch(caller_file, "/secure/") == 0 || strsrch(caller_file, "/daemon/") == 0) {
         if (strsrch(path, "/data/") == 0) return 1;
-        if (strsrch(path, "/log/") == 0) return 1;
+        if (path == "/log" || strsrch(path, "/log/") == 0) return 1;
     }
 
     // 🚀 核心修正：角色判定應該優先看 this_player()
@@ -111,6 +111,7 @@ mixed valid_write(string path, object user, string func)
             strsrch(path, "/npc/") == 0 || 
             strsrch(path, "/item/") == 0 ||
             strsrch(path, "/cmds/") == 0 ||
+            path == "/log" ||
             strsrch(path, "/log/") == 0 ||
             strsrch(path, "/open/") == 0 ||
             strsrch(path, "/tests/") == 0 ||

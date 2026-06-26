@@ -135,3 +135,12 @@ varargs string resolv_path(string path, object user) {
     return resolve_path(path, cwd);
 }
 
+// 寫入日誌檔案
+void log_file(string file, string message) {
+    if (!stringp(file) || !stringp(message)) return;
+    if (file_size("/log") != -2) {
+        mkdir("/log");
+    }
+    write_file("/log/" + file, message);
+}
+
