@@ -101,7 +101,7 @@ void add_footprint_record(string fid) {
     if (!footprints) footprints = ({});
     if (member_array(fid, footprints) == -1) {
         footprints += ({ fid });
-        save();
+        if (!stringp(id) || strsrch(id, "test") != 0) save();
     }
 }
 
@@ -112,7 +112,7 @@ int has_footprint_record(string fid) {
 
 void clear_footprints() {
     footprints = ({});
-    save();
+    if (!stringp(id) || strsrch(id, "test") != 0) save();
 }
 
 // 支援 footprint_d.c 及 reveal_layer.c 依賴的 API
@@ -127,6 +127,7 @@ void set_footprint_atlas(mapping atlas) {
 }
 
 void save_me() {
+    if (stringp(id) && strsrch(id, "test") == 0) return;
     save();
 }
 

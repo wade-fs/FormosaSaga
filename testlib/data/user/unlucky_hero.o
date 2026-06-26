@@ -18,6 +18,7 @@
   "attack": 30,
   "bank_balance": 0,
   "can_open": 0,
+  "career_points": {},
   "combat_target": 0,
   "current_mudlib": "",
   "cwd": "/",
@@ -34,7 +35,10 @@
   "explored_rooms": {
     "/std/room.c#31": 1
   },
+  "faction": 0,
   "followers": [],
+  "footprint_atlas": {},
+  "footprints": [],
   "full_id": 0,
   "guild": 0,
   "guild_exp": 0,
@@ -54,11 +58,11 @@
   "last_bank_time": 0,
   "last_location": "/std/room.c",
   "leader": 0,
-  "level": 5,
+  "level": 4,
   "long_name": "這是一個沒有描述的東西。",
-  "max_hp": 125,
+  "max_hp": 120,
   "max_items": 20,
-  "max_mp": 95,
+  "max_mp": 92,
   "max_weight": 10000,
   "money_balance": 0,
   "money_value": 0,
@@ -86,5 +90,6 @@
   "stat_str": 10,
   "stat_wis": 10,
   "temp_vars": 0,
+  "unlocked_memories": 0,
   "write_paths": []
 }

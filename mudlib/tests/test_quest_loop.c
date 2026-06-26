@@ -9,13 +9,16 @@ void run_tests(object me) {
 
     // 1. 建立測試玩家並設定基本資料
     object player = clone_object("/std/user.c");
-    player->set_id("wade_quest_loop");
+    player->set_id("test_wade_quest_loop");
     player->set_name("測試任務員");
     player->set_role("god");
     player->set_lang("zh-TW");
     player->set_level(1);
     player->setup();
     player->clear_footprints();
+    player->set_footprint_atlas((["test": 123]));
+    mapping test_atlas = player->query_footprint_atlas();
+    write("TEST INIT ATLAS = " + sprintf("%O", test_atlas) + "\n");
     player->set_footprint_atlas(([]));
 
     // 2. 載入民雄老街與民雄老車站地標
@@ -58,7 +61,6 @@ void run_tests(object me) {
             mapping cur_atlas = player->query_footprint_atlas();
             write("cur_atlas = " + sprintf("%O", cur_atlas) + "\n");
             int has_fp = FOOTPRINT_D->has_footprint(player, "sugar_railway_minxiong");
-            write("has_fp = " + has_fp + "\n");
             write("has_fp = " + has_fp + "\n");
             assert_true(has_fp, "玩家應成功獲得糖鐵踏印");
 

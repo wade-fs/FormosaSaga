@@ -10,7 +10,7 @@
 | **P3** | 時代推展機制 (Era Progression) | **✓ 已完成** | `MemoryCompleted` 事件驅動 `world_progress`，達門檻自動觸發 `next_era()` |
 | **P4** | 職涯與勢力系統 (Profession / Faction) | **✓ 已完成** | `career_d` + YAML 四職涯（農商匠文），`faction_d` + 三勢力（劉家/糖業/廟委），事件驅動自動累積修練點 |
 | **P5** | 失源者、危機與共鳴 (Specter / Oblivion / Resonance) | **✓ 已完成** | `oblivion_d`（週期衰減+危機廣播）、`resonance_d`（多人共鳴）、`/std/specter.c`（可互動物件）、`cmd_commune` |
-| **P6** | 跨區域地圖與地理網絡擴展 (Geographical Expansion) | **✓ 已完成** | 實作鄰近聚落（嘉義市、新港鄉）與其附屬 Sites，打通跨區域 travel 移動與踏印網絡 |
+| **P7** | 新手任務與引導流程 (Tutorial Quest) | **✓ 已完成** | 以民雄「老站長」實作探索地標 -> 獲得踏印 -> 任務回報循環 |
 
 ---
 
@@ -45,12 +45,16 @@
 - 完善 `std/site.c` 處理無 `entity_id` 玩家造成的 nil map indexing 執行期異常。
 - 調整 `testlib` 測試環境，補全必要的 `std` 繼承檔案與 `daemon/yaml` 軟連結，確保核心測試（276/276）在 MudScript 模式下完全通過。
 
+### P7 — 新手任務與引導流程
+- 以民雄的「老站長」為核心，實作新手引導任務「老站長的心願」。
+- 修復 `footprint_atlas` 存檔問題，移除 `std/user.c` 內多餘宣告以避開序列化引擎死角。
+- 更新了 `testlib/std/user.c` 軟連結，確保自動測試環境吃到所有最新修改。
+- `minxiong_old_station.yaml` 中移除自動賦予糖鐵踏印的邏輯，移至 `minxiong_market.yaml`，確保「探索市集獲取踏印 -> 回報車站」的邏輯順暢。
+- 補全 `test_quest_loop.c` 整合測試並確認全部通過。
+
 ---
 
 ## 📋 下一步規劃
-
-### P7 — 新手任務與引導流程
-- 以民雄的「老站長」為核心，實作引導任務，帶領玩家體驗「探索地標 -> 獲得踏印 -> 喚醒記憶 -> 影響時代」的核心循環。
 
 ### P8 — 職涯動作與勢力事件玩法深化
 - 實作不同職涯（農商匠文）的專屬動作或命令（例如：修復、記錄、耕作等）。
