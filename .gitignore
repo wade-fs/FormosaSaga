@@ -2,3 +2,5 @@ bin/
 go.sum
 *.txt
 .*swp
+*log
+*o

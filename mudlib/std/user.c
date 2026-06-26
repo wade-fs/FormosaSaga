@@ -325,8 +325,12 @@ void setup() {
     // 處理進入世界的位置
     if (last_location && last_location != "" && last_location != "/") {
         object loc;
-        if (strsrch(last_location, "site:") == 0) {
-            string site_id = substr(last_location, 5, strlen(last_location) - 5);
+        if (strsrch(last_location, "site:") == 0 || strsrch(last_location, "settlement:") == 0) {
+            string site_id = last_location;
+            int colon = strsrch(site_id, ":");
+            if (colon != -1) {
+                site_id = substr(site_id, colon + 1, strlen(site_id) - colon - 1);
+            }
             loc = SETTLEMENT_D->get_site_object(site_id);
         } else {
             // 🚀 核心修正：如果上次地點在創界、遠端緩存、舊區域或檔案已不存在，自動導向起始點
@@ -618,10 +622,10 @@ int save() {
 
     object env = environment(this_object());
     if (env) {
-        string oname = object_name(env);
-        if (strsrch(oname, "#") != -1 && env->query_is_site()) {
+        if (env->query_is_site()) {
             last_location = env->query_entity_id();
         } else {
+            string oname = object_name(env);
             last_location = oname;
             int pos_env = strsrch(last_location, "#");
             if (pos_env != -1) {
