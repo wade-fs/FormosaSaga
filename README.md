@@ -51,7 +51,7 @@ cd FormosaSaga
 # 啟動 MUD 伺服器
 make run
 ```
-預設會監聽 `4000` 埠，您可以使用任何支援 telnet 或 MUD 專用客戶端（如 Mudlet）連線至 `127.0.0.1:4000`。
+預設會監聽 `8080` 埠，本作純粹使用瀏覽器連線遊玩，請打開瀏覽器前往 `http://127.0.0.1:8080`，無須使用 telnet 或傳統 MUD 客戶端。
 
 ### 3. 自動化測試
 我們極度重視程式碼品質與架構穩定性。專案內建完整的單元測試與整合測試框架：
@@ -70,11 +70,16 @@ make test-fsmud
 ```text
 FormosaSaga/
 ├── mudlib/                  # MUD 核心程式碼
+│   ├── master.c             # LPC 核心控制與權限管理入口
+│   ├── include/
+│   │   ├── config.h         # 系統全域參數設定
+│   │   └── formosa.h        # 源流福爾摩沙專屬巨集與常數定義
 │   ├── daemon/              # 核心守護進程 (Daemon)
 │   ├── std/                 # 基礎繼承物件 (User, Site, NPC...)
 │   └── data/yaml/           # YAML 設定檔 (Sites, Memories, Factions)
 ├── testlib/                 # 自動化測試專用環境與腳本
 ├── docs/                    # 開發文件與 TODO
+├── chapters/                # 小說
 ├── Makefile                 # 自動化建置與測試腳本
 └── README.md                # 專案說明
 ```
