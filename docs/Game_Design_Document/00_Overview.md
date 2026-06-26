@@ -33,3 +33,4 @@
 *   **[12_Volume1_Content.md](file:///home/wade/src/github/FormosaSaga/docs/Game_Design_Document/12_Volume1_Content.md)**：小說卷一主線地理網絡（民雄至彰化）實作現狀。
 *   **[13_Content_Pipeline.md](file:///home/wade/src/github/FormosaSaga/docs/Game_Design_Document/13_Content_Pipeline.md)**：地景與記憶碎片擴展的流程指南。
 *   **[Appendix_YAML_Style_Guide.md](file:///home/wade/src/github/FormosaSaga/docs/Game_Design_Document/Appendix_YAML_Style_Guide.md)**：YAML 欄位格式與靜動態分離開發規範。
+*   **[Appendix_B_LPC_Style_Guide.md](file:///home/wade/src/github/FormosaSaga/docs/Game_Design_Document/Appendix_B_LPC_Style_Guide.md)**：LPC 程式撰寫規範（型別、陣列語法、命名慣例、測試）。

@@ -2,6 +2,8 @@
 
 本規範定義了整個專案中 YAML 資料設定的格式規範，旨在與直譯器 `yaml_decode` 及 LPC 資料引擎完全對齊。
 
+> 若你在找 **LPC 程式撰寫規範**（型別宣告、陣列語法、命名慣例），請參閱 [Appendix B — LPC Coding Style Guide](./Appendix_B_LPC_Style_Guide.md)。
+
 ---
 
 ## 🚫 靜動態分離開發規範 (Mandatory Separation)
