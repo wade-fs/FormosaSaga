@@ -1,0 +1,23 @@
+id: "penghu"
+name: "澎湖縣"
+tier: 2
+admin_level: "縣"
+county: "penghu_county"
+population: 35
+industry:   25
+culture:    68
+memory:     70
+trade:      55
+cohesion:   72
+specters_active: []
+eras_present: ["v0.2", "v1.0", "modern"]
+industries: ["漁業", "觀光"]
+temples:
+  - name: "澎湖天后宮"
+    deity: "媽祖"
+sites: ["penghu_site"]
+memory_breakdown:
+  history_events: 0.30
+  oral_tradition: 0.32
+  named_persons:  0.22
+  sites:          0.26

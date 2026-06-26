@@ -1,0 +1,23 @@
+id: "taoyuan"
+name: "桃園市"
+tier: 1
+admin_level: "市"
+county: "taoyuan_city"
+population: 78
+industry:   82
+culture:    65
+memory:     60
+trade:      85
+cohesion:   68
+specters_active: []
+eras_present: ["v2.0", "v3.0", "modern"]
+industries: ["物流業", "製造業", "農業"]
+temples:
+  - name: "桃園景福宮"
+    deity: "開漳聖王"
+sites: ["taoyuan_airport"]
+memory_breakdown:
+  history_events: 0.22
+  oral_tradition: 0.20
+  named_persons:  0.18
+  sites:          0.22

@@ -1,0 +1,23 @@
+id: "keelung"
+name: "基隆市"
+tier: 3
+admin_level: "市"
+county: "keelung_city"
+population: 58
+industry:   50
+culture:    65
+memory:     62
+trade:      75
+cohesion:   68
+specters_active: []
+eras_present: ["v1.0", "v2.0", "modern"]
+industries: ["港口物流", "漁業", "觀光"]
+temples:
+  - name: "基隆奠濟宮"
+    deity: "開漳聖王"
+sites: ["keelung_harbor"]
+memory_breakdown:
+  history_events: 0.28
+  oral_tradition: 0.26
+  named_persons:  0.22
+  sites:          0.25

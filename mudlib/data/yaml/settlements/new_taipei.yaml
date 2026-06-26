@@ -1,0 +1,23 @@
+id: "new_taipei"
+name: "新北市"
+tier: 1
+admin_level: "市"
+county: "new_taipei_city"
+population: 88
+industry:   78
+culture:    72
+memory:     70
+trade:      72
+cohesion:   74
+specters_active: []
+eras_present: ["v2.0", "v3.0", "modern"]
+industries: ["商業", "電子產業", "觀光"]
+temples:
+  - name: "林口竹林山觀音寺"
+    deity: "觀音菩薩"
+sites: ["jiufen"]
+memory_breakdown:
+  history_events: 0.30
+  oral_tradition: 0.28
+  named_persons:  0.24
+  sites:          0.26

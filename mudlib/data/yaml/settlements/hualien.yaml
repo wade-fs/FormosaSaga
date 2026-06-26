@@ -1,0 +1,23 @@
+id: "hualien"
+name: "花蓮縣"
+tier: 2
+admin_level: "縣"
+county: "hualien_county"
+population: 42
+industry:   35
+culture:    70
+memory:     64
+trade:      38
+cohesion:   68
+specters_active: []
+eras_present: ["v0.1", "v2.0", "modern"]
+industries: ["觀光", "石材業", "農業"]
+temples:
+  - name: "花蓮港天宮"
+    deity: "媽祖"
+sites: ["qixingtan"]
+memory_breakdown:
+  history_events: 0.24
+  oral_tradition: 0.35
+  named_persons:  0.22
+  sites:          0.26

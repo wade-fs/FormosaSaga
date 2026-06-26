@@ -1,0 +1,21 @@
+id: "lanyu"
+name: "蘭嶼鄉"
+tier: 4
+admin_level: "鄉"
+county: "taitung_county"
+population: 15
+industry:   10
+culture:    85
+memory:     80
+trade:      15
+cohesion:   88
+specters_active: []
+eras_present: ["v0.1", "modern"]
+industries: ["傳統漁業", "觀光"]
+temples: []
+sites: ["lanyu_site"]
+memory_breakdown:
+  history_events: 0.20
+  oral_tradition: 0.50
+  named_persons:  0.35
+  sites:          0.40

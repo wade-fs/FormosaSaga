@@ -1,0 +1,23 @@
+id: "pingtung"
+name: "屏東縣"
+tier: 2
+admin_level: "縣"
+county: "pingtung_county"
+population: 55
+industry:   48
+culture:    68
+memory:     62
+trade:      45
+cohesion:   68
+specters_active: []
+eras_present: ["v0.1", "v1.2", "modern"]
+industries: ["農業", "漁業", "觀光"]
+temples:
+  - name: "屏東慈鳳宮"
+    deity: "媽祖"
+sites: ["hengchun", "mudan"]
+memory_breakdown:
+  history_events: 0.28
+  oral_tradition: 0.30
+  named_persons:  0.22
+  sites:          0.25

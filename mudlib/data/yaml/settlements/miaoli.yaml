@@ -1,0 +1,23 @@
+id: "miaoli"
+name: "苗栗縣"
+tier: 2
+admin_level: "縣"
+county: "miaoli_county"
+population: 46
+industry:   42
+culture:    70
+memory:     60
+trade:      38
+cohesion:   74
+specters_active: []
+eras_present: ["v1.0", "v2.0", "modern"]
+industries: ["農業", "工藝", "觀光"]
+temples:
+  - name: "苗栗玉清宮"
+    deity: "關聖帝君"
+sites: ["miaoli_site"]
+memory_breakdown:
+  history_events: 0.24
+  oral_tradition: 0.30
+  named_persons:  0.22
+  sites:          0.24

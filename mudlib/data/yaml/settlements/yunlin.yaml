@@ -1,0 +1,23 @@
+id: "yunlin"
+name: "雲林縣"
+tier: 2
+admin_level: "縣"
+county: "yunlin_county"
+population: 52
+industry:   50
+culture:    78
+memory:     65
+trade:      42
+cohesion:   75
+specters_active: []
+eras_present: ["v1.0", "v1.2", "modern"]
+industries: ["農業", "食品加工"]
+temples:
+  - name: "北港朝天宮"
+    deity: "媽祖"
+sites: ["beigang"]
+memory_breakdown:
+  history_events: 0.32
+  oral_tradition: 0.34
+  named_persons:  0.25
+  sites:          0.28

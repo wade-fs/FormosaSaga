@@ -1,0 +1,23 @@
+id: "taichung"
+name: "台中市"
+tier: 1
+admin_level: "市"
+county: "taichung_city"
+population: 80
+industry:   75
+culture:    70
+memory:     68
+trade:      75
+cohesion:   72
+specters_active: []
+eras_present: ["v1.0", "v2.0", "modern"]
+industries: ["製造業", "商業", "農業"]
+temples:
+  - name: "台中萬和宮"
+    deity: "媽祖"
+sites: ["taichung_station", "wufeng"]
+memory_breakdown:
+  history_events: 0.28
+  oral_tradition: 0.25
+  named_persons:  0.22
+  sites:          0.24
