@@ -36,12 +36,12 @@
   "faction": 0,
   "followers": [],
   "footprint_atlas": {
-    "geo:chiayi_city": {
+    "geo:minxiong": {
       "category": "geo",
-      "id": "geo:chiayi_city",
+      "id": "geo:minxiong",
       "obtained_at": 1782448294,
       "quality": 1,
-      "settlement_id": "chiayi_city"
+      "settlement_id": "minxiong"
     }
   },
   "footprints": [],
@@ -51,18 +51,18 @@
   "guild_rank": 0,
   "heart_beat_count": 0,
   "hp": 0,
-  "id": "tester",
+  "id": "test_wade",
   "id_list": [
-    "tester"
+    "test_wade"
   ],
   "in_combat": 0,
   "in_edit": 0,
   "is_closed": 0,
   "is_dead": 0,
   "is_riding": 0,
-  "lang": 0,
+  "lang": "zh-TW",
   "last_bank_time": 0,
-  "last_location": 0,
+  "last_location": "/std/site.c",
   "leader": 0,
   "level": 1,
   "long_name": "這是一個沒有描述的東西。",
@@ -74,7 +74,7 @@
   "money_value": 0,
   "mp": 0,
   "muted_channels": {},
-  "name": "測試者",
+  "name": "無名氏",
   "nature": 0,
   "no_drop": 0,
   "no_get": 0,
@@ -85,7 +85,7 @@
   "quests": {},
   "race": 0,
   "responses": {},
-  "role": 0,
+  "role": "god",
   "saved_inventory": [],
   "short_name": "某個東西",
   "skills": {},
@@ -95,7 +95,13 @@
   "stat_int": 10,
   "stat_str": 10,
   "stat_wis": 10,
-  "temp_vars": {},
-  "unlocked_memories": 0,
+  "temp_vars": {
+    "current_site_id": "site:dashiye_temple",
+    "fp_checked_geo:minxiong": 1,
+    "previous_site_id": "site:minxiong_market"
+  },
+  "unlocked_memories": [
+    "minxiong_temple_001"
+  ],
   "write_paths": []
 }

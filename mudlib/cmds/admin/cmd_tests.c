@@ -53,7 +53,8 @@ int main(object me, string verb, string arg) {
         "/tests/test_yaml.c",
         "/tests/test_canon_world.c",
         "/tests/test_reveal_validation.c",
-        "/tests/test_log_file.c"
+        "/tests/test_log_file.c",
+        "/tests/test_look_travel_debug.c"
     });
 
     int total = 0;

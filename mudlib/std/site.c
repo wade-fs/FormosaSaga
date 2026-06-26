@@ -254,13 +254,13 @@ void do_look(object player) {
     }
 
     // ── 可前往的鄰近地點 ──
-    string clean_id = query_entity_id();
-    int colon_idx = strsrch(clean_id, ":");
-    if (colon_idx != -1) {
-        clean_id = substr(clean_id, colon_idx + 1, strlen(clean_id) - colon_idx - 1);
+    string clean_id_for_conns = query_entity_id();
+    int colon_idx_for_conns = strsrch(clean_id_for_conns, ":");
+    if (colon_idx_for_conns != -1) {
+        clean_id_for_conns = substr(clean_id_for_conns, colon_idx_for_conns + 1, strlen(clean_id_for_conns) - colon_idx_for_conns - 1);
     }
 
-    string *conns = ROUTE_D->query_connections(clean_id);
+    string *conns = ROUTE_D->query_connections(clean_id_for_conns);
     if (sizeof(conns)) {
         out += "\n" + C_DIM + "可前往：" + C_RESET;
         string *conn_names = ({});
@@ -356,8 +356,7 @@ int do_travel(object player, string destination) {
     tell_object(player, "\n" + travel_text + "\n");
 
     // 執行移動
-    player_leave(player);
-    target_ob->player_enter(player);
+    player->move(target_ob);
 
     return 1;
 }
@@ -393,8 +392,7 @@ int do_enter_history(object player, int index) {
         "記憶的縫隙在你眼前展開——\n" +
         C_RESET);
 
-    player_leave(player);
-    history_site->player_enter(player);
+    player->move(history_site);
 
     emit("PlayerEnteredHistoryLayer", ([
         "player_id": player->query_entity_id(),

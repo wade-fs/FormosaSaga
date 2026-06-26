@@ -62,6 +62,16 @@ mapping load_settlement(string id) {
     mapping static_data = yaml_decode(read_file(yaml_path));
     if (!static_data) return 0;
 
+    mixed t = static_data["tier"];
+    if (stringp(t)) {
+        if (t == "village") t = TIER_VILLAGE;
+        else if (t == "city3") t = TIER_CITY3;
+        else if (t == "city2") t = TIER_CITY2;
+        else if (t == "city1") t = TIER_CITY1;
+        else t = TIER_VILLAGE;
+        static_data["tier"] = t;
+    }
+
     // 快取名稱對照
     mapping n_map = ([]);
     if (pointerp(static_data["names"])) {
@@ -372,6 +382,7 @@ object get_site_object(string site_id) {
             active_sites[site_id] = ob;
             return ob;
         }
+        return 0;
     }
 
     // 🚀 核心修改：如果 LPC 檔案不存在，嘗試從 SITE_D 載入 YAML 設定並動態 Clone
@@ -464,7 +475,15 @@ private void _save_settlement(string id, mapping data) {
         helper->set_prop(dim, data[dim] || 0);
 
     helper->set_prop("specters_active", data["specters_active"] || ({}));
-    helper->set_prop("tier", data["tier"] || TIER_VILLAGE);
+    mixed t = data["tier"];
+    if (stringp(t)) {
+        if (t == "village") t = TIER_VILLAGE;
+        else if (t == "city3") t = TIER_CITY3;
+        else if (t == "city2") t = TIER_CITY2;
+        else if (t == "city1") t = TIER_CITY1;
+        else t = TIER_VILLAGE;
+    }
+    helper->set_prop("tier", t || TIER_VILLAGE);
 
     catch(helper->save_object(save_path));
     destruct(helper);
