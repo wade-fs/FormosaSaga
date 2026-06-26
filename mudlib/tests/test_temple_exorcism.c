@@ -18,7 +18,7 @@ string query_role() { return "god"; }
 void run_tests(object me) {
     start_test("廟委鎮煞任務 (Demo Quest) 完整流程測試");
 
-    object q_d = load_object("/daemon/quest_d.c");
+    object q_d = load_object("/secure/quest_d.c") || load_object("/daemon/quest_d.c");
     assert_true(objectp(q_d), "應成功載入任務守護進程");
 
     // ── 建立測試玩家 ────────────────────────────────────────
@@ -80,6 +80,7 @@ void run_tests(object me) {
         player->set_leader(leader_mock);
 
         mapping reveals_party = temple->resolve_reveals(player);
+
         int party_found_clue = 0;
         foreach (string t in reveals_party["texts"]) {
             if (strsrch(t, "線索顯現") != -1) party_found_clue = 1;

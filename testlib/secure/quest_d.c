@@ -72,6 +72,29 @@ void create() {
                 "gold": 80,
                 "item": "/item/old_station_ticket.c"
             ])
+        ]),
+        "temple_exorcism": ([
+            "name": ([ "zh-TW": "廟委鎮煞委託", "en": "Temple Council Exorcism" ]),
+            "desc": ([
+                "zh-TW": "廟祝說大士爺廟底下的鎮煞石陣出現了裂縫，三尊走陰的怨靈趁機竄出。你必須與同伴組隊前往地下陣法，尋得三枚散落的「鎮符石」後，回報廟祝。",
+                "en": "The temple keeper says the ward stone formation beneath the temple has cracked. Three vengeful spirits have escaped into the underground chamber. Form a party, retrieve the three Ward Stones, and report back."
+            ]),
+            "level": 5,
+            "prereq_quests": ({ "old_station_master_wish" }),
+            "goal": ([
+                "type": "item",
+                "target": "ward_stone",
+                "count": 3
+            ]),
+            "reward": ([
+                "exp": 500,
+                "gold": 200,
+                "item": "/item/temple_amulet.c",
+                "faction": ([
+                    "id": "dashiye_temple_council",
+                    "reputation": 30
+                ])
+            ])
         ])
     ]);
 }
@@ -92,6 +115,20 @@ int accept_quest(object me, string qid) {
     if (me->query_quest(qid)) {
         write(to_string(_t("quest_already_accepted")) + "\n");
         return 0;
+    }
+
+    // 前置任務檢查
+    if (info["prereq_quests"]) {
+        foreach (string pre in info["prereq_quests"]) {
+            mapping pdata = me->query_quest(pre);
+            if (!pdata || pdata["status"] != "completed") {
+                write(select_lang(([
+                    "zh-TW": "你尚未完成前置任務，無法接受此委託。\n",
+                    "en": "You must complete the prerequisite quest first.\n"
+                ])));
+                return 0;
+            }
+        }
     }
 
     me->set_quest(qid, ([
@@ -126,7 +163,7 @@ int complete_quest(object me, string qid) {
         object *inv = all_inventory(me);
         object *found = ({});
         foreach (object ob in inv) {
-            if (ob->query_name() == target_name) found += ({ ob });
+            if (ob->query_name() == target_name || ob->query_id(target_name)) found += ({ ob });
         }
         
         if (sizeof(found) < req_count) {
@@ -190,6 +227,19 @@ int complete_quest(object me, string qid) {
             msg = replace_string(msg, "$item", to_string(ob->query_short()));
             write(msg + "\n");
             if (!move_object(ob, me)) move_object(ob, environment(me));
+        }
+    }
+
+    // 🚀 新增：勢力聲望獎勵
+    if (reward["faction"]) {
+        string fid = reward["faction"]["id"];
+        int rep = reward["faction"]["reputation"];
+        if (fid && rep) {
+            me->add_faction_reputation(fid, rep);
+            write("$HIC$" + select_lang(([
+                "zh-TW": "你與「" + fid + "」的聲望增加了 " + rep + " 點。\n",
+                "en": "Your reputation with '" + fid + "' increased by " + rep + ".\n"
+            ])) + "$NOR$");
         }
     }
 

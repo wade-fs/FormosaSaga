@@ -90,7 +90,7 @@ int complete_quest(object me, string qid) {
         object *inv = all_inventory(me);
         object *found = ({});
         foreach (object ob in inv) {
-            if (ob->query_name() == target_name) found += ({ ob });
+            if (ob->query_name() == target_name || ob->query_id(target_name)) found += ({ ob });
         }
         
         if (sizeof(found) < req_count) {
