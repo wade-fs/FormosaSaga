@@ -26,6 +26,9 @@ string _t(string key) {
 }
 
 void logon() {
+    // Exit MC mode if it was active
+    write("{\"ui\": \"mc_exit\"}\n");
+
     // 🚀 新增：立即發送 UI 初始化資訊給前端，不需要等登入完成
     string l = browser_lang;
     if (!l) l = "en";

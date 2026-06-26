@@ -186,7 +186,26 @@ int do_go(string dir) {
     if (dir == "back" || dir == "out" || dir == "leave") {
         return do_back_compat("");
     }
-    return ::do_go(dir);
+    
+    int dx = 0, dy = 0;
+    if (dir == "north") dy = 1;
+    else if (dir == "south") dy = -1;
+    else if (dir == "west") dx = -1;
+    else if (dir == "east") dx = 1;
+    else return ::do_go(dir);
+
+    object me = this_player();
+    int res = move_player(me, dx, dy);
+    if (res == 0) {
+        write("你往 " + dir + " 移動了一格。\n");
+        return 1;
+    } else if (res == 2) {
+        write("那裡被方塊擋住了。\n");
+        return 1;
+    } else {
+        write("你不能往那裡走。\n");
+        return 1;
+    }
 }
 
 // ── 指令相容性備援 ─────────────────────────────────────────
@@ -203,7 +222,7 @@ void push_map_delayed(object player) {
     if (!player || !objectp(player)) return;
     broadcast_map(player);
     tell_lm_room(
-        "$CYN$" + player->query_name() + "$NOR$" + " 進入了創界。\n",
+        "$CYN$" + player->query_name() + "$NOR$" + " 進入了此處。\n",
         player
     );
 }
@@ -214,31 +233,43 @@ void broadcast_map(object target) {
     string pid = target->get_id();
     int *pos = player_pos[pid];
     if (!pos) pos = ({ SPAWN_X, SPAWN_Y });
+    int px = pos[0];
+    int py = pos[1];
 
-    // 收集在線玩家位置
-    mapping online = ([]);
-    foreach (object p in all_inventory(this_object())) {
-        if (userp(p)) {
-            string oid = p->get_id();
-            mixed op = player_pos[oid];
-            if (op) m_add(online, oid, op);
+    mixed *grid = ({});
+    for (int y = py + 2; y >= py - 2; y--) {
+        string *row = ({});
+        for (int x = px - 2; x <= px + 2; x++) {
+            if (x == px && y == py) {
+                row += ({ "player" });
+            } else if (x < 0 || x >= WORLD_W || y < 0 || y >= WORLD_H) {
+                row += ({ "void" });
+            } else {
+                string b = blocks[sprintf("%d,%d", x, y)];
+                if (b) {
+                    row += ({ b });
+                } else {
+                    row += ({ "void" });
+                }
+            }
         }
+        grid += ({ row });
     }
 
-    mapping payload = ([
-        "world_name"  : query_short(),
-        "blocks"      : blocks,
-        "block_colors": block_colors(),
-        "players"     : online,
-        "npcs"        : npc_pos,
-        "self_id"     : pid,
-        "width"       : WORLD_W,
-        "height"      : WORLD_H
+    string *avail_exits = ({});
+    if (py + 1 < WORLD_H && !blocks[sprintf("%d,%d", px, py + 1)]) avail_exits += ({ "north" });
+    if (py - 1 >= 0      && !blocks[sprintf("%d,%d", px, py - 1)]) avail_exits += ({ "south" });
+    if (px - 1 >= 0      && !blocks[sprintf("%d,%d", px - 1, py)]) avail_exits += ({ "west" });
+    if (px + 1 < WORLD_W && !blocks[sprintf("%d,%d", px + 1, py)]) avail_exits += ({ "east" });
+
+    mapping map_data = ([
+        "grid" : grid,
+        "exits": avail_exits
     ]);
 
     tell_object(target, sprintf(
-        "{\"ui\":\"mc_map\",\"data\":%s}\n",
-        json_encode(payload)
+        "{\"ui\":\"minimap\",\"data\":%s}\n",
+        json_encode(map_data)
     ));
 }
 

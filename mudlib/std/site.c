@@ -273,6 +273,9 @@ void do_look(object player) {
     }
 
     tell_object(player, out);
+    if (is_web_client(player)) {
+        tell_object(player, "{\"ui\": \"minimap\", \"data\": {}}");
+    }
 
     // 🚀 核心修改：如果該地點有 2D 視覺小圖事件，在 look 時一併推送給前端渲染
     catch(EVENT_VIEWER_D->trigger_event_view(player, query_entity_id()));
