@@ -1,4 +1,28 @@
 id: tainan_xilaya
+settlement: tainan
+canonical_name: 新港社
+is_heritage: false
+base_description: |
+  這是一片平緩的平原草澤，檳榔樹與竹林交錯在平埔族人高腳屋的聚落四周。
+  空氣中飄散着烤鹿肉與小米酒的芬芳，不遠處傳來梅花鹿群的奔跑與呼喚。
+travel_arrive_text: "你踏進了西拉雅新港社的領域，綠意蔥蘢的草澤與高腳屋迎面而來。"
+
+names:
+  - era: v0_1
+    name: 新港社聚落
+  - era: v1_0
+    name: 新港庄
 
 connections:
-  - tainan_confucian_temple
+  - tainan_anping
+
+reveal_layers:
+  # 條件 1：當世界處於最原始的荒野紀 (v0_1) 時代時，展現原始西拉雅祭儀與高腳屋
+  - condition: "all"
+    checks:
+      - type: "has_talent"
+        talent: "island_memory"
+    text: "竹林深處隱隱傳來尪姨的祈禱祭儀聲，以及西拉雅族人與自然共生的原始印記。"
+    entry:
+      era: "v0_1"
+      label: "進入原始荒野紀的新港社"

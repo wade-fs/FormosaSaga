@@ -1,4 +1,51 @@
 id: tainan_anping
+settlement: tainan
+canonical_name: 安平
+is_heritage: false
+base_description: |
+  熱氣蒸騰的安平港灣，夕陽餘暉灑在波光粼粼的海面上。
+  海風中夾雜著鹽分與古老木船的潮濕氣味，沙灘上散落著貝殼與舊磚石的碎屑。
+travel_arrive_text: "你來到了古老的海港安平，潮水聲拍打著海岸，訴說著數百年的風霜。"
+
+names:
+  - era: v0_2
+    name: 大員海灣
+  - era: v1_0
+    name: 安平港街
+  - era: v2_1
+    name: 安平支廳
 
 connections:
   - tainan_chihkan_tower
+  - tainan_xilaya
+
+reveal_layers:
+  # 條件 1：當世界處於 "v0_2" 時代且擁有天賦時，可進入海商紀歷史層
+  - condition: "all"
+    checks:
+      - type: "has_talent"
+        talent: "island_memory"
+    text: "港灣的波浪間隱約浮現出巨大帆船與大砲的幻影，耳邊傳來夾雜著閩南語與荷蘭語的喧囂呼喊。"
+    entry:
+      era: "v0_2"
+      label: "進入海商紀的大員海灣（鄭成功渡海）"
+
+  # 條件 2：當世界進入 "v1_0" 時代後，浮現清領時期的安平港街歷史層
+  - condition: "all"
+    checks:
+      - type: "era_completed"
+        era: "v0_2"
+    text: "防波堤旁扭曲的虛空中，隱約浮現出飄揚著清朝官旗的駁船，以及苦力們搬運糖包與茶箱的吆喝聲。"
+    entry:
+      era: "v1_0"
+      label: "進入清領時期的安平港街"
+
+  # 條件 3：當世界進入 "v2_1" 日治時代後，浮現安平歷史遺跡與傳說歷史層
+  - condition: "all"
+    checks:
+      - type: "era_completed"
+        era: "v2_0"
+    text: "紅磚牆的縫隙中，隱隱透露出一股日本大正時期鹽務局與紅毛城歷史堆疊的靜謐氣息。"
+    entry:
+      era: "v2_1"
+      label: "進入日治時期的安平支廳"
