@@ -274,6 +274,9 @@ void do_look(object player) {
 
     tell_object(player, out);
 
+    // 🚀 核心修改：如果該地點有 2D 視覺小圖事件，在 look 時一併推送給前端渲染
+    catch(EVENT_VIEWER_D->trigger_event_view(player, query_entity_id()));
+
     // 浮現記憶碎片（觸發但不直接顯示，讓 MEMORY_D 處理通知）
     if (sizeof(revealed["memories"])) {
         foreach (string mid in revealed["memories"])

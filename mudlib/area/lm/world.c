@@ -11,6 +11,7 @@
 
 #include "/include/config.h"
 #include "/include/ansi.h"
+#include "/include/formosa.h"
 
 inherit "/std/room.c";
 
@@ -24,64 +25,17 @@ mapping blocks;      // "x,y" -> 方塊類型
 mapping player_pos;  // player_id -> ({ x, y })
 mapping npc_pos;     // npc_id -> ({ x, y })
 
-// ── 顏色定義與 Emoji 映射（同步給前端用）────────────────────────────────
+// ── 顏色定義與 Emoji 映射（同步給前端用，委託給共享資料庫）──────────────────
 mapping block_colors() {
-    return ([
-        "grass":  "#4CAF50",
-        "dirt":   "#795548",
-        "stone":  "#9E9E9E",
-        "wood":   "#8D6E63",
-        "log":    "#5D4037",
-        "planks": "#FFCC80",
-        "leaves": "#2E7D32",
-        "sand":   "#FDD835",
-        "water":  "#1E88E5",
-        "coal":   "#37474F",
-        "iron":   "#B0BEC5",
-        "gold":   "#FFD600",
-        "brick":  "#BF360C"
-    ]);
+    return EVENT_VIEWER_D->query_block_colors();
 }
 
 mapping emoji_to_block() {
-    return ([
-        "🟩": "grass",
-        "🟫": "dirt",
-        "🪨": "stone",
-        "🪵": "log",
-        "🌲": "log",
-        "🌳": "log",
-        "🌿": "leaves",
-        "☘️": "leaves",
-        "🍀": "leaves",
-        "🟨": "sand",
-        "🏖️": "sand",
-        "🟦": "water",
-        "🌊": "water",
-        "🧱": "brick",
-        "⬜": "stone",
-        "⬛": "coal",
-        "⚙️": "iron",
-        "💰": "gold"
-    ]);
+    return EVENT_VIEWER_D->query_emoji_to_block();
 }
 
 mapping emoji_to_npc() {
-    return ([
-        "🐑": "sheep",
-        "🐰": "rabbit",
-        "🐄": "cow",
-        "🐐": "goat",
-        "🐺": "wolf",
-        "🐻": "bear",
-        "🐅": "tiger",
-        "🐆": "leopard",
-        "🦉": "owl",
-        "🦇": "bat",
-        "👾": "slime",
-        "🐟": "fish",
-        "🚶": "villager"
-    ]);
+    return EVENT_VIEWER_D->query_emoji_to_npc();
 }
 
 
