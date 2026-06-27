@@ -38,10 +38,34 @@ temples: []
 # 地標
 sites:
   - "wushe_mahebo"
-
+  - "wushe_mahebo_village"
+  - "wushe_elementary_school"
+  - "wushe_renzhiguan_pass"
+  - "wushe_boalun_village"
+  - "wushe_hego_village"
+  - "wushe_police_outpost"
+  - "wushe_shrine_steps"
+  - "wushe_meixi_bridge"
+  - "wushe_wanda_dam"
+  - "wushe_logging_office"
+  - "wushe_mahebo_cave_hotspring"
+  - "wushe_mona_rudao_cave"
 # 記憶子項目完成度
 memory_breakdown:
   history_events: 0.35
   oral_tradition: 0.40
   named_persons:  0.30
-  sites:          0.28
+sites:
+  - "wushe_mahebo"
+  - "wushe_mahebo_village"
+  - "wushe_elementary_school"
+  - "wushe_renzhiguan_pass"
+  - "wushe_boalun_village"
+  - "wushe_hego_village"
+  - "wushe_police_outpost"
+  - "wushe_shrine_steps"
+  - "wushe_meixi_bridge"
+  - "wushe_wanda_dam"
+  - "wushe_logging_office"
+  - "wushe_mahebo_cave_hotspring"
+  - "wushe_mona_rudao_cave"
