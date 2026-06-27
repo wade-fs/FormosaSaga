@@ -85,7 +85,7 @@ mapping query_categorized_commands(string lang) {
         }
         
         // 排除管理指令（除非是巫師）
-        if (strsrch(file, "/cmds/admin/") == 0) {
+        if (stringp(file) && strsrch(file, "/cmds/admin/") == 0) {
             cat = "Admin";
         }
 
