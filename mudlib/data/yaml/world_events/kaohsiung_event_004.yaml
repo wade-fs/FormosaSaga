@@ -1,0 +1,8 @@
+affected_sites:
+- kaohsiung_harbor
+description: 這是高雄的第 4 個世界動態事件描述。
+duration_days: 1
+era_active: modern
+id: kaohsiung_event_004
+name: 高雄世界事件 4
+type: scheduled

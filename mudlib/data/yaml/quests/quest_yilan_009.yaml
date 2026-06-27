@@ -1,0 +1,16 @@
+id: quest_yilan_009
+title: 蘭陽尋蹤任務 9
+description: 在宜蘭展開的歷史探索任務，尋找失落的歲月與回憶第 9 階段。
+difficulty: 1
+era: modern
+scope:
+- yilan
+settlement: yilan
+objectives:
+- id: obj_yilan_9_1
+  npc: NPC_yilan_001
+  ask_topic: 噶瑪蘭
+  description: 向林阿一詢問關於噶瑪蘭的歷史
+completion_reward:
+  exp: 200
+  reputation: 20

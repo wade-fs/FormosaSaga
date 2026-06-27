@@ -1,0 +1,8 @@
+id: yilan_event_002
+name: 宜蘭動態慶典 2
+description: 宜蘭地區舉辦的季節性慶典或自然事件 2。
+duration_days: 7
+era_active: modern
+type: scheduled
+affected_sites:
+- suao_port

@@ -1,0 +1,16 @@
+completion_reward:
+  exp: 100
+  reputation: 10
+description: 高雄的第 15 個歷史任務故事描述。
+difficulty: 1
+era: modern
+id: quest_kaohsiung_015
+objectives:
+- ask_topic: 港口
+  description: 向港務長詢問情況
+  id: obj_15_1
+  npc: NPC_kaohsiung_harbor_captain
+scope:
+- kaohsiung
+settlement: kaohsiung
+title: 高雄任務 15
