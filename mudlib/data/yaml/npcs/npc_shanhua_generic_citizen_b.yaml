@@ -1,0 +1,11 @@
+id: npc_shanhua_generic_citizen_b
+name:
+  zh-TW: "善化老街居民"
+settlement: shanhua
+home_site: "shanhua_site"
+role: "citizen"
+hint:
+  zh-TW: "在善化舊街與慶安宮一帶討生活的尋常百姓。"
+responses:
+  "地方":
+    zh-TW: "我們善化出名的就是糖廠的甜香跟牛墟的熱鬧，有空一定要去走走。"

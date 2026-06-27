@@ -38,10 +38,34 @@ temples:
 # 地標
 sites:
   - "xilai_an"
-
+  - "yujing_hutoushan_battlefield"
+  - "yujing_north_pole_temple"
+  - "yujing_sugar_factory"
+  - "yujing_memorial_park"
+  - "yujing_zengwen_ferry"
+  - "yujing_mangzimang_village"
+  - "yujing_mango_origin_monument"
+  - "yujing_green_tunnel"
+  - "yujing_jiang_family_mansion"
+  - "yujing_houlian_forest_trail"
+  - "yujing_hutoushan_secret_cave"
+  - "yujing_zhuwei_defensive_passage"
 # 記憶子項目完成度
 memory_breakdown:
   history_events: 0.32
   oral_tradition: 0.28
   named_persons:  0.25
-  sites:          0.26
+sites:
+  - "xilai_an"
+  - "yujing_hutoushan_battlefield"
+  - "yujing_north_pole_temple"
+  - "yujing_sugar_factory"
+  - "yujing_memorial_park"
+  - "yujing_zengwen_ferry"
+  - "yujing_mangzimang_village"
+  - "yujing_mango_origin_monument"
+  - "yujing_green_tunnel"
+  - "yujing_jiang_family_mansion"
+  - "yujing_houlian_forest_trail"
+  - "yujing_hutoushan_secret_cave"
+  - "yujing_zhuwei_defensive_passage"

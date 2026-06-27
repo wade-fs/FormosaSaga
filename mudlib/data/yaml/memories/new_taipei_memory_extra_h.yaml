@@ -1,0 +1,10 @@
+id: new_taipei_memory_extra_h
+title: "新北歷史風物印記_H"
+era: "v3.0"
+evidence_type: 歷史記憶
+quality: 3
+progress: 10
+description: "關於新北市轄內淡水、板橋、平溪、九份等地區拓墾、外銷茶業或礦業歷史發展的珍貴記憶片段H。"
+settlement: new_taipei
+trigger_site: "jiufen"
+conditions: []
