@@ -379,11 +379,7 @@ def audit_settlement(settlement_id: str, tier: str = "B") -> tuple[list[AuditRes
 
 
 # ─── 主程式 ───────────────────────────────────────────────
-def run_audit(settlement_id: str, forced_tier: Optional[str] = None):
-    print(f"\n{BOLD}{'═' * 62}{RESET}")
-    print(f"{BOLD}  聚落驗收稽核 — P23.1 Settlement Definition of Done{RESET}")
-    print(f"{BOLD}{'═' * 62}{RESET}")
-
+def run_audit(settlement_id: str, forced_tier: Optional[str] = None, simple: bool = False):
     # 先載入 settlement YAML 偵測 tier（若未強制指定）
     settlement_file = SETTLEMENTS_DIR / f"{settlement_id}.yaml"
     if not settlement_file.exists():
@@ -395,36 +391,44 @@ def run_audit(settlement_id: str, forced_tier: Optional[str] = None):
 
     results, warnings, s_name = audit_settlement(settlement_id, tier=tier)
 
-    print(f"\n  {BOLD}聚落：{s_name}（{settlement_id}）  [Tier {tier}]{RESET}\n")
-    print(f"  {'類別':<24} {'數量':>6}   {'門檻':<6}  進度")
-    print(f"  {'─' * 58}")
-
-    passed = 0
-    failed_items = []
-    for r in results:
-        print(r.render())
-        if r.passed:
-            passed += 1
-        else:
-            failed_items.append(r.category)
-
+    passed = sum(1 for r in results if r.passed)
     total = len(results)
-    print(f"\n  {'─' * 58}")
-    score_color = GREEN if passed == total else (YELLOW if passed >= total * 0.6 else RED)
-    print(f"  {BOLD}通過：{score_color}{passed}{RESET}{BOLD} / {total} 項{RESET}")
+    is_ok = passed == total
 
-    if warnings:
-        print(f"\n  {BOLD}{YELLOW}⚠ 警告{RESET}")
-        for w in warnings:
-            print(f"    {YELLOW}·{RESET} {w}")
+    if simple:
+        status_str = f"{GREEN}PASS{RESET}" if is_ok else f"{RED}FAIL ({passed}/{total}){RESET}"
+        print(f"  [{status_str}] {s_name} ({settlement_id}) [Tier {tier}]")
+    else:
+        print(f"\n{BOLD}{'═' * 62}{RESET}")
+        print(f"{BOLD}  聚落驗收稽核 — P23.1 Settlement Definition of Done{RESET}")
+        print(f"{BOLD}{'═' * 62}{RESET}")
+        print(f"\n  {BOLD}聚落：{s_name}（{settlement_id}）  [Tier {tier}]{RESET}\n")
+        print(f"  {'類別':<24} {'數量':>6}   {'門檻':<6}  進度")
+        print(f"  {'─' * 58}")
 
-    if failed_items:
-        print(f"\n  {BOLD}{RED}✗ 未達標項目{RESET}")
-        for fi in failed_items:
-            print(f"    {RED}·{RESET} {fi}")
+        failed_items = []
+        for r in results:
+            print(r.render())
+            if not r.passed:
+                failed_items.append(r.category)
 
-    print(f"\n{BOLD}{'═' * 62}{RESET}\n")
-    return 0 if passed == total else 1
+        print(f"\n  {'─' * 58}")
+        score_color = GREEN if is_ok else (YELLOW if passed >= total * 0.6 else RED)
+        print(f"  {BOLD}通過：{score_color}{passed}{RESET}{BOLD} / {total} 項{RESET}")
+
+        if warnings:
+            print(f"\n  {BOLD}{YELLOW}⚠ 警告{RESET}")
+            for w in warnings:
+                print(f"    {YELLOW}·{RESET} {w}")
+
+        if failed_items:
+            print(f"\n  {BOLD}{RED}✗ 未達標項目{RESET}")
+            for fi in failed_items:
+                print(f"    {RED}·{RESET} {fi}")
+
+        print(f"\n{BOLD}{'═' * 62}{RESET}\n")
+        
+    return 0 if is_ok else 1
 
 
 def main():
@@ -435,6 +439,8 @@ def main():
                         help="聚落 ID（預設：minxiong）")
     parser.add_argument("--all", action="store_true",
                         help="稽核所有聚落")
+    parser.add_argument("--simple", action="store_true",
+                        help="僅顯示最終的 PASS / FAIL 結果")
     parser.add_argument("--tier", choices=["S", "A", "B", "C"],
                         help="強制指定 Tier（預設自動從 settlement YAML 偵測）")
     args = parser.parse_args()
@@ -442,12 +448,14 @@ def main():
     if args.all:
         settlements = [p.stem for p in SETTLEMENTS_DIR.glob("*.yaml")]
         exit_code = 0
+        if args.simple:
+            print(f"\n{BOLD}  所有聚落簡要稽核結果：{RESET}\n")
         for sid in sorted(settlements):
-            code = run_audit(sid, forced_tier=args.tier)
+            code = run_audit(sid, forced_tier=args.tier, simple=args.simple)
             exit_code = max(exit_code, code)
         sys.exit(exit_code)
     else:
-        sys.exit(run_audit(args.settlement, forced_tier=args.tier))
+        sys.exit(run_audit(args.settlement, forced_tier=args.tier, simple=args.simple))
 
 
 if __name__ == "__main__":
