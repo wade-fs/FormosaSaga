@@ -211,6 +211,12 @@ void do_look(object player) {
     if (base_description && base_description != "")
         out += base_description + "\n";
 
+    // P15: 動態世界事件對該 Site 的額外描述
+    string event_desc = WORLD_EVENT_D->query_site_event_desc(clean_id);
+    if (event_desc && event_desc != "") {
+        out += event_desc + "\n";
+    }
+
     // ── 條件浮現層 ──
     mapping revealed = resolve_reveals(player);
 
@@ -419,6 +425,17 @@ int do_travel(object player, string destination) {
         tell_object(player,
             C_WARN + "找不到「" + destination + "」。" + C_RESET +
             "輸入 look 查看可前往的地點。\n");
+        return 0;
+    }
+
+    // P15: 檢查路線或目標地點是否被世界事件封鎖
+    if (WORLD_EVENT_D->is_site_blocked(target_id)) {
+        tell_object(player, C_WARN + "受到當前世界事件影響，" + ERA_D->resolve_name(target_id, "site", player) + " 目前無法通行！\n" + C_RESET);
+        return 0;
+    }
+    // 檢查從當前 site 到目標 site 的連接是否被封鎖 (通常以路線 ID 或目標地 ID 檢查)
+    if (WORLD_EVENT_D->is_route_blocked(target_id) || WORLD_EVENT_D->is_route_blocked(clean_id + "_" + target_id)) {
+        tell_object(player, C_WARN + "前往該方向的道路已經被世界事件阻斷，無法通行。\n" + C_RESET);
         return 0;
     }
 

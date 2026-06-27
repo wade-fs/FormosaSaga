@@ -439,7 +439,7 @@ func (d *Driver) registerErrorEfun(obj *object.LPCObject) {
 					msg = s.Value
 				}
 			}
-			return object.NewError(msg)
+			return object.NewError("%s", msg)
 		},
 	})
 }

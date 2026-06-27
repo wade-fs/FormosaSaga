@@ -21,7 +21,7 @@
   "career_points": {},
   "combat_target": 0,
   "current_mudlib": "",
-  "cwd": "/",
+  "cwd": "/data/user/wade",
   "data_base_path": "/mudlib/data/",
   "defence": 21,
   "equip_body": 0,
@@ -34,6 +34,7 @@
   "exp_to_next": 1000,
   "explored_rooms": {},
   "faction": 0,
+  "faction_reputation": 0,
   "followers": [],
   "footprint_atlas": {
     "geo:minxiong": {
@@ -56,7 +57,7 @@
   "guild": 0,
   "guild_exp": 0,
   "guild_rank": 0,
-  "heart_beat_count": 2,
+  "heart_beat_count": 1,
   "hp": 165,
   "id": "wade",
   "id_list": [
@@ -69,7 +70,7 @@
   "is_riding": 0,
   "lang": "zh-TW",
   "last_bank_time": 1782448932,
-  "last_location": "site:dashiye_temple",
+  "last_location": "site:minxiong_old_station",
   "leader": 0,
   "level": 1,
   "long_name": "這是一個沒有描述的東西。",
@@ -92,7 +93,7 @@
   "quests": {},
   "race": "dwarf",
   "responses": {},
-  "role": "user",
+  "role": "god",
   "saved_inventory": [],
   "short_name": "某個東西",
   "skills": {
@@ -103,6 +104,10 @@
     "power_strike": {
       "exp": 0,
       "level": 1
+    },
+    "taming": {
+      "exp": 0,
+      "level": 200
     }
   },
   "stat_cha": 10,
@@ -112,15 +117,15 @@
   "stat_str": 17,
   "stat_wis": 11,
   "temp_vars": {
-    "current_site_id": "site:dashiye_temple",
+    "current_site_id": "site:minxiong_old_station",
     "fp_checked_geo:minxiong": 1,
     "history_entries": [
       {
-        "era": "v0.1",
-        "label": "洪雅族時代的打貓社"
+        "era": "japanese",
+        "label": "進入大正時期的民雄驛"
       }
     ],
-    "previous_site_id": "settlement:minxiong"
+    "previous_site_id": "site:dashiye_temple"
   },
   "unlocked_memories": [
     "minxiong_station_001",

@@ -135,6 +135,7 @@ func main() {
 		"look",
 		"travel 民雄車站",
 		"look",
+		"tests",
 		"shutdown",  // 💡 執行系統關閉指令，使伺服器存檔並安全退場
 	}
 

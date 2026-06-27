@@ -36,7 +36,7 @@ void run_tests(object me) {
         move_object(me, room);
         int current_exp = me->query_exp();
 
-        object cmd_inv = load_object("/cmds/cmd_inventory.c");
+        object cmd_inv = load_object("/cmds/player/cmd_inventory.c");
         // 確保尋找錢袋
         object bag = present("money bag", corpse);
         if (bag) {

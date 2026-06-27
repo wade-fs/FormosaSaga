@@ -26,7 +26,7 @@ void run_tests(object me) {
     horse->set_hp(1); 
     
     // 模擬 tame 指令邏輯
-    object cmd_tame = load_object("/cmds/cmd_tame.c");
+    object cmd_tame = load_object("/cmds/player/cmd_tame.c");
     cmd_tame->main(me, "tame", "test_horse");
     
     object pet = me->query_pet();
@@ -37,7 +37,7 @@ void run_tests(object me) {
     }
 
     // 2. 測試騎乘
-    object cmd_ride = load_object("/cmds/cmd_ride.c");
+    object cmd_ride = load_object("/cmds/player/cmd_ride.c");
     cmd_ride->main(me, "ride", "");
     assert_equal(1, me->query_riding(), "執行 ride 後應進入騎乘狀態");
     assert_true(strsrch(me->query_display_name(), "騎乘中") != -1, "顯示名稱應包含騎乘資訊");

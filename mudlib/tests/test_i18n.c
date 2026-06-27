@@ -21,7 +21,7 @@ void run_tests(object me) {
     assert_equal("什么？", me->_t("what"), "简体中文模式下的 'what' 翻譯應正確");
 
     // 4. 測試語言切換指令
-    object cmd_lang = load_object("/cmds/cmd_lang.c");
+    object cmd_lang = load_object("/cmds/player/cmd_lang.c");
     cmd_lang->main(me, "lang", "en");
     assert_equal("en", me->query_lang(), "執行 lang en 指令後語系應變更");
 

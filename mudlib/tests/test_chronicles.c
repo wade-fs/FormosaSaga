@@ -69,7 +69,7 @@ void run_tests(object me) {
     int init_points = career_d->query_career_points(scholar, "scholar");
 
     // 藉由指令發表地方誌
-    object cmd_ob = load_object("/cmds/cmd_record.c");
+    object cmd_ob = load_object("/cmds/player/cmd_record.c");
     assert_true(objectp(cmd_ob), "應載入 cmd_record 指令物件");
 
     int res = cmd_ob->main(scholar, "record", "publish 民雄風情誌:這是一部詳細記錄民雄地方糖業與大士爺信仰的地方文獻，極具參考價值。");

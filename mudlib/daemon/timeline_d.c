@@ -6,11 +6,13 @@ inherit "/std/object";
 
 string current_era_id;
 int world_progress;
+private nosave mapping global_events;
 
 void save_state() {
     if (file_size("/data/state/system/") < 0) {
         mkdir("/data/state/system/");
     }
+    // 不儲存 nosave 的 global_events 到實體檔案中
     save_object("/data/state/system/timeline");
 }
 
@@ -34,10 +36,21 @@ void restore_state() {
 
 void create() {
     ::create();
+    global_events = ([]);
     restore_state();
 
     // 訂閱記憶完成事件，驅動時代進度
     call_out("subscribe_events", 1);
+}
+
+void set_global_event(string event, int val) {
+    if (!global_events) global_events = ([]);
+    global_events[event] = val;
+}
+
+int global_event_triggered(string event) {
+    if (!global_events) return 0;
+    return global_events[event] || 0;
 }
 
 void subscribe_events() {

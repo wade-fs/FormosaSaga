@@ -7,7 +7,7 @@ mapping cmd_map;
 inherit "/std/object";
 
 int rehash() {
-    string *dirs = ({ "/cmds/", "/cmds/admin/" });
+    string *dirs = ({ "/cmds/", "/cmds/player/", "/cmds/admin/" });
     cmd_map = ([]);
     int count = 0;
 

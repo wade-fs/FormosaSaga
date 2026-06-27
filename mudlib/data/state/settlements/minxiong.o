@@ -10,10 +10,10 @@
   "no_get": 0,
   "props": {
     "cohesion": 52,
-    "culture": 48,
+    "culture": 42,
     "industry": 35,
-    "memory": 61,
-    "population": 40,
+    "memory": 43,
+    "population": 100,
     "specters_active": [],
     "tier": 4,
     "trade": 38

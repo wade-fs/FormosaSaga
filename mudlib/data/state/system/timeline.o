@@ -1,5 +1,8 @@
 {
   "current_era_id": "v0_1",
+  "global_events": {
+    "typhoon_active": 0
+  },
   "id_list": [],
   "long_name": "這是一個沒有描述的東西。",
   "money_value": 0,

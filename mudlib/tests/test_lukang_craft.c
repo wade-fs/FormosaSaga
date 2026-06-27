@@ -55,7 +55,7 @@ void run_tests(object me) {
     int init_exp = artisan->query("exp");
     int init_points = career_d->query_career_points(artisan, "artisan");
 
-    object cmd_ob = load_object("/cmds/cmd_craft.c");
+    object cmd_ob = load_object("/cmds/player/cmd_craft.c");
     assert_true(objectp(cmd_ob), "應載入 cmd_craft 指令物件");
 
     int res = cmd_ob->main(artisan, "craft", "");
