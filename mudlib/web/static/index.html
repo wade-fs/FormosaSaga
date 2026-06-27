@@ -181,21 +181,7 @@
 
     <div id="mc-container">
         <div id="mc-ui">
-            <span style="color:#4CAF50; font-weight:bold;">MC Mode</span>
-            <button class="mc-btn active" onclick="setMCAction('dig', this)">Dig (Click)</button>
-            <button class="mc-btn" onclick="setMCAction('place', this)">Place (Click)</button>
-            <select id="mc-block-type" style="background:#333; color:#fff; border:1px solid #666; padding:3px; border-radius:4px;">
-                <option value="grass">🟩 Grass</option>
-                <option value="dirt">🟫 Dirt</option>
-                <option value="stone">⬜ Stone</option>
-                <option value="log">🪵 Log</option>
-                <option value="planks">🟨 Planks</option>
-                <option value="leaves">🌿 Leaves</option>
-                <option value="sand">🏜️ Sand</option>
-                <option value="brick">🧱 Brick</option>
-            </select>
-            <button class="mc-btn" onclick="promptImportMap()" style="background:#1976D2; border-color:#2196F3;">📥 Import Map</button>
-            <button class="mc-btn" onclick="toggleMCMode(false)" style="margin-left:auto; background:#833; border-color:#a55;">Exit World</button>
+            <span style="color:#4CAF50; font-weight:bold;">Visual Map</span>
         </div>
         <canvas id="mc-canvas"></canvas>
     </div>
@@ -423,19 +409,6 @@
     function initMCCanvas() {
         const canvas = document.getElementById('mc-canvas');
         canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
-        canvas.onmousedown = (e) => {
-            if (!mcData) return;
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left, y = e.clientY - rect.top;
-            const selfPos = mcData.players[mcData.self_id];
-            const centerX = canvas.width / 2, centerY = canvas.height / 2;
-            const worldX = Math.floor((x - centerX) / mcZoom + selfPos[0]);
-            const worldY = Math.floor(-(y - centerY) / mcZoom + selfPos[1]);
-            if (e.button === 0) {
-                if (mcAction === 'dig') sendCmd(`mc dig ${worldX} ${worldY}`);
-                else sendCmd(`mc place ${worldX} ${worldY} ${document.getElementById('mc-block-type').value}`);
-            }
-        };
         canvas.oncontextmenu = (e) => e.preventDefault();
         canvas.onwheel = (e) => {
             e.preventDefault();
@@ -508,7 +481,7 @@
             ctx.fillStyle = isSelf ? '#FFEB3B' : '#2196F3';
             ctx.beginPath(); ctx.arc(sx + mcZoom/2, sy - mcZoom/2, r, 0, Math.PI*2); ctx.fill();
             ctx.strokeStyle = isSelf ? '#fff' : '#90CAF9'; ctx.lineWidth = 1.5;
-            ctx.beginPath(); ctx.arc(sx + mcZoom/2, sy - mcZoom/2, r, 0, Math.PI*2); ctx.stroke();
+            ctx.beginPath(); ctx.arc(sx + mcZoom/2, sy - mcZoom/2, r, 0, Math.PI*2); stroke();
             ctx.fillStyle = isSelf ? '#FFD600' : '#fff';
             ctx.font = 'bold ' + Math.max(10, mcZoom/3) + 'px monospace';
             ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
@@ -527,9 +500,9 @@
             }
         }
 
-        ctx.fillStyle = 'rgba(0,0,0,0.55)'; ctx.fillRect(6, 6, 160, 22);
+        ctx.fillStyle = 'rgba(0,0,0,0.55)'; ctx.fillRect(6, 6, 90, 22);
         ctx.fillStyle = '#adf'; ctx.font = '12px monospace'; ctx.textAlign = 'left'; ctx.textBaseline = 'top';
-        ctx.fillText(`pos (${selfPos[0]}, ${selfPos[1]})  zoom ${mcZoom}px`, 10, 10);
+        ctx.fillText(`zoom ${mcZoom}px`, 10, 10);
     }
 
     function promptImportMap() {
