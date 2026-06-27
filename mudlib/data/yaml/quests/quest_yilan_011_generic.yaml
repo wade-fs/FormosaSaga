@@ -1,0 +1,16 @@
+id: quest_yilan_011_generic
+title: "蘭陽平原的日常協助"
+description: "協助本地居民打理日常瑣事，加深與蘭陽人民的關係。"
+difficulty: 1
+era: qing
+scope:
+- yilan
+settlement: yilan
+objectives:
+- id: obj_yilan_d_11
+  npc: npc_yilan_001_林聰賢
+  ask_topic: "地方"
+  description: "向宜蘭拓墾民詢問水土情況"
+completion_reward:
+  exp: 100
+  reputation: 10

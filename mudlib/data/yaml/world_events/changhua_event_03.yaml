@@ -1,11 +1,8 @@
 id: changhua_event_03
-name: "彰化動態事件03"
+name: "彰化南瑤宮笨港進香"
+description: "成千上萬的香燈腳跟隨南瑤宮媽祖起駕，浩浩蕩蕩徒步前往笨港進香。"
+duration_days: 7
+era_active: qing
 type: scheduled
-era_active: modern
-duration_days: 1
 affected_sites:
-  - changhua_site_01
-description: "彰化動態事件03正在發生。"
-effects:
-  site_desc_override:
-    changhua_site_01: "因為動態事件，這裡發生了變化。"
+- changhua_site_01

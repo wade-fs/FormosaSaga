@@ -1,10 +1,8 @@
 id: xinshi_event_002
-name: 新市動態事件 2
-description: 新市的季節性慶典或自然事件 2。
+name: "南科史前遺址發掘季"
+description: "南科園區開挖出新遺物，全台考古學者與志工齊聚新市，展開搶救挖掘。"
 duration_days: 7
-era_active: modern
+era_active: qing
 type: scheduled
-scope:
-  - xinshi
 affected_sites:
-  - xinshi_site
+- xinshi_temple
