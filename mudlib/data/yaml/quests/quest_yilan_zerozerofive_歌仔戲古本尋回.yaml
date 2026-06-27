@@ -1,0 +1,16 @@
+id: quest_yilan_zerozerofive_歌仔戲古本尋回
+title: "歌仔戲古本尋回"
+description: "傳統野台歌仔戲旦角希望拼湊出失傳的本地歌仔劇本《陳三五娘》手抄本。"
+difficulty: 1
+era: qing
+scope:
+- yilan
+settlement: yilan
+objectives:
+- id: obj_yilan_5
+  npc: npc_yilan_zerozerofive_游阿妹
+  ask_topic: "歷史"
+  description: "在傳藝中心向游阿妹請教"
+completion_reward:
+  exp: 300
+  reputation: 30

@@ -25,10 +25,10 @@ objectives:
     action: look
   - id: memory_painting
     description: "解鎖美術館的記憶碎片「諸羅山的夕陽」"
-    memory: chiayi_painting_001
+    memory: chiayi_painting_zerozeroone
   - id: confirm_identity
     description: "向家屬老太太春梅確認一個細節"
-    npc: NPC_old_woman_228_family
+    npc: NPC_old_woman_two_two_eight_family
     ask_topic: 先生
 completion_reward:
   exp: 1500

@@ -25,7 +25,7 @@ objectives:
     action: look
   - id: memory_temple_lady
     description: "解鎖「問卜的女人」確認身份線索"
-    memory: chiayi_temple_002
+    memory: chiayi_temple_zerozerotwo
 completion_reward:
   exp: 1100
   faction: chiayi_mystery

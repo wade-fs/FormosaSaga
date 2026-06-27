@@ -1,0 +1,8 @@
+affected_sites:
+- hengchun_old_town
+description: 這是恆春的第 2 個世界動態事件描述。
+duration_days: 1
+era_active: modern
+id: hengchun_event_zerozerotwo
+name: 恆春落山風祭典 2
+type: scheduled

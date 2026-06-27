@@ -1,0 +1,16 @@
+id: quest_yilan_zerozeroseven_蘇澳彈珠汽水秘方
+title: "蘇澳彈珠汽水秘方"
+description: "汽水廠長希望能復原日治時期用碳酸冷泉釀製彈珠汽水的配方。"
+difficulty: 1
+era: qing
+scope:
+- yilan
+settlement: yilan
+objectives:
+- id: obj_yilan_7
+  npc: npc_yilan_zerozeroseven_竹中後代
+  ask_topic: "歷史"
+  description: "向竹中後代詢問汽水配方"
+completion_reward:
+  exp: 300
+  reputation: 30

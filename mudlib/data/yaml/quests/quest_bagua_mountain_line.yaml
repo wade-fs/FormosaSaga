@@ -24,7 +24,7 @@ objectives:
     action: look
   - id: get_battle_memory
     description: "解鎖記憶碎片『八卦山頂的落日軍號』"
-    memory: changhua_battle_001
+    memory: changhua_battle_zerozeroone
 completion_reward:
   exp: 1200
   faction: taiwan_historical_truth

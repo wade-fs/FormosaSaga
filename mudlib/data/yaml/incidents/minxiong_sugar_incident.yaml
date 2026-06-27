@@ -24,7 +24,7 @@ clues:
     name: 糖廠舊藍圖
     description: 解鎖糖廠廢墟記憶時發現的舊藍圖，標示了地下空間的位置。
     source_type: memory
-    source_id: memory:minxiong_sugar_001
+    source_id: memory:minxiong_sugar_zerozeroone
 completion_reward:
   exp: 1500
   faction: sugar_guild

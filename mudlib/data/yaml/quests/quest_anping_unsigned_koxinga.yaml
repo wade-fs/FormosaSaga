@@ -20,7 +20,7 @@ objectives:
     action: look
   - id: get_anping_memory
     description: "解鎖記憶碎片『大員港的荷蘭船隊』"
-    memory: tainan_anping_001
+    memory: tainan_anping_zerozeroone
 completion_reward:
   exp: 1100
   faction: taiwan_cultural_memory

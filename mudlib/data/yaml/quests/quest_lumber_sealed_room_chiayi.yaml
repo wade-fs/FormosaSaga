@@ -24,7 +24,7 @@ objectives:
     action: look
   - id: memory_lumber2
     description: "解鎖「送上山的最後批木工」記憶碎片"
-    memory: chiayi_lumber_002
+    memory: chiayi_lumber_zerozerotwo
 completion_reward:
   exp: 1600
   faction: ecological_memory

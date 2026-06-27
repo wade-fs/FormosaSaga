@@ -20,7 +20,7 @@ objectives:
     action: search
   - id: get_shifeng_memory
     description: "解鎖記憶碎片『十宜樓的狂草斷章』"
-    memory: lukang_shi_feng_001
+    memory: lukang_shi_feng_zerozeroone
 completion_reward:
   exp: 1100
   faction: taiwan_cultural_memory

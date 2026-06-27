@@ -20,7 +20,7 @@ objectives:
     action: look
   - id: get_hayashi_memory
     description: "解鎖記憶碎片『林百貨的電梯轟鳴』"
-    memory: tainan_japanese_001
+    memory: tainan_japanese_zerozeroone
 completion_reward:
   exp: 1300
   faction: taiwan_cultural_memory

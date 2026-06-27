@@ -24,7 +24,7 @@ objectives:
     ask_topic: 半邊井
   - id: get_well_memory
     description: "解鎖記憶碎片『半邊井前的溫情』"
-    memory: lukang_well_001
+    memory: lukang_well_zerozeroone
 completion_reward:
   exp: 1000
   faction: taiwan_folk_memory

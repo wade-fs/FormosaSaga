@@ -28,8 +28,8 @@ objectives:
     npc: NPC_sinkang_descendent_lady
     ask_topic: 傳言
   - id: step_5
-    description: "解鎖記憶碎片 singang_bamboo_001"
-    memory: singang_bamboo_001
+    description: "解鎖記憶碎片 singang_bamboo_zerozeroone"
+    memory: singang_bamboo_zerozeroone
 completion_reward:
   exp: 1500
   faction: siraya_memory

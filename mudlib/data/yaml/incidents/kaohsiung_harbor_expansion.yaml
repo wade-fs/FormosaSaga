@@ -10,12 +10,12 @@ era_active: japanese
 settlement: kaohsiung
 scope:
   - kaohsiung_harbor
-  - pier2
+  - piertwo
 clues:
   - clue_id: harbor_dredge_blueprint
     name: 明治時期打狗港第一期築港工程設計圖殘卷
     source_type: site_look
-    source_id: "site:pier2"
+    source_id: "site:piertwo"
   - clue_id: worker_memorandum
     name: 築港工人的勞動日記與工傷記錄
     source_type: npc_ask

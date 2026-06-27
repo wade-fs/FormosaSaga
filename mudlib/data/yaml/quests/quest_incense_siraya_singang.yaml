@@ -24,8 +24,8 @@ objectives:
     site: fengtian_shrine_garden
     action: search
   - id: step_4
-    description: "解鎖記憶碎片 singang_incense_001"
-    memory: singang_incense_001
+    description: "解鎖記憶碎片 singang_incense_zerozeroone"
+    memory: singang_incense_zerozeroone
 completion_reward:
   exp: 1100
   faction: siraya_memory

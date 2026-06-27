@@ -47,7 +47,7 @@ states:
     description: "玩家開始調查糖業事件，老站長態度轉變，市場開始流傳謠言。"
     unlock_condition:
       type: memory_unlocked
-      memory_id: minxiong_sugar_001
+      memory_id: minxiong_sugar_zerozeroone
     effects:
       site_desc_inject:
         minxiong_old_station: "老站長坐在月台的角落，神情有些不安。他不時望向糖廠遺址的方向，欲言又止。"
@@ -78,7 +78,7 @@ states:
       site_unlock:
         - minxiong_sugar_underground
       memory_unlock:
-        - minxiong_sugar_002
+        - minxiong_sugar_zerozerotwo
       settlement_boost:
         memory: 10
         culture: 5

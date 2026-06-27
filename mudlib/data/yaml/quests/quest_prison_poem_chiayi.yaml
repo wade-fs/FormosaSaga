@@ -20,11 +20,11 @@ objectives:
     ask_topic: 囚犯
   - id: cross_reference_228
     description: "向老警員阿忠確認昭和二十二年三月的時間點"
-    npc: NPC_old_policeman_228
+    npc: NPC_old_policeman_two_two_eight
     ask_topic: 二二八
   - id: memory_prison
     description: "解鎖監獄的記憶碎片「刑務所的詩」"
-    memory: chiayi_prison_001
+    memory: chiayi_prison_zerozeroone
 completion_reward:
   exp: 1200
   faction: taiwan_historical_truth

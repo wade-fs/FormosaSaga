@@ -25,13 +25,13 @@ reveal_layers:
   - condition: "all"
     npc: "NPC_old_stationmaster_minxiong"
 
-  # 條件 2：當玩家擁有主角唯一的 "island_memory" 天賦且世界處於 "v0_1" 時代時，浮現歷史層入口（可進入日本時代）
+  # 條件 2：當玩家擁有主角唯一的 "island_memory" 天賦且世界處於 "vzero_one" 時代時，浮現歷史層入口（可進入日本時代）
   - condition: "all"
     checks:
       - type: "has_talent"
         talent: "island_memory"
       - type: "era_completed"
-        era: "v0_1"
+        era: "vzero_one"
     text: "月台一角的空氣隱約扭曲著，彷彿能嗅到一絲日治時期燃煤火車的黑煙氣息。"
     entry:
       era: "japanese"

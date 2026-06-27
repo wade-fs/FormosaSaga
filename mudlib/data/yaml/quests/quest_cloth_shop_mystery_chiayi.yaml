@@ -25,7 +25,7 @@ objectives:
     action: look
   - id: memory_market
     description: "解鎖市場記憶碎片「布行的秘密」"
-    memory: chiayi_market_002
+    memory: chiayi_market_zerozerotwo
 completion_reward:
   exp: 800
   faction: chiayi_folk

@@ -29,8 +29,8 @@ objectives:
     site: singang
     action: look
   - id: step_5
-    description: "解鎖記憶碎片 singang_festival_001"
-    memory: singang_festival_001
+    description: "解鎖記憶碎片 singang_festival_zerozeroone"
+    memory: singang_festival_zerozeroone
 completion_reward:
   exp: 1300
   faction: siraya_memory

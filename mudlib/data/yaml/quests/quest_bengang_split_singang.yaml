@@ -23,8 +23,8 @@ objectives:
     site: beimen_creek_old
     action: search
   - id: step_4
-    description: "解鎖記憶碎片 singang_bengang_001"
-    memory: singang_bengang_001
+    description: "解鎖記憶碎片 singang_bengang_zerozeroone"
+    memory: singang_bengang_zerozeroone
 completion_reward:
   exp: 1200
   faction: taiwan_folk_memory

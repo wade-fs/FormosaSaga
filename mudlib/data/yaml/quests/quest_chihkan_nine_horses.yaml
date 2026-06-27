@@ -20,7 +20,7 @@ objectives:
     action: look
   - id: get_chihkan_memory
     description: "解鎖記憶碎片『大成殿的老榕樹』"
-    memory: tainan_qing_002
+    memory: tainan_qing_zerozerotwo
 completion_reward:
   exp: 1000
   faction: taiwan_cultural_memory

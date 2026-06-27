@@ -24,7 +24,7 @@ objectives:
     ask_topic: 密道
   - id: get_dutch_memory
     description: "解鎖記憶碎片『熱蘭遮城的早晨』"
-    memory: tainan_dutch_001
+    memory: tainan_dutch_zerozeroone
 completion_reward:
   exp: 1200
   faction: siraya_memory

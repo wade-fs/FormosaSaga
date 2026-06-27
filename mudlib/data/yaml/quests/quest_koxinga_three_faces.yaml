@@ -24,7 +24,7 @@ objectives:
     ask_topic: 日本神社
   - id: get_school_first_class
     description: "解鎖記憶碎片『明倫堂的漢學第一課』"
-    memory: tainan_koxinga_004
+    memory: tainan_koxinga_zerozerofour
 completion_reward:
   exp: 1400
   faction: taiwan_historical_truth

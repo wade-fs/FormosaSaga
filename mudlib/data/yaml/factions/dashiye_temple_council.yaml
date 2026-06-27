@@ -16,4 +16,4 @@ join_conditions:
   - type: "has_footprint"
     id: "ghost_house_minxiong"
   - type: "memory_completed"
-    id: "minxiong_temple_001"
+    id: "minxiong_temple_zerozeroone"

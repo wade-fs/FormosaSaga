@@ -20,7 +20,7 @@ objectives:
     action: look
   - id: memory_chicken_rice
     description: "解鎖「火雞肉飯的戰後記憶」記憶碎片"
-    memory: chiayi_chicken_rice_001
+    memory: chiayi_chicken_rice_zerozeroone
 completion_reward:
   exp: 600
   faction: chiayi_folk

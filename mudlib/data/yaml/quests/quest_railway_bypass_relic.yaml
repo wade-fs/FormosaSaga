@@ -24,7 +24,7 @@ objectives:
     action: look
   - id: get_museum_memory
     description: "解鎖記憶碎片『大和洋樓的二樓陽台』"
-    memory: lukang_museum_001
+    memory: lukang_museum_zerozeroone
 completion_reward:
   exp: 1250
   faction: taiwan_historical_truth

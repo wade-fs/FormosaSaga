@@ -20,7 +20,7 @@ objectives:
     ask_topic: 調查
   - id: find_old_policeman
     description: "向老警員阿忠詢問當時所見"
-    npc: NPC_old_policeman_228
+    npc: NPC_old_policeman_two_two_eight
     ask_topic: 二二八
   - id: check_broadcasting_station
     description: "在放送局尋找當年遺留的設備或文字"
@@ -28,9 +28,9 @@ objectives:
     action: search
   - id: unlock_memory
     description: "解鎖放送局的記憶碎片「廣播室的靜默」"
-    memory: chiayi_228_002
+    memory: chiayi_two_two_eight_zerozerotwo
 completion_reward:
   exp: 1800
   faction: taiwan_historical_truth
   reputation: 120
-  unlock_incident: chiayi_228_incident
+  unlock_incident: chiayi_two_two_eight_incident

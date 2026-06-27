@@ -20,7 +20,7 @@ objectives:
     action: search
   - id: memory_park
     description: "解鎖公園記憶碎片「神社的石燈籠」"
-    memory: chiayi_park_001
+    memory: chiayi_park_zerozeroone
 completion_reward:
   exp: 1000
   faction: chiayi_folk

@@ -24,7 +24,7 @@ objectives:
     ask_topic: 五妃
   - id: get_concubines_memory
     description: "解鎖記憶碎片『寧靖王姬妾殉節』"
-    memory: tainan_koxinga_003
+    memory: tainan_koxinga_zerozerothree
 completion_reward:
   exp: 1000
   faction: taiwan_cultural_memory

@@ -24,7 +24,7 @@ objectives:
     ask_topic: 掉包
   - id: get_wood_memory
     description: "解鎖記憶碎片『大木作的極致藻井』"
-    memory: lukang_wood_001
+    memory: lukang_wood_zerozeroone
 completion_reward:
   exp: 1300
   faction: taiwan_cultural_memory

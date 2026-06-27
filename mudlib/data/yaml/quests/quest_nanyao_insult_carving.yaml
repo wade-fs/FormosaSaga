@@ -25,7 +25,7 @@ objectives:
     ask_topic: 老街屋
   - id: get_nanyao_memory
     description: "解鎖記憶碎片『觀音殿的西洋馬鹿』"
-    memory: changhua_nanyao_001
+    memory: changhua_nanyao_zerozeroone
 completion_reward:
   exp: 1100
   faction: taiwan_cultural_memory

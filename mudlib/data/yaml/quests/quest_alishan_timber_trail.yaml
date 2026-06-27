@@ -24,7 +24,7 @@ objectives:
     ask_topic: 機車
   - id: memory_lumber
     description: "解鎖製材所記憶碎片「製材所的第一班」"
-    memory: chiayi_lumber_001
+    memory: chiayi_lumber_zerozeroone
 completion_reward:
   exp: 1100
   faction: ecological_memory

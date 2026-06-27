@@ -24,7 +24,7 @@ objectives:
     ask_topic: 水道
   - id: get_qing_memory
     description: "解鎖記憶碎片『五條港的水道喧囂』"
-    memory: tainan_qing_001
+    memory: tainan_qing_zerozeroone
 completion_reward:
   exp: 1100
   faction: taiwan_folk_memory

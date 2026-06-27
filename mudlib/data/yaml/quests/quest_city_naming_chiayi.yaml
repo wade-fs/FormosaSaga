@@ -29,7 +29,7 @@ objectives:
     action: search
   - id: memory_wall
     description: "解鎖舊城牆的記憶碎片「土城守夜」"
-    memory: chiayi_wall_001
+    memory: chiayi_wall_zerozeroone
 completion_reward:
   exp: 1000
   faction: taiwan_cultural_memory

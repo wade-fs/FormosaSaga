@@ -24,7 +24,7 @@ objectives:
     action: look
   - id: get_well_memory
     description: "解鎖記憶碎片『無影井底的黃金印信』"
-    memory: changhua_seal_001
+    memory: changhua_seal_zerozeroone
 completion_reward:
   exp: 1150
   faction: taiwan_folk_memory

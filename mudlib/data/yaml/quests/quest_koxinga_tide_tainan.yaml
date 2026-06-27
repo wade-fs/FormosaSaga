@@ -24,7 +24,7 @@ objectives:
     ask_topic: 媽祖
   - id: get_koxinga_memory
     description: "解鎖記憶碎片『明鄭大軍登陸鹿耳門』"
-    memory: tainan_koxinga_001
+    memory: tainan_koxinga_zerozeroone
 completion_reward:
   exp: 1500
   faction: taiwan_historical_truth

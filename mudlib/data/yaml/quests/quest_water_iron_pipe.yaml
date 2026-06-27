@@ -20,7 +20,7 @@ objectives:
     action: look
   - id: get_water_memory
     description: "解鎖記憶碎片『山上淨水場的第一滴水』"
-    memory: tainan_japanese_002
+    memory: tainan_japanese_zerozerotwo
 completion_reward:
   exp: 1300
   faction: taiwan_cultural_memory
