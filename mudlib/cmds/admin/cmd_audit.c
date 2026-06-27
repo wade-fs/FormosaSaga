@@ -13,6 +13,7 @@ int do_settlement_audit(object me, string id) {
     mapping result;
     string *sites;
     int i;
+    string *isolated_sites = ({});
 
     write(HIY "正在對聚落 " + id + " 進行遊戲內稽核（P23.2 Settlement Audit）...\n" NOR);
 
@@ -30,6 +31,9 @@ int do_settlement_audit(object me, string id) {
     if (!pointerp(sites) || !sizeof(sites)) {
         write(RED "警告：該聚落沒有配置任何 Sites (地標)。\n" NOR);
     } else {
+        mapping all_mems = "/daemon/memory_d"->query_all_memories();
+        mapping all_quests = "/daemon/quest_d"->query_all_quests();
+        
         write(HIC "地標清單與狀態查核：\n" NOR);
         for(i = 0; i < sizeof(sites); i++) {
             object site_obj = "/daemon/settlement_d"->get_site_object(sites[i]);
@@ -38,13 +42,57 @@ int do_settlement_audit(object me, string id) {
             } else {
                 string name = site_obj->query_prop("canonical_name");
                 if (!name) name = site_obj->query_prop("name");
-                write(sprintf("  [%-25s] %s %s\n", sites[i], GRN "✓ 已載入" NOR, name ? ("(" + name + ")") : ""));
+                
+                // 檢查是否為孤立地標：掃描是否被任何 memories 或 quests 參照
+                int referenced = 0;
+                
+                // 1. 記憶參照檢查
+                if (mapp(all_mems)) {
+                    foreach (string mem_id, mapping mem_data in all_mems) {
+                        if (mem_data["trigger_site"] == sites[i]) {
+                            referenced = 1;
+                            break;
+                        }
+                    }
+                }
+                
+                // 2. 任務目標參照檢查
+                if (!referenced && mapp(all_quests)) {
+                    foreach (string q_id, mapping q_data in all_quests) {
+                        mixed objs = q_data["objectives"];
+                        if (pointerp(objs)) {
+                            foreach (mapping obj in objs) {
+                                if (obj["site"] == sites[i]) {
+                                    referenced = 1;
+                                    break;
+                                }
+                            }
+                        }
+                        if (referenced) break;
+                    }
+                }
+
+                if (!referenced) {
+                    isolated_sites += ({ name ? name : sites[i] });
+                    write(sprintf("  [%-25s] %s %s %s\n", sites[i], GRN "✓ 已載入" NOR, name ? ("(" + name + ")") : "", YEL "[⚠ 孤立地標 - 無記憶/任務觸發]" NOR));
+                } else {
+                    write(sprintf("  [%-25s] %s %s\n", sites[i], GRN "✓ 已載入" NOR, name ? ("(" + name + ")") : ""));
+                }
             }
         }
     }
 
     write("==================================================\n");
-    write(GRN "聚落載入稽核完成。\n" NOR);
+    if (sizeof(isolated_sites) > 0) {
+        write(sprintf(YEL "警報！檢測到 %d 個孤立地標（無任何記憶或任務參照）：\n" NOR, sizeof(isolated_sites)));
+        for (i = 0; i < sizeof(isolated_sites); i++) {
+            write("  - " + isolated_sites[i] + "\n");
+        }
+    } else {
+        write(GRN "恭喜！所有地標皆有對應的記憶或任務觸發關係。\n" NOR);
+    }
+    write("==================================================\n");
+    write(GRN "聚落載入與孤立地標稽核完成。\n" NOR);
     return 1;
 }
 
@@ -70,7 +118,7 @@ int main(object me, string verb, string arg) {
 
     if (!arg || arg == "") {
         write(HIW "語法指南 (audit <子指令> [參數])：\n" NOR
-              "  audit settlement <聚落ID>  - 檢查聚落與所有地標是否能正常載入\n"
+              "  audit settlement <聚落ID>  - 檢查聚落、地標載入與孤立地標狀態\n"
               "  audit errors               - 顯示最近的聚落載入錯誤日誌\n"
               "  audit status               - 顯示 MUD 核心系統狀態\n");
         return 1;

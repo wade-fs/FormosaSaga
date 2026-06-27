@@ -20,9 +20,21 @@ int main(object me, string verb, string arg) {
     int count = cmd_d->rehash();
     write("$HIW$指令系統重新掃描完成，共載入 " + count + " 個動詞。\n$NOR$");
 
+    // 🚀 新增：重新索引記憶與任務守護進程，避免新加入的 YAML 檔案在遊戲內無效
+    object mem_d = find_object("/daemon/memory_d");
+    if (mem_d) mem_d->rehash();
+    object q_d = find_object("/daemon/quest_d");
+    if (q_d) {
+        // quest_d 沒有單獨的 rehash()，但可以 destruct 後重新載入來刷新
+        destruct(q_d);
+        load_object("/daemon/quest_d");
+    }
+
+    write(HIY "記憶與任務系統設定檔已重新載入。\n" NOR);
+
     // 🚀 向所有在線玩家推送最新的 UI 指令清單
     object *us = users();
-    object help_ob = load_object("/cmds/cmd_help");
+    object help_ob = load_object("/cmds/player/cmd_help");
     if (help_ob) {
         foreach (object u in us) {
             if (u && userp(u)) {

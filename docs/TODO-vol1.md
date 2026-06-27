@@ -195,7 +195,7 @@
         *   [x] 加入 `Makefile` 目標 `make audit-settlement`。
         *   [x] **民雄 Tier B 全部通過（9/9 項）**
     *   **P23.2 — Wizard 遊戲內稽核指令**（Layer 2：開服前人工確認）
-        *   [ ] 實作 `cmd/wizard/settlement_audit.c`：在 MUD 內執行 `settlement_audit minxiong`。
+        *   [x] 實作 `cmd/wizard/audit.c`：在 MUD 內執行 `audit minxiong`。
         *   [ ] 輸出哪些 Site 沒有記憶/任務觸發（孤立地標）。
     *   **P23.3 — 玩家實測流程文件**（Layer 3：Beta 測試）
         *   [ ] 建立 `docs/todo-list/README-P23.md` 人工測試清單。
