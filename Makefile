@@ -23,7 +23,7 @@ GO_FLAGS := -ldflags="-s -w"
 COMMON_ENV := CGO_CFLAGS="-Wno-return-local-addr"
 ENVW := $(COMMON_ENV) CGO_ENABLED=1 GOOS=windows GOARCH=amd64 CC="x86_64-w64-mingw32-gcc -fno-stack-protector -D_FORTIFY_SOURCE=0 -lssp"
 
-.PHONY: all clean test test-driver test-fsmud fsmud fsmud.exe run-fsmud
+.PHONY: all clean test test-driver test-fsmud fsmud fsmud.exe run-fsmud audit-settlement audit-settlement-all lint-yaml
 
 all: fsmud fsmud.exe
 
@@ -90,3 +90,21 @@ docker-test-fsmud:
 
 clean:
 	@rm -rf *.log *txt $(OUT)/*
+
+# ── P23.1 聚落驗收稽核 ───────────────────────────────────────────────────────
+# 用法：
+#   make audit-settlement SETTLEMENT=minxiong   # 稽核單一聚落（預設 minxiong）
+#   make audit-settlement-all                   # 稽核所有聚落
+SETTLEMENT ?= minxiong
+
+audit-settlement:
+	@echo "📋 稽核聚落：$(SETTLEMENT)"
+	@python3 check_settlement.py $(SETTLEMENT)
+
+audit-settlement-all:
+	@echo "📋 稽核所有聚落..."
+	@python3 check_settlement.py --all
+
+lint-yaml:
+	@echo "🔍 Lint YAML files..."
+	@python3 lint_yaml.py

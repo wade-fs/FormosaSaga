@@ -1,0 +1,32 @@
+id: quest_cloth_shop_mystery_chiayi
+title: "布行的秘密"
+settlement: chiayi_city
+scope:
+  - chiayi_city
+era: modern
+difficulty: 3
+description: |
+  東市場最深處有一家從來不賣布的布行。
+  市場阿桂嬤說那個老闆在那裡三十年，從來沒有人看他賣過布。
+  米糕老闆阿進說他去問過，老闆說是倉儲用。
+  但倉儲什麼？為什麼在東市場租一個攤位卻什麼都不賣？
+objectives:
+  - id: talk_granny
+    description: "向阿桂嬤詢問布行的情況"
+    npc: NPC_market_granny_chiayi
+    ask_topic: 傳言
+  - id: talk_noodle_boss
+    description: "向阿進詢問他去問布行的結果"
+    npc: NPC_noodle_boss_chiayi
+    ask_topic: 傳言
+  - id: visit_cloth_shop
+    description: "親自前往布行觀察"
+    site: central_market
+    action: look
+  - id: memory_market
+    description: "解鎖市場記憶碎片「布行的秘密」"
+    memory: chiayi_market_002
+completion_reward:
+  exp: 800
+  faction: chiayi_folk
+  reputation: 50

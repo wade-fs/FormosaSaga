@@ -1,0 +1,36 @@
+id: quest_find_the_last_broadcast_chiayi
+title: "尋找最後的廣播"
+settlement: chiayi_city
+scope:
+  - chiayi_city
+era: postwar
+difficulty: 4
+description: |
+  放送局老播音員春花說，二二八那天有人在這裡廣播，廣播結束後那個人消失了。
+  記者阿文說他在追查廣播員說的最後一句話——沒有錄音，但有目擊者。
+  你試圖在嘉義各處找到還記得那個廣播的人，拼湊出那個聲音說了什麼。
+objectives:
+  - id: talk_broadcaster
+    description: "向放送局老播音員春花詢問二二八廣播"
+    npc: NPC_broadcasting_staff
+    ask_topic: 二二八
+  - id: talk_reporter
+    description: "向記者阿文取得已知線索"
+    npc: NPC_writer_reporter_chiayi
+    ask_topic: 調查
+  - id: find_old_policeman
+    description: "向老警員阿忠詢問當時所見"
+    npc: NPC_old_policeman_228
+    ask_topic: 二二八
+  - id: check_broadcasting_station
+    description: "在放送局尋找當年遺留的設備或文字"
+    site: chiayi_broadcasting
+    action: search
+  - id: unlock_memory
+    description: "解鎖放送局的記憶碎片「廣播室的靜默」"
+    memory: chiayi_228_002
+completion_reward:
+  exp: 1800
+  faction: taiwan_historical_truth
+  reputation: 120
+  unlock_incident: chiayi_228_incident

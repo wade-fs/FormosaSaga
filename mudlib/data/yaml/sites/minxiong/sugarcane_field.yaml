@@ -4,6 +4,12 @@ canonical_name: 甘蔗田
 is_heritage: false
 
 names:
+  - era: qing
+    name: 打貓蔊術園
+  - era: japanese
+    name: 甘蔗作付地
+  - era: postwar
+    name: 台糖公司甘蔗田
   - era: modern
     name: 甘蔗田
 

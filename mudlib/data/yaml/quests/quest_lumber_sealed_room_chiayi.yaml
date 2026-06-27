@@ -1,0 +1,32 @@
+id: quest_lumber_sealed_room_chiayi
+title: "製材所的封閉房間"
+settlement: chiayi_city
+scope:
+  - chiayi_city
+era: japanese
+difficulty: 4
+description: |
+  老木工阿福說，製材所最裡面有一間磚封的辦公室，
+  他在那裡工作三十年，沒有人進去過，但他曾聽到裡面有翻紙的聲音。
+  你試圖找到這個房間，並解開它封閉的原因。
+objectives:
+  - id: talk_woodworker
+    description: "向老木工阿福詢問封閉房間的位置"
+    npc: NPC_old_craftsman_wood
+    ask_topic: 傳言
+  - id: find_sealed_room
+    description: "在製材所遺址找到那道磚封的牆"
+    site: lumber_yard_chiayi
+    action: search
+  - id: decipher_clue
+    description: "解讀牆上的標記或線索"
+    site: lumber_yard_chiayi
+    action: look
+  - id: memory_lumber2
+    description: "解鎖「送上山的最後批木工」記憶碎片"
+    memory: chiayi_lumber_002
+completion_reward:
+  exp: 1600
+  faction: ecological_memory
+  reputation: 100
+  note: "完成後可獲得製材所舊鑰匙，解鎖阿里山鐵路調度場那節神秘車廂"

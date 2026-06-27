@@ -156,17 +156,27 @@
     *   [x] 降低 Era（時代）的生硬切換，改由 Incident 觸發 World State 動態漸變。
 
 ### 📋 聚落驗收標準 (Settlement Definition of Done)
-*   **聚落開發規範驗收標準**（未來開發嘉義、新港、台南的一致依據）：
-    *   [ ] 50+ 地標 (Sites)
-    *   [ ] 100+ 登場人物 (NPCs)
-    *   [ ] 20+ 歷史事件 (Incidents)
-    *   [ ] 60+ 記憶碎片 (Memories)
-    *   [ ] 80+ 任務故事 (Quests)
-    *   [ ] 30+ 傳言 (Rumors)
-    *   [ ] 15+ 動態事件 (Dynamic Events)
-    *   [ ] 10+ 隱藏地區 (Hidden Areas)
-    *   [ ] 每個 Site 至少包含三個 Era 歷史層面
-    *   [ ] 聚落總探索度 (Settlement Completion) 達成 100% 串接
+*   **分級驗收規範**（詳見 [docs/settlement-standards.md](settlement-standards.md)）：
+    *   [x] 建立 Tier S/A/B/C 分級門檻表（依行政層級與故事地位）
+    *   [x] 全島 34 個聚落 Tier 對照表已建立
+    *   [x] 卷一完成條件定義（6 個聚落達各自 Tier 80%）
+
+*   **P23.1 — 民雄（Tier B）驗收狀態**（`make audit-settlement SETTLEMENT=minxiong`）：
+    *   [x] Sites（地標）：52 / 12 ✅
+    *   [x] NPCs（登場人物）：13 / 12 ✅（廟祝、農夫、剃頭師、照相館、教師、藥舖、糖廠工人、更夫、米店老闆娘）
+    *   [x] Incidents（歷史事件）：3 / 3 ✅（鬼屋傳說、糖業事件、皇民化運動）
+    *   [x] Memories（記憶碎片）：8 / 8 ✅
+    *   [x] Quests（任務故事）：5 / 5 ✅（含「失去的名字」、「照相館後的秘密」、「更夫的最後一班」）
+    *   [x] Rumors（傳言）：6 / 4 ✅
+    *   [x] Dynamic Events（動態事件）：3 / 2 ✅
+    *   [x] Hidden Areas（隱藏地區）：1 / 1 ✅
+    *   [x] Era ≥3 / Site 品質：10 / 10（20% 達標）✅
+    *   **🎉 9/9 全部通過！民雄 Tier B 達標**
+
+*   **下一個聚落目標**（卷一完成條件）：
+    *   [x] `chiayi_city` → Tier A 80%（**🎉 9/9 通過！**）
+    *   [ ] `singang` → Tier B 80%
+    *   [ ] `tainan` → Tier S 50%（主線骨幹）
 
 ---
 
@@ -175,6 +185,20 @@
     *   [x] 實作 `author.html` 獨立網頁工具，提供地標網路可視化。
     *   [x] 整合 YAML 瀏覽與線上編輯 (Monaco Editor)。
     *   [x] 實作 Dashboard 概覽數據統計。
-*   **P23 — 小說第二卷地理擴展 (Volume 2 Expansion)**
+*   **P23 — 卷一聚落驗收標準落地 (Settlement Definition of Done)**
+    *   **P23.1 — CI 自動稽核腳本**（Layer 1：每次 commit 自動跑）✅ 完成
+        *   [x] 實作 `check_settlement.py`：掃描 YAML 目錄，輸出 9 項驗收指標進度報告。
+        *   [x] 支援分級門檻（Tier S/A/B/C）自動偵測與 `--tier` 強制指定。
+        *   [x] 支援 `python3 check_settlement.py <settlement_id>` 與 `--all` 模式。
+        *   [x] 加入 `Makefile` 目標 `make audit-settlement`。
+        *   [x] **民雄 Tier B 全部通過（9/9 項）**
+    *   **P23.2 — Wizard 遊戲內稽核指令**（Layer 2：開服前人工確認）
+        *   [ ] 實作 `cmd/wizard/settlement_audit.c`：在 MUD 內執行 `settlement_audit minxiong`。
+        *   [ ] 輸出哪些 Site 沒有記憶/任務觸發（孤立地標）。
+    *   **P23.3 — 玩家實測流程文件**（Layer 3：Beta 測試）
+        *   [ ] 建立 `docs/todo-list/README-P23.md` 人工測試清單。
+        *   [ ] 定義探索度 100% 的通關路徑地圖。
+
+
 
 

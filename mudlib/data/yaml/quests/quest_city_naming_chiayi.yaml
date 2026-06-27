@@ -1,0 +1,37 @@
+id: quest_city_naming_chiayi
+title: "嘉義之名：諸羅義民的故事"
+settlement: chiayi_city
+scope:
+  - chiayi_city
+era: qing
+difficulty: 2
+description: |
+  孔廟老師仁義先生說，嘉義這個名字背後有一段守城的歷史。
+  縣廳門衛老伯說，地板下有一個坑，那是清代的遺跡。
+  你循著名字的由來，走過諸羅縣城的幾個重要地點，
+  還原這段義民守城的歷史輪廓。
+objectives:
+  - id: talk_teacher
+    description: "詢問仁義先生嘉義得名的故事"
+    npc: NPC_confucian_teacher
+    ask_topic: 歷史
+  - id: visit_wall
+    description: "前往舊城牆遺址"
+    site: old_city_wall
+    action: look
+  - id: talk_guard
+    description: "詢問縣廳門衛老伯關於地板下的秘密"
+    npc: NPC_county_hall_guard
+    ask_topic: 傳言
+  - id: find_naming_stone
+    description: "在城牆找到刻有嘉義字樣的舊磚"
+    site: old_city_wall
+    action: search
+  - id: memory_wall
+    description: "解鎖舊城牆的記憶碎片「土城守夜」"
+    memory: chiayi_wall_001
+completion_reward:
+  exp: 1000
+  faction: taiwan_cultural_memory
+  reputation: 70
+  unlock_incident: chiayi_city_naming_incident

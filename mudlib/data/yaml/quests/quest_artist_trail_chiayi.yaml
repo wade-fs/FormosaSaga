@@ -1,0 +1,37 @@
+id: quest_artist_trail_chiayi
+title: "畫都遺跡：陳澄波的最後足跡"
+settlement: chiayi_city
+scope:
+  - chiayi_city
+era: postwar
+difficulty: 3
+description: |
+  畫家林阿祥說，美術館那幅無名畫讓他站了兩個小時。
+  他懷疑那是陳澄波留下的作品，但無法確認。
+  你需要走過陳澄波在嘉義的幾個重要地點，
+  蒐集能指向那幅畫真實身份的線索。
+objectives:
+  - id: visit_museum
+    description: "在美術館仔細觀察那幅無名畫"
+    site: art_museum
+    action: look
+  - id: talk_artist
+    description: "詢問林阿祥關於陳澄波的看法"
+    npc: NPC_artist_chiayi
+    ask_topic: 陳澄波
+  - id: visit_station
+    description: "前往火車站前廣場——陳澄波犧牲的地點"
+    site: chiayi_train_station
+    action: look
+  - id: memory_painting
+    description: "解鎖美術館的記憶碎片「諸羅山的夕陽」"
+    memory: chiayi_painting_001
+  - id: confirm_identity
+    description: "向家屬老太太春梅確認一個細節"
+    npc: NPC_old_woman_228_family
+    ask_topic: 先生
+completion_reward:
+  exp: 1500
+  faction: taiwan_cultural_memory
+  reputation: 100
+  unlock_incident: chiayi_chenzhengpo_art_incident

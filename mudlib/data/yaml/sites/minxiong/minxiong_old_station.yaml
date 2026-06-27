@@ -8,10 +8,14 @@ base_description: |
 travel_arrive_text: "你走進了民雄車站，迎面而來的是月台的微風與甘蔗車的鳴笛聲。"
 
 names:
+  - era: qing
+    name: 打貓驛站
   - era: japanese
     name: 民雄驛
-  - era: modern
+  - era: postwar
     name: 民雄火車站
+  - era: modern
+    name: 民雄車站
 
 connections:
   - minxiong_market

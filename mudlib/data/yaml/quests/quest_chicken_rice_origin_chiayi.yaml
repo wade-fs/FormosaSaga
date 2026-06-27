@@ -1,0 +1,27 @@
+id: quest_chicken_rice_origin_chiayi
+title: "火雞肉飯的戰後記憶"
+settlement: chiayi_city
+scope:
+  - chiayi_city
+era: postwar
+difficulty: 1
+description: |
+  老攤雞肉飯老闆娘阿梅說，火雞肉飯的起源是戰後美軍帶來的火雞。
+  但市場阿桂嬤說，日本時代就有火雞了，只是換了名字。
+  你想找到這道食物真正的起源，以及那個老攤旁邊樹洞的「老主顧」是誰。
+objectives:
+  - id: talk_rice_lady
+    description: "向老攤老闆娘阿梅詢問雞肉飯的來歷"
+    npc: NPC_chicken_rice_lady
+    ask_topic: 秘訣
+  - id: investigate_tree_hole
+    description: "檢查老攤旁邊的樹洞"
+    site: noodle_stall_chiayi
+    action: look
+  - id: memory_chicken_rice
+    description: "解鎖「火雞肉飯的戰後記憶」記憶碎片"
+    memory: chiayi_chicken_rice_001
+completion_reward:
+  exp: 600
+  faction: chiayi_folk
+  reputation: 40

@@ -1,0 +1,31 @@
+id: quest_prison_poem_chiayi
+title: "指甲刻的詩"
+settlement: chiayi_city
+scope:
+  - chiayi_city
+era: japanese
+difficulty: 3
+description: |
+  舊監獄的老導覽員阿賢說，某個牢房的牆上有用指甲刻的詩，
+  日期是昭和二十二年三月，沒有名字。
+  你想知道是誰刻的，為什麼刻，那個人後來去了哪裡。
+objectives:
+  - id: find_poem
+    description: "在舊監獄找到那首指甲刻的詩"
+    site: chiayi_prison_old
+    action: look
+  - id: talk_guide
+    description: "詢問老導覽員阿賢詩的細節"
+    npc: NPC_prison_guard_old
+    ask_topic: 囚犯
+  - id: cross_reference_228
+    description: "向老警員阿忠確認昭和二十二年三月的時間點"
+    npc: NPC_old_policeman_228
+    ask_topic: 二二八
+  - id: memory_prison
+    description: "解鎖監獄的記憶碎片「刑務所的詩」"
+    memory: chiayi_prison_001
+completion_reward:
+  exp: 1200
+  faction: taiwan_historical_truth
+  reputation: 80

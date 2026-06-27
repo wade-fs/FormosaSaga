@@ -1,0 +1,35 @@
+id: quest_228_family_wait_chiayi
+title: "七十年的等待"
+settlement: chiayi_city
+scope:
+  - chiayi_city
+era: postwar
+difficulty: 2
+description: |
+  老太太春梅每天來城隍廟，等一個七十年沒有回來的人。
+  廟公阿全說她來了七十年，從來沒有斷過。
+  你試圖找到關於林正雄醫師的任何記錄，讓這段等待有一個答案。
+objectives:
+  - id: talk_spring_mei
+    description: "向老太太春梅詢問她等待的故事"
+    npc: NPC_old_woman_228_family
+    ask_topic: 先生
+  - id: talk_temple_keeper
+    description: "向廟公阿全確認她等待的年數"
+    npc: NPC_city_god_keeper_chiayi
+    ask_topic: 二二八
+  - id: find_hospital_record
+    description: "在舊醫院尋找林正雄醫師的執業記錄"
+    site: chiayi_old_hospital
+    action: search
+  - id: talk_old_doctor
+    description: "向舊醫院老醫師陳文中確認"
+    npc: NPC_hospital_doctor_old
+    ask_topic: 二二八
+  - id: memory_temple
+    description: "解鎖「問卜的女人」記憶碎片"
+    memory: chiayi_temple_002
+completion_reward:
+  exp: 1400
+  faction: taiwan_historical_truth
+  reputation: 90
