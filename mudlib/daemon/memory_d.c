@@ -48,6 +48,11 @@ mapping load_memory(string id) {
     return memories_cache[id];
 }
 
+mapping query_all_memories() {
+    if (!memories_cache) rehash();
+    return copy(memories_cache);
+}
+
 // 判定特定記憶是否已完成（為 reveal 條件提供）
 int memory_completed(object player, string memory_id) {
     if (!player || !memory_id) return 0;

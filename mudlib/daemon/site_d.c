@@ -105,3 +105,7 @@ string query_name_in_era(string site_id, string era_id) {
     return site_id;
 }
 
+mapping query_all_sites() {
+    if (!site_cache) rehash();
+    return copy(site_cache);
+}
