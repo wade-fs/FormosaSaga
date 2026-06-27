@@ -1,6 +1,7 @@
 incident_id: minxiong_sugar_incident
 name: 民雄糖業事件
 description: 近期民雄糖廠屢傳事故，運糖火車脫軌，甚至有失源者出沒。你必須收集線索，查明真相。
+truth: 糖廠頻發的事故並非意外，而是有人為了掩蓋日治時期遺留在地下設施的特殊力量，所刻意製造的混亂。
 era_active: v1.0
 clues:
   - clue_id: derailment_report

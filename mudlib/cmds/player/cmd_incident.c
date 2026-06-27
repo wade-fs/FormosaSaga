@@ -30,14 +30,15 @@ int main(object caller, string arg) {
         foreach(string inc_id, mapping inc in incidents) {
             int total = sizeof(inc["clues"] || ([]));
             if(resolved[inc_id]) {
-                output += sprintf("[已結案] %s\n", inc["name"]);
+                output += sprintf("[已結案] %s - 進度: 100%%\n", inc["name"]);
             } else if(inc_progress[inc_id] && inc_progress[inc_id] > 0) {
                 int collected = inc_progress[inc_id];
-                output += sprintf("[調查中] %s (線索: %d/%d)\n", inc["name"], collected, total);
+                int percent = (total > 0) ? (collected * 100 / total) : 0;
+                output += sprintf("[調查中] %s - 進度: %d%% (線索: %d/%d)\n", inc["name"], percent, collected, total);
             }
         }
         output += "--------------------------------------------------\n";
-        output += "使用 `incident <事件ID>` 查看詳細線索，或 `incident resolve <事件ID>` 進行結案。\n";
+        output += "使用 `incident <事件ID>` 查看詳細線索與進度，或 `incident resolve <事件ID>` 進行結案。\n";
         tell_object(caller, output);
         return 1;
     }
@@ -74,11 +75,25 @@ int main(object caller, string arg) {
         }
     }
     
-    output += sprintf("\n目前進度：%d / %d\n", collected, total);
+    int percent = (total > 0) ? (collected * 100 / total) : 0;
+    output += sprintf("\n目前進度：%d%% (%d / %d)\n", percent, collected, total);
+    
+    // 進度條
+    int bars = percent / 10;
+    output += "進度條：[";
+    for(int i = 0; i < 10; i++) {
+        if(i < bars) output += "█";
+        else output += "░";
+    }
+    output += "]\n";
+
     if(resolved[inc_id]) {
-        output += "【狀態】已結案\n";
+        output += "【狀態】已結案 (100%)\n";
+        if(inc["truth"]) {
+            output += sprintf("\n【歷史真相】\n%s\n", inc["truth"]);
+        }
     } else if(collected >= total) {
-        output += "【狀態】證據確鑿，可使用 `incident resolve " + inc_id + "` 進行結案推演。\n";
+        output += "【狀態】證據確鑿 (100%)，可使用 `incident resolve " + inc_id + "` 解鎖歷史真相。\n";
     } else {
         output += "【狀態】調查中\n";
     }

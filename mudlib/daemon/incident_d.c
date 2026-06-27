@@ -184,7 +184,11 @@ int resolve_incident(object player, string inc_id) {
     player->set("resolved_incidents", resolved);
     
     tell_object(player, sprintf("🔍 【事件結案】你成功解開了「%s」的真相！\n", inc["name"]));
-    tell_object(player, sprintf("真相：%s\n", inc["description"]));
+    if(inc["truth"]) {
+        tell_object(player, sprintf("真相：%s\n", inc["truth"]));
+    } else {
+        tell_object(player, "你揭開了隱藏在事件背後的真相。\n");
+    }
     
     // 發放獎勵
     mapping reward = inc["completion_reward"];
