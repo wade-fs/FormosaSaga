@@ -1,49 +1,55 @@
-# /data/yaml/settlements/changhua.yaml
-#
-# 彰化縣 靜態設定
-
-id: "changhua"
-name: "彰化縣"
-tier: 2              # TIER_CITY2
-admin_level: "縣"
-county: "changhua_county"
-
-# 六維初始值
+id: changhua
+name: 彰化縣
+tier: 2
+admin_level: 縣
+county: changhua_county
 population: 50
-industry:   55
-culture:    60
-memory:     55
-trade:      50
-cohesion:   58
-
-# 失源者
+industry: 55
+culture: 60
+memory: 55
+trade: 50
+cohesion: 58
 specters_active: []
-
-# 歷史脈絡
 eras_present:
-  - "v1.0"
-  - "v1.1"
-  - "v1.9"
-  - "v2.0"
-  - "modern"
-
-# 地方產業
+- v1.0
+- v1.1
+- v1.9
+- v2.0
+- modern
 industries:
-  - "農業"
-  - "傳統製造業"
-
-# 信仰
+- 農業
+- 傳統製造業
 temples:
-  - name: "彰化南瑤宮"
-    deity: "媽祖"
-
-# 地標
+- name: 彰化南瑤宮
+  deity: 媽祖
 sites:
-  - "changhua_baguashan"
-
-# 記憶子項目完成度
+- changhua_baguashan
+- changhua_site_01
+- changhua_site_02
+- changhua_site_03
+- changhua_site_04
+- changhua_site_05
+- changhua_site_06
+- changhua_site_07
+- changhua_site_08
+- changhua_site_09
+- changhua_site_10
+- changhua_site_11
+- changhua_site_12
+- changhua_site_13
+- changhua_site_14
+- changhua_site_15
+- changhua_site_16
+- changhua_site_17
+- changhua_site_18
+- changhua_site_19
+- changhua_site_20
+- changhua_site_21
+- changhua_site_22
+- changhua_site_23
+- changhua_site_24
 memory_breakdown:
-  history_events: 0.20
+  history_events: 0.2
   oral_tradition: 0.22
-  named_persons:  0.18
-  sites:          0.20
+  named_persons: 0.18
+  sites: 0.2

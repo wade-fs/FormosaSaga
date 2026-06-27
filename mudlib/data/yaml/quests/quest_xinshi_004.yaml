@@ -1,0 +1,16 @@
+id: quest_xinshi_004
+title: 新市尋蹤任務 4
+description: 在新市展開的歷史探索任務 4。
+difficulty: 1
+era: modern
+scope:
+  - xinshi
+settlement: xinshi
+objectives:
+  - id: obj_xinshi_4_1
+    npc: NPC_xinshi_001
+    ask_topic: 傳說
+    description: 向居民詢問傳說
+completion_reward:
+  exp: 200
+  reputation: 20

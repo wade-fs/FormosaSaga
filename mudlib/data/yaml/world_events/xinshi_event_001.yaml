@@ -1,0 +1,10 @@
+id: xinshi_event_001
+name: 新市動態事件 1
+description: 新市的季節性慶典或自然事件 1。
+duration_days: 7
+era_active: modern
+type: scheduled
+scope:
+  - xinshi
+affected_sites:
+  - xinshi_site

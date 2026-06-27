@@ -8,10 +8,16 @@ base_description: |
 travel_arrive_text: "你登上了彰化八卦山，俯瞰著山下的平原，山風在耳邊呼嘯掠過。"
 
 names:
+  - era: v1.0
+    name: 八卦山古道
   - era: v2_0
     name: 八卦山戰場
   - era: modern
     name: 八卦山大佛風景區
+
+rumors:
+  - "傳說八卦山大佛下方有隱秘的通道，但沒人知道入口在哪裡。"
+  - "有人說在山頂的古戰場，偶爾能聽到虛幻的號角聲。"
 
 connections:
   - lukang_old_street

@@ -1,0 +1,11 @@
+id: NPC_changhua_extra_08
+name:
+  zh-TW: "彰化額外人物08"
+settlement: changhua
+home_site: changhua_site_01
+role: citizen
+hint:
+  zh-TW: "這是一位彰化的居民。"
+responses:
+  "彰化":
+    zh-TW: "彰化真的是個歷史悠久的好地方。"

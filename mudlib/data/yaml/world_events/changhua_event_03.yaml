@@ -1,0 +1,11 @@
+id: changhua_event_03
+name: "彰化動態事件03"
+type: scheduled
+era_active: modern
+duration_days: 1
+affected_sites:
+  - changhua_site_01
+description: "彰化動態事件03正在發生。"
+effects:
+  site_desc_override:
+    changhua_site_01: "因為動態事件，這裡發生了變化。"
