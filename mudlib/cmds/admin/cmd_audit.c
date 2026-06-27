@@ -96,6 +96,74 @@ int do_settlement_audit(object me, string id) {
     return 1;
 }
 
+int do_routes_audit(object me, string id) {
+    mapping result;
+    string *sites;
+    int i, j;
+    string *eras = ({ "indigenous", "qing", "japanese", "postwar", "modern" });
+
+    write(HIY "正在對聚落 " + id + " 進行路線與時代地名稽核（Audit Routes）...\n" NOR);
+
+    result = "/daemon/settlement_d"->load_settlement(id);
+    if (!result) {
+        write(RED "錯誤：找不到聚落「" + id + "」的設定檔或載入失敗。\n" NOR);
+        return 1;
+    }
+
+    sites = result["sites"];
+    if (!pointerp(sites) || !sizeof(sites)) {
+        write(RED "警告：該聚落沒有配置任何 Sites (地標)。\n" NOR);
+        return 1;
+    }
+
+    write("====================================================================\n");
+    write(" 聚落路線與時代地名稽核: " + result["name"] + " (" + id + ")\n");
+    write("====================================================================\n");
+
+    for (i = 0; i < sizeof(sites); i++) {
+        string site_id = sites[i];
+        mapping s_data = "/daemon/site_d"->load_site(site_id);
+        if (!s_data) {
+            write(sprintf("  %-25s : %s\n", site_id, RED "● 無法讀取地標資料" NOR));
+            continue;
+        }
+
+        string canon_name = s_data["canonical_name"] || s_data["name"] || site_id;
+        write(sprintf("\n" HIC "📍 地標 ID: %s (%s)\n" NOR, site_id, canon_name));
+
+        // 1. 印出各時代的對應名稱
+        write("   " WHT "【各時代地名變遷】" NOR "\n");
+        int has_era_name = 0;
+        for (j = 0; j < sizeof(eras); j++) {
+            string era_name = "/daemon/site_d"->query_name_in_era(site_id, eras[j]);
+            if (era_name && era_name != site_id && era_name != canon_name) {
+                write(sprintf("     %-12s -> %s\n", eras[j] + ":", era_name));
+                has_era_name = 1;
+            }
+        }
+        if (!has_era_name) {
+            write("     (無各時代特殊命名，統一使用預設地名)\n");
+        }
+
+        // 2. 印出連通路線
+        write("   " WHT "【地圖連通路徑 (Routes)】" NOR "\n");
+        string *conn = s_data["connections"] || ({});
+        if (sizeof(conn) > 0) {
+            for (j = 0; j < sizeof(conn); j++) {
+                string neighbor = conn[j];
+                string neighbor_name = "/daemon/site_d"->query_name_in_era(neighbor, "modern");
+                write(sprintf("     --> %-25s (%s)\n", neighbor, neighbor_name));
+            }
+        } else {
+            write(YEL "     (⚠ 此地標為孤島，沒有對外連結任何路線！)\n" NOR);
+        }
+    }
+
+    write("====================================================================\n");
+    write(GRN "聚落路線與時代地名稽核完成。\n" NOR);
+    return 1;
+}
+
 int do_errors_audit(object me) {
     string content;
     write(HIW "=== 最近系統錯誤日誌 (settlement_errors.log) ===\n" NOR);
@@ -119,6 +187,7 @@ int main(object me, string verb, string arg) {
     if (!arg || arg == "") {
         write(HIW "語法指南 (audit <子指令> [參數])：\n" NOR
               "  audit settlement <聚落ID>  - 檢查聚落、地標載入與孤立地標狀態\n"
+              "  audit routes <聚落ID>      - 查詢聚落在不同時代下的路線與地標名稱\n"
               "  audit errors               - 顯示最近的聚落載入錯誤日誌\n"
               "  audit status               - 顯示 MUD 核心系統狀態\n");
         return 1;
@@ -139,6 +208,12 @@ int main(object me, string verb, string arg) {
                 return 1;
             }
             return do_settlement_audit(me, subarg);
+        case "routes":
+            if (subarg == "") {
+                write("請指定聚落 ID。例如：audit routes minxiong\n");
+                return 1;
+            }
+            return do_routes_audit(me, subarg);
         case "errors":
             return do_errors_audit(me);
         case "status":
