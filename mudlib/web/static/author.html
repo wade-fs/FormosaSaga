@@ -273,6 +273,14 @@
                 <div class="tree-item" onclick="loadContentList('factions')"><span class="tree-icon">🚩</span> Factions</div>
                 <div class="tree-item" onclick="loadContentList('careers')"><span class="tree-icon">⚒️</span> Careers</div>
             </div>
+            <div class="tree-group">
+                <div class="tree-title">Source Code</div>
+                <div class="tree-item" onclick="loadDirList('/cmds/player/')"><span class="tree-icon">⌨️</span> Player Cmds</div>
+                <div class="tree-item" onclick="loadDirList('/cmds/admin/')"><span class="tree-icon">🔧</span> Admin Cmds</div>
+                <div class="tree-item" onclick="loadDirList('/area/')"><span class="tree-icon">🗺️</span> Area</div>
+                <div class="tree-item" onclick="loadDirList('/std/')"><span class="tree-icon">📦</span> Std Objects</div>
+                <div class="tree-item" onclick="loadDirList('/daemon/')"><span class="tree-icon">⚙️</span> Daemons</div>
+            </div>
         </div>
     </aside>
 
@@ -578,7 +586,6 @@
         if (eventObj && eventObj.currentTarget) {
             eventObj.currentTarget.classList.add('active');
         } else {
-            // Programmatic call, try to find the matching tree item
             document.querySelectorAll('.tree-item').forEach(el => {
                 if (el.getAttribute('onclick') && el.getAttribute('onclick').includes("'" + category + "'")) {
                     el.classList.add('active');
@@ -587,15 +594,26 @@
         }
         
         currentCategory = category;
-        
-        // Request ls from mud
         const basePath = "/data/yaml/" + category + "/";
         if(ws && ws.readyState === 1) {
             ws.send(JSON.stringify({ type: "cmd", payload: "ls_json " + basePath }));
+        }
+    }
+
+    function loadDirList(path, eventEl = null) {
+        document.querySelectorAll('.tree-item').forEach(el => el.classList.remove('active'));
+        if (eventEl) {
+            eventEl.classList.add('active');
         } else {
-            // Fake data for demo if not connected
-            const listArea = document.getElementById('file-list-area');
-            listArea.innerHTML = `<div class="tree-item" onclick="fakeOpenFile('/data/yaml/${category}/example.yaml')">📄 example.yaml</div>`;
+            document.querySelectorAll('.tree-item').forEach(el => {
+                if (el.getAttribute('onclick') && el.getAttribute('onclick').includes("'" + path + "'")) {
+                    el.classList.add('active');
+                }
+            });
+        }
+        currentCategory = '';
+        if(ws && ws.readyState === 1) {
+            ws.send(JSON.stringify({ type: "cmd", payload: "ls_json " + path }));
         }
     }
 
@@ -643,17 +661,29 @@
 
     function openInEditor(path, content) {
         switchMainView('editor');
-        // update tab active state manually
         document.querySelectorAll('.view-tab').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.view-tab')[2].classList.add('active');
 
         currentEditPath = path;
         document.getElementById("editor-title").innerText = path;
         
+        // Auto-detect language from file extension
+        const ext = path.split('.').pop().toLowerCase();
+        const langMap = {
+            'c': 'lpc',
+            'h': 'lpc',
+            'yaml': 'yaml',
+            'yml': 'yaml',
+            'json': 'json',
+            'md': 'markdown',
+            'js': 'javascript',
+        };
+        const lang = langMap[ext] || 'plaintext';
+        
         if (monacoEditor) {
-            monaco.editor.setModelLanguage(monacoEditor.getModel(), 'yaml');
-            monacoEditor.setValue(content);
-            document.getElementById("editor-status").innerText = "Opened";
+            monaco.editor.setModelLanguage(monacoEditor.getModel(), lang);
+            monacoEditor.setValue(content || '');
+            document.getElementById("editor-status").innerText = `Opened [${lang}]`;
         }
     }
 
@@ -672,14 +702,63 @@
     function initMonaco() {
         require.config({ paths: { 'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs' }});
         require(['vs/editor/editor.main'], function() {
+            // Register LPC language
+            monaco.languages.register({ id: 'lpc' });
+            monaco.languages.setMonarchTokensProvider('lpc', {
+                keywords: [
+                    'inherit', 'mixed', 'object', 'string', 'int', 'float', 'mapping', 'array',
+                    'void', 'private', 'protected', 'public', 'nomask', 'varargs', 'virtual',
+                    'static', 'status', 'if', 'else', 'for', 'while', 'foreach', 'switch',
+                    'case', 'default', 'break', 'continue', 'return', 'this_object'
+                ],
+                tokenizer: {
+                    root: [
+                        [/\/\/.*$/, 'comment'],
+                        [/\/\*/, 'comment', '@comment'],
+                        [/"([^"\\]|\\.)*$/, 'string.invalid'],
+                        [/"/, 'string', '@string'],
+                        [/'[^\\']'/, 'string'],
+                        [/#[a-zA-Z_]\w*/, 'keyword.preprocessor'],
+                        [/[a-zA-Z_]\w*/, { cases: { '@keywords': 'keyword', '@default': 'identifier' } }],
+                        [/[{}()[\]]/, '@brackets'],
+                        [/[0-9]+/, 'number'],
+                        [/[-+*\/<>=!&|^~?:]/, 'operator'],
+                    ],
+                    comment: [
+                        [/[^\/*]+/, 'comment'],
+                        [/\*\//, 'comment', '@pop'],
+                        [/[\/*]/, 'comment']
+                    ],
+                    string: [
+                        [/[^\\"]+/, 'string'],
+                        [/\\./, 'string.escape'],
+                        [/"/, 'string', '@pop']
+                    ],
+                }
+            });
+            monaco.languages.setLanguageConfiguration('lpc', {
+                comments: { lineComment: '//', blockComment: ['/*', '*/'] },
+                brackets: [['{', '}'], ['[', ']'], ['(', ')']],
+                autoClosingPairs: [
+                    { open: '{', close: '}' },
+                    { open: '[', close: ']' },
+                    { open: '(', close: ')' },
+                    { open: '"', close: '"' },
+                ]
+            });
+
             monacoEditor = monaco.editor.create(document.getElementById('monaco-editor-container'), {
                 value: '# Select a file to edit\n',
                 language: 'yaml',
                 theme: 'vs-dark',
                 automaticLayout: true,
                 fontSize: 14,
-                minimap: { enabled: false }
+                minimap: { enabled: true },
+                wordWrap: 'on',
             });
+
+            // Ctrl+S to save
+            monacoEditor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => saveEditorFile());
         });
     }
 
