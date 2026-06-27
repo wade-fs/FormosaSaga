@@ -518,8 +518,13 @@
     }
 
     function renderMiniMap(d) {
-        const m = document.getElementById("minimap-container"); if (!d.grid) return;
-        let html = ""; const exits = new Set(d.exits || []);
+        const m = document.getElementById("minimap-container");
+        if (!d.grid || d.grid.length === 0) {
+            m.style.display = "none";
+            return;
+        }
+        let html = `<div id="minimap-title-bar">${d.center_name || "Unknown Location"}</div><div id="minimap-grid">`;
+        const exits = new Set(d.exits || []);
         for (let y = 0; y < d.grid.length; y++) {
             for (let x = 0; x < d.grid[y].length; x++) {
                 const cell = d.grid[y][x]; let content = "", classes = "map-cell map-" + cell, onClick = "";
@@ -529,7 +534,8 @@
                 html += `<div class="${classes}" ${onClick}>${content}</div>`;
             }
         }
-        m.innerHTML = html; m.style.display = "grid";
+        html += "</div>";
+        m.innerHTML = html; m.style.display = "flex";
     }
 
     function sendCmd(cmd) {
