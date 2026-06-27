@@ -108,7 +108,8 @@ void check_trigger_memory(object player, object site) {
         if (met) {
             player->unlock_memory(mid);
             
-            tell_object(player, "\n" + C_GOOD + "【記憶共鳴】" + NOR + "你接觸到了歷史記憶片段：\n");
+            string ev_type = mem["evidence_type"] ? mem["evidence_type"] : "無形記憶";
+            tell_object(player, "\n" + C_GOOD + "【證據尋獲】" + NOR + "歷史的殘留化為實體，你獲得了一份關鍵證據 [" + ev_type + "]：\n");
             tell_object(player, C_TITLE + "「" + mem["title"] + "」" + NOR + "\n");
             tell_object(player, mem["description"] + "\n\n");
 
@@ -132,7 +133,8 @@ void on_fragment_accessible(object player, string mid) {
     mapping mem = load_memory(mid);
     if (mem) {
         player->unlock_memory(mid);
-        tell_object(player, "\n" + C_GOOD + "【記憶共鳴】" + NOR + "你接觸到了歷史記憶片段：\n");
+        string ev_type = mem["evidence_type"] ? mem["evidence_type"] : "無形記憶";
+        tell_object(player, "\n" + C_GOOD + "【證據尋獲】" + NOR + "歷史的殘留化為實體，你獲得了一份關鍵證據 [" + ev_type + "]：\n");
         tell_object(player, C_TITLE + "「" + mem["title"] + "」" + NOR + "\n");
         tell_object(player, mem["description"] + "\n\n");
 

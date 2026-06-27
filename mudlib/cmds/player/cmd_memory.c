@@ -22,18 +22,18 @@ int main(object me, string verb, string arg) {
     string era_name   = era_data ? (era_data["name"] || era_id) : era_id;
     int    era_thresh = era_data ? (era_data["min_progress"] || 100) : 100;
 
-    write("\n" + C_TITLE + "【記憶片段】" + NOR + "\n");
+    write("\n" + C_TITLE + "【歷史記憶與證據卷宗】" + NOR + "\n");
     write(sprintf("  當前時代：%s%s%s（%s）\n", C_HISTORY, era_name, NOR, era_id));
     write(sprintf("  世界進度：%s%d%s / %d\n\n", C_GOOD, era_prog, NOR, era_thresh));
 
     if (count == 0) {
-        write(C_DIM + "  你尚未解鎖任何記憶片段。\n" + NOR);
-        write(C_DIM + "  探索各地景點，觸發歷史記憶的共鳴。\n" + NOR);
+        write(C_DIM + "  你尚未解鎖任何記憶片段或證據。\n" + NOR);
+        write(C_DIM + "  探索各地景點，觸發歷史記憶並收集證據。\n" + NOR);
         write("\n");
         return 1;
     }
 
-    write(sprintf("  已解鎖片段：%s%d%s 則\n\n", C_GOOD, count, NOR));
+    write(sprintf("  已獲取證據：%s%d%s 份\n\n", C_GOOD, count, NOR));
 
     // ── 逐一列出記憶片段 ──────────────────────────────
     if (arg == "list" || arg == "" || !arg) {
@@ -44,10 +44,11 @@ int main(object me, string verb, string arg) {
                 string title = mem["title"] || mid;
                 string era   = mem["era"]   || "unknown";
                 string settle = mem["settlement"] || "";
-                write(sprintf("  %s%2d.%s %s%-20s%s  [%s] %s\n",
+                string ev_type = mem["evidence_type"] ? mem["evidence_type"] : "無形記憶";
+                write(sprintf("  %s%2d.%s %s%-20s%s  [%s] %s (%s)\n",
                     C_DIM, idx, NOR,
                     C_TITLE, title, NOR,
-                    era, settle));
+                    era, settle, ev_type));
             } else {
                 write(sprintf("  %s%2d.%s %s（資料缺失）\n", C_DIM, idx, NOR, mid));
             }
@@ -66,7 +67,8 @@ int main(object me, string verb, string arg) {
         mapping mem = MEMORY_D->load_memory(mid);
         if (mem) {
             write("\n" + C_TITLE + "「" + (mem["title"] || mid) + "」" + NOR + "\n");
-            write(sprintf("  時代：%s  聚落：%s\n", mem["era"] || "unknown", mem["settlement"] || "—"));
+            string ev_type = mem["evidence_type"] ? mem["evidence_type"] : "無形記憶";
+            write(sprintf("  形式：【%s】  時代：%s  聚落：%s\n", ev_type, mem["era"] || "unknown", mem["settlement"] || "—"));
             write("\n" + mem["description"] + "\n\n");
         } else {
             write(C_WARN + "  找不到此記憶的詳細資料。\n" + NOR);
