@@ -1,0 +1,31 @@
+id: quest_shuangwen_well_seal
+title: "古井下的起義軍金印"
+settlement: changhua_city
+scope:
+  - changhua_city
+era: qing
+difficulty: 3
+description: |
+  古井老住戶阿公提到，清代林爽文之役城破前夕，守將將天地會金印丟入了無影井中。
+  茶莊老闆阿德也收藏了拆除東門時暗中搶救出的『民胞物與』城門匾額。
+  你將協助釐清這段彰化古城起義與防衛的歷史秘密。
+objectives:
+  - id: talk_well_seal
+    description: "向 古井阿公 詢問金印的傳說與井底暗渠的流向"
+    npc: NPC_changhua_past_elder
+    ask_topic: 林爽文
+  - id: talk_east_gate_plate
+    description: "向 東門茶莊老闆阿德 詢問城門匾額的藏匿位置"
+    npc: NPC_changhua_rebel_descendant
+    ask_topic: 城門匾額
+  - id: look_well_shadow
+    description: "在 無影井 觀察水面與井壁石欄"
+    site: changhua_bagua_well
+    action: look
+  - id: get_well_memory
+    description: "解鎖記憶碎片『無影井底的黃金印信』"
+    memory: changhua_seal_001
+completion_reward:
+  exp: 1150
+  faction: taiwan_folk_memory
+  reputation: 75

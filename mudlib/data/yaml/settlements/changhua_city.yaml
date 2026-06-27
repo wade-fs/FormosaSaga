@@ -9,13 +9,39 @@ culture:    75
 memory:     68
 trade:      55
 cohesion:   70
-specters_active: []
-eras_present: ["v1.0", "v1.1", "v1.2", "modern"]
-industries: ["商業", "農業", "傳統工藝"]
+specters_active: # 歷史脈絡
+eras_present:
+  - "qing"
+  - "japanese"
+  - "modern"
+
+# 地方產業
+industries:
+  - "商業"
+  - "農業"
+  - "傳統工藝"
+
+# 信仰
 temples:
   - name: "彰化孔子廟"
     deity: "孔子"
-sites: ["changhua_city_site"]
+  - name: "彰化南瑤宮"
+    deity: "媽祖"
+
+# 地標（Site id 列表）
+sites:
+  - "changhua_city_site"
+  - "changhua_bagua_mountain"
+  - "changhua_confucian_temple"
+  - "changhua_nanyao_temple"
+  - "changhua_bagua_well"
+  - "changhua_east_gate"
+  - "changhua_west_gate"
+  - "changhua_north_gate"
+  - "changhua_south_gate"
+  - "changhua_lai_ho_clinic"
+  - "changhua_old_well_babu"
+  - "changhua_meatball_alley"
 memory_breakdown:
   history_events: 0.32
   oral_tradition: 0.30

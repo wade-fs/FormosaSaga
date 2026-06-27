@@ -1,0 +1,31 @@
+id: quest_bagua_mountain_line
+title: "八卦山的悲歌"
+settlement: changhua_city
+scope:
+  - changhua_city
+era: japanese
+difficulty: 3
+description: |
+  歷史社社長小林正在比對乙未戰爭八卦山決戰的防線，
+  解說員老陳也守在抗日烈士紀念碑旁，談起當年黑旗軍吳彭年將軍的悲壯犧牲。
+  你將協助小林完成戰線調查，並在孔廟大成殿梁柱上找到那顆穿透歷史的子彈彈孔。
+objectives:
+  - id: talk_guide_mountain
+    description: "在 八卦山 向 老陳 詢問吳彭年將軍與防線配置"
+    npc: NPC_changhua_mountain_guide
+    ask_topic: 乙未戰爭
+  - id: talk_keeper_bullet
+    description: "在 孔廟 向 管理員阿福 詢問流彈彈孔的具體位置"
+    npc: NPC_changhua_temple_keeper
+    ask_topic: 彈孔
+  - id: look_temple_hall
+    description: "在 彰化孔廟 仔細觀察大成殿中彈梁柱"
+    site: changhua_confucian_temple
+    action: look
+  - id: get_battle_memory
+    description: "解鎖記憶碎片『八卦山頂的落日軍號』"
+    memory: changhua_battle_001
+completion_reward:
+  exp: 1200
+  faction: taiwan_historical_truth
+  reputation: 80

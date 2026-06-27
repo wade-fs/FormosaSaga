@@ -1,0 +1,32 @@
+id: quest_nanyao_insult_carving
+title: "南瑤宮的柱頭大罵"
+settlement: changhua_city
+scope:
+  - changhua_city
+era: japanese
+difficulty: 2
+description: |
+  老乩童阿喜叔透露，南瑤宮觀音殿歐式立柱背面，
+  隱藏著當年匠師留下的三個日文漢字『馬鹿野郎』暗罵監工官員。
+  木雕學徒小施也聽說過孔廟夾層裡藏有清代匠師為了躲避沒收而藏匿的雕刻刀。
+  你決定去實地調查，解開這段匠師的無聲反抗。
+objectives:
+  - id: talk_nanyao_carving
+    description: "向 老乩童阿喜叔 詢問觀音殿立柱背面的日文漢字位置"
+    npc: NPC_changhua_nanyao_keeper
+    ask_topic: 匠師刻字
+  - id: look_nanyao_hall
+    description: "在 南瑤宮 仔細尋找立柱背面的刻字痕跡"
+    site: changhua_nanyao_temple
+    action: look
+  - id: talk_apprentice_knife
+    description: "向 木雕學徒小施 詢問孔廟夾層雕刻刀的傳說"
+    npc: NPC_changhua_woodcarver_apprentice
+    ask_topic: 老街屋
+  - id: get_nanyao_memory
+    description: "解鎖記憶碎片『觀音殿的西洋馬鹿』"
+    memory: changhua_nanyao_001
+completion_reward:
+  exp: 1100
+  faction: taiwan_cultural_memory
+  reputation: 75
