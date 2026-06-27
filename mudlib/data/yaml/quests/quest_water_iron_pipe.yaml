@@ -1,0 +1,27 @@
+id: quest_water_iron_pipe
+title: "明治水道的百年承諾"
+settlement: tainan
+scope:
+  - tainan
+era: japanese
+difficulty: 3
+description: |
+  台南水道的一截明治時期舊鑄鐵管道至今仍在使用，運作極其穩定。
+  老工程師對此充滿敬意，但似乎有一台老水泵被封鎖在庫房角落。
+  你將協助他重新了解台南淨水場的百年記憶。
+objectives:
+  - id: talk_engineer
+    description: "向 老工程師 詢問明治舊管線的情形"
+    npc: NPC_water_engineer
+    ask_topic: 老管道
+  - id: look_pump
+    description: "在 台南水道 觀察運轉的百年水泵"
+    site: tainan_water_facility_old
+    action: look
+  - id: get_water_memory
+    description: "解鎖記憶碎片『山上淨水場的第一滴水』"
+    memory: tainan_japanese_002
+completion_reward:
+  exp: 1300
+  faction: taiwan_cultural_memory
+  reputation: 90

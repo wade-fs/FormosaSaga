@@ -1,0 +1,27 @@
+id: quest_beimen_transparent_salt
+title: "結晶的甘甜"
+settlement: tainan
+scope:
+  - tainan
+era: modern
+difficulty: 2
+description: |
+  老鹽工阿海透露，七股鹽田的第三格西南角偶爾會結出如水晶般透明且帶有特殊甘甜的鹽。
+  美食導覽小玉對此非常好奇，懷疑與當地的水質和地質結構有關。
+  你決定去實地調查採樣，並找出原因。
+objectives:
+  - id: talk_salt_master
+    description: "向 老鹽工阿海 詢問透明鹽結晶的採集時機"
+    npc: NPC_salt_worker_tainan
+    ask_topic: 透明鹽
+  - id: search_salt_field
+    description: "在 七股鹽田 進行深度搜尋與水土採樣"
+    site: tainan_beimen_salt_field
+    action: search
+  - id: get_salt_memory
+    description: "解鎖記憶碎片『鹽田底部的結晶』"
+    memory: tainan_anping_salt_001
+completion_reward:
+  exp: 1000
+  faction: taiwan_folk_memory
+  reputation: 70

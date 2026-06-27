@@ -1,0 +1,31 @@
+id: quest_shennong_river_sound
+title: "五條港的地下回聲"
+settlement: tainan
+scope:
+  - tainan
+era: qing
+difficulty: 2
+description: |
+  神農街底下曾經是繁華的五條港水道，如今已填平為街面。
+  咖啡店主阿勇說在大雨後的特定地點能聽到地下流水聲。
+  你決定去實地調查，並找出水道舊輪廓。
+objectives:
+  - id: talk_barista
+    description: "向 阿勇 詢問地下流水聲的具體位置"
+    npc: NPC_shennong_barista
+    ask_topic: 神農街
+  - id: search_waterway
+    description: "在 神農街 仔細搜尋舊水道痕跡"
+    site: tainan_shennong_street
+    action: search
+  - id: talk_artist
+    description: "與 藝術家阿珍 討論她創作的『五條港的回聲』"
+    npc: NPC_shennong_street_artist
+    ask_topic: 水道
+  - id: get_qing_memory
+    description: "解鎖記憶碎片『五條港的水道喧囂』"
+    memory: tainan_qing_001
+completion_reward:
+  exp: 1100
+  faction: taiwan_folk_memory
+  reputation: 75

@@ -1,0 +1,31 @@
+id: quest_dutch_relic_tainan
+title: "大員的失落檔案"
+settlement: tainan
+scope:
+  - tainan
+era: dutch
+difficulty: 3
+description: |
+  學者Jan一直在尋找荷蘭國家檔案館殘缺的熱蘭遮城地下室圖紙。
+  阿義志工透露，安平古堡老磚牆的厚度似乎藏有端倪。
+  你將解開這個大航海時代的空間秘密。
+objectives:
+  - id: talk_jan
+    description: "與 Jan 討論荷蘭大員文書"
+    npc: NPC_dutch_researcher
+    ask_topic: 文書
+  - id: look_wall
+    description: "在 安平古堡 仔細觀察舊城牆"
+    site: tainan_anping_fort
+    action: look
+  - id: talk_guide
+    description: "詢問 志工阿義 關於城牆的秘密"
+    npc: NPC_anping_fort_guide
+    ask_topic: 密道
+  - id: get_dutch_memory
+    description: "解鎖記憶碎片『熱蘭遮城的早晨』"
+    memory: tainan_dutch_001
+completion_reward:
+  exp: 1200
+  faction: siraya_memory
+  reputation: 80
