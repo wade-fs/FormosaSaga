@@ -1,0 +1,31 @@
+id: quest_koxinga_tide_tainan
+title: "鹿耳門的奇蹟漲潮"
+settlement: tainan
+scope:
+  - tainan
+era: koxinga
+difficulty: 3
+description: |
+  鄭成功歷史表演者阿名對當時的登陸戰役極感興趣。
+  傳說媽祖在關鍵時刻讓潮水暴漲，大軍才得以進入。
+  你決定從歷史記載和地理遺留中，查明奇蹟的真相。
+objectives:
+  - id: talk_reenactor
+    description: "與 阿名 討論登陸戰役的經過"
+    npc: NPC_koxinga_reenactor
+    ask_topic: 鄭成功
+  - id: look_landing
+    description: "在 鹿耳門登陸處 仔細查看歷史碑文"
+    site: tainan_koxinga_landing
+    action: look
+  - id: talk_mazu_elder
+    description: "在大天后宮向 阿珠嬤 詢問媽祖助戰的傳說"
+    npc: NPC_mazu_worshipper_tainan
+    ask_topic: 媽祖
+  - id: get_koxinga_memory
+    description: "解鎖記憶碎片『明鄭大軍登陸鹿耳門』"
+    memory: tainan_koxinga_001
+completion_reward:
+  exp: 1500
+  faction: taiwan_historical_truth
+  reputation: 100

@@ -1,0 +1,27 @@
+id: quest_hayashi_locked_basement
+title: "林百貨的地下牆面"
+settlement: tainan
+scope:
+  - tainan
+era: japanese
+difficulty: 3
+description: |
+  老台南人傳說林百貨地下室在二戰結束前夕封死了一面牆，藏有當時的貨物。
+  解說員阿珊說地下室重新裝修後並未發現地窖，但確實有一面磚牆看起來非常新。
+  你決定去實地調查，並設法查明原因。
+objectives:
+  - id: talk_clerk_basement
+    description: "向 阿珊 詢問地下室翻修時的細節"
+    npc: NPC_hayashi_store_clerk
+    ask_topic: 傳言
+  - id: look_dept_store
+    description: "在 林百貨 尋找那面看起來年份不對的磚牆"
+    site: tainan_hayashi_dept
+    action: look
+  - id: get_hayashi_memory
+    description: "解鎖記憶碎片『林百貨的電梯轟鳴』"
+    memory: tainan_japanese_001
+completion_reward:
+  exp: 1300
+  faction: taiwan_cultural_memory
+  reputation: 90

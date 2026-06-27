@@ -21,34 +21,54 @@ specters_active: []
 
 # 歷史脈絡
 eras_present:
-  - "v0.2"
-  - "v1.0"
-  - "v1.1"
-  - "v1.2"
-  - "v2.0"
-  - "v2.1"
-  - "v3.0"
+  - "dutch"
+  - "koxinga"
+  - "qing"
+  - "japanese"
+  - "postwar"
   - "modern"
 
 # 地方產業
 industries:
-  - "文化觀光"
-  - "貿易（歷史）"
-  - "農業"
-  - "小吃飲食"
+  - "海商"
+  - "鹽業"
+  - "文創"
+  - "觀光"
 
 # 信仰
 temples:
   - name: "台南大天后宮"
     deity: "媽祖"
+  - name: "台南孔廟"
+    deity: "孔子"
 
-# 地標
+# 地標（Site id 列表）
 sites:
-  - "tainan_chihkan_tower"
   - "tainan_anping"
+  - "tainan_anping_fort"
+  - "tainan_chihkan_tower"
   - "tainan_confucian_temple"
   - "tainan_silian_yan"
   - "tainan_xilaya"
+  - "tainan_grand_mazu_temple"
+  - "anping_harbor"
+  - "five_concubines_temple"
+  - "wu_fei_temple"
+  - "tainan_old_street"
+  - "tainan_old_market"
+  - "tainan_hayashi_dept"
+  - "tainan_water_facility_old"
+  - "tainan_beimen_salt_field"
+  - "tainan_228_memorial"
+  - "tainan_shennong_street"
+  - "tainan_koxinga_landing"
+  - "tainan_zhongyi_temple"
+  - "tainan_guofeng_market"
+  - "tainan_dongmen"
+  - "tainan_fish_market"
+  - "tainan_sakura_lane"
+  - "tainan_yongle_market"
+  - "tainan_koxinga_museum"
 
 # 記憶子項目完成度
 memory_breakdown:

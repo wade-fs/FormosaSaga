@@ -1,0 +1,31 @@
+id: quest_jiaobang_order_lukang
+title: "行郊的信義印記"
+settlement: lukang
+scope:
+  - lukang
+era: qing
+difficulty: 2
+description: |
+  天后宮廟公阿全提到，清代行郊在媽祖前立誓交易，違約者會被收回商運。
+  半邊井的老太太春花也保留著關於當年行郊施水的溫情故事。
+  你將協助釐清這段基於宗教與信義的社會管理史。
+objectives:
+  - id: talk_keeper_jiao
+    description: "向 廟公阿全 詢問行郊議事與公斷的舊規矩"
+    npc: NPC_lukang_temple_keeper
+    ask_topic: 行郊
+  - id: look_port_relic
+    description: "在 舊渡頭 觀察花崗岩繫船石"
+    site: lukang_guichao_port
+    action: look
+  - id: talk_well_elder
+    description: "向 半邊井老太太春花 詢問建井主人的故事"
+    npc: NPC_lukang_banyue_well_elder
+    ask_topic: 半邊井
+  - id: get_well_memory
+    description: "解鎖記憶碎片『半邊井前的溫情』"
+    memory: lukang_well_001
+completion_reward:
+  exp: 1000
+  faction: taiwan_folk_memory
+  reputation: 70

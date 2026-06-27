@@ -1,0 +1,31 @@
+id: quest_railway_bypass_relic
+title: "拒絕鐵路的代價"
+settlement: lukang
+scope:
+  - lukang
+era: japanese
+difficulty: 3
+description: |
+  老漁夫阿木在舊渡頭泥沙中挖到過大正時期的鐵道道釘，引出當年鐵路繞道歷史。
+  隘門老守衛阿德也談到，縱貫線繞道後，日軍進城時隘門曾關閉防禦的家族口述。
+  你將解鎖這段改變鹿港歷史走向的重要轉折。
+objectives:
+  - id: talk_fisherman_pin
+    description: "向 漁夫阿木 詢問鐵路道釘與老街商人的反對原因"
+    npc: NPC_lukang_dock_fisherman
+    ask_topic: 道釘
+  - id: talk_guard_gate
+    description: "向 隘門守衛阿德 詢問隘門在日治初期的防禦狀況"
+    npc: NPC_lukang_rebel_descendant
+    ask_topic: 歷史
+  - id: look_museum_view
+    description: "在 民俗文物館 仔細觀察大和洋樓的二樓結構"
+    site: lukang_mazu_folk_arts_museum
+    action: look
+  - id: get_museum_memory
+    description: "解鎖記憶碎片『大和洋樓的二樓陽台』"
+    memory: lukang_museum_001
+completion_reward:
+  exp: 1250
+  faction: taiwan_historical_truth
+  reputation: 85

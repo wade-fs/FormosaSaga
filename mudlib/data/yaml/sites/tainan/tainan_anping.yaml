@@ -1,51 +1,30 @@
 id: tainan_anping
 settlement: tainan
-canonical_name: 安平
-is_heritage: false
+canonical_name: 安平老街
+is_heritage: true
 base_description: |
-  熱氣蒸騰的安平港灣，夕陽餘暉灑在波光粼粼的海面上。
-  海風中夾雜著鹽分與古老木船的潮濕氣味，沙灘上散落著貝殼與舊磚石的碎屑。
-travel_arrive_text: "你來到了古老的海港安平，潮水聲拍打著海岸，訴說著數百年的風霜。"
+  熱氣蒸騰的安平老街保留了幾排日治時代的洋樓立面，
+  一樓開著蝦餅店、古厝民宿、鹹魚攤。
+  老街的盡頭是台江內海的舊岸線，已經被填海造陸推向遠方，
+  但老屋門口的石階高度，還是當年面對海平面設計的高度。
+travel_arrive_text: "你走進安平老街，蝦餅的焦香從幾家店同時飄出來，撲向每一個路過的人。"
 
 names:
-  - era: v0_2
-    name: 大員海灣
-  - era: v1_0
+  - era: dutch
+    name: 大員市鎮（Tayouan）
+  - era: koxinga
+    name: 安平鎮
+  - era: qing
     name: 安平港街
-  - era: v2_1
-    name: 安平支廳
+  - era: japanese
+    name: 安平老街（町家建築）
+  - era: modern
+    name: 安平老街
 
+rumors:
+  - "安平老街有一棟屋子，牆壁上的榕樹氣根把整棟房子包起來了，屋主幾十年前搬走了，樹還留著，現在叫「榕樹屋」，但樹比房子更早在這裡。"
+  - "老街最深處的一個小廟，供奉的神明外地人看不懂，廟公說那是「延平王」，但廟的規格和氣場，比一般延平王廟大很多。"
 connections:
-  - tainan_chihkan_tower
+  - tainan_anping_fort
   - tainan_xilaya
-
-reveal_layers:
-  # 條件 1：當世界處於 "v0_2" 時代且擁有天賦時，可進入海商紀歷史層
-  - condition: "all"
-    checks:
-      - type: "has_talent"
-        talent: "island_memory"
-    text: "港灣的波浪間隱約浮現出巨大帆船與大砲的幻影，耳邊傳來夾雜著閩南語與荷蘭語的喧囂呼喊。"
-    entry:
-      era: "v0_2"
-      label: "進入海商紀的大員海灣（鄭成功渡海）"
-
-  # 條件 2：當世界進入 "v1_0" 時代後，浮現清領時期的安平港街歷史層
-  - condition: "all"
-    checks:
-      - type: "era_completed"
-        era: "v0_2"
-    text: "防波堤旁扭曲的虛空中，隱約浮現出飄揚著清朝官旗的駁船，以及苦力們搬運糖包與茶箱的吆喝聲。"
-    entry:
-      era: "v1_0"
-      label: "進入清領時期的安平港街"
-
-  # 條件 3：當世界進入 "v2_1" 日治時代後，浮現安平歷史遺跡與傳說歷史層
-  - condition: "all"
-    checks:
-      - type: "era_completed"
-        era: "v2_0"
-    text: "紅磚牆的縫隙中，隱隱透露出一股日本大正時期鹽務局與紅毛城歷史堆疊的靜謐氣息。"
-    entry:
-      era: "v2_1"
-      label: "進入日治時期的安平支廳"
+  - anping_harbor

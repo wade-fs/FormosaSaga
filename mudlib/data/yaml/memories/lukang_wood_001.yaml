@@ -1,12 +1,13 @@
 id: lukang_wood_001
-title: "泉州雕師的木槌"
+title: "大木作的極致藻井"
 era: "qing"
-quality: 2
-progress: 15
-description: "清代中葉，大批泉州雕刻匠師隨商船抵達鹿港。老街的木雕坊中，師徒相傳著複雜的神龕藻井與廟宇神像鑿刻。木槌敲擊鑿刀的清脆聲中，樟木與檜木的幽香與虔誠的匠人精神一同被刻進了鹿港的歷史肌理。"
+evidence_type: "工藝記憶"
+quality: 3
+progress: 10
+description: |
+  清代建廟時，福建泉州的木雕大師施木生站在戲台頂端。
+  他沒有拿任何圖紙，僅憑一把古老折尺和手感，將最後一塊斗拱卡入藻井中心。
+  當榫卯完全契合的那一刻，整個八卦形的天空完美地懸掛在半空。
 settlement: "lukang"
-trigger_site: "lukang_old_street"
-conditions:
-  - type: "career_rank"
-    career: "artisan"
-    rank: 1
+trigger_site: "lukang_longshan_temple"
+conditions: []

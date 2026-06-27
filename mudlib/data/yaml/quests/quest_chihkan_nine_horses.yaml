@@ -1,0 +1,27 @@
+id: quest_chihkan_nine_horses
+title: "赤崁樓的轉頭石馬"
+settlement: tainan
+scope:
+  - tainan
+era: qing
+difficulty: 2
+description: |
+  赤崁樓院子裡的九隻石馬中，有一隻的頭是稍微朝左偏的。
+  研究員小玲指出這隻石馬的石質和底座與其他不同。
+  你將探尋這隻特殊石馬的修補背後隱藏的清代故事。
+objectives:
+  - id: talk_archivist
+    description: "向 研究員小玲 詢問九隻石馬的調查細節"
+    npc: NPC_chihkan_archivist
+    ask_topic: 石馬
+  - id: look_horses
+    description: "在 赤崁樓 觀察九隻石馬的姿態與石材"
+    site: tainan_chihkan_tower
+    action: look
+  - id: get_chihkan_memory
+    description: "解鎖記憶碎片『大成殿的老榕樹』"
+    memory: tainan_qing_002
+completion_reward:
+  exp: 1000
+  faction: taiwan_cultural_memory
+  reputation: 70

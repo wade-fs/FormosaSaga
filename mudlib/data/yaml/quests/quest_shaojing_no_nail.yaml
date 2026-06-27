@@ -1,0 +1,31 @@
+id: quest_shaojing_no_nail
+title: "無釘藻井的奧秘"
+settlement: lukang
+scope:
+  - lukang
+era: japanese
+difficulty: 3
+description: |
+  木雕施師傅表示，龍山寺的八卦藻井是全台木結構的巔峰，中心藏有鎮火符。
+  天后宮廟公阿全也透露皇民化時期曾有用木雕佛像掉包真身的驚險事件。
+  你決定探尋這兩項將工藝與信仰完美融合的匠人秘密。
+objectives:
+  - id: talk_master_wood
+    description: "與 木雕大師施師傅 討論龍山寺藻井榫卯結構"
+    npc: NPC_lukang_master_woodcarver
+    ask_topic: 龍山寺
+  - id: look_workshop_site
+    description: "在 木雕工坊 仔細尋找舊設計圖或修復工具"
+    site: lukang_woodcarving_workshop
+    action: look
+  - id: talk_keeper_swap
+    description: "向 廟公阿全 詢問當年黑面二媽掉包真身的藏匿地點"
+    npc: NPC_lukang_temple_keeper
+    ask_topic: 掉包
+  - id: get_wood_memory
+    description: "解鎖記憶碎片『大木作的極致藻井』"
+    memory: lukang_wood_001
+completion_reward:
+  exp: 1300
+  faction: taiwan_cultural_memory
+  reputation: 90
