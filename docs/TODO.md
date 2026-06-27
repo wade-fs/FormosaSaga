@@ -152,8 +152,8 @@
     *   [x] 實作 NPC 好感度層級（熟識 ➔ 朋友 ➔ 信任 ➔ 知己）。
     *   [x] 隨著好感度提升，NPC 對話與解鎖任務將動態改變（如老站長從一開始的客套，變為拜託私事，最後吐露心聲）。
 *   **P21 — 歷史事件驅動的世界狀態 (World State Evolution)**
-    *   [ ] 實作由 Incident 進度推動的世界動態變化（如：修好糖廠 ➔ 糖鐵重新開放 ➔ NPC 開始搭車 ➔ 市場新增商人 ➔ Quest 改變 ➔ Memory 更新）。
-    *   [ ] 降低 Era（時代）的生硬切換，改由 Incident 觸發 World State 動態漸變。
+    *   [x] 實作由 Incident 進度推動的世界動態變化（如：修好糖廠 ➔ 糖鐵重新開放 ➔ NPC 開始搭車 ➔ 市場新增商人 ➔ Quest 改變 ➔ Memory 更新）。
+    *   [x] 降低 Era（時代）的生硬切換，改由 Incident 觸發 World State 動態漸變。
 
 ### 📋 聚落驗收標準 (Settlement Definition of Done)
 *   **聚落開發規範驗收標準**（未來開發嘉義、新港、台南的一致依據）：

@@ -33,6 +33,7 @@ string *unlocked_memories; // 🚀 新增：解鎖的歷史記憶 ID 陣列
 mapping footprint_atlas;   // 🚀 新增：踏印地圖 (用於 footprint_d.c)
 mapping career_points; // P4：職涯修練點 ([ career_id: points ])
 string faction;        // P4：所屬勢力 ID
+mapping encyclopedia;  // P19：歷史百科圖鑑 ([ 分類: ([ id: 條目 ]) ])
 
 
 
@@ -72,6 +73,7 @@ void create() {
     if (!career_points) career_points = ([]);
     if (!footprint_atlas) footprint_atlas = ([]);
     if (!aliases) aliases = ([]);
+    if (!encyclopedia) encyclopedia = ([ "memory": ([]), "quest": ([]), "incident": ([]) ]);
     init_aliases();
     
     write_paths = ({ }); 
@@ -334,9 +336,13 @@ void setup() {
     if (!unlocked_memories) unlocked_memories = ({});
     if (!aliases) aliases = ([]);
     if (!last_bank_time) last_bank_time = time();
+    if (!encyclopedia) encyclopedia = ([ "memory": ([]), "quest": ([]), "incident": ([]) ]);
     init_aliases();
     set_heart_beat(1);
     enable_commands();
+
+    // P19: 確保圖鑑守護進程已啟動（自動訂閱事件）
+    catch(CODEX_D);
 
     if (role == "wizard" || role == "god") {
         enable_wizard();

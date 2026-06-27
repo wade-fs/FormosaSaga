@@ -130,6 +130,7 @@ void player_enter(object player) {
     if (prev && prev != query_entity_id())
         player->set_temp("previous_site_id", prev);
     player->set_temp("current_site_id", query_entity_id());
+    player->record_exploration(query_entity_id());
 
     // 授予地理踏印（委託給 FOOTPRINT_D）
     catch(FOOTPRINT_D->on_player_enter_site(player, this_object()));
@@ -215,6 +216,12 @@ void do_look(object player) {
     string event_desc = WORLD_EVENT_D->query_site_event_desc(clean_id);
     if (event_desc && event_desc != "") {
         out += event_desc + "\n";
+    }
+
+    // P21: 世界狀態演化對該 Site 的描述注入
+    string state_desc = WORLD_STATE_D->query_site_state_desc(clean_id);
+    if (state_desc && state_desc != "") {
+        out += state_desc + "\n";
     }
 
     // ── 條件浮現層 ──

@@ -362,10 +362,45 @@ void catch_tell(string msg) {
     }
 }
 
+// 供互動指令呼叫：玩家主動打招呼，好感 +2
+void do_greet(object player) {
+    if (!player) return;
+    string npc_id = query_entity_id();
+    int colon = strsrch(npc_id, ":");
+    if (colon != -1) npc_id = substr(npc_id, colon + 1, strlen(npc_id) - colon - 1);
+
+    int old_val = RELATION_D->get_relation(player, npc_id);
+    int new_val = RELATION_D->add_relation(player, npc_id, 2);
+
+    string my_name = query_name();
+    string tier_name = RELATION_D->get_tier_name(RELATION_D->get_player_tier(player, npc_id));
+
+    if (old_val == 0) {
+        tell_object(player, my_name + " 點頭致意：「你好，第一次見面。」\n");
+    } else {
+        tell_object(player, my_name + " 微笑點頭：「又見面了。」\n");
+    }
+    if (new_val > old_val && new_val % 5 == 0) {
+        tell_object(player, C_DIM + "（好感度：" + new_val + "/100 " + tier_name + "）" + C_RESET + "\n");
+    }
+}
+
 int do_chat(object me, string topic) {
     if (!topic || topic == "") return 0;
-    
+
+    // 取得 NPC ID（去除 "npc:" 前綴）
+    string npc_id = query_entity_id();
+    int colon = strsrch(npc_id, ":");
+    if (colon != -1) npc_id = substr(npc_id, colon + 1, strlen(npc_id) - colon - 1);
+
+    // P20：合併好感層級對話與標準對話
+    mapping rel_dialogues = RELATION_D->get_available_dialogues(me, npc_id);
     mapping all_resp = query_all_responses();
+    // 好感對話優先覆蓋標準對話（更私密的說法）
+    foreach (string k, mixed v in rel_dialogues) {
+        all_resp[k] = v;
+    }
+
     string my_name = query_name();
 
     // 優先精確匹配
@@ -382,6 +417,8 @@ int do_chat(object me, string topic) {
         if (final_msg != "") {
             if (mapp(final_msg)) final_msg = select_lang(final_msg);
             tell_object(me, my_name + " 告訴你：「" + final_msg + "」\n");
+            // P20: 每次對話 +1 好感
+            RELATION_D->add_relation(me, npc_id, 1);
             return 1;
         }
     }

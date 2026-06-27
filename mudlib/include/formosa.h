@@ -28,6 +28,10 @@
 #define ROUTE_D       load_object("/daemon/route_d.c")
 #define EVENT_VIEWER_D load_object("/daemon/event_viewer_d.c")
 #define WORLD_EVENT_D  load_object("/daemon/world_event_d.c")
+#define COMPLETION_D   load_object("/daemon/completion_d.c")
+#define CODEX_D        load_object("/daemon/codex_d.c")
+#define RELATION_D     load_object("/daemon/relation_d.c")
+#define WORLD_STATE_D  load_object("/daemon/world_state_d.c")
 
 // ── 踏印類型 ───────────────────────────────────────────
 #define FP_GEO        "geo"         // 地理踏印
@@ -94,6 +98,7 @@
 
 // ── ANSI 顏色快捷 ──────────────────────────────────────
 #define C_RESET   "$NOR$"
+#define NOR       "$NOR$"
 #define C_TITLE   "$HIW$"
 #define C_DIM     "$CYN$"
 #define C_WARN    "$HIR$"
@@ -101,6 +106,7 @@
 #define C_MEMORY  "$YEL$"
 #define C_HISTORY "$MAG$"
 #define C_REVEAL  "$HIB$"
+#define C_CODEX   "$HIB$"
 
 // ── 資料路徑 ───────────────────────────────────────────
 #define YAML_SETTLEMENTS  "/data/yaml/settlements/"
