@@ -1,0 +1,32 @@
+id: quest_bengang_split_singang
+title: "笨港分裂的記憶"
+settlement: singang
+scope:
+  - singang
+era: qing
+difficulty: 2
+description: |
+  笨港老人阿德仔說，笨港溪舊河道底下還有清代的磚頭。
+  鴨肉羹阿嬤說，她家的老湯從笨港時代就沒換過。
+  你試圖從這些殘存的記憶中，還原乾隆年間那場洪水的影響。
+objectives:
+  - id: step_1
+    description: "與 NPC_northern_harbor_elder 對話"
+    npc: NPC_northern_harbor_elder
+    ask_topic: 洪水
+  - id: step_2
+    description: "與 NPC_duck_soup_grandma 對話"
+    npc: NPC_duck_soup_grandma
+    ask_topic: 笨港
+  - id: step_3
+    description: "在 beimen_creek_old 進行 search"
+    site: beimen_creek_old
+    action: search
+  - id: step_4
+    description: "解鎖記憶碎片 singang_bengang_001"
+    memory: singang_bengang_001
+completion_reward:
+  exp: 1200
+  faction: taiwan_folk_memory
+  reputation: 80
+  unlock_incident: singang_bengang_split_incident
