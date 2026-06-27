@@ -1,0 +1,10 @@
+id: penghu_incident_shen_yurong_expel
+incident_id: penghu_incident_shen_yurong_expel
+title: "沈有容諭退紅毛番"
+description: "明代將領沈有容在澎湖天后宮會見荷蘭海軍將領韋麻郎，嚴正交涉，諭令其退出澎湖，天后宮因而立碑紀念。"
+settlement: penghu
+scope:
+- penghu
+clues:
+- source_id: "memory:penghu_memory_退荷碑_carving"
+  description: "獲得澎湖重大歷史事件紀錄"

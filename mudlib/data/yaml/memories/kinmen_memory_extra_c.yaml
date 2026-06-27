@@ -1,0 +1,10 @@
+id: kinmen_memory_extra_c
+title: "金門歷史風物印記_C"
+era: "v3.0"
+evidence_type: 歷史記憶
+quality: 3
+progress: 10
+description: "關於金門群島烈嶼、水頭、山后等地區開墾、戰地防衛或僑商歷史發展的珍貴記憶片段C。"
+settlement: kinmen
+trigger_site: "kinmen_site"
+conditions: []

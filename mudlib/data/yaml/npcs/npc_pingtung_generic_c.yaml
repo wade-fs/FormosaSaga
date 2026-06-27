@@ -1,0 +1,13 @@
+id: npc_pingtung_generic_c
+name:
+  zh-TW: "屏東山海庄民_C"
+settlement: pingtung
+home_site: "hengchun"
+role: "citizen"
+hint:
+  zh-TW: "在屏東恆春古城或沿海庄頭討生活的尋常百姓之C。"
+responses:
+  "歷史":
+    zh-TW: "屏東的歷史，是一面由石板屋與恆春古城城牆抵禦海風，一面由東港迎王大典的火光與排灣族祖靈寫成的山海長卷。"
+  "山海":
+    zh-TW: "不論是牡丹社的古戰場，還是萬金聖母教堂，都是我們屏東人在風浪中討生活的根。"

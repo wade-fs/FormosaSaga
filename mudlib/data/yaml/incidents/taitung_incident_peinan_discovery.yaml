@@ -1,0 +1,10 @@
+id: taitung_incident_peinan_discovery
+incident_id: taitung_incident_peinan_discovery
+title: "卑南文化月形石柱現世"
+description: "鐵路工程開鑿時，意外發現了掩埋地下數千年的卑南史前文化遺址與巨大月形石柱，震動考古界。"
+settlement: taitung
+scope:
+- taitung
+clues:
+- source_id: "memory:taitung_memory_peinan_stone"
+  description: "獲得台東重大歷史事件紀錄"

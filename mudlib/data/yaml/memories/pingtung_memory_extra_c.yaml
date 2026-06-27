@@ -1,0 +1,10 @@
+id: pingtung_memory_extra_c
+title: "屏東歷史風物印記_C"
+era: "v1.2"
+evidence_type: 歷史記憶
+quality: 3
+progress: 10
+description: "關於屏東地區恆春、東港、三地門、萬巒等地區開墾、山海防衛或原民歷史發展的珍貴記憶片段C。"
+settlement: pingtung
+trigger_site: "hengchun"
+conditions: []

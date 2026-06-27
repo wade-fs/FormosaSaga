@@ -1,0 +1,10 @@
+id: central_incident_hayashi_elevator_crash
+incident_id: central_incident_hayashi_elevator_crash
+title: "林百貨電梯鋼索斷裂"
+description: "日治晚期的一場盟軍空襲震動，導致林百貨指針式電梯鋼索出現裂紋，日籍工程師連夜進行鋼絲更換。"
+settlement: tainan_central
+scope:
+- tainan_central
+clues:
+- source_id: "memory:central_memory_prefectural_hall_siren"
+  description: "獲得中西區重大歷史事件紀錄"

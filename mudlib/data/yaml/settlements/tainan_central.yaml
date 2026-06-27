@@ -15,9 +15,35 @@ industries: ["觀光", "商業", "餐飲"]
 temples:
   - name: "台南孔子廟"
     deity: "孔子"
-sites: ["tainan_central_site"]
+sites:
+  - "tainan_central_site"
+  - "central_prefectural_hall"
+  - "central_confucian_temple"
+  - "central_hayashi_dept"
+  - "central_weather_station"
+  - "central_pangong_gate"
+  - "central_minglun_hall"
+  - "central_wude_hall"
+  - "central_chongqing_temple"
+  - "central_taishang_park"
+  - "central_grand_mazu_wing"
+  - "central_chongqing_loft"
+  - "central_weather_well"
 memory_breakdown:
   history_events: 0.40
   oral_tradition: 0.35
   named_persons:  0.32
-  sites:          0.38
+sites:
+  - "tainan_central_site"
+  - "central_prefectural_hall"
+  - "central_confucian_temple"
+  - "central_hayashi_dept"
+  - "central_weather_station"
+  - "central_pangong_gate"
+  - "central_minglun_hall"
+  - "central_wude_hall"
+  - "central_chongqing_temple"
+  - "central_taishang_park"
+  - "central_grand_mazu_wing"
+  - "central_chongqing_loft"
+  - "central_weather_well"

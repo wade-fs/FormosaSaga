@@ -1,0 +1,13 @@
+id: npc_taitung_generic_l
+name:
+  zh-TW: "台東山海庄民_L"
+settlement: taitung
+home_site: "chishang"
+role: "citizen"
+hint:
+  zh-TW: "在台東老街或山區部落討生活的尋常百姓之L。"
+responses:
+  "歷史":
+    zh-TW: "台東的歷史，是一面由都蘭大山抵禦海風，一面由太平洋黑潮與原民先靈歌聲寫成的山海長卷。"
+  "山海":
+    zh-TW: "不論是卑南的古遺址，還是紅葉的操場，都是我們台東人在風浪中討生活的根。"

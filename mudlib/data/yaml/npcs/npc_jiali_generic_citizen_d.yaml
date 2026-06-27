@@ -1,0 +1,11 @@
+id: npc_jiali_generic_citizen_d
+name:
+  zh-TW: "佳里老街庄民"
+settlement: jiali
+home_site: "jiali_site"
+role: "citizen"
+hint:
+  zh-TW: "在佳里舊街與金唐殿一帶討生活的尋常百姓。"
+responses:
+  "地方":
+    zh-TW: "我們佳里最熱鬧的就是三年一科的蕭壠香，有機會一定要來看蜈蚣陣。"

@@ -1,0 +1,13 @@
+id: npc_taichung_generic_kk
+name:
+  zh-TW: "台中老街街坊_KK"
+settlement: taichung
+home_site: "taichung_station"
+role: "citizen"
+hint:
+  zh-TW: "台中舊市區或南屯犁頭店一帶討生活的尋常百姓之KK。"
+responses:
+  "歷史":
+    zh-TW: "台中的歷史，是一面由縱貫鐵路牽引，一面由大甲媽祖與二七部隊寫成的長卷。"
+  "文化":
+    zh-TW: "不論是南屯的打鐵聲，還是櫟社詩人們在望月亭下的低吟，都是我們中台灣的根。"

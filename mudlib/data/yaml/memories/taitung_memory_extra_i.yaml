@@ -1,0 +1,10 @@
+id: taitung_memory_extra_i
+title: "台東歷史風物印記_I"
+era: "v2.0"
+evidence_type: 歷史記憶
+quality: 3
+progress: 10
+description: "關於台東地區池上、知本、關山、都蘭等地區開墾、山海防衛或原民歷史發展的珍貴記憶片段I。"
+settlement: taitung
+trigger_site: "chishang"
+conditions: []

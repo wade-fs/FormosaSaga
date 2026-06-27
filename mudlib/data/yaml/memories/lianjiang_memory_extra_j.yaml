@@ -1,0 +1,10 @@
+id: lianjiang_memory_extra_j
+title: "連江歷史風物印記_J"
+era: "v3.1"
+evidence_type: 歷史記憶
+quality: 3
+progress: 10
+description: "關於連江列島北竿、東莒、西莒、南竿等地區開墾、戰地防衛或閩東歷史發展的珍貴記憶片段J。"
+settlement: lianjiang
+trigger_site: "matsu_site"
+conditions: []

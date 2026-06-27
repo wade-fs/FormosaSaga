@@ -1,0 +1,10 @@
+id: taoyuan_memory_extra_md
+title: "桃園歷史風物印記_MD"
+era: "v3.0"
+evidence_type: 歷史記憶
+quality: 3
+progress: 10
+description: "關於桃園地區大溪、中壢、八德、角板山等地區開墾、戰地防衛或水利歷史發展的珍貴記憶片段MD。"
+settlement: taoyuan
+trigger_site: "taoyuan_airport"
+conditions: []

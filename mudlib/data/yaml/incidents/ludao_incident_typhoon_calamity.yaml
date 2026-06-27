@@ -1,0 +1,10 @@
+id: ludao_incident_typhoon_calamity
+incident_id: ludao_incident_typhoon_calamity
+title: "強烈颱風漫綠島"
+description: "強烈颱風吹襲綠島，巨浪衝毀了楠仔湖多座咾咕石厝，港口漁船沉沒，村民集中在觀音洞內避風。"
+settlement: ludao
+scope:
+- ludao
+clues:
+- source_id: "memory:ludao_memory_oasis_iron_bars"
+  description: "獲得綠島重大歷史事件紀錄"

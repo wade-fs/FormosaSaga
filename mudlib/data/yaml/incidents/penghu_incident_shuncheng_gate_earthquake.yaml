@@ -1,0 +1,10 @@
+id: penghu_incident_shuncheng_gate_earthquake
+incident_id: penghu_incident_shuncheng_gate_earthquake
+title: "馬宮古城牆大坍塌"
+description: "日治初期大地震導致順承門城牆偏廊大面積坍塌，日警與總督府隨後實施修繕，加固石拱。"
+settlement: penghu
+scope:
+- penghu
+clues:
+- source_id: "memory:penghu_memory_退荷碑_carving"
+  description: "獲得澎湖重大歷史事件紀錄"

@@ -1,0 +1,11 @@
+id: npc_ludao_generic_citizen_c
+name:
+  zh-TW: "綠島海港庄民"
+settlement: ludao
+home_site: "ludao_prison"
+role: "citizen"
+hint:
+  zh-TW: "在綠島馬公港或沿海漁村討生活的尋常百姓。"
+responses:
+  "地方":
+    zh-TW: "我們綠島最出名的就是觀音洞跟朝日溫泉，有空一定要去走走。"

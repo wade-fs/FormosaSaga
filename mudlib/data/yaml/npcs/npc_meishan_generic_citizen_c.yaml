@@ -1,0 +1,11 @@
+id: npc_meishan_generic_citizen_c
+name:
+  zh-TW: "梅山老街庄民"
+settlement: meishan
+home_site: "meishan_site"
+role: "citizen"
+hint:
+  zh-TW: "在梅山舊街與玉虛宮一帶討生活的尋常百姓。"
+responses:
+  "地方":
+    zh-TW: "我們梅山的高山茶跟梅子是全台灣最出名的，一定要去碧湖山看日出。"

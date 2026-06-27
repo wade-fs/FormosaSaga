@@ -1,0 +1,10 @@
+id: taichung_memory_extra_f
+title: "台中歷史風物印記_F"
+era: "v2.0"
+evidence_type: 歷史記憶
+quality: 3
+progress: 10
+description: "關於台中市轄內南屯、大甲、霧峰、清水等地區拓墾、外銷木材或民主請願歷史發展的珍貴記憶片段F。"
+settlement: taichung
+trigger_site: "taichung_station"
+conditions: []

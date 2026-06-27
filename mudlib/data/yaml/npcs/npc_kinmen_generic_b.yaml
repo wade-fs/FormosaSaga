@@ -1,0 +1,13 @@
+id: npc_kinmen_generic_b
+name:
+  zh-TW: "金門戰地庄民_B"
+settlement: kinmen
+home_site: "kinmen_site"
+role: "citizen"
+hint:
+  zh-TW: "在金門老街或防衛庄頭討生活的尋常百姓之B。"
+responses:
+  "歷史":
+    zh-TW: "金門的歷史，是一面由花崗岩坑道抵禦砲火，一面由浯島城隍香火寫成的戰地長卷。"
+  "戰地":
+    zh-TW: "不論是北山洋樓的彈孔，還是翟山水路坑道，都是我們金門人在砲火中求生存的根。"

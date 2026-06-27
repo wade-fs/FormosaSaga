@@ -1,0 +1,10 @@
+id: tainan_memory_extra_mem_b
+title: "府城歷史風物印記_B"
+era: "qing"
+evidence_type: 歷史記憶
+quality: 3
+progress: 10
+description: "關於台南府城老街、古廟、近海漁業或戰地防護歷史發展的珍貴記憶片段B。"
+settlement: tainan
+trigger_site: "tainan_old_street"
+conditions: []

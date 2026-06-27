@@ -1,0 +1,10 @@
+id: lianjiang_incident_qinbi_gale
+incident_id: lianjiang_incident_qinbi_gale
+title: "超級颱風正面襲擊芹壁"
+description: "強烈颱風以巨大威力正襲北竿，狂風巨浪摧毀了港口，但芹壁花崗岩石屋群因結構堅固，無一倒塌，保護了村民。"
+settlement: lianjiang
+scope:
+- lianjiang
+clues:
+- source_id: "memory:lianjiang_memory_beihai_blast"
+  description: "獲得連江重大歷史事件紀錄"

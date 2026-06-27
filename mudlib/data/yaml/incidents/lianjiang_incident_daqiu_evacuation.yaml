@@ -1,0 +1,10 @@
+id: lianjiang_incident_daqiu_evacuation
+incident_id: lianjiang_incident_daqiu_evacuation
+title: "大坵島全島居民大遷徙"
+description: "因交通極度不便與產業蕭條，大坵島全體居民集體遷往南竿，廢棄的石屋聚落隨後被野生梅花鹿佔領。"
+settlement: lianjiang
+scope:
+- lianjiang
+clues:
+- source_id: "memory:lianjiang_memory_beihai_blast"
+  description: "獲得連江重大歷史事件紀錄"

@@ -1,0 +1,10 @@
+id: ludao_incident_oasis_establishment
+incident_id: ludao_incident_oasis_establishment
+title: "綠洲山莊舊監獄落成"
+description: "國防部在綠島興建綠洲山莊高牆監獄，將原本在新生訓導處的政治犯集中關押，展開長期的鐵窗思想管制。"
+settlement: ludao
+scope:
+- ludao
+clues:
+- source_id: "memory:ludao_memory_oasis_iron_bars"
+  description: "獲得綠島重大歷史事件紀錄"
