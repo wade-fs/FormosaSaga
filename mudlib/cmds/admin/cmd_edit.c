@@ -44,7 +44,7 @@ int main(object me, string verb, string arg) {
 
         // 2. 檢查 Wizard 預設授權路徑
         if (!allowed && me->query_role() == "wizard") {
-            string *default_paths = ({ "/area", "/npc", "/item", "/cmds", "/log", "/open", "/tests", "/u" });
+            string *default_paths = ({ "/area", "/npc", "/item", "/cmds", "/log", "/open", "/tests", "/u", "/data", "/mudlib/data" });
             foreach (string p in default_paths) {
                 if (strsrch(file, p) == 0) {
                     allowed = 1;
@@ -97,9 +97,12 @@ int main(object me, string verb, string arg) {
         // 如果是新檔案且有範本，將範本內容預先寫入檔案 (確保 Web IDE 能讀到)
         if (content && file_size(file) == -1) {
             write_file(file, content);
+        } else if (!content) {
+            content = "";
         }
 
-        request_web_edit(file);
+        // 透過 mud_text 送出 UI 命令
+        write(sprintf("{\"ui\": \"edit_file\", \"path\": \"%s\", \"content\": %s}\n", file, json_encode(content)));
         return 1;
     }
 

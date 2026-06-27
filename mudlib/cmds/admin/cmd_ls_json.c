@@ -24,7 +24,7 @@ int main(object me, string verb, string arg) {
         
         // 2. 檢查 Wizard 預設授權路徑
         if (!allowed && me->query_role() == "wizard") {
-            string *default_paths = ({ "/area/", "/npc/", "/item/", "/cmds/", "/log/", "/open/", "/tests/", "/u/" });
+            string *default_paths = ({ "/area/", "/npc/", "/item/", "/cmds/", "/log/", "/open/", "/tests/", "/u/", "/data/", "/mudlib/data/" });
             foreach (string p in default_paths) {
                 if (strsrch(arg, p) == 0) {
                     allowed = 1;

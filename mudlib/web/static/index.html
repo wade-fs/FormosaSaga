@@ -281,6 +281,12 @@
             if (msg.type === "mud_text" || msg.type === "mud_html" || msg.type === "edit_file" || msg.type === "chat" || msg.type === "compile_error" || msg.type === "compile_success") {
                 const p = (msg.type === "chat" ? (msg.username + ": " + msg.payload) : msg.payload).trim();
                 
+                // Pass message to embedded Author Tool if it exists
+                const iframe = document.getElementById('author-iframe');
+                if (iframe && iframe.contentWindow && typeof iframe.contentWindow.handleMUDMessage === 'function') {
+                    iframe.contentWindow.handleMUDMessage(e.data);
+                }
+
                 if (msg.type === "compile_error") { handleCompileError(msg.payload); return; }
                 if (msg.type === "compile_success") { handleCompileSuccess(msg.payload); return; }
 
@@ -291,7 +297,7 @@
                 }
                 
                 if (msg.type === "mud_html") { appendRaw(p); return; }
-                if (msg.type === "edit_file") { openEditor(JSON.parse(p)); return; }
+
 
                 if (p.startsWith("{") && p.endsWith("}")) {
                     try { handleUIData(JSON.parse(p)); } catch (err) { handleMultiJSON(p); }
@@ -325,6 +331,49 @@
         else if (ui.ui === "mc_exit") toggleMCMode(false); 
         else if (ui.ui === "ls") renderExplorer(ui.path, ui.data);
         else if (ui.ui === "templates") showScaffolding(ui.data);
+        else if (ui.ui === "open_author") openAuthorTool();
+        else if (ui.ui === "edit_file") {
+            if (document.getElementById('panel-author') && document.getElementById('panel-author').style.display !== 'none') {
+                // If author tool is open, we do not open the default editor. 
+                // The iframe message forwarding will handle passing the full raw JSON string to author.html.
+            } else {
+                openEditor(ui);
+            }
+        }
+    }
+
+    function openAuthorTool() {
+        let panel = document.getElementById('panel-author');
+        if (!panel) {
+            panel = document.createElement('div');
+            panel.id = 'panel-author';
+            panel.className = 'overlay-panel';
+            panel.style.cssText = 'width: 95%; height: 95%; top: 2.5%; left: 2.5%; border: 2px solid #4CAF50; z-index: 3000; background: #0f1115; flex-direction: column; display: flex; box-shadow: 0 10px 50px rgba(0,0,0,0.9);';
+            panel.innerHTML = `
+                <div class="panel-header" style="background:#111;">
+                    <span>Content Authoring Tool (P22)</span>
+                    <span onclick="document.getElementById('panel-author').style.display='none'" style="cursor:pointer; color:#888;">×</span>
+                </div>
+                <iframe id="author-iframe" src="/author.html" style="width:100%; flex:1; border:none;"></iframe>
+            `;
+            document.body.appendChild(panel);
+            
+            const iframe = document.getElementById('author-iframe');
+            iframe.onload = () => {
+                iframe.contentWindow.setProxyWebSocket(ws);
+                setTimeout(() => {
+                    if (iframe.contentWindow && typeof iframe.contentWindow.loadContentList === 'function') {
+                        iframe.contentWindow.loadContentList('settlements');
+                    }
+                }, 100);
+            };
+        } else {
+            panel.style.display = 'flex';
+            const iframe = document.getElementById('author-iframe');
+            if (iframe && iframe.contentWindow && typeof iframe.contentWindow.loadContentList === 'function') {
+                iframe.contentWindow.loadContentList('settlements');
+            }
+        }
     }
 
     function renderCmdList(cats, title) {

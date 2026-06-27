@@ -172,6 +172,9 @@
 
 ### 🎨 未來中長程規劃
 *   **P22 — 內容可視化配置工具 (Content Authoring Tools)**
+    *   [x] 實作 `author.html` 獨立網頁工具，提供地標網路可視化。
+    *   [x] 整合 YAML 瀏覽與線上編輯 (Monaco Editor)。
+    *   [x] 實作 Dashboard 概覽數據統計。
 *   **P23 — 小說第二卷地理擴展 (Volume 2 Expansion)**
 
 

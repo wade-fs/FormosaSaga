@@ -13,7 +13,7 @@ void load_incidents() {
     clue_to_incident = ([]);
     
     foreach(string file in files) {
-        write("DEBUG file: " + file + "\n"); mapping data = YAML_D->parse_file(dir + file);
+        mapping data = YAML_D->parse_file(dir + file);
         if(!data || !data["incident_id"]) continue;
         
         string id = data["incident_id"];

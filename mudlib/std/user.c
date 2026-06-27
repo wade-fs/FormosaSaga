@@ -419,7 +419,7 @@ void setup() {
         move_to_start();
     }
 
-    call_other(load_object("/cmds/cmd_help.c"), "do_help_list", this_object(), "");
+    call_other(load_object("/cmds/player/cmd_help.c"), "do_help_list", this_object(), "");
 
     mapping socials = load_object("/daemon/social_d.c")->get_ui_list();
     write(sprintf("{\"ui\": \"socials\", \"title\": \"%s\", \"data\": %s}", 
@@ -610,7 +610,7 @@ void heart_beat() {
     heart_beat_count++;
     if (heart_beat_count >= 5) {
         heart_beat_count = 0;
-        object cmd_info = load_object("/cmds/cmd_info");
+        object cmd_info = load_object("/cmds/player/cmd_info");
         if (cmd_info) {
             cmd_info->main(this_object(), "", "");
         }

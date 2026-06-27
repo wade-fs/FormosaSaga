@@ -24,6 +24,11 @@
   "cwd": "/data/user/wade",
   "data_base_path": "/mudlib/data/",
   "defence": 21,
+  "encyclopedia": {
+    "incident": {},
+    "memory": {},
+    "quest": {}
+  },
   "equip_body": 0,
   "equip_feet": 0,
   "equip_hands": 0,
@@ -32,7 +37,9 @@
   "equip_weapon": 0,
   "exp": 0,
   "exp_to_next": 1000,
-  "explored_rooms": {},
+  "explored_rooms": {
+    "site:minxiong_old_station": 1
+  },
   "faction": 0,
   "faction_reputation": 0,
   "followers": [],
@@ -57,14 +64,14 @@
   "guild": 0,
   "guild_exp": 0,
   "guild_rank": 0,
-  "heart_beat_count": 1,
+  "heart_beat_count": 4,
   "hp": 165,
   "id": "wade",
   "id_list": [
     "wade"
   ],
   "in_combat": 0,
-  "in_edit": 0,
+  "in_edit": "/data/yaml/sites/changhua/changhua_baguashan.yaml",
   "is_closed": 0,
   "is_dead": 0,
   "is_riding": 0,
