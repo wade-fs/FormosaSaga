@@ -133,7 +133,45 @@
 
 ---
 
+### 🚀 第六階段：探索進度與歷史拼圖 (Exploration & Evidence)
+*   **P16 — 歷史事件進度系統 (Incident Progress)**
+    *   [ ] 設計 `Incident Progress` 機制，展示歷史事件的調查完成率（如「糖業興衰：15%」）。
+    *   [ ] 串接各 Sites 點位的完成狀態（宿舍 + 糖廠 + 糖鐵 = 40%），達 100% 時解鎖隱藏的「歷史真相」。
+*   **P17 — 記憶碎片實體化與證據鏈 (Memory to Evidence)**
+    *   [ ] 記憶不再只是收集，而是可作為證據（Evidence），例如：照片、日記、報紙、官方紀錄、口述等。
+    *   [ ] 實作多個證據的收集鏈，最後透過玩家的「歷史推理」解鎖真正的 Historical Truth。
+*   **P18 — 地點與聚落探索度 (Site & Settlement Completion)**
+    *   [ ] 實作單一地標的探索度（0% ~ 100%），如民雄市場 100%、鬼屋 63%。
+    *   [ ] 實作宏觀聚落探索度（Settlement Completion，如民雄 83%、嘉義 15%、鹿港 5%），做為玩家的長期探索目標。
+*   **P19 — 歷史大事紀圖鑑 (Chronicle Encyclopedia)**
+    *   [ ] 將 Chronicle 升級為玩家的「歷史百科圖鑑」。
+    *   [ ] 當玩家首次造訪或解鎖特定項目時，自動更新圖鑑內的 Memory、Quest 與 Incident 百科欄位。
+
+### 👥 第七階段：動態世界狀態與人際網絡 (World State & Relationships)
+*   **P20 — NPC 好感度與關係網 (NPC Relationship)**
+    *   [ ] 實作 NPC 好感度層級（熟識 ➔ 朋友 ➔ 信任 ➔ 知己）。
+    *   [ ] 隨著好感度提升，NPC 對話與解鎖任務將動態改變（如老站長從一開始的客套，變為拜託私事，最後吐露心聲）。
+*   **P21 — 歷史事件驅動的世界狀態 (World State Evolution)**
+    *   [ ] 實作由 Incident 進度推動的世界動態變化（如：修好糖廠 ➔ 糖鐵重新開放 ➔ NPC 開始搭車 ➔ 市場新增商人 ➔ Quest 改變 ➔ Memory 更新）。
+    *   [ ] 降低 Era（時代）的生硬切換，改由 Incident 觸發 World State 動態漸變。
+
+### 📋 聚落驗收標準 (Settlement Definition of Done)
+*   **聚落開發規範驗收標準**（未來開發嘉義、新港、台南的一致依據）：
+    *   [ ] 50+ 地標 (Sites)
+    *   [ ] 100+ 登場人物 (NPCs)
+    *   [ ] 20+ 歷史事件 (Incidents)
+    *   [ ] 60+ 記憶碎片 (Memories)
+    *   [ ] 80+ 任務故事 (Quests)
+    *   [ ] 30+ 傳言 (Rumors)
+    *   [ ] 15+ 動態事件 (Dynamic Events)
+    *   [ ] 10+ 隱藏地區 (Hidden Areas)
+    *   [ ] 每個 Site 至少包含三個 Era 歷史層面
+    *   [ ] 聚落總探索度 (Settlement Completion) 達成 100% 串接
+
+---
+
 ### 🎨 未來中長程規劃
-*   **P16 — 內容可視化配置工具 (Content Authoring Tools)**
-*   **P17 — 小說第二卷地理擴展 (Volume 2 Expansion)**
+*   **P22 — 內容可視化配置工具 (Content Authoring Tools)**
+*   **P23 — 小說第二卷地理擴展 (Volume 2 Expansion)**
+
 
