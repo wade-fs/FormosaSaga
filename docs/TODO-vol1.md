@@ -175,10 +175,12 @@
 
 *   **下一個聚落目標**（卷一完成條件）：
     *   [x] `chiayi_city` → Tier A 80%（**🎉 9/9 通過！**）
-    *   [x] `singang` → Tier B 80%
-    *   [x] `tainan` → Tier S 50%（主線骨幹，已達標）
+    *   [x] `singang` → Tier B 80%（**🎉 9/9 通過！**）
+    *   [x] `tainan` → Tier S 50%（**🎉 9/9 通過，已達到 100% 超高標！**）
     *   [x] `lukang` → Tier B 80%（**🎉 9/9 通過！**）
     *   [x] `changhua_city` → Tier B 80%（**🎉 9/9 通過！**）
+    *   [x] **全台灣 37/37 個聚落已全數通過 check_settlement.py 的 100% 綠燈驗收！**
+
 
 ---
 

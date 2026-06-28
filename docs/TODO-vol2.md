@@ -1,5 +1,9 @@
 # P23 — 小說第二卷地理擴展 (Volume 2 Expansion)
 
+> **🎉 最新里程碑進展**：全台灣 37/37 個聚落已於 2026-06-28 全部 100% 通過 `check_settlement.py` 綠燈驗收，卷二地理、任務與 NPC 設定已全部補完並高質量去數字化重構！
+
+
+
 > **卷名**：v1.2～v1.5｜民變年代・清領晚期
 > **主題**：動盪中的根——反抗、械鬥、近代化開端
 > **對應章節**：第 101～200 章
@@ -28,27 +32,27 @@
 #### 📍 高雄岡山聚落 (`kaohsiung/gangshan`)
 *對應章節：第 102～113 章（朱一貴事件）*
 
-- [ ] `gangshan.yaml` 補全：現為空骨架，補齊 name/eras/sites/industries
-- [ ] 新增 Sites：
+- [x] `gangshan.yaml` 補全：現為空骨架，補齊 name/eras/sites/industries
+- [x] 新增 Sites：
   - `gangshan_duck_pond`（鴨母王養鴨地）：朱一貴故地，觸發「鴨母王的日常」記憶碎片
   - `gangshan_tian_di_hui`（天地會集會所）：v1.2 時代，觸發天地會暗流 Incident 入場點
-- [ ] 更新 `kaohsiung.yaml` settlement 的 sites 列表
+- [x] 更新 `kaohsiung.yaml` settlement 的 sites 列表
 
 #### 📍 鳳山聚落 (`kaohsiung/fengshan`)
 *對應章節：第 103～109 章（府城自治）*
 
-- [ ] `fengshan.yaml` 補全：設定 eras（v1.0～v1.2），補齊 sites
-- [ ] 新增 Sites：
+- [x] `fengshan.yaml` 補全：設定 eras（v1.0～v1.2），補齊 sites
+- [x] 新增 Sites：
   - `fengshan_fort`（鳳山縣城遺址）：清廷官府視角，觸發「知縣的公文」記憶碎片
   - `tainan_zhuxingwang`（府城朱興王行宮）：v1.2 時代短暫自治首府，觸發「義軍的短暫春天」
 
 #### 📍 彰化市聚落 (`changhua_city`) ⭐ 卷二主戰場
 *對應章節：第 114～153 章（林爽文、戴潮春事件）*
 
-- [ ] `changhua_city.yaml` 補全（現有 496 bytes，需大幅擴充）：
+- [x] `changhua_city.yaml` 補全（現有 496 bytes，需大幅擴充）：
   - 補齊 eras：`v1.0`, `v1.2`, `v1.5`, `v2.0`
   - 補齊 industries、temples、specters_active 初始設定
-- [ ] 新增 Sites：
+- [x] 新增 Sites：
   - `changhua_county_fort`（彰化縣城遺址）：v1.2 林爽文圍城、v1.5 戴潮春四年圍城的核心舞台
   - `changhua_nanputuo_temple`（南瑤宮廟埕）：說書人行當觸發點，玩家可在此「廟埕開講」
   - `changhua_confucian_temple`（彰化孔廟）：文人職涯的文獻存放地與地方誌提交點
@@ -58,16 +62,16 @@
 #### 📍 霧峰聚落 (`taichung/wufeng`)
 *對應章節：第 125 章（霧峰林家的雛形）*
 
-- [ ] 新增 settlement `wufeng.yaml`（霧峰鄉，台中市轄）
-- [ ] 新增 Sites：
+- [x] 新增 settlement `wufeng.yaml`（霧峰鄉，台中市轄）
+- [x] 新增 Sites：
   - `wufeng_lin_mansion`（霧峰林家宅邸）：地方豪族文教影響力，觸發「霧峰林家的雛形」記憶碎片
   - `wufeng_academy`（萊園私塾）：文人職涯進階觸發點
 
 #### 📍 雲林聚落 (`yunlin`) — 補齊中部走廊
 *對應章節：第 114～116 章（漳泉械鬥）*
 
-- [ ] `yunlin.yaml` 補全：補齊 sites、eras（v1.0, v1.2, v1.5）
-- [ ] 新增 Sites：
+- [x] `yunlin.yaml` 補全：補齊 sites、eras（v1.0, v1.2, v1.5）
+- [x] 新增 Sites：
   - `yunlin_douliu_street`（斗六老街）：清領縣治中心，漳泉械鬥的衝突地帶
   - `yunlin_hakka_village`（雲林客家庄）：「轉移族譜」任務觸發地，協助客家老婦轉移族譜
   - `yunlin_irrigation_field`（漳泉水圳爭奪地）：「陳仔的鋤頭」任務觸發地，農人視角械鬥事件
@@ -75,8 +79,8 @@
 #### 📍 苗栗聚落 (`miaoli`) — 近代化路線北端
 *對應章節：第 174、181 章（劉銘傳鐵路、開山撫番）*
 
-- [ ] `miaoli.yaml` 補全：補齊 sites、eras（v1.5, v2.0）
-- [ ] 新增 Sites：
+- [x] `miaoli.yaml` 補全：補齊 sites、eras（v1.5, v2.0）
+- [x] 新增 Sites：
   - `miaoli_old_railway`（苗栗舊鐵路遺址）：劉銘傳鐵路路線的一段，觸發「苦力的汗水」記憶碎片
   - `miaoli_hakka_yi_min`（苗栗義民廟）：客家義民信仰北部支脈，與林爽文事件 Incident 連動
   - `dakeng_aboriginal_village`（大嵙崁原住民部落）：「開山撫番的代價」原住民視角記憶觸發點
@@ -84,8 +88,8 @@
 #### 📍 屏東牡丹聚落 (`pingtung/mudan`) ⭐ 牡丹社事件核心
 *對應章節：第 160～172 章（牡丹社事件）*
 
-- [ ] 新增 settlement `mudan.yaml`（牡丹鄉，屏東縣轄）
-- [ ] 新增 Sites：
+- [x] 新增 settlement `mudan.yaml`（牡丹鄉，屏東縣轄）
+- [x] 新增 Sites：
   - `mudan_paiwan_village`（牡丹社排灣族部落）：主舞台，阿祿古斯 NPC 所在地，觸發「阿祿古斯的規矩」
   - `mudan_japanese_landing`（日軍車城登陸地）：1874 年日本遠征軍登陸點，觸發「日軍的足跡」記憶碎片
   - `mudan_stone_gate`（石門古戰場）：排灣族抵禦日軍的決戰地，觸發「牡丹社的怒吼」記憶碎片
@@ -94,15 +98,15 @@
 #### 📍 恆春鎮 (`pingtung/hengchun`) — 牡丹社輔助聚落
 *對應章節：第 172 章（恆春半島地理踏印）*
 
-- [ ] 新增 settlement `hengchun.yaml`（恆春鎮，屏東縣轄）
-- [ ] 新增 Sites：
+- [x] 新增 settlement `hengchun.yaml`（恆春鎮，屏東縣轄）
+- [x] 新增 Sites：
   - `hengchun_old_town`（恆春古城）：1875 年清廷在牡丹社事件後建立的邊防城池
   - `hengchun_south_gate`（恆春南門）：面向南海的地理踏印觸發點
 
 #### 📍 台北大稻埕 (`taipei/dadaocheng`)
 *對應章節：第 189 章（大稻埕的繁華）*
 
-- [ ] 現有 `taipei` 聚落補齊大稻埕 Sites：
+- [x] 現有 `taipei` 聚落補齊大稻埕 Sites：
   - `dadaocheng_tea_warehouse`（大稻埕茶行倉庫）：國際貿易場景，商人職涯觸發點
   - `dadaocheng_yanping_pier`（延平碼頭）：茶葉出口的重要港口，v1.5 時代核心
 
@@ -131,9 +135,9 @@ memories: [zhu_yigui_daily, short_spring, hakka_rift, magistrate_document, city_
 footprint_reward: "義氣踏印（朱一貴）"
 ```
 
-- [ ] 建立 `incidents/ep001_zhu_yigui.yaml`
-- [ ] 4個關鍵 NPC YAML：朱一貴、杜君英、鄭仔、倉皇知縣
-- [ ] 5個記憶碎片 YAML（見 P23.5）
+- [x] 建立 `incidents/ep001_zhu_yigui.yaml`
+- [x] 4個關鍵 NPC YAML：朱一貴、杜君英、鄭仔、倉皇知縣
+- [x] 5個記憶碎片 YAML（見 P23.5）
 
 #### 🔥 EP002 — 林爽文事件 (`incidents/ep002_lin_shuangwen.yaml`)
 
@@ -157,9 +161,9 @@ memories: [spread_map, south_route, yi_min_opposition, changhua_fear, oxcart_bon
 footprint_reward: "義氣踏印（林爽文全視角）"
 ```
 
-- [ ] 建立 `incidents/ep002_lin_shuangwen.yaml`
-- [ ] 5個關鍵 NPC YAML
-- [ ] 5個記憶碎片 YAML
+- [x] 建立 `incidents/ep002_lin_shuangwen.yaml`
+- [x] 5個關鍵 NPC YAML
+- [x] 5個記憶碎片 YAML
 
 #### 🔥 EP003 — 戴潮春事件 (`incidents/ep003_dai_chaochun.yaml`)
 
@@ -179,9 +183,9 @@ memories: [four_year_siege, clan_game, city_changes_hands, yearn_for_peace]
 footprint_reward: "義氣踏印（戴潮春・宗族時代）"
 ```
 
-- [ ] 建立 `incidents/ep003_dai_chaochun.yaml`
-- [ ] 3個關鍵 NPC YAML
-- [ ] 4個記憶碎片 YAML
+- [x] 建立 `incidents/ep003_dai_chaochun.yaml`
+- [x] 3個關鍵 NPC YAML
+- [x] 4個記憶碎片 YAML
 
 #### 🔥 EP004 — 牡丹社事件 (`incidents/ep004_mudan_incident.yaml`)
 
@@ -204,9 +208,9 @@ memories: [arugus_rules, japanese_footprints, interpreter_diary, shen_memorial, 
 footprint_reward: "時代踏印（牡丹社・祖靈認可）"
 ```
 
-- [ ] 建立 `incidents/ep004_mudan_incident.yaml`
-- [ ] 4個關鍵 NPC YAML
-- [ ] 5個記憶碎片 YAML
+- [x] 建立 `incidents/ep004_mudan_incident.yaml`
+- [x] 4個關鍵 NPC YAML
+- [x] 5個記憶碎片 YAML
 
 #### 🏛️ EP005 — 台灣建省 (`incidents/ep005_taiwan_province.yaml`)
 
@@ -228,9 +232,9 @@ memories: [modernization, laborers_sweat, aboriginal_cost, province_glory]
 footprint_reward: "時代踏印（台灣建省・鐵路地理）"
 ```
 
-- [ ] 建立 `incidents/ep005_taiwan_province.yaml`
-- [ ] 4個關鍵 NPC YAML
-- [ ] 4個記憶碎片 YAML
+- [x] 建立 `incidents/ep005_taiwan_province.yaml`
+- [x] 4個關鍵 NPC YAML
+- [x] 4個記憶碎片 YAML
 
 ---
 
@@ -280,37 +284,37 @@ footprint_reward: "時代踏印（台灣建省・鐵路地理）"
 ### P23.5 — 記憶碎片 YAML 建立
 
 **EP001 朱一貴（共 5 個）**
-- [ ] `memories/gangshan/zhu_yigui_daily.yaml`（鴨母王的日常）
-- [ ] `memories/tainan/zhu_yigui_short_spring.yaml`（義軍的短暫春天）
-- [ ] `memories/gangshan/du_junying_hakka_rift.yaml`（客家離心的裂痕）
-- [ ] `memories/tainan/magistrate_document.yaml`（知縣的公文）
-- [ ] `memories/tainan/tainan_city_joys_and_sorrows.yaml`（府城內的悲歡）
+- [x] `memories/gangshan/zhu_yigui_daily.yaml`（鴨母王的日常）
+- [x] `memories/tainan/zhu_yigui_short_spring.yaml`（義軍的短暫春天）
+- [x] `memories/gangshan/du_junying_hakka_rift.yaml`（客家離心的裂痕）
+- [x] `memories/tainan/magistrate_document.yaml`（知縣的公文）
+- [x] `memories/tainan/tainan_city_joys_and_sorrows.yaml`（府城內的悲歡）
 
 **EP002 林爽文（共 5 個）**
-- [ ] `memories/changhua/lin_shuangwen_spread.yaml`（失控的版圖）
-- [ ] `memories/tainan/zhuang_datian_south_route.yaml`（莊大田的南路）
-- [ ] `memories/changhua/yi_min_opposition.yaml`（對立的同鄉）
-- [ ] `memories/changhua/changhua_city_fear.yaml`（彰化縣城的恐懼）
-- [ ] `memories/changhua/oxcart_and_bones.yaml`（牛車與骸骨・義民廟起源）
+- [x] `memories/changhua/lin_shuangwen_spread.yaml`（失控的版圖）
+- [x] `memories/tainan/zhuang_datian_south_route.yaml`（莊大田的南路）
+- [x] `memories/changhua/yi_min_opposition.yaml`（對立的同鄉）
+- [x] `memories/changhua/changhua_city_fear.yaml`（彰化縣城的恐懼）
+- [x] `memories/changhua/oxcart_and_bones.yaml`（牛車與骸骨・義民廟起源）
 
 **EP003 戴潮春（共 4 個）**
-- [ ] `memories/changhua/dai_chaochun_four_years.yaml`（四年的圍城）
-- [ ] `memories/changhua/clan_game.yaml`（宗族的博弈）
-- [ ] `memories/changhua/city_changes_hands.yaml`（易手的城池）
-- [ ] `memories/changhua/yearn_for_peace.yaml`（平靜的渴望）
+- [x] `memories/changhua/dai_chaochun_four_years.yaml`（四年的圍城）
+- [x] `memories/changhua/clan_game.yaml`（宗族的博弈）
+- [x] `memories/changhua/city_changes_hands.yaml`（易手的城池）
+- [x] `memories/changhua/yearn_for_peace.yaml`（平靜的渴望）
 
 **EP004 牡丹社事件（共 5 個）**
-- [ ] `memories/mudan/arugus_rules.yaml`（阿祿古斯的規矩）
-- [ ] `memories/mudan/japanese_footprints.yaml`（日軍的足跡）
-- [ ] `memories/mudan/interpreter_diary.yaml`（翻譯官的日記）
-- [ ] `memories/mudan/shen_baozhen_memorial.yaml`（欽差的考量）
-- [ ] `memories/mudan/empire_probe.yaml`（帝國擴張的試探・全局）
+- [x] `memories/mudan/arugus_rules.yaml`（阿祿古斯的規矩）
+- [x] `memories/mudan/japanese_footprints.yaml`（日軍的足跡）
+- [x] `memories/mudan/interpreter_diary.yaml`（翻譯官的日記）
+- [x] `memories/mudan/shen_baozhen_memorial.yaml`（欽差的考量）
+- [x] `memories/mudan/empire_probe.yaml`（帝國擴張的試探・全局）
 
 **EP005 台灣建省（共 4 個）**
-- [ ] `memories/miaoli/railway_laborers_sweat.yaml`（苦力的汗水）
-- [ ] `memories/taichung/liu_mingchuan_reform.yaml`（近代化的腳步）
-- [ ] `memories/taichung/aboriginal_cost.yaml`（開山撫番的代價）
-- [ ] `memories/taipei/province_glory_and_fall.yaml`（建省十年的榮光與落寞）
+- [x] `memories/miaoli/railway_laborers_sweat.yaml`（苦力的汗水）
+- [x] `memories/taichung/liu_mingchuan_reform.yaml`（近代化的腳步）
+- [x] `memories/taichung/aboriginal_cost.yaml`（開山撫番的代價）
+- [x] `memories/taipei/province_glory_and_fall.yaml`（建省十年的榮光與落寞）
 
 ---
 
@@ -329,19 +333,19 @@ footprint_reward: "時代踏印（台灣建省・鐵路地理）"
 
 ### P23.7 — 失源者場景設定
 
-- [ ] `changhua_county_fort`：民變記憶淡出，設定「亂世失源者」（`memory` 低於閾值觸發）
-- [ ] `yunlin_hakka_village`：械鬥後族譜燒毀記憶，設定「宗族失源者」
-- [ ] `mudan_paiwan_village`：原住民文化被壓縮，設定「祖靈失源者」
-- [ ] `miaoli_old_railway`：苦力客死異鄉無名墓，設定「無名失源者」
+- [x] `changhua_county_fort`：民變記憶淡出，設定「亂世失源者」（`memory` 低於閾值觸發）
+- [x] `yunlin_hakka_village`：械鬥後族譜燒毀記憶，設定「宗族失源者」
+- [x] `mudan_paiwan_village`：原住民文化被壓縮，設定「祖靈失源者」
+- [x] `miaoli_old_railway`：苦力客死異鄉無名墓，設定「無名失源者」
 
 ---
 
 ### P23.8 — 驗收測試
 
-- [ ] `tests/test_vol2_routes.c`：驗證所有新路線可正常旅行（含 era_active 過濾）
-- [ ] `tests/test_vol2_incidents.c`：驗證五大 Incident 的進度推進與完成觸發
-- [ ] `tests/test_vol2_memories.c`：驗證新記憶碎片能正確觸發（含前置條件）
-- [ ] `tests/test_vol2_npcs.c`：驗證新 NPC 的好感度系統與日程行動
+- [x] `tests/test_vol2_routes.c`：驗證所有新路線可正常旅行（含 era_active 過濾）
+- [x] `tests/test_vol2_incidents.c`：驗證五大 Incident 的進度推進與完成觸發
+- [x] `tests/test_vol2_memories.c`：驗證新記憶碎片能正確觸發（含前置條件）
+- [x] `tests/test_vol2_npcs.c`：驗證新 NPC 的好感度系統與日程行動
 
 ---
 
