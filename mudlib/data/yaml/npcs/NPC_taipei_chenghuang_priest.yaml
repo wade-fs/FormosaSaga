@@ -2,7 +2,7 @@ id: NPC_taipei_chenghuang_priest
 name:
   zh-TW: 霞海城隍廟廟祝
 settlement: taipei
-home_site: dadaocheng_霞海城隍廟
+home_site: dadaocheng_xiahai_temple
 role: priest
 hint:
   zh-TW: 穿著長袍的老廟祝，正在幫信眾解籤，神情認真而慈祥。

@@ -24,7 +24,7 @@ clues:
     name: 牆縫中的神像記號
     description: 大士爺廟的舊磚牆縫隙中發現的神像安置痕跡，泥灰顏色比周圍磚牆新。
     source_type: memory
-    source_id: memory:minxiong_temple_zerozeroone
+    source_id: memory:record_extra_pos_70
   - clue_id: teacher_private_notes
     name: 教師的私下記述
     description: 從德仔先處獲得的日記片段，記載他如何在禁令下秘密傳授漢文。

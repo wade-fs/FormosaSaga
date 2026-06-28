@@ -8,7 +8,7 @@ scope:
 settlement: tainan_yujing
 objectives:
 - id: obj_quest_yujing_siraya_contract
-  npc: npc_yujing_siraya_耆老_pan
+  npc: npc_yujing_siraya_elder_pan
   ask_topic: "歷史"
   description: "向潘老先生呈交古契約"
 completion_reward:

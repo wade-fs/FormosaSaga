@@ -8,12 +8,12 @@ clues:
     name: 殘破的老照片
     description: 一張老舊照片，顯示古厝過去曾經繁華的景象。
     source_type: memory
-    source_id: memory:minxiong_ghost_zerozeroone
+    source_id: memory:record_extra_pos_60
   - clue_id: ghost_rumor_1
     name: 鄉野傳言
     description: 當地人流傳的劉家衰落與女鬼傳說。
     source_type: memory
-    source_id: memory:minxiong_ghost_zerozerotwo
+    source_id: memory:record_extra_pos_18
 completion_reward:
   exp: 1000
   faction: liu_family

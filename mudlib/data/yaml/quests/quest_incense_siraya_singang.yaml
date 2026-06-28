@@ -1,32 +1,28 @@
-id: quest_incense_siraya_singang
-title: "西拉雅香的配方"
-settlement: singang
-scope:
-  - singang
-era: modern
-difficulty: 2
-description: |
-  香藝師傅阿福說，「西拉雅香」的配方有一半他知道，
-  另一半他懷疑在後花園的地下。
-  西拉雅後裔阿春嬤說，那種香是祭典用的，召喚祖靈用的。
-  你試圖找齊完整的配方，並決定它的用途。
-objectives:
-  - id: step_1
-    description: "與 NPC_incense_master_singang 對話"
-    npc: NPC_incense_master_singang
-    ask_topic: 西拉雅香
-  - id: step_2
-    description: "與 NPC_sinkang_descendent_lady 對話"
-    npc: NPC_sinkang_descendent_lady
-    ask_topic: 祖靈
-  - id: step_3
-    description: "在 fengtian_shrine_garden 進行 search"
-    site: fengtian_shrine_garden
-    action: search
-  - id: step_4
-    description: "解鎖記憶碎片 singang_incense_zerozeroone"
-    memory: singang_incense_zerozeroone
 completion_reward:
   exp: 1100
   faction: siraya_memory
   reputation: 85
+description: 協助地方庄民，尋回在風雨中遺失的「清代官府頒發的地方墾殖舊地契手抄原本」。
+difficulty: 2
+era: modern
+id: quest_incense_siraya_singang
+objectives:
+- ask_topic: 西拉雅香
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_1
+  npc: NPC_incense_master_singang
+- ask_topic: 祖靈
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_2
+  npc: NPC_sinkang_descendent_lady
+- action: search
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_3
+  site: fengtian_shrine_garden
+- description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_4
+  memory: record_extra_pos_26
+scope:
+- singang
+settlement: singang
+title: 失落的舊地契

@@ -1,13 +1,13 @@
+hint:
+  zh-TW: 老街百年商鋪的老闆，對地方名特產的古法製作與兩岸郊商開墾史極有研究。
+home_site: hualien_site
 id: npc_hualien_generic_a
 name:
-  zh-TW: "花蓮山海庄民_A"
-settlement: hualien
-home_site: "hualien_site"
-role: "citizen"
-hint:
-  zh-TW: "在花蓮港口或山區庄頭討生活的尋常百姓之A。"
+  zh-TW: 老街鋪掌櫃
 responses:
-  "歷史":
-    zh-TW: "花蓮的歷史，是一面由大理石峽谷抵禦強風，一面由太平洋黑潮與原民先靈歌聲寫成的山海長卷。"
-  "山海":
-    zh-TW: "不論是太魯閣的長春祠，還是太巴塱的祖靈屋，都是我們花蓮人在風浪中討生活的根。"
+  山海:
+    zh-TW: 不論時代如何更迭，hualien的山海始終守護著我們，讓我們這些尋常庄民有討生活的根。
+  歷史:
+    zh-TW: 這片土地在很久以前是先民與風浪對抗的要塞，如今所有的磚縫裡都長著我們開墾的故事。
+role: citizen
+settlement: hualien

@@ -2,7 +2,7 @@ id: npc_changhua_extra_twofour_generic
 name:
   zh-TW: "半線墾荒子弟"
 settlement: changhua
-home_site: "changhua_site_zeroone"
+home_site: "changhua_site_record_fourth"
 role: "citizen"
 hint:
   zh-TW: "世代生活在彰化平原上的百姓。"

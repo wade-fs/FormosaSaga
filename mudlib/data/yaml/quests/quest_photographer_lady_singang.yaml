@@ -1,37 +1,32 @@
-id: quest_photographer_lady_singang
-title: "攝影師找不到的老太太"
-settlement: singang
-scope:
-  - singang
-era: modern
-difficulty: 3
-description: |
-  廟會攝影師阿志說，他拍到一個做了古老西拉雅祭拜動作的老太太，
-  找了好幾年，沒有人認識她。
-  西拉雅後裔阿春嬤說，那種動作是她阿嬤教她的，
-  只有西拉雅家族才知道。
-  那個老太太是誰？
-objectives:
-  - id: step_1
-    description: "與 NPC_photographer_singang 對話"
-    npc: NPC_photographer_singang
-    ask_topic: 西拉雅
-  - id: step_2
-    description: "與 NPC_sinkang_descendent_lady 對話"
-    npc: NPC_sinkang_descendent_lady
-    ask_topic: 西拉雅
-  - id: step_3
-    description: "與 NPC_siraya_elder_singang 對話"
-    npc: NPC_siraya_elder_singang
-    ask_topic: 西拉雅
-  - id: step_4
-    description: "在 singang 進行 look"
-    site: singang
-    action: look
-  - id: step_5
-    description: "解鎖記憶碎片 singang_festival_zerozeroone"
-    memory: singang_festival_zerozeroone
 completion_reward:
   exp: 1300
   faction: siraya_memory
   reputation: 95
+description: 協助地方庄民，尋回在風雨中遺失的「清代官府頒發的地方墾殖舊地契手抄原本」。
+difficulty: 3
+era: modern
+id: quest_photographer_lady_singang
+objectives:
+- ask_topic: 西拉雅
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_1
+  npc: NPC_photographer_singang
+- ask_topic: 西拉雅
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_2
+  npc: NPC_sinkang_descendent_lady
+- ask_topic: 西拉雅
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_3
+  npc: NPC_siraya_elder_singang
+- action: look
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_4
+  site: singang
+- description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_5
+  memory: record_extra_pos_72
+scope:
+- singang
+settlement: singang
+title: 失落的舊地契

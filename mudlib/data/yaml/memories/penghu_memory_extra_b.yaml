@@ -1,10 +1,10 @@
-id: penghu_memory_extra_b
-title: "澎湖歷史風物印記_B"
-era: "v1.0"
-evidence_type: 歷史記憶
-quality: 3
-progress: 10
-description: "關於澎湖群島西嶼、七美、二崁等地區開墾、近海漁業或海防要塞歷史發展的珍貴記憶片段B。"
-settlement: penghu
-trigger_site: "penghu_site"
 conditions: []
+description: 老街上，百年大焙籠中慢火烘焙茶葉與糕點的木炭香，與街尾古廟傳出的裊裊香煙交織在黃昏餘暉中。
+era: v1.0
+evidence_type: 歷史記憶
+id: penghu_memory_extra_b
+progress: 10
+quality: 3
+settlement: penghu
+title: 澎湖歷史風物印記_B ─ 老街上，百年大焙...
+trigger_site: penghu_site

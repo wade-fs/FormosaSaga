@@ -25,7 +25,7 @@ clues:
   - clue_id: minxiong_sugar_link
     name: 民雄糖業的關聯
     source_type: memory
-    source_id: "memory:minxiong_sugar_zerozeroone"
+    source_id: "memory:record_extra_pos_75"
 completion_reward:
   exp: 1300
   faction: taiwan_folk_memory

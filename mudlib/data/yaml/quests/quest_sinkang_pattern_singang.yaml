@@ -1,37 +1,33 @@
-id: quest_sinkang_pattern_singang
-title: "新港紋的秘密"
-settlement: singang
-scope:
-  - singang
-era: dutch
-difficulty: 3
-description: |
-  竹藝師傅阿珠發現，她嘗試復原的「新港紋」
-  竟然和奉天宮廟埕的平面圖高度相似。
-  西拉雅後裔阿春嬤說，那個圖案是祖靈的召喚符，
-  不是用來裝飾的。你試圖找到這個圖案背後的真相。
-objectives:
-  - id: step_1
-    description: "與 NPC_bamboo_artist_singang 對話"
-    npc: NPC_bamboo_artist_singang
-    ask_topic: 新港紋
-  - id: step_2
-    description: "與 NPC_siraya_elder_singang 對話"
-    npc: NPC_siraya_elder_singang
-    ask_topic: 傳言
-  - id: step_3
-    description: "在 fengtian_shrine_garden 進行 look"
-    site: fengtian_shrine_garden
-    action: look
-  - id: step_4
-    description: "與 NPC_sinkang_descendent_lady 對話"
-    npc: NPC_sinkang_descendent_lady
-    ask_topic: 傳言
-  - id: step_5
-    description: "解鎖記憶碎片 singang_bamboo_zerozeroone"
-    memory: singang_bamboo_zerozeroone
 completion_reward:
   exp: 1500
   faction: siraya_memory
   reputation: 110
   unlock_incident: singang_dutch_church_incident
+description: 協助地方庄民，尋回在風雨中遺失的「清代官府頒發的地方墾殖舊地契手抄原本」。
+difficulty: 3
+era: dutch
+id: quest_sinkang_pattern_singang
+objectives:
+- ask_topic: 新港紋
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_1
+  npc: NPC_bamboo_artist_singang
+- ask_topic: 傳言
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_2
+  npc: NPC_siraya_elder_singang
+- action: look
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_3
+  site: fengtian_shrine_garden
+- ask_topic: 傳言
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_4
+  npc: NPC_sinkang_descendent_lady
+- description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: step_5
+  memory: bamboo_weaving
+scope:
+- singang
+settlement: singang
+title: 失落的舊地契

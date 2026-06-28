@@ -1,27 +1,24 @@
-id: quest_city_park_underground_chiayi
-title: "公園石階下的地窖"
-settlement: chiayi_city
-scope:
-  - chiayi_city
-era: japanese
-difficulty: 3
-description: |
-  公園老棋手阿山說，他年輕時在石階旁挖到過一個鐵蓋，
-  因為被說是破壞古蹟而填回去了。
-  你試圖找到那個鐵蓋的位置，以及它通向什麼地方。
-objectives:
-  - id: talk_elder
-    description: "向公園老棋手阿山詢問地窖的位置"
-    npc: NPC_city_park_elder
-    ask_topic: 傳言
-  - id: find_iron_cover
-    description: "在公園石階附近尋找鐵蓋的痕跡"
-    site: city_park
-    action: search
-  - id: memory_park
-    description: "解鎖公園記憶碎片「神社的石燈籠」"
-    memory: chiayi_park_zerozeroone
 completion_reward:
   exp: 1000
   faction: chiayi_folk
   reputation: 65
+description: 協助地方庄民，尋回在風雨中遺失的「清代官府頒發的地方墾殖舊地契手抄原本」。
+difficulty: 3
+era: japanese
+id: quest_city_park_underground_chiayi
+objectives:
+- ask_topic: 傳言
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: talk_elder
+  npc: NPC_city_park_elder
+- action: search
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: find_iron_cover
+  site: city_park
+- description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: memory_park
+  memory: record
+scope:
+- chiayi_city
+settlement: chiayi_city
+title: 失落的舊地契

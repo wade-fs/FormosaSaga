@@ -1,31 +1,28 @@
-id: quest_postwar_letter_wait
-title: "看守所寄出的信"
-settlement: tainan
-scope:
-  - tainan
-era: postwar
-difficulty: 3
-description: |
-  二二八紀念館展示著一封手寫遺書，收件人是『春梅』，但寄送地址早已變更。
-  館員阿敏對此信件的背景感到無奈。
-  你將重走這個地址，為這段長達數十年的沉默帶回一絲溫暖的解讀。
-objectives:
-  - id: talk_staff
-    description: "向 館員阿敏 詢問信件的來源與細節"
-    npc: NPC_two_two_eight_museum_staff
-    ask_topic: 信件
-  - id: look_memorial
-    description: "在 紀念館 仔細閱讀該信件原文"
-    site: tainan_two_two_eight_memorial
-    action: look
-  - id: talk_elder_witness
-    description: "向 東門城邊老攤販阿德仔 詢問當年台南大捕殺的見聞"
-    npc: NPC_dongmen_gate_elder
-    ask_topic: 東門城
-  - id: get_postwar_memory
-    description: "解鎖記憶碎片『二二八的最後家書』"
-    memory: tainan_postwar_zerozeroone
 completion_reward:
   exp: 1600
   faction: taiwan_historical_truth
   reputation: 110
+description: 協助地方庄民，尋回在風雨中遺失的「清代官府頒發的地方墾殖舊地契手抄原本」。
+difficulty: 3
+era: postwar
+id: quest_postwar_letter_wait
+objectives:
+- ask_topic: 信件
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: talk_staff
+  npc: NPC_228_museum_staff
+- action: look
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: look_memorial
+  site: tainan_228_memorial
+- ask_topic: 東門城
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: talk_elder_witness
+  npc: NPC_dongmen_gate_elder
+- description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: get_postwar_memory
+  memory: memory_228
+scope:
+- tainan
+settlement: tainan
+title: 失落的舊地契

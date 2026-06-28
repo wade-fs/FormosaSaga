@@ -1,10 +1,10 @@
-id: tainan_memory_extra_mem_c
-title: "府城歷史風物印記_C"
-era: "qing"
-evidence_type: 歷史記憶
-quality: 3
-progress: 10
-description: "關於台南府城老街、古廟、近海漁業或戰地防護歷史發展的珍貴記憶片段C。"
-settlement: tainan
-trigger_site: "tainan_old_street"
 conditions: []
+description: 老街上，百年大焙籠中慢火烘焙茶葉與糕點的木炭香，與街尾古廟傳出的裊裊香煙交織在黃昏餘暉中。
+era: qing
+evidence_type: 歷史記憶
+id: tainan_memory_extra_mem_c
+progress: 10
+quality: 3
+settlement: tainan
+title: 府城歷史風物印記_C ─ 老街上，百年大焙...
+trigger_site: tainan_old_street

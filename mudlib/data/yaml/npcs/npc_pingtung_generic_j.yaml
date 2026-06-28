@@ -1,13 +1,13 @@
+hint:
+  zh-TW: 老街百年商鋪的老闆，對地方名特產的古法製作與兩岸郊商開墾史極有研究。
+home_site: hengchun
 id: npc_pingtung_generic_j
 name:
-  zh-TW: "屏東山海庄民_J"
-settlement: pingtung
-home_site: "hengchun"
-role: "citizen"
-hint:
-  zh-TW: "在屏東恆春古城或沿海庄頭討生活的尋常百姓之J。"
+  zh-TW: 老街鋪掌櫃
 responses:
-  "歷史":
-    zh-TW: "屏東的歷史，是一面由石板屋與恆春古城城牆抵禦海風，一面由東港迎王大典的火光與排灣族祖靈寫成的山海長卷。"
-  "山海":
-    zh-TW: "不論是牡丹社的古戰場，還是萬金聖母教堂，都是我們屏東人在風浪中討生活的根。"
+  山海:
+    zh-TW: 不論時代如何更迭，pingtung的山海始終守護著我們，讓我們這些尋常庄民有討生活的根。
+  歷史:
+    zh-TW: 這片土地在很久以前是先民與風浪對抗的要塞，如今所有的磚縫裡都長著我們開墾的故事。
+role: citizen
+settlement: pingtung

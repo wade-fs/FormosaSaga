@@ -1,10 +1,10 @@
-id: kinmen_memory_extra_g
-title: "金門歷史風物印記_G"
-era: "v3.0"
-evidence_type: 歷史記憶
-quality: 3
-progress: 10
-description: "關於金門群島烈嶼、水頭、山后等地區開墾、戰地防衛或僑商歷史發展的珍貴記憶片段G。"
-settlement: kinmen
-trigger_site: "kinmen_site"
 conditions: []
+description: 老街上，百年大焙籠中慢火烘焙茶葉與糕點的木炭香，與街尾古廟傳出的裊裊香煙交織在黃昏餘暉中。
+era: v3.0
+evidence_type: 歷史記憶
+id: kinmen_memory_extra_g
+progress: 10
+quality: 3
+settlement: kinmen
+title: 金門歷史風物印記_G ─ 老街上，百年大焙...
+trigger_site: kinmen_site

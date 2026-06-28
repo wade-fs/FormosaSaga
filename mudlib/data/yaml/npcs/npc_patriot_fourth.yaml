@@ -1,0 +1,13 @@
+id: npc_patriot_fourth
+name:
+  zh-TW: "巡山員 阿吉"
+settlement: yilan
+home_site: "yilan_taipingshan"
+role: "護林員"
+hint:
+  zh-TW: "守護太平山原始檜木林與鐵道遺跡的巡山員。"
+responses:
+  "歷史":
+    zh-TW: "蘭陽平原的每寸泥土都有故事，從噶瑪蘭人的舊社到漢人的新市鎮。"
+  "開墾":
+    zh-TW: "當年越過雪山山脈開墾的人們，付出了血和汗的代價。"

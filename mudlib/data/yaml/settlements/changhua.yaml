@@ -24,11 +24,11 @@ temples:
   deity: 媽祖
 sites:
 - changhua_baguashan
-- changhua_site_zeroone
-- changhua_site_zerotwo
-- changhua_site_zerothree
-- changhua_site_zerofour
-- changhua_site_zerofive
+- changhua_site_record_fourth
+- changhua_site_record
+- changhua_site_record_first
+- changhua_site_record_second
+- changhua_site_record_third
 - changhua_site_zerosix
 - changhua_site_zeroseven
 - changhua_site_zeroeight

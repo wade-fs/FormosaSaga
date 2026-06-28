@@ -1,32 +1,29 @@
-id: quest_alishan_timber_trail
-title: "百年神木的最後旅程"
-settlement: chiayi_city
-scope:
-  - chiayi_city
-era: japanese
-difficulty: 2
-description: |
-  老木工阿福說，他在製材所工作三十年，親眼看著阿里山的百年神木
-  被鋸成板材。阿里山鐵路老技師阿義說，那節從沒被打開的車廂
-  在調度場深處等著。這兩條線索之間是否有關聯？
-objectives:
-  - id: talk_woodworker
-    description: "向老木工阿福詢問製材所的記憶"
-    npc: NPC_old_craftsman_wood
-    ask_topic: 製材所
-  - id: visit_ruins
-    description: "在製材所遺址尋找舊設計圖或文件"
-    site: lumber_yard_chiayi
-    action: search
-  - id: talk_engineer
-    description: "詢問鐵路老技師阿義那節神秘車廂"
-    npc: NPC_railway_engineer_chiayi
-    ask_topic: 機車
-  - id: memory_lumber
-    description: "解鎖製材所記憶碎片「製材所的第一班」"
-    memory: chiayi_lumber_zerozeroone
 completion_reward:
   exp: 1100
   faction: ecological_memory
   reputation: 75
   unlock_incident: chiayi_alishan_lumber_incident
+description: 協助地方庄民，尋回在風雨中遺失的「清代官府頒發的地方墾殖舊地契手抄原本」。
+difficulty: 2
+era: japanese
+id: quest_alishan_timber_trail
+objectives:
+- ask_topic: 製材所
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: talk_woodworker
+  npc: NPC_old_craftsman_wood
+- action: search
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: visit_ruins
+  site: lumber_yard_chiayi
+- ask_topic: 機車
+  description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: talk_engineer
+  npc: NPC_railway_engineer_chiayi
+- description: 收集與「失落的舊地契」相關的歷史線索並回報
+  id: memory_lumber
+  memory: record_extra_pos_79
+scope:
+- chiayi_city
+settlement: chiayi_city
+title: 失落的舊地契

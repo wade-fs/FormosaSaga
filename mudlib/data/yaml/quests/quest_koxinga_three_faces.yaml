@@ -1,31 +1,28 @@
-id: quest_koxinga_three_faces
-title: "延平王的三副面孔"
-settlement: tainan
-scope:
-  - tainan
-era: modern
-difficulty: 3
-description: |
-  博物館裡展出了歐洲人、日本人與漢人分別繪製的三幅風格迥異的鄭成功畫像。
-  策展人小芬正試圖規劃一個打破單一視角的歷史展覽。
-  你將尋訪台南各處，為她收集關於鄭成功歷史角色的民間多樣記憶。
-objectives:
-  - id: talk_curator
-    description: "與 策展人小芬 討論三幅畫像背後的文化視角"
-    npc: NPC_koxinga_museum_curator
-    ask_topic: 畫像
-  - id: look_museum_painting
-    description: "在 延平王博物館 仔細觀看這三幅畫像"
-    site: tainan_koxinga_museum
-    action: look
-  - id: talk_reenactor_views
-    description: "詢問 表演者阿名 關於扮演鄭成功的個人感觸"
-    npc: NPC_koxinga_reenactor
-    ask_topic: 日本神社
-  - id: get_school_first_class
-    description: "解鎖記憶碎片『明倫堂的漢學第一課』"
-    memory: tainan_koxinga_zerozerofour
 completion_reward:
   exp: 1400
   faction: taiwan_historical_truth
   reputation: 95
+description: 水圳閘門的提水螺桿鎖銹蝕，協助巡水員尋找生漆與防銹油以重啟引水分門。
+difficulty: 3
+era: modern
+id: quest_koxinga_three_faces
+objectives:
+- ask_topic: 畫像
+  description: 收集與「大圳分水分門鎖」相關的歷史線索並回報
+  id: talk_curator
+  npc: NPC_koxinga_museum_curator
+- action: look
+  description: 收集與「大圳分水分門鎖」相關的歷史線索並回報
+  id: look_museum_painting
+  site: tainan_koxinga_museum
+- ask_topic: 日本神社
+  description: 收集與「大圳分水分門鎖」相關的歷史線索並回報
+  id: talk_reenactor_views
+  npc: NPC_koxinga_reenactor
+- description: 收集與「大圳分水分門鎖」相關的歷史線索並回報
+  id: get_school_first_class
+  memory: record_ninth
+scope:
+- tainan
+settlement: tainan
+title: 大圳分水分門鎖
