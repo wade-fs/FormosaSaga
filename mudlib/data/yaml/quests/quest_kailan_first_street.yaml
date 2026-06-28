@@ -8,7 +8,7 @@ scope:
 settlement: yilan
 objectives:
 - id: obj_yilan_4
-  npc: npc_patriot_fifth
+  npc: npc_fisherman_lee_awang
   ask_topic: "歷史"
   description: "向頭城大老詢問開蘭碑"
 completion_reward:

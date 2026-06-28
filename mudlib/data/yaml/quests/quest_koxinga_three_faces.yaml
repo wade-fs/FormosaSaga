@@ -21,7 +21,7 @@ objectives:
   npc: NPC_koxinga_reenactor
 - description: 收集與「大圳分水分門鎖」相關的歷史線索並回報
   id: get_school_first_class
-  memory: record_ninth
+  memory: memory_minglun_temple_class
 scope:
 - tainan
 settlement: tainan
