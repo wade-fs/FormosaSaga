@@ -4,7 +4,7 @@ description: 拜訪英國茶商 Mr. Brown，了解福爾摩沙烏龍茶在西方
 difficulty: 1
 era: v1.5
 scope:
-- taipei
+- taipei_101
 settlement: taipei
 objectives:
 - id: obj_taipei_3_1

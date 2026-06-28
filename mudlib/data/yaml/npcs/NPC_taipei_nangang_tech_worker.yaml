@@ -2,7 +2,7 @@ id: NPC_taipei_nangang_tech_worker
 name:
   zh-TW: 南港軟體工程師
 settlement: taipei
-home_site: taipei_nangang_exhibition
+home_site: taipei_101_nangang_exhibition
 role: worker
 hint:
   zh-TW: 穿著格子衫、戴著耳機的年輕工程師，在筆電前快速地敲打程式碼。

@@ -2,7 +2,7 @@ id: NPC_taipei_ntu_professor
 name:
   zh-TW: 台大歷史系教授
 settlement: taipei
-home_site: taipei_daan_park
+home_site: taipei_101_daan_park
 role: scholar
 hint:
   zh-TW: 穿著休閒夾克、頭髮花白的教授正坐在公園長椅上看書，旁邊放著一摞文件。

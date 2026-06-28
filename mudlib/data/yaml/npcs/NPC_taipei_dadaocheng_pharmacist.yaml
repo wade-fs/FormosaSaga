@@ -2,7 +2,7 @@ id: NPC_taipei_dadaocheng_pharmacist
 name:
   zh-TW: 大稻埕漢藥房老師傅
 settlement: taipei
-home_site: taipei_dadaocheng
+home_site: taipei_101_dadaocheng
 role: artisan
 hint:
   zh-TW: 坐在百子櫃前的老藥師，正用銅秤精確地稱量一帖藥材。

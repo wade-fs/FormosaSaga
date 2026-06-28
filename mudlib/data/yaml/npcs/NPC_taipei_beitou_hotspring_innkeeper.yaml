@@ -2,7 +2,7 @@ id: NPC_taipei_beitou_hotspring_innkeeper
 name:
   zh-TW: 北投溫泉旅館老闆
 settlement: taipei
-home_site: taipei_beitou_hotspring
+home_site: taipei_101_beitou_hotspring
 role: innkeeper
 hint:
   zh-TW: 笑容可掬的中年男子站在旅館門口招呼客人，身上穿著日式浴衣。

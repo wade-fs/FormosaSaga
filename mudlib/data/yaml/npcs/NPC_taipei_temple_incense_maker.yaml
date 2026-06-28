@@ -2,7 +2,7 @@ id: NPC_taipei_temple_incense_maker
 name:
   zh-TW: 艋舺手工線香師傅
 settlement: taipei
-home_site: taipei_qingshan_temple
+home_site: taipei_101_qingshan_temple
 role: artisan
 hint:
   zh-TW: 手指沾滿紅色香料的老師傅，正在廟旁的小作坊裡搓製長條手工線香。

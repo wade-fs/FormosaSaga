@@ -2,7 +2,7 @@ id: npc_changhua_battle_orphan_lai
 name:
   zh-TW: "八卦山義軍遺孤 賴老先生"
 settlement: changhua
-home_site: "changhua_site_record_fourth"
+home_site: "changhua_site_record_th"
 role: "遺孤"
 hint:
   zh-TW: "祖父曾參與1895年乙未戰爭八卦山之役，保留著當年的斷刀。"

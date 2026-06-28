@@ -2,7 +2,7 @@ id: NPC_taipei_city_builder
 name:
   zh-TW: 台北建城師傅陳進祿
 settlement: taipei
-home_site: taipei_city_gate
+home_site: taipei_101_city_gate
 role: artisan
 hint:
   zh-TW: 滿手老繭、腰背微駝的老工匠，戴著斗笠，正仔細摩挲著城門的石磚。

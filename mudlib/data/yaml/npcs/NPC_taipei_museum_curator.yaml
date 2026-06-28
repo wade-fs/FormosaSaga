@@ -2,7 +2,7 @@ id: NPC_taipei_museum_curator
 name:
   zh-TW: 台灣博物館研究員
 settlement: taipei
-home_site: taipei_national_museum
+home_site: taipei_101_national_museum
 role: scholar
 hint:
   zh-TW: 戴著眼鏡、穿著白色研究服的中年女性，正在研究室整理一批原住民文物。

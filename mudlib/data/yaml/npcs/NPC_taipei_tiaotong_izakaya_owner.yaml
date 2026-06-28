@@ -2,7 +2,7 @@ id: NPC_taipei_tiaotong_izakaya_owner
 name:
   zh-TW: 條通居酒屋老闆山田先生
 settlement: taipei
-home_site: taipei_zhongshan_north_road
+home_site: taipei_101_zhongshan_north_road
 role: innkeeper
 hint:
   zh-TW: 身穿日式圍裙、頭綁布巾的日本男子，親切地在吧台後為客人斟酒。

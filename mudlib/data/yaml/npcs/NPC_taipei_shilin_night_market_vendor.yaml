@@ -2,7 +2,7 @@ id: NPC_taipei_shilin_night_market_vendor
 name:
   zh-TW: 士林大香腸老闆娘
 settlement: taipei
-home_site: taipei_shilin_night_market
+home_site: taipei_101_shilin_night_market
 role: vendor
 hint:
   zh-TW: 圍著圍裙的阿姨正用炭爐烤著粗大的香腸，油脂滴落在碳上發出滋滋聲響。

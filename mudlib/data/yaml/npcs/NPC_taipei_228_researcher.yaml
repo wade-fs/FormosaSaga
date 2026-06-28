@@ -2,7 +2,7 @@ id: NPC_taipei_228_researcher
 name:
   zh-TW: 二二八紀念館研究員
 settlement: taipei
-home_site: taipei_228_park
+home_site: taipei_101_228_park
 role: scholar
 hint:
   zh-TW: 穿著簡單的學術人員，正在公園紀念碑旁記錄訪問口述歷史的老人。

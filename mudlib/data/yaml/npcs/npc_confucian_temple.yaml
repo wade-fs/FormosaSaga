@@ -2,7 +2,7 @@ id: npc_confucian_temple
 name:
   zh-TW: "孔廟祭祀 賴先生"
 settlement: changhua
-home_site: "changhua_site_record_fourth"
+home_site: "changhua_site_record_th"
 role: "祭祀官"
 hint:
   zh-TW: "彰化孔子廟中，負責傳承八音與釋奠典禮儀軌的禮生。"

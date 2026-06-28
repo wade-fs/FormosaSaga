@@ -2,7 +2,7 @@ id: NPC_taipei_guandu_temple_medium
 name:
   zh-TW: 關渡宮乩童
 settlement: taipei
-home_site: taipei_guandu_temple
+home_site: taipei_101_guandu_temple
 role: priest
 hint:
   zh-TW: 穿著神衣、眼神出神的乩童，廟會期間進入神靈附體狀態，成為信眾與神明溝通的媒介。

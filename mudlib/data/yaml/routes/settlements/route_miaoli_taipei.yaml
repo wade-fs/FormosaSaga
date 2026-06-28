@@ -1,7 +1,7 @@
 id: route_miaoli_taipei
 nodes:
 - miaoli
-- taipei
+- taipei_101
 distance_km: 110
 travel_time:
   walk: 22h

@@ -2,7 +2,7 @@ id: NPC_taipei_coffee_shop_owner
 name:
   zh-TW: 永康街咖啡館主
 settlement: taipei
-home_site: taipei_yongkang_street
+home_site: taipei_101_yongkang_street
 role: vendor
 hint:
   zh-TW: 穿著圍裙的年輕老闆正在手沖咖啡，咖啡香瀰漫整間小店。

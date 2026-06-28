@@ -2,7 +2,7 @@ id: NPC_taipei_grand_hotel_concierge
 name:
   zh-TW: 圓山大飯店禮賓司
 settlement: taipei
-home_site: taipei_grand_hotel
+home_site: taipei_101_grand_hotel
 role: worker
 hint:
   zh-TW: 穿著金邊制服、儀態端莊的禮賓員，在大廳門口恭敬地迎接到訪的貴賓。

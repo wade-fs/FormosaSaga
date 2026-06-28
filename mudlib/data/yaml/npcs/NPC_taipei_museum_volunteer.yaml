@@ -2,7 +2,7 @@ id: NPC_taipei_museum_volunteer
 name:
   zh-TW: 台灣博物館義工阿伯
 settlement: taipei
-home_site: taipei_national_museum
+home_site: taipei_101_national_museum
 role: civilian
 hint:
   zh-TW: 戴著志工名牌的退休老人，熱情地站在展廳入口向訪客打招呼。

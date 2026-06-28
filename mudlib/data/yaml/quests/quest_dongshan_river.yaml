@@ -8,7 +8,7 @@ scope:
 settlement: yilan
 objectives:
 - id: obj_yilan_8
-  npc: npc_patriot_fourth
+  npc: npc_patriot_th
   ask_topic: "歷史"
   description: "向張工程師詢問舊河道位置"
 completion_reward:

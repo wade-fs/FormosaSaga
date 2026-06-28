@@ -2,7 +2,7 @@ id: NPC_taipei_songshan_art_curator
 name:
   zh-TW: 松山文創園區策展人
 settlement: taipei
-home_site: taipei_songshan_cultural_park
+home_site: taipei_101_songshan_cultural_park
 role: artist
 hint:
   zh-TW: 穿著時髦、說話充滿熱情的年輕策展人，正在佈置即將開幕的設計展。

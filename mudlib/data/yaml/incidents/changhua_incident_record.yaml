@@ -10,7 +10,7 @@ clues:
   - clue_id: clue_changhua_incident_05
     name: "彰化事件的線索05"
     source_type: site_look
-    source_id: "site:changhua_site_record_fourth"
+    source_id: "site:changhua_site_record_th"
 completion_reward:
   exp: 1000
   faction: taiwan_historical_truth

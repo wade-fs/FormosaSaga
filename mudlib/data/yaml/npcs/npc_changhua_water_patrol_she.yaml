@@ -2,7 +2,7 @@ id: npc_changhua_water_patrol_she
 name:
   zh-TW: "二水水圳巡水員 謝叔"
 settlement: changhua
-home_site: "changhua_site_record_fourth"
+home_site: "changhua_site_record_th"
 role: "巡水員"
 hint:
   zh-TW: "二水八堡圳的巡水員，精通林先生築圳工法與水閘門操作。"

@@ -2,7 +2,7 @@ id: NPC_taipei_underground_guide
 name:
   zh-TW: 地下秘道探索者
 settlement: taipei
-home_site: taipei_hidden_underground_passage
+home_site: taipei_101_hidden_underground_passage
 role: guide
 hint:
   zh-TW: 穿著黑色工作服、帶著頭燈的神秘人，在城牆廢址附近徘徊。

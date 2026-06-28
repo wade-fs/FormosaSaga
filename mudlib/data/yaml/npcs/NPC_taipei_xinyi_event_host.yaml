@@ -2,7 +2,7 @@ id: NPC_taipei_xinyi_event_host
 name:
   zh-TW: 跨年晚會主持人
 settlement: taipei
-home_site: taipei_xinyi_square
+home_site: taipei_101_xinyi_square
 role: entertainer
 hint:
   zh-TW: 聲音宏亮、精神飽滿的年輕主持人，正在廣場彩排跨年倒數活動。

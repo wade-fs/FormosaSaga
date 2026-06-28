@@ -2,7 +2,7 @@ id: NPC_taipei_parliament_journalist
 name:
   zh-TW: 立院跑班記者
 settlement: taipei
-home_site: taipei_presidential_office
+home_site: taipei_101_presidential_office
 role: journalist
 hint:
   zh-TW: 掛著記者証、手持錄音筆的年輕記者，正在廣場邊等待官員出入。

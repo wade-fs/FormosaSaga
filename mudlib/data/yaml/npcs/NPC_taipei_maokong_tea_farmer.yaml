@@ -2,7 +2,7 @@ id: NPC_taipei_maokong_tea_farmer
 name:
   zh-TW: 貓空鐵觀音茶農
 settlement: taipei
-home_site: taipei_maokong_tea_area
+home_site: taipei_101_maokong_tea_area
 role: farmer
 hint:
   zh-TW: 皮膚曬成古銅色的中年茶農，正蹲在茶叢間細心挑揀新芽。

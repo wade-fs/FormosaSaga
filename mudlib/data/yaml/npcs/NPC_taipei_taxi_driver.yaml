@@ -2,7 +2,7 @@ id: NPC_taipei_taxi_driver
 name:
   zh-TW: 台北老計程車司機
 settlement: taipei
-home_site: taipei_railway_station_old
+home_site: taipei_101_railway_station_old
 role: civilian
 hint:
   zh-TW: 靠在車門旁等客的老司機，收音機傳來台語流行歌，他隨口哼著調子。

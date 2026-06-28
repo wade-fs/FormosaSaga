@@ -2,7 +2,7 @@ id: NPC_taipei_beitou_museum_curator
 name:
   zh-TW: 北投溫泉博物館館長
 settlement: taipei
-home_site: taipei_beitou_museum
+home_site: taipei_101_beitou_museum
 role: scholar
 hint:
   zh-TW: 穿著整齊的館長正在為訪客講解老浴場的歷史，語氣中充滿對文化資產的熱愛。

@@ -2,7 +2,7 @@ id: NPC_taipei_night_patrolman
 name:
   zh-TW: 北門義警夜間巡查
 settlement: taipei
-home_site: taipei_north_gate
+home_site: taipei_101_north_gate
 role: soldier
 hint:
   zh-TW: 穿著反光背心的志願守望相助隊員，手電筒照向街角仔細巡視。

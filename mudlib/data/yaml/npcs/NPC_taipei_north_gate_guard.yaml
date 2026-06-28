@@ -2,7 +2,7 @@ id: NPC_taipei_north_gate_guard
 name:
   zh-TW: 承恩門守衛士兵
 settlement: taipei
-home_site: taipei_north_gate
+home_site: taipei_101_north_gate
 role: soldier
 hint:
   zh-TW: 身穿清朝號衣、手持長矛的守衛，在城門下挺立崗哨。

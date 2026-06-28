@@ -2,7 +2,7 @@ id: npc_hsinchu_airport_veteran
 name:
   zh-TW: "老班長"
 settlement: hsinchu_city
-home_site: "hsinchu_shibajian_bunker_network"
+home_site: "hsinchu_shibajian_bunker_nerk"
 role: "退伍軍人"
 hint:
   zh-TW: "隨軍隊撤退到新竹並在十八尖山營房駐守多年的老兵，熟悉碉堡防線。"

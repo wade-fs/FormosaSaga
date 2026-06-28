@@ -2,7 +2,7 @@ id: NPC_taipei_228_survivor
 name:
   zh-TW: 二二八倖存者林老先生
 settlement: taipei
-home_site: taipei_228_park
+home_site: taipei_101_228_park
 role: civilian
 hint:
   zh-TW: 面容滄桑的老人坐在公園長椅上，望著遠方，沉默了很久才開口。
